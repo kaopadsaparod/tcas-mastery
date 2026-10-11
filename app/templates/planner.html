@@ -84,15 +84,75 @@
         </p>
       </div>
 
-      <div>
-        <a href="{{ block.action_url }}" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem; font-weight: 600;">
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <a href="{{ block.action_url }}" class="btn btn-primary" style="padding: 0.5rem 1.15rem; font-size: 0.88rem; font-weight: 600;">
           {{ block.action_label }}
         </a>
+        <button type="button" class="btn btn-outline" style="border-color: #22c55e; color: #15803d; font-size: 0.85rem; padding: 0.45rem 0.75rem;" onclick="markBlockDone('{{ block.block_id }}', {{ block.allocated_minutes }})">
+          ✓ เสร็จแล้ว
+        </button>
+        <button type="button" class="btn btn-outline" style="border-color: #cbd5e1; color: #64748b; font-size: 0.85rem; padding: 0.45rem 0.6rem;" onclick="skipBlock('{{ block.block_id }}')">
+          ⏭️ ข้าม
+        </button>
       </div>
     </div>
     {% endfor %}
   </div>
+
+  <!-- Session End Action Bar -->
+  <div class="card" style="margin-top: 1.5rem; background: #f8fafc; border: 1.5px dashed #cbd5e1; padding: 1.25rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <h3 style="font-size: 1rem; font-weight: 700; margin: 0 0 0.2rem 0; color: #334155;">
+        🏁 บันทึกผลการเรียนประจำวัน (Daily Reflection)
+      </h3>
+      <p style="font-size: 0.85rem; color: #64748b; margin: 0;">
+        เมื่ออ่านและฝึกครบตามเวลาที่ตั้งใจ ให้กดบันทึกเพื่อนำข้อมูลไปปรับตารางวันพรุ่งนี้ให้ตรงจุดยิ่งขึ้น
+      </p>
+    </div>
+    <button type="button" class="btn btn-primary" style="background: #10b981; border-color: #059669; font-weight: 700; padding: 0.6rem 1.25rem;" onclick="finishSession()">
+      🎉 บันทึกการติววันนี้สำเร็จ ➔
+    </button>
+  </div>
 </div>
+
+<!-- Past Study History Section -->
+{% if history %}
+<div style="margin-bottom: 2rem;">
+  <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📈 ประวัติการติวที่บันทึกแล้ว (Study Log)</h2>
+  <div class="card" style="padding: 0; overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left;">
+      <thead>
+        <tr style="background: #f8fafc; border-bottom: 1.5px solid var(--border-color); color: #475569;">
+          <th style="padding: 0.75rem 1rem;">เป้าหมาย</th>
+          <th style="padding: 0.75rem 1rem;">เวลาที่ตั้งใจ</th>
+          <th style="padding: 0.75rem 1rem;">เวลาที่ใช้จริง</th>
+          <th style="padding: 0.75rem 1rem;">บล็อกที่สำเร็จ</th>
+          <th style="padding: 0.75rem 1rem;">วันที่บันทึก</th>
+          <th style="padding: 0.75rem 1rem; text-align: right;">สถานะ</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in history %}
+        <tr style="border-bottom: 1px solid var(--border-color);">
+          <td style="padding: 0.75rem 1rem; font-weight: 600;">{{ h.target_exam|upper }}</td>
+          <td style="padding: 0.75rem 1rem;">{{ h.daily_minutes }} นาที</td>
+          <td style="padding: 0.75rem 1rem; font-weight: 700; color: #0284c7;">{{ h.total_time_spent_min }} นาที</td>
+          <td style="padding: 0.75rem 1rem;">{{ h.blocks_completed|length }} บล็อก</td>
+          <td style="padding: 0.75rem 1rem; color: #64748b; font-size: 0.82rem;">{{ h.created_at }}</td>
+          <td style="padding: 0.75rem 1rem; text-align: right;">
+            {% if h.status == 'completed' %}
+              <span class="badge" style="background: #dcfce7; color: #15803d; font-weight: 700;">Completed</span>
+            {% else %}
+              <span class="badge" style="background: #f1f5f9; color: #64748b;">In Progress</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
 
 <!-- Bottom Study Guidance & Tips -->
 <div class="grid-2">
@@ -122,4 +182,77 @@
     </div>
   </div>
 </div>
+
+<script>
+let activeSessionId = localStorage.getItem("tcas_active_study_session");
+
+async function ensureActiveSession() {
+  if (!activeSessionId) {
+    const res = await fetch("/api/planner/session/start", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ target_exam: "{{ plan.target_exam }}", daily_minutes: {{ plan.daily_minutes }} })
+    });
+    const data = await res.json();
+    activeSessionId = data.session_id;
+    localStorage.setItem("tcas_active_study_session", activeSessionId);
+  }
+  return activeSessionId;
+}
+
+async function markBlockDone(blockId, minutes) {
+  const sessId = await ensureActiveSession();
+  try {
+    await fetch("/api/planner/block/log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessId,
+        block_id: blockId,
+        time_spent_min: minutes,
+        status: "completed"
+      })
+    });
+    showToast(`ทำบล็อก ${blockId} สำเร็จแล้ว (+${minutes} นาที) ✓`);
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการบันทึก");
+  }
+}
+
+async function skipBlock(blockId) {
+  const sessId = await ensureActiveSession();
+  try {
+    await fetch("/api/planner/block/log", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        session_id: sessId,
+        block_id: blockId,
+        time_spent_min: 0,
+        status: "skipped",
+        notes: "ข้ามตามที่ผู้เรียนเลือก"
+      })
+    });
+    showToast(`ข้ามบล็อก ${blockId} เรียบร้อย ⏭️`);
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการบันทึก");
+  }
+}
+
+async function finishSession() {
+  const sessId = await ensureActiveSession();
+  try {
+    await fetch("/api/planner/session/finish", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ session_id: sessId, notes: "เสร็จสิ้นตามแผนประจำวัน" })
+    });
+    localStorage.removeItem("tcas_active_study_session");
+    showToast("บันทึกรอบการเรียนวันนี้สำเร็จแล้ว! ยอดเยี่ยมมาก 🎉");
+    setTimeout(() => { window.location.reload(); }, 1200);
+  } catch (err) {
+    showToast("เกิดข้อผิดพลาดในการบันทึก");
+  }
+}
+</script>
 {% endblock %}

@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block title %}Progress & Exam Readiness • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 100%); color: white; padding: 2rem; margin-bottom: 2rem;">
+  <div style="max-width: 800px;">
+    <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 0.5rem; display: inline-block;">
+      📊 รายงานพัฒนาการและความพร้อมก่อนสอบ (Exam Readiness Audit)
+    </span>
+    <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">วัดพัฒนาการจริงจากหลักฐาน ไม่ใช่ตัวเลขสวยหรู</h1>
+    <p style="opacity: 0.9; font-size: 0.95rem; margin-bottom: 0;">
+      ประเมินจากโจทย์ที่ไม่เคยเห็นมาก่อน (First-attempt accuracy) • ตรวจสอบจุดอ่อนแยกตามประเภทความเข้าใจผิด • วิเคราะห์แนวโน้มการพัฒนาในรอบสัปดาห์ • ประเมินความพร้อมสอบ A-Level / TPAT3 พร้อมระดับความไม่แน่นอน
+    </p>
+  </div>
+</div>
+
+<!-- 4 Key Questions Grid -->
+
+<!-- Question 1: รู้เรื่องอะไรแล้ว -->
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid #10b981; padding: 1.5rem;">
+  <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+    <div>
+      <span class="badge" style="background: #dcfce7; color: #166534; font-weight: 700;">คำถามที่ 1</span>
+      <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0.3rem 0; color: var(--text-main);">
+        💡 รู้เรื่องอะไรแล้ว (Validated Competency)
+      </h2>
+      <p style="font-size: 0.88rem; color: #64748b; margin: 0;">
+        วัดจากความแม่นยำในการทำโจทย์ที่ไม่เคยเห็นมาก่อน (ไม่นับการทำข้อเดิมซ้ำ)
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.6rem 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">ความแม่นยำแรกพบ (First-Attempt)</div>
+        <div style="font-size: 1.4rem; font-weight: 800; color: #15803d;">{{ report.competency.first_attempt_accuracy }}%</div>
+      </div>
+      <div style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 0.6rem 1rem; text-align: center;">
+        <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">หลักฐาน (Unique Questions)</div>
+        <div style="font-size: 1.4rem; font-weight: 800; color: #1e40af;">{{ report.competency.unique_questions_tested }} ข้อ</div>
+      </div>
+    </div>
+  </div>
+
+  {% if report.competency.mastered_topics %}
+  <div style="margin-top: 1rem;">
+    <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: #334155;">บทที่ผ่านเกณฑ์ความชำนาญระดับสูง (Mastered):</h3>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      {% for top in report.competency.mastered_topics %}
+        <span class="badge" style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; padding: 0.35rem 0.65rem; font-size: 0.85rem;">
+          ✓ {{ top.topic_name }} ({{ top.recent_accuracy }}%)
+        </span>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+  <div style="background: #f8fafc; padding: 0.85rem; border-radius: 6px; font-size: 0.88rem; color: #64748b;">
+    ยังไม่มีบทที่บรรลุเกณฑ์สมบูรณ์ ต้องทำโจทย์ใหม่ให้ถูกต้องติดต่อกันอย่างน้อย 3 ข้อขึ้นไป
+  </div>
+  {% endif %}
+</div>
+
+<!-- Question 2: ยังอ่อนตรงไหน -->
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid #ef4444; padding: 1.5rem;">
+  <span class="badge" style="background: #fee2e2; color: #991b1b; font-weight: 700;">คำถามที่ 2</span>
+  <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0.3rem 0 1rem 0; color: var(--text-main);">
+    ⚠️ ยังอ่อนตรงไหน (Diagnostic Weaknesses)
+  </h2>
+
+  <div class="grid-2" style="gap: 1.5rem;">
+    <div>
+      <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: #334155;">บทที่เป็นจุดอ่อนเร่งด่วน:</h3>
+      {% if report.weaknesses.weak_topics %}
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        {% for w in report.weaknesses.weak_topics %}
+        <div style="display: flex; justify-content: space-between; align-items: center; background: #fff1f2; border: 1px solid #fecdd3; border-radius: 6px; padding: 0.6rem 0.85rem;">
+          <div>
+            <div style="font-weight: 700; font-size: 0.9rem; color: #9f1239;">{{ w.topic_name }}</div>
+            <div style="font-size: 0.78rem; color: #881337;">ทำไป {{ w.unique_questions_attempted }} ข้อ • ความแม่นยำล่าสุด {{ w.recent_accuracy }}%</div>
+          </div>
+          <a href="/practice?topic={{ w.topic_id }}" class="btn btn-outline" style="border-color: #f43f5e; color: #e11d48; padding: 0.25rem 0.6rem; font-size: 0.8rem;">
+            ซ่อมข้อนี้ ➔
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div style="background: #f8fafc; padding: 0.85rem; border-radius: 6px; font-size: 0.88rem; color: #64748b;">
+        ไม่พบบทที่เป็นจุดอ่อนรุนแรงในขณะนี้ ยอดเยี่ยมมาก!
+      </div>
+      {% endif %}
+    </div>
+
+    <div>
+      <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: #334155;">การกระจายตัวของประเภทความผิดพลาด (Error Distribution):</h3>
+      {% if report.weaknesses.error_distribution %}
+      <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+        {% for err in report.weaknesses.error_distribution %}
+        <div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.2rem;">
+            <span style="font-weight: 600; color: #334155;">{{ err.title }}</span>
+            <span style="color: #64748b;">{{ err.percent }}% ({{ err.count }} ครั้ง)</span>
+          </div>
+          <div style="width: 100%; height: 8px; background: #f1f5f9; border-radius: 4px; overflow: hidden;">
+            <div style="width: {{ err.percent }}%; height: 100%; background: #f43f5e; border-radius: 4px;"></div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <div style="background: #f8fafc; padding: 0.85rem; border-radius: 6px; font-size: 0.88rem; color: #64748b;">
+        ยังไม่มีประวัติข้อผิดพลาดที่ระบุแท็ก
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<!-- Question 3: กำลังดีขึ้นหรือไม่ -->
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid #3b82f6; padding: 1.5rem;">
+  <span class="badge" style="background: #dbeafe; color: #1e40af; font-weight: 700;">คำถามที่ 3</span>
+  <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0.3rem 0 0.5rem 0; color: var(--text-main);">
+    📈 กำลังดีขึ้นหรือไม่ (Progress Trajectory)
+  </h2>
+  <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1rem;">
+    {{ report.trajectory.message }}
+  </p>
+
+  <div class="grid-2" style="background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem;">
+    <div>
+      <div style="font-size: 0.82rem; color: #64748b; font-weight: 600;">สัปดาห์นี้ (7 วันที่ผ่านมา)</div>
+      <div style="font-size: 1.25rem; font-weight: 800; color: #0284c7;">
+        {{ report.trajectory.this_week_accuracy }}% <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">(ทำ {{ report.trajectory.this_week_total }} ข้อ)</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size: 0.82rem; color: #64748b; font-weight: 600;">สัปดาห์ก่อนหน้า (8-14 วันที่แล้ว)</div>
+      <div style="font-size: 1.25rem; font-weight: 800; color: #475569;">
+        {{ report.trajectory.prev_week_accuracy }}% <span style="font-size: 0.85rem; color: #64748b; font-weight: 500;">(ทำ {{ report.trajectory.prev_week_total }} ข้อ)</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Question 4: พร้อมสอบแค่ไหน -->
+<div class="card" style="margin-bottom: 2rem; border-top: 4px solid #8b5cf6; padding: 1.5rem;">
+  <span class="badge" style="background: #ede9fe; color: #6b21a8; font-weight: 700;">คำถามที่ 4</span>
+  <h2 style="font-size: 1.3rem; font-weight: 800; margin: 0.3rem 0 1rem 0; color: var(--text-main);">
+    🎯 พร้อมสอบแค่ไหน (Exam Readiness Index)
+  </h2>
+
+  <div style="display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; align-items: center; margin-bottom: 1.5rem;">
+    <div style="background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 12px; padding: 1.5rem; text-align: center;">
+      <div style="font-size: 0.82rem; color: #6b21a8; font-weight: 700; text-transform: uppercase;">คะแนนคาดการณ์</div>
+      <div style="font-size: 2.75rem; font-weight: 900; color: #6d28d9; line-height: 1.2;">
+        {{ report.readiness.score }}%
+      </div>
+      <div style="font-size: 0.8rem; color: #7e22ce; margin-top: 0.25rem;">
+        ระดับความไม่แน่นอน: ±{{ report.readiness.uncertainty_margin }}%
+      </div>
+      <span class="badge" style="background: #e9d5ff; color: #581c87; font-weight: 700; margin-top: 0.5rem; font-size: 0.75rem;">
+        {{ report.readiness.badge }}
+      </span>
+    </div>
+
+    <div>
+      <h3 style="font-size: 1.05rem; font-weight: 700; color: #334155; margin-bottom: 0.4rem;">
+        {{ report.readiness.label }}
+      </h3>
+      <p style="font-size: 0.88rem; color: #64748b; line-height: 1.6; margin-bottom: 0.75rem;">
+        ดัชนีนี้ประเมินจากการจำลองสอบจับเวลาจริง (Mock Exam ทำไปแล้ว {{ report.readiness.mock_exams_taken }} ชุด เฉลี่ย {{ report.readiness.average_mock_score_pct }}%) ผสานกับความแม่นยำของโจทย์ข้อใหม่ {{ report.competency.unique_questions_tested }} ข้อ
+      </p>
+      {% if report.readiness.confidence_level == 'low' %}
+      <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 6px; padding: 0.6rem 0.85rem; font-size: 0.82rem; color: #92400e;">
+        ⚠️ ข้อมูลยังน้อย: ทำโจทย์ข้อใหม่และลอง Full Mock Exam อีก 1-2 ชุด เพื่อลด Margin of Uncertainty
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Actionable Next Steps -->
+  <div style="background: #f8fafc; border-radius: 8px; padding: 1.25rem; border: 1px solid #e2e8f0;">
+    <h3 style="font-size: 0.95rem; font-weight: 800; color: #1e293b; margin-bottom: 0.5rem;">
+      📋 สิ่งที่ควรทำในวันถัดไป (Action Plan):
+    </h3>
+    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.88rem; color: #475569; line-height: 1.7;">
+      {% for step in report.next_steps %}
+        <li>{{ step }}</li>
+      {% endfor %}
+    </ul>
+    <div style="margin-top: 1rem;">
+      <a href="/planner" class="btn btn-primary" style="padding: 0.45rem 1rem; font-size: 0.85rem; font-weight: 700;">
+        เปิดตารางติวประจำวัน (Planner) ➔
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -585,4 +585,156 @@ def test_api_tutor_variant_endpoints(client):
     assert eval_data["status"] == "remediation_passed"
 
 
+def test_dynamic_time_allocation():
+    """
+    Phase 4: Dynamic planner allocates study minutes adaptively based on review backlog.
+    """
+    from app.services.study_planner import calculate_dynamic_time_allocation
+
+    # With zero due items: review ratio is minimal (15%), practice expands (55%)
+    alloc_zero = calculate_dynamic_time_allocation(total_minutes=60, due_count=0)
+    assert alloc_zero["review_minutes"] == 9  # 15% of 60
+    assert alloc_zero["practice_minutes"] == 33  # 55% of 60
+    assert sum(alloc_zero.values()) == 60
+
+    # With high due backlog (>= 10): review ratio reaches cap (35%), practice compresses (35%)
+    alloc_high = calculate_dynamic_time_allocation(total_minutes=90, due_count=15)
+    assert alloc_high["review_minutes"] >= 30  # ~35% of 90 = 31-32
+    assert sum(alloc_high.values()) == 90
+
+
+def test_study_session_persistence_lifecycle():
+    """
+    Phase 4: Study session lifecycle: start, log completed/skipped block, finish, and retrieve history.
+    """
+    from app.services.study_planner import (
+        start_study_session,
+        log_study_block,
+        finish_study_session,
+        get_study_session_history,
+    )
+
+    blocks = [
+        {"title": "ทบทวน Flashcard", "duration_min": 15, "category": "review"},
+        {"title": "โจทย์ฝึกทักษะ", "duration_min": 30, "category": "practice"},
+    ]
+    sess = start_study_session(planned_minutes=45, blocks=blocks)
+    session_id = sess["session_id"]
+    assert sess["status"] == "in_progress"
+
+    # Complete block 0
+    b0 = log_study_block(session_id, block_index=0, action="completed", notes="Passed all cards")
+    assert b0["completed_blocks"][0]["status"] == "completed"
+
+    # Skip block 1
+    b1 = log_study_block(session_id, block_index=1, action="skipped", notes="Time ran out")
+    assert b1["completed_blocks"][1]["status"] == "skipped"
+
+    # Finish session
+    fin = finish_study_session(session_id, actual_minutes=40, summary_notes="Good focus today")
+    assert fin["status"] == "completed"
+    assert fin["actual_minutes"] == 40
+
+    # Retrieve history
+    history = get_study_session_history(limit=5)
+    found = next((h for h in history if h["session_id"] == session_id), None)
+    assert found is not None
+    assert found["planned_minutes"] == 45
+    assert found["actual_minutes"] == 40
+    assert len(found["completed_blocks"]) == 2
+
+
+def test_progress_readiness_report_four_questions():
+    """
+    Phase 5: Diagnostic progress report answers the 4 key pedagogical questions.
+    """
+    from app.services.progress_service import get_progress_report
+
+    rep = get_progress_report()
+    assert "competency" in rep
+    assert "weaknesses" in rep
+    assert "trajectory" in rep
+    assert "readiness" in rep
+    assert "recommendations" in rep
+
+    # Question 1: What can you actually do?
+    comp = rep["competency"]
+    assert "overall_accuracy" in comp
+    assert "honest_mastery_pct" in comp
+    assert "total_attempts" in comp
+
+    # Question 2: Why are you making mistakes?
+    weak = rep["weaknesses"]
+    assert "top_misconceptions" in weak
+    assert "weak_topics" in weak
+
+    # Question 3: Projected exam performance & readiness trajectory
+    traj = rep["trajectory"]
+    assert "predicted_score_range" in traj
+    assert "uncertainty_margin" in traj
+    assert "evidence_level" in traj
+
+    # Question 4: Action plan
+    assert len(rep["recommendations"]) > 0
+
+
+def test_planner_and_progress_routes(client):
+    """
+    Phase 4 & 5: Planner session interaction endpoints and Progress Dashboard.
+    """
+    # 1. Start planner session
+    start_resp = client.post(
+        "/planner/session/start",
+        json={
+            "planned_minutes": 60,
+            "blocks": [
+                {"title": "Review", "duration_min": 15, "category": "review"},
+                {"title": "Practice", "duration_min": 30, "category": "practice"},
+            ],
+        },
+    )
+    assert start_resp.status_code == 200
+    s_data = start_resp.json()
+    sess_id = s_data["session_id"]
+
+    # 2. Complete block
+    c_resp = client.post(
+        "/planner/session/block/complete",
+        json={"session_id": sess_id, "block_index": 0, "notes": "Done"},
+    )
+    assert c_resp.status_code == 200
+
+    # 3. Skip block
+    sk_resp = client.post(
+        "/planner/session/block/skip",
+        json={"session_id": sess_id, "block_index": 1, "notes": "Skipped"},
+    )
+    assert sk_resp.status_code == 200
+
+    # 4. Finish session
+    f_resp = client.post(
+        "/planner/session/finish",
+        json={"session_id": sess_id, "actual_minutes": 55, "notes": "Great session"},
+    )
+    assert f_resp.status_code == 200
+
+    # 5. Fetch planner history
+    hist_resp = client.get("/planner/session/history")
+    assert hist_resp.status_code == 200
+    assert len(hist_resp.json()["history"]) > 0
+
+    # 6. Progress HTML page
+    prog_html = client.get("/progress")
+    assert prog_html.status_code == 200
+    assert "ประเมินความพร้อมสอบ" in prog_html.text
+
+    # 7. Progress API JSON
+    prog_api = client.get("/api/progress")
+    assert prog_api.status_code == 200
+    p_data = prog_api.json()
+    assert "competency" in p_data
+    assert "readiness" in p_data
+
+
+
 

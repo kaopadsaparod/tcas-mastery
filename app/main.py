@@ -25,6 +25,7 @@ from app.routers.import_studio import router as import_studio_router
 from app.routers.mock_exam import router as mock_exam_router
 from app.routers.planner import router as planner_router
 from app.routers.practice import router as practice_router
+from app.routers.progress import router as progress_router
 from app.routers.roadmap import router as roadmap_router
 from app.routers.stats import router as stats_router
 from app.routers.system import router as system_router
@@ -154,6 +155,7 @@ app.include_router(roadmap_router)
 app.include_router(planner_router)
 app.include_router(mock_exam_router)
 app.include_router(content_audit_router)
+app.include_router(progress_router)
 
 
 @app.get("/", response_class=HTMLResponse)
