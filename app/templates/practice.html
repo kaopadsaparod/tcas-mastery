@@ -355,8 +355,19 @@ async function handleFormSubmit(e) {
           <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">${tb.step_4_sanity_check.content}</div>
         </div>
         <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
-          <strong style="color: #6b21a8;">5. ฝึกซ้ำในหลักการเดียวกัน:</strong>
-          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">ฝึกทำโจทย์ประเภทเดียวกันเพื่อยืนยันความเข้าใจ ไม่ให้ติดกับดักเดิม</div>
+          <strong style="color: #6b21a8;">5. ซ่อมจุดอ่อนด้วยโจทย์ใหม่วัดทักษะเดิม (Adaptive Skill Remediation):</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">
+            วิเคราะห์สาเหตุ: <span class="badge" style="background: #fef3c7; color: #b45309; font-weight: 700;">${tb.error_classification ? tb.error_classification.title : 'ข้อควรระวัง'}</span>
+          </div>
+          <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.2rem;">${tb.error_classification ? tb.error_classification.strategy : ''}</div>
+          <div style="margin-top: 0.75rem;">
+            <button type="button" class="btn btn-outline" style="border-color: #9333ea; color: #7e22ce; font-weight: 700; font-size: 0.85rem; padding: 0.4rem 0.85rem;" onclick="loadAdaptiveVariant()">
+              ⚡ ทดสอบทำโจทย์ใหม่วัดทักษะเดิมทันที (ไม่ใช้ข้อเดิมซ้ำ)
+            </button>
+            <div id="variantContainer" style="display: none; margin-top: 0.75rem; background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 8px; padding: 1rem;">
+              <!-- Dynamic variant loaded here -->
+            </div>
+          </div>
           ${drillHtml}
         </div>
       `;
@@ -371,6 +382,85 @@ async function handleFormSubmit(e) {
 
   } catch (err) {
     showToast('เกิดข้อผิดพลาดในการส่งคำตอบ');
+  }
+}
+
+let currentVariantData = null;
+
+async function loadAdaptiveVariant() {
+  const container = document.getElementById('variantContainer');
+  container.style.display = 'block';
+  container.innerHTML = '<div style="color: #6b21a8; font-size: 0.9rem;">⏳ กำลังสร้างโจทย์ใหม่ที่วัดทักษะเดียวกัน...</div>';
+  try {
+    const res = await fetch('/api/tutor/variant', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question_id: "{{ q.id }}" })
+    });
+    const v = await res.json();
+    currentVariantData = v;
+    container.innerHTML = `
+      <div style="font-size: 0.95rem; font-weight: 700; color: #581c87; margin-bottom: 0.5rem;">
+        📝 โจทย์ใหม่เพื่อทดสอบว่าเข้าใจจริงหรือยัง:
+      </div>
+      <div style="font-size: 0.95rem; color: #334155; margin-bottom: 0.75rem;" id="variantStem">
+        ${v.stem}
+      </div>
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <input type="text" id="variantAnswerInput" class="option-item" placeholder="กรอกคำตอบตัวเลข" style="width: 180px; padding: 0.4rem 0.6rem; font-size: 0.95rem;">
+        <span style="font-weight: 600; color: #475569;">${v.unit || ''}</span>
+        <button type="button" class="btn btn-primary" style="background: #7e22ce; border-color: #6b21a8; font-size: 0.85rem; padding: 0.45rem 1rem;" onclick="submitAdaptiveVariant()">
+          ตรวจคำตอบข้อใหม่ ➔
+        </button>
+      </div>
+      <div id="variantFeedback" style="margin-top: 0.75rem; display: none;"></div>
+    `;
+    if (window.renderMathInElement) {
+      renderMathInElement(document.getElementById('variantStem'), {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false }
+        ]
+      });
+    }
+  } catch (err) {
+    container.innerHTML = '<div style="color: #dc2626;">เกิดข้อผิดพลาดในการสร้างโจทย์ใหม่</div>';
+  }
+}
+
+async function submitAdaptiveVariant() {
+  if (!currentVariantData) return;
+  const userAns = document.getElementById('variantAnswerInput').value.trim();
+  if (!userAns) {
+    showToast('กรุณากรอกคำตอบก่อนตรวจ');
+    return;
+  }
+  const fb = document.getElementById('variantFeedback');
+  fb.style.display = 'block';
+  fb.innerHTML = 'กำลังตรวจคำตอบ...';
+  try {
+    const res = await fetch('/api/tutor/variant/evaluate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        original_question_id: "{{ q.id }}",
+        user_answer: userAns,
+        expected_answer: currentVariantData.expected_answer,
+        tolerance: currentVariantData.tolerance || 0.001,
+        expected_unit: currentVariantData.unit
+      })
+    });
+    const result = await res.json();
+    if (result.is_correct) {
+      fb.className = 'alert alert-success';
+      fb.innerHTML = `<strong>${result.feedback}</strong><br><span style="font-size: 0.85rem;">คำตอบถูกต้อง: ${currentVariantData.expected_answer} ${currentVariantData.unit || ''} • รอบทบทวนถัดไป: อีก ${result.next_review_interval_days} วัน</span>`;
+    } else {
+      fb.className = 'alert alert-danger';
+      fb.innerHTML = `<strong>${result.feedback}</strong><br><span style="font-size: 0.85rem;">คำตอบที่ถูกคือ: ${currentVariantData.expected_answer} ${currentVariantData.unit || ''}</span>`;
+    }
+  } catch (err) {
+    fb.className = 'alert alert-danger';
+    fb.innerHTML = 'เกิดข้อผิดพลาดในการตรวจคำตอบ';
   }
 }
 

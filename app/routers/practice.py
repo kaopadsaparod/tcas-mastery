@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
 
 from app.config import BASE_DIR
 from app.database import get_db
@@ -210,3 +211,38 @@ async def api_tutor_breakdown(question_id: str):
         raise HTTPException(status_code=404, detail="Question not found")
     from app.services.tutor_engine import build_tutor_breakdown
     return JSONResponse(build_tutor_breakdown(q))
+
+
+class GenerateVariantRequest(BaseModel):
+    question_id: str
+
+
+class EvaluateVariantRequest(BaseModel):
+    original_question_id: str
+    user_answer: str
+    expected_answer: str
+    tolerance: float = 0.001
+    expected_unit: str | None = None
+
+
+@router.post("/api/tutor/variant")
+async def api_generate_variant(req: GenerateVariantRequest):
+    from app.services.tutor_engine import generate_skill_variant
+    try:
+        variant = generate_skill_variant(req.question_id)
+        return JSONResponse(variant)
+    except ValueError as e:
+        raise HTTPException(status_code=404, detail=str(e))
+
+
+@router.post("/api/tutor/variant/evaluate")
+async def api_evaluate_variant(req: EvaluateVariantRequest):
+    from app.services.tutor_engine import evaluate_remediation_variant
+    result = evaluate_remediation_variant(
+        original_question_id=req.original_question_id,
+        user_answer=req.user_answer,
+        expected_answer=req.expected_answer,
+        tolerance=req.tolerance,
+        expected_unit=req.expected_unit,
+    )
+    return JSONResponse(result)

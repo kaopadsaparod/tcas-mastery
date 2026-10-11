@@ -495,3 +495,94 @@ def test_alevel_30_blueprint_mock_exam_lifecycle():
     assert rep["pace_status"] == "optimal"  # 45 min / 30 q = 1.5 min/q <= 3.0 min/q
 
 
+def test_error_root_cause_classification():
+    """
+    Phase 3: Classifies student errors into 5 pedagogical categories.
+    """
+    from app.services.tutor_engine import classify_error_cause
+
+    c_unit = classify_error_cause("no_unit_conversion")
+    assert c_unit["category"] == "unit"
+    assert "หน่วย" in c_unit["title"]
+
+    c_formula = classify_error_cause("choose_constant_accel_eq")
+    assert c_formula["category"] == "formula"
+
+    c_concept = classify_error_cause("forgot_friction")
+    assert c_concept["category"] == "concept"
+
+    c_calc = classify_error_cause("arithmetic_error")
+    assert c_calc["category"] == "calculation"
+
+
+def test_adaptive_skill_variant_generation():
+    """
+    Phase 3: Generates an unseen fresh variant question measuring the same skill.
+    """
+    from app.services.tutor_engine import generate_skill_variant
+
+    orig_q = content_loader.get_question_by_id("phy-kin-0001")
+    assert orig_q is not None
+
+    variant = generate_skill_variant("phy-kin-0001")
+    assert variant["original_question_id"] == "phy-kin-0001"
+    assert variant["stem"] != orig_q.stem
+    assert variant["expected_answer"] is not None
+    assert variant["type"] == "numeric"
+
+
+def test_adaptive_remediation_variant_evaluation_updates_mastery():
+    """
+    Phase 3: Solving the fresh variant correctly resolves the mistake and updates review queue.
+    """
+    from app.services.tutor_engine import evaluate_remediation_variant
+
+    res_pass = evaluate_remediation_variant(
+        original_question_id="phy-kin-0001",
+        user_answer="25",
+        expected_answer="25",
+        tolerance=0.001,
+        expected_unit="m",
+    )
+    assert res_pass["is_correct"] is True
+    assert res_pass["status"] == "remediation_passed"
+    assert res_pass["next_review_interval_days"] >= 1
+
+    res_fail = evaluate_remediation_variant(
+        original_question_id="phy-kin-0001",
+        user_answer="999",
+        expected_answer="25",
+        tolerance=0.001,
+        expected_unit="m",
+    )
+    assert res_fail["is_correct"] is False
+    assert res_fail["status"] == "remediation_failed"
+
+
+def test_api_tutor_variant_endpoints(client):
+    """
+    Phase 3: API endpoints /api/tutor/variant and evaluate respond properly.
+    """
+    res_gen = client.post("/api/tutor/variant", json={"question_id": "phy-kin-0001"})
+    assert res_gen.status_code == 200
+    v_data = res_gen.json()
+    assert "variant_id" in v_data
+    assert "expected_answer" in v_data
+
+    res_eval = client.post(
+        "/api/tutor/variant/evaluate",
+        json={
+            "original_question_id": "phy-kin-0001",
+            "user_answer": v_data["expected_answer"],
+            "expected_answer": v_data["expected_answer"],
+            "tolerance": 0.001,
+            "expected_unit": v_data.get("unit"),
+        },
+    )
+    assert res_eval.status_code == 200
+    eval_data = res_eval.json()
+    assert eval_data["is_correct"] is True
+    assert eval_data["status"] == "remediation_passed"
+
+
+
