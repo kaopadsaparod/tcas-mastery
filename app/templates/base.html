@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}TCAS Mastery Prep System{% endblock %}</title>
+  <!-- Google Fonts: Sarabun -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- KaTeX for LaTeX Math (Bundled Local-First Offline) -->
+  <link rel="stylesheet" href="/static/vendor/katex/katex.min.css">
+  <script defer src="/static/vendor/katex/katex.min.js"></script>
+  <script defer src="/static/vendor/katex/auto-render.min.js" onload="renderMathInDocument()"></script>
+  <!-- App Styles -->
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="nav-brand">
+      <span>🎯 TCAS Mastery</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">หน้าหลัก</a></li>
+      <li><a href="/roadmap">แผนอ่าน & ลำดับบท</a></li>
+      <li><a href="/practice">คลังโจทย์หลัก</a></li>
+      <li><a href="/drills">ฝึกคำนวณไม่อั้น</a></li>
+      <li><a href="/formulas">บัตรสูตรฟิสิกส์</a></li>
+      <li><a href="/answer-sheet">กระดาษคำตอบ</a></li>
+      <li><a href="/import">นำเข้า PDF/รูปภาพ</a></li>
+      <li><a href="/stats">สถิติจุดอ่อน</a></li>
+      <li><a href="/system">สำรองข้อมูล</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border-color); background: white;">
+    TCAS Mastery Prep System • Local-First Deterministic Learning Platform • ปลอดภัย 100% ทำงานได้แม้ไม่มีเน็ต
+  </footer>
+
+  <div id="toast"></div>
+  <script src="/static/js/app.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

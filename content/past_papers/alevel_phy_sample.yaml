@@ -1,0 +1,109 @@
+# ชุดข้อสอบจำลอง A-Level ฟิสิกส์ สำหรับโหมดกรอกกระดาษคำตอบ (Answer Sheet Mode)
+# สำหรับทำบนกระดาษตามเวลาจริง แล้วกรอกคำตอบเพื่อตรวจและแยกคะแนนรายบททันที
+
+id: alevel-phy-2566-mock
+title: "A-Level ฟิสิกส์ 2566 (ชุดฝึกจับเวลา 20 ข้อ)"
+subject: physics
+year: 2566
+time_limit_min: 60
+questions:
+  - number: 1
+    correct_answer: "2"
+    topic: "physics.kinematics.1d"
+    skill: "choose_constant_accel_eq"
+    score: 3.0
+  - number: 2
+    correct_answer: "4"
+    topic: "physics.kinematics.1d"
+    skill: "unit_kmh_to_ms"
+    score: 3.0
+  - number: 3
+    correct_answer: "1"
+    topic: "physics.kinematics.1d"
+    skill: "vertical_free_fall"
+    score: 3.0
+  - number: 4
+    correct_answer: "3"
+    topic: "physics.kinematics.1d"
+    skill: "vt_graph_interpretation"
+    score: 3.0
+  - number: 5
+    correct_answer: "5"
+    topic: "physics.forces_energy"
+    skill: "free_body_diagram"
+    score: 3.0
+  - number: 6
+    correct_answer: "2"
+    topic: "physics.forces_energy"
+    skill: "frictional_force"
+    score: 3.0
+  - number: 7
+    correct_answer: "1"
+    topic: "physics.forces_energy"
+    skill: "conservation_of_energy"
+    score: 3.0
+  - number: 8
+    correct_answer: "3"
+    topic: "physics.forces_energy"
+    skill: "work_energy_theorem"
+    score: 3.0
+  - number: 9
+    correct_answer: "4"
+    topic: "physics.momentum"
+    skill: "conservation_of_momentum"
+    score: 3.0
+  - number: 10
+    correct_answer: "2"
+    topic: "physics.momentum"
+    skill: "impulse_momentum"
+    score: 3.0
+  - number: 11
+    correct_answer: "5"
+    topic: "physics.circular_shm"
+    skill: "centripetal_force"
+    score: 3.0
+  - number: 12
+    correct_answer: "1"
+    topic: "physics.circular_shm"
+    skill: "simple_harmonic_motion"
+    score: 3.0
+  - number: 13
+    correct_answer: "3"
+    topic: "physics.waves"
+    skill: "wave_speed_equation"
+    score: 3.0
+  - number: 14
+    correct_answer: "4"
+    topic: "physics.waves"
+    skill: "standing_wave_resonance"
+    score: 3.0
+  - number: 15
+    correct_answer: "2"
+    topic: "physics.electricity"
+    skill: "coulomb_law"
+    score: 3.0
+  - number: 16
+    correct_answer: "5"
+    topic: "physics.electricity"
+    skill: "ohm_law_resistors"
+    score: 3.0
+  - number: 17
+    correct_answer: "1"
+    topic: "physics.electricity"
+    skill: "electric_power"
+    score: 3.0
+  - number: 18
+    correct_answer: "3"
+    topic: "physics.modern_physics"
+    skill: "photoelectric_effect"
+    score: 3.0
+  - number: 19
+    correct_answer: "25"
+    topic: "physics.kinematics.1d"
+    skill: "numeric_calculation"
+    score: 5.0
+  - number: 20
+    correct_answer: "50"
+    topic: "physics.forces_energy"
+    skill: "numeric_calculation"
+    score: 5.0

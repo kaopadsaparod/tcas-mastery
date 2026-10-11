@@ -1,0 +1,439 @@
+# คลังโจทย์ฟิสิกส์: การเคลื่อนที่แนวตรง (Kinematics in 1D)
+# ได้รับการตรวจสอบระดับ Tier B (มี Python Assertion Test ยืนยันผลคำนวณ)
+
+- id: phy-kin-0001
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: invented
+    label: "โจทย์ฝึกมาตรฐาน TCAS (ปรับจากข้อสอบเก่า)"
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0001"
+    notes: "คำนวณด้วย Fraction ใน Python ตรงกับช้อยส์ o1"
+  skills:
+    primary: choose_constant_accel_eq
+    secondary:
+      - unit_kmh_to_ms
+      - sign_convention
+  stem: |
+    รถยนต์คันหนึ่งแล่นด้วยความเร็ว $72\text{ km/h}$ บนทางตรง คนขับสังเกตเห็นสิ่งกีดขวางข้างหน้าจึงเหยียบเบรก ทำให้รถมีความเร่งคงตัวขนาด $4\text{ m/s}^2$ ในทิศทางตรงข้ามกับการเคลื่อนที่ จงหาระยะทางที่รถเคลื่อนที่ได้นับตั้งแต่เริ่มแตะเบรกจนกระทั่งหยุดนิ่ง
+  plan_step:
+    prompt: "โจทย์กำหนด $u, v, a$ และต้องการหา $s$ โดยไม่กล่าวถึงเวลา $t$ ควรเลือกใช้สมการใด?"
+    options:
+      a: "v = u + at"
+      b: "v^2 = u^2 + 2as"
+      c: "s = ut + (1/2)at^2"
+      d: "s = ((u + v)/2)t"
+    answer: "b"
+    explanation: "เมื่อไม่ทราบเวลา $t$ และไม่ได้ถามเวลา $t$ สมการที่ไม่มีตัวแปร $t$ คือ $v^2 = u^2 + 2as$"
+  checkpoints:
+    - prompt: "แปลงความเร็วต้น $72\\text{ km/h}$ เป็น $\\text{m/s}$ ได้ค่าเท่าใด?"
+      answer: 20
+      skill: unit_kmh_to_ms
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "50 m"
+        correct: true
+        explanation: "ถูกต้อง จาก $0^2 = 20^2 + 2(-4)s \\Rightarrow 8s = 400 \\Rightarrow s = 50\\text{ m}$"
+      - id: o2
+        text: "648 m"
+        correct: false
+        error_tag: no_unit_conversion
+        explanation: "ลืมแปลงหน่วย km/h เป็น m/s โดยนำเลข 72 ไปแทนในสูตรโดยตรง ($72^2 / (2\\times 4) = 648$)"
+      - id: o3
+        text: "100 m"
+        correct: false
+        error_tag: missing_factor_2
+        explanation: "ลืมตัวคูณ 2 ในเทอม $2as$ ($20^2 / 4 = 100$)"
+      - id: o4
+        text: "200 m"
+        correct: false
+        error_tag: rearrange_error
+        explanation: "ย้ายข้างสมการผิด หรือใช้สูตร $s = vt$ โดยไม่คิดความหน่วง"
+      - id: o5
+        text: "25 m"
+        correct: false
+        error_tag: squared_error
+        explanation: "ลืมยกกำลังสองความเร็วต้น $u$ ทำให้คิดเป็น $20 / (2 \\times 4) = 2.5$ หรือคำนวณผิดพลาด"
+  hints:
+    - level: 1
+      text: "วิเคราะห์สิ่งที่โจทย์ให้: ความเร็วต้น $u = 72\\text{ km/h}$, ความเร็วปลาย $v = 0\\text{ m/s}$ (หยุดนิ่ง), ขนาดความเร่งเบรก $4\\text{ m/s}^2$ สิ่งที่ต้องหาคือระยะทาง $s$"
+    - level: 2
+      text: "แปลงหน่วย $u = 72 \\times \\frac{5}{18} = 20\\text{ m/s}$ และกำหนดเครื่องหมาย: รถเคลื่อนที่ไปข้างหน้า (+) ความเร่งเบรกทิศตรงข้ามจึงเป็น $a = -4\\text{ m/s}^2$ ใช้สมการ $v^2 = u^2 + 2as$"
+    - level: 3
+      text: "แทนค่า: $0 = (20)^2 + 2(-4)s \\implies 0 = 400 - 8s \\implies 8s = 400 \\implies s = 50\\text{ m}$"
+  solution:
+    steps:
+      - id: s1
+        text: "แปลงหน่วยความเร็วต้น: $u = 72 \\times \\frac{5}{18} = 20\\text{ m/s}$"
+      - id: s2
+        text: "ระบุตัวแปรที่ทราบ: $u = +20\\text{ m/s}$, $v = 0$, $a = -4\\text{ m/s}^2$"
+      - id: s3
+        text: "เลือกสมการที่ไม่มีตัวแปรเวลา $t$: $v^2 = u^2 + 2as$"
+      - id: s4
+        text: "แทนค่าและแก้สมการ: $0^2 = 20^2 + 2(-4)s \\implies 8s = 400 \\implies s = 50\\text{ m}$"
+    summary: "ระยะทางจนรถหยุดนิ่งเท่ากับ 50 เมตร"
+    common_mistakes: "จุดที่นักเรียนมักผิดคือลืมคูณ 5/18 เพื่อแปลง km/h เป็น m/s และลืมใส่เครื่องหมายลบให้กับความหน่วง"
+    sanity_check: "รถวิ่ง 72 km/h (20 m/s) เบรกด้วยความหน่วง 4 m/s² ใช้เวลาหยุด 5 วินาที ระยะทางเฉลี่ย = (20+0)/2 * 5 = 50 m คำตอบสมเหตุสมผล"
+
+- id: phy-kin-0002
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: official
+    label: "แนวข้อสอบ MyTCAS A-Level ฟิสิกส์"
+    exam_year: 2566
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0002"
+  skills:
+    primary: vertical_free_fall
+    secondary:
+      - sign_convention
+      - choose_constant_accel_eq
+  stem: |
+    โยนก้อนหินขึ้นในแนวดิ่งจากหน้าผาสูง $60\text{ m}$ ด้วยความเร็วต้น $20\text{ m/s}$ จงหาเวลาทั้งหมดตั้งแต่เริ่มโยนจนก้อนหินตกถึงพื้นดินด้านล่างของหน้าผา (กำหนดให้ $g = 10\text{ m/s}^2$ และไม่คิดแรงต้านอากาศ)
+  plan_step:
+    prompt: "การเคลื่อนที่แนวดิ่งภายใต้แรงโน้มถ่วง เมื่อจุดตกอยู่ต่ำกว่าจุดเริ่มต้น การกระจัด $s$ มีเครื่องหมายอย่างไรหากกำหนดทิศขึ้นเป็นบวก?"
+    options:
+      a: "s เป็นบวก (+60 m)"
+      b: "s เป็นลบ (-60 m)"
+      c: "s เป็นศูนย์"
+    answer: "b"
+    explanation: "จุดตกอยู่ต่ำกว่าระดับเริ่มต้น 60 เมตร ทิศของการกระจัดพุ่งลงสวนทางกับทิศขึ้น ดังนั้น $s = -60\\text{ m}$"
+  checkpoints:
+    - prompt: "ก้อนหินขึ้นไปถึงจุดสูงสุดในเวลากี่วินาที?"
+      answer: 2
+      skill: vertical_free_fall
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "6 s"
+        correct: true
+        explanation: "ถูกต้อง จาก $s = ut + \\frac{1}{2}at^2 \\implies -60 = 20t - 5t^2 \\implies t^2 - 4t - 12 = 0 \\implies (t-6)(t+2)=0 \\implies t = 6\\text{ s}$"
+      - id: o2
+        text: "2 s"
+        correct: false
+        error_tag: only_to_peak
+        explanation: "ตอบแค่เวลาที่ก้อนหินขึ้นไปถึงจุดสูงสุด ($t = u/g = 20/10 = 2\\text{ s}$) ยังไม่ได้คิดเวลาตกถึงพื้นหน้าผา"
+      - id: o3
+        text: "4 s"
+        correct: false
+        error_tag: return_to_cliff_level
+        explanation: "คิดแค่เวลาที่หินลอยกลับมาถึงระดับหน้าผาเดิม ($2 \\times 2 = 4\\text{ s}$)"
+      - id: o4
+        text: "10 s"
+        correct: false
+        error_tag: sign_error
+        explanation: "ใส่การกระจัดเป็น $+60$ ทำให้สมการได้ $5t^2 - 20t - 60$ คำนวณเครื่องหมายผิด"
+      - id: o5
+        text: "8 s"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "แยกตัวประกอบพหุนามผิดพลาด"
+  hints:
+    - level: 1
+      text: "กำหนดทิศขึ้นเป็นบวก (+) ดังนั้น $u = +20\\text{ m/s}$, ความเร่งโน้มถ่วงมีทิศลงเสมอ $a = g = -10\\text{ m/s}^2$"
+    - level: 2
+      text: "จุดตกอยู่ต่ำกว่าหน้าผา การกระจัด $s = -60\\text{ m}$ ใช้สมการ $s = ut + \\frac{1}{2}at^2$"
+    - level: 3
+      text: "$-60 = 20t + \\frac{1}{2}(-10)t^2 \\implies -60 = 20t - 5t^2 \\implies 5t^2 - 20t - 60 = 0 \\implies t^2 - 4t - 12 = 0$ แยกตัวประกอบ $(t-6)(t+2) = 0$ จะได้ $t = 6\\text{ s}$"
+  solution:
+    steps:
+      - id: s1
+        text: "กำหนดแกนพิกัด: ทิศขึ้นเป็นบวก (+) ดังนั้น $u = +20\\text{ m/s}$, $a = -10\\text{ m/s}^2$"
+      - id: s2
+        text: "พิจารณาการกระจัดรวม: ก้อนหินตกถึงพื้นดินซึ่งอยู่ต่ำกว่าจุดโยน 60 m ดังนั้น $s = -60\\text{ m}$"
+      - id: s3
+        text: "ใช้สูตร: $s = ut + \\frac{1}{2}at^2$"
+      - id: s4
+        text: "แทนค่า: $-60 = 20t - 5t^2 \\implies 5t^2 - 20t - 60 = 0 \\implies t^2 - 4t - 12 = 0$"
+      - id: s5
+        text: "แก้สมการพหุนาม: $(t - 6)(t + 2) = 0$ เนื่องจากเวลาต้องเป็นบวก จึงได้ $t = 6\\text{ วินาที}$"
+    summary: "ก้อนหินใช้เวลาทั้งหมด 6 วินาทีในการตกถึงพื้น"
+    common_mistakes: "ข้อผิดพลาดยอดฮิตคือใส่ $s = +60$ หรือคิดแยกหลายช่วงแล้วรวมเวลาผิด"
+
+- id: phy-kin-0003
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: official
+    label: "ข้อสอบเก่าเข้ามหาวิทยาลัย"
+    exam_year: 2564
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0003"
+  skills:
+    primary: vt_graph_interpretation
+    secondary:
+      - choose_constant_accel_eq
+  stem: |
+    วัตถุหนึ่งเคลื่อนที่ในแนวเส้นตรง มีกราฟความเร็วกับเวลา ($v-t$) ดังนี้:
+    - ช่วง $t = 0$ ถึง $t = 4\text{ s}$: ความเร็วเพิ่มขึ้นเชิงเส้นจาก $0$ ถึง $12\text{ m/s}$
+    - ช่วง $t = 4$ ถึง $t = 10\text{ s}$: ความเร็วคงตัวที่ $12\text{ m/s}$
+    - ช่วง $t = 10$ ถึง $t = 14\text{ s}$: ความเร็วลดลงเชิงเส้นจาก $12\text{ m/s}$ สู่ $0\text{ m/s}$
+    จงหาระยะทางทั้งหมดที่วัตถุเคลื่อนที่ได้ในช่วงเวลา 14 วินาทีนี้
+  plan_step:
+    prompt: "การหาระยะทางหรือการกระจัดจากกราฟความเร็ว-เวลา ($v-t$) หาได้อย่างไร?"
+    options:
+      a: "หาจากความชันของกราฟ"
+      b: "หาจากพื้นที่ใต้กราฟ"
+      c: "เอาความเร็วสูงสุดคูณเวลาทั้งหมด"
+    answer: "b"
+    explanation: "ระยะทาง/การกระจัดในการเคลื่อนที่ 1 มิติเท่ากับพื้นที่ใต้กราฟ $v-t$"
+  checkpoints:
+    - prompt: "พื้นที่ใต้กราฟช่วงแรก ($0$ ถึง $4\\text{ s}$) มีค่ากี่เมตร?"
+      answer: 24
+      skill: vt_graph_interpretation
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "120 m"
+        correct: true
+        explanation: "ถูกต้อง พื้นที่รูปสี่เหลี่ยมคางหมู = (1/2) * (ผลบวกด้านคู่ขนาน) * สูง = (1/2) * (14 + 6) * 12 = 120 m"
+      - id: o2
+        text: "168 m"
+        correct: false
+        error_tag: rectangle_only
+        explanation: "คิดพื้นที่สี่เหลี่ยมผืนผ้าเต็มแผ่น $14 \\times 12 = 168\\text{ m}$ โดยลืมว่าช่วงเร่งและช่วงเบรกเป็นรูปสามเหลี่ยม"
+      - id: o3
+        text: "84 m"
+        correct: false
+        error_tag: triangle_only
+        explanation: "คิดพื้นที่เป็นรูปสามเหลี่ยมเต็มแผ่น $\\frac{1}{2} \\times 14 \\times 12 = 84\\text{ m}$ ลืมช่วงความเร็วคงตัว"
+      - id: o4
+        text: "96 m"
+        correct: false
+        error_tag: parallel_side_error
+        explanation: "คำนวณด้านคู่ขนานผิด เช่น นับช่วงคงตัวเป็น 4 วินาทีแทนที่จะเป็น 6 วินาที"
+      - id: o5
+        text: "60 m"
+        correct: false
+        error_tag: missing_factor_2
+        explanation: "คิดเลขผิดพลาดจากการรวมชิ้นพื้นที่"
+  hints:
+    - level: 1
+      text: "พื้นที่ใต้กราฟ $v-t$ คือการกระจัด/ระยะทาง กราฟนี้เป็นรูปสี่เหลี่ยมคางหมู หรือจะแบ่งเป็น สามเหลี่ยม 2 รูป และสี่เหลี่ยมผืนผ้า 1 รูปก็ได้"
+    - level: 2
+      text: "ถ้าคิดแบบสี่เหลี่ยมคางหมู: ฐานล่างยาว $14\\text{ s}$, ฐานบน (ช่วงความเร็วคงที่ 10 - 4) ยาว $6\\text{ s}$, ความสูงคือ $12\\text{ m/s}$"
+    - level: 3
+      text: "พื้นที่ = $\\frac{1}{2} \\times (14 + 6) \\times 12 = \\frac{1}{2} \\times 20 \\times 12 = 10 \\times 12 = 120\\text{ m}$"
+  solution:
+    steps:
+      - id: s1
+        text: "สังเกตรูปร่างพื้นที่ใต้กราฟ: เป็นรูปสี่เหลี่ยมคางหมูที่มีด้านคู่ขนานคือช่วง $t=0\\dots 14$ (ยาว 14 s) และช่วง $t=4\\dots 10$ (ยาว 10 - 4 = 6 s)"
+      - id: s2
+        text: "ความสูงของรูปสี่เหลี่ยมคางหมูคือความเร็วสูงสุด = $12\\text{ m/s}$"
+      - id: s3
+        text: "คำนวณพื้นที่: $\\text{Area} = \\frac{1}{2} \\times (\\text{ผลบวกด้านคู่ขนาน}) \\times \\text{สูง}$"
+      - id: s4
+        text: "$\\text{Area} = \\frac{1}{2} \\times (14 + 6) \\times 12 = \\frac{1}{2} \\times 20 \\times 12 = 120\\text{ m}$"
+    summary: "ระยะทางทั้งหมดที่วัตถุเคลื่อนที่ได้คือ 120 เมตร"
+    common_mistakes: "ระวังการนับความยาวของฐานบน $10 - 4 = 6$ วินาที บางคนเอาเลข 10 มาลบ 0"
+
+- id: phy-kin-0004
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: invented
+    label: "โจทย์ทักษะไล่กวด (Relative Motion Chase)"
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0004"
+  skills:
+    primary: relative_motion_chase
+    secondary:
+      - choose_constant_accel_eq
+  stem: |
+    รถตำรวจจอดนิ่งอยู่ริมทางหลวง สังเกตรถบรรทุกคันหนึ่งแล่นผ่านไปด้วยความเร็วคงตัว $30\text{ m/s}$ ทันใดนั้น รถตำรวจจึงเริ่มออกตัวไล่กวดด้วยความเร่งคงตัว $5\text{ m/s}^2$ จงหาว่ารถตำรวจต้องใช้เวลากี่วินาทีนับจากออกตัว จึงจะแล่นทันรถบรรทุกพอดี
+  plan_step:
+    prompt: "เงื่อนไขที่รถตำรวจจะแล่นทันรถบรรทุกพอดี ณ จุดเดียวกันคือข้อใด?"
+    options:
+      a: "ความเร็วของทั้งสองคันเท่ากัน"
+      b: "การกระจัดที่เคลื่อนที่ได้นับจากจุดเดียวกันมีค่าเท่ากัน (s_police = s_truck)"
+      c: "ความเร่งของทั้งสองคันเท่ากัน"
+    answer: "b"
+    explanation: "การทันกันหมายถึงอยู่ที่ตำแหน่งเดียวกัน นั่นคือการกระจัดทั้งสองคันต้องเท่ากัน $s_{\\text{police}} = s_{\\text{truck}}$"
+  checkpoints:
+    - prompt: "ที่เวลา $t$ รถบรรทุกเคลื่อนที่ได้ระยะทางเท่าใดในเทอมของ $t$?"
+      answer: "30t"
+      skill: relative_motion_chase
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "12 s"
+        correct: true
+        explanation: "ถูกต้อง $s_{police} = \\frac{1}{2}(5)t^2$, $s_{truck} = 30t \\implies 2.5t^2 = 30t \\implies t = 12\\text{ s}$"
+      - id: o2
+        text: "6 s"
+        correct: false
+        error_tag: velocity_match_only
+        explanation: "ตอบเวลาที่ความเร็วเท่ากัน ($v = at \\implies 30 = 5t \\implies t = 6\\text{ s}$) ซึ่งตอนนั้นยังไม่ทันกัน"
+      - id: o3
+        text: "15 s"
+        correct: false
+        error_tag: rearrange_error
+        explanation: "คิดเลขผิดจากการตั้งสมการ $5t = 30$ แล้วคูณผิด"
+      - id: o4
+        text: "24 s"
+        correct: false
+        error_tag: missing_factor_half
+        explanation: "ลืมตัวคูณ $\\frac{1}{2}$ ในสูตร $s = \\frac{1}{2}at^2$ ทำให้ได้ $5t^2 = 30t \\implies t = 6$ หรือคูณทบผิด"
+      - id: o5
+        text: "10 s"
+        correct: false
+        error_tag: estimate_guess
+        explanation: "การประมาณค่าโดยไม่ตั้งสมการ"
+  hints:
+    - level: 1
+      text: "รถตำรวจออกตัวจากหยุดนิ่ง $u=0, a=5\\text{ m/s}^2$ ดังนั้น $s_{\\text{police}} = \\frac{1}{2}at^2$"
+    - level: 2
+      text: "รถบรรทุกความเร็วคงตัว $v=30\\text{ m/s}$ ดังนั้น $s_{\\text{truck}} = vt = 30t$"
+    - level: 3
+      text: "จับระยะทางเท่ากัน: $\\frac{1}{2}(5)t^2 = 30t \\implies 2.5t = 30 \\implies t = \\frac{30}{2.5} = 12\\text{ s}$"
+  solution:
+    steps:
+      - id: s1
+        text: "หาระยะทางของรถบรรทุกที่เวลา $t$: ความเร็วคงตัว $s_1 = v t = 30t$"
+      - id: s2
+        text: "หาระยะทางของรถตำรวจที่เวลา $t$: เริ่มจากหยุดนิ่ง $s_2 = ut + \\frac{1}{2}at^2 = 0 + \\frac{1}{2}(5)t^2 = 2.5t^2$"
+      - id: s3
+        text: "ตั้งสมการทันกัน: $s_1 = s_2 \\implies 30t = 2.5t^2$"
+      - id: s4
+        text: "หารด้วย $t$ (เนื่องจาก $t > 0$): $2.5t = 30 \\implies t = 12\\text{ s}$"
+    summary: "รถตำรวจใช้เวลา 12 วินาทีในการแล่นทันรถบรรทุก"
+    common_mistakes: "อย่าสับสนระหว่างเวลาที่ความเร็วเท่ากัน ($t=6\\text{ s}$) กับเวลาที่แล่นทันกัน ($t=12\\text{ s}$)"
+
+- id: phy-kin-0005
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: official
+    label: "ข้อสอบ A-Level ฟิสิกส์ ข้อเติมตัวเลข"
+    exam_year: 2565
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0005"
+  skills:
+    primary: choose_constant_accel_eq
+    secondary:
+      - sign_convention
+  stem: |
+    ปล่อยลูกเหล็กจากตำแหน่งหยุดนิ่งที่ระดับความสูง $H$ เหนือพื้นดิน เมื่อลูกเหล็กเคลื่อนที่ลงมาได้เป็นระยะทาง $20\text{ m}$ พบว่ามีความเร็วขนาด $v$ ต่อมาเมื่อลูกเหล็กเคลื่อนที่ลงมาจนแตะพื้นดิน พบว่ามีความเร็วขนาด $2v$ จงหาความสูง $H$ ในหน่วยเมตร (กำหนด $g = 10\text{ m/s}^2$)
+  plan_step:
+    prompt: "ความสัมพันธ์ระหว่างอัตราเร็ว $v$ กับระยะทาง $s$ จากการตกอย่างอิสระจากจุดหยุดนิ่ง สอดคล้องกับสมการใด?"
+    options:
+      a: "v = gt"
+      b: "v^2 = 2gs"
+      c: "s = (1/2)gt^2"
+    answer: "b"
+    explanation: "จาก $v^2 = u^2 + 2as$ เมื่อ $u=0$ จะได้ $v^2 = 2gs$ หรือ $s \\propto v^2$"
+  checkpoints:
+    - prompt: "ค่า $v^2$ ในการเคลื่อนที่ช่วงแรก 20 เมตร เท่ากับกี่ $(\\text{m/s})^2$?"
+      answer: 400
+      skill: choose_constant_accel_eq
+  answer:
+    type: numeric
+    correct_value: 80
+    unit: "m"
+    tolerance: 0.01
+    explanation: "จาก $v^2 \\propto s$ เมื่อความเร็วเป็น $2v$ ค่าความเร็วบกกำลังสองจะเป็น $(2v)^2 = 4v^2$ ดังนั้นระยะทางรวมทั้งหมดต้องเป็น $4 \\times 20 = 80\\text{ m}$"
+  hints:
+    - level: 1
+      text: "ลูกเหล็กถูกปล่อยจากหยุดนิ่ง $u=0$ ใช้สูตร $v^2 = u^2 + 2as = 2gs$"
+    - level: 2
+      text: "ที่ระยะตก $s_1 = 20\\text{ m}$: $v^2 = 2g(20)$"
+    - level: 3
+      text: "ที่ระยะตกทั้งหมด $s_2 = H$: $(2v)^2 = 2gH \\implies 4v^2 = 2gH$ แทน $v^2$ เข้าไปจะได้ $H = 4 \\times 20 = 80\\text{ m}$"
+  solution:
+    steps:
+      - id: s1
+        text: "จากสมการการเคลื่อนที่ $v^2 = u^2 + 2as$ โดย $u = 0$ และ $a = g$: $v^2 = 2gs$"
+      - id: s2
+        text: "ช่วงแรกเคลื่อนที่ได้ $20\\text{ m}$: $v^2 = 2g(20) = 40g$"
+      - id: s3
+        text: "ช่วงสุดท้ายความเร็วเป็น $2v$ เมื่อกระทบพื้น ($s = H$): $(2v)^2 = 2gH \\implies 4v^2 = 2gH$"
+      - id: s4
+        text: "นำค่า $v^2$ แทนลงไป: $4(40g) = 2gH \\implies 160g = 2gH \\implies H = 80\\text{ m}$"
+    summary: "ความสูง H มีค่าเท่ากับ 80 เมตร"
+    common_mistakes: "ลืมยกกำลังสองอัตราเร็ว นึกว่าความเร็ว 2 เท่า ระยะทางจะเป็น 2 เท่า (ตอบ 40 m ซึ่งผิด)"
+
+- id: phy-kin-0006
+  subject: physics
+  topic: physics.kinematics.1d
+  source:
+    type: invented
+    label: "โจทย์ประยุกต์ความชันและความเร่ง"
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_kin_0006"
+  skills:
+    primary: choose_constant_accel_eq
+    secondary:
+      - sign_convention
+  stem: |
+    วัตถุมวลหนึ่งกำลังเคลื่อนที่ขึ้นไปตามพื้นเอียงลื่นด้วยความเร็วต้น $15\text{ m/s}$ พบว่าวัตถุมีความหน่วงคงตัวขนาด $3\text{ m/s}^2$ ไปตามแนวพื้นเอียง จงหาว่าหลังจากเวลาผ่านไป $7$ วินาที วัตถุจะอยู่ห่างจากจุดเริ่มต้น (การกระจัด) กี่เมตร
+  plan_step:
+    prompt: "ต้องการหาการกระจัด $s$ เมื่อทราบ $u, a, t$ ควรใช้สมการใด?"
+    options:
+      a: "s = ut + (1/2)at^2"
+      b: "v = u + at"
+      c: "v^2 = u^2 + 2as"
+    answer: "a"
+    explanation: "ทราบ $u, a, t$ และต้องการหา $s$ ใช้สมการ $s = ut + \\frac{1}{2}at^2$"
+  checkpoints:
+    - prompt: "วัตถุเคลื่อนที่ขึ้นไปถึงจุดสูงสุดบนพื้นเอียงในเวลากี่วินาที?"
+      answer: 5
+      skill: choose_constant_accel_eq
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "31.5 m"
+        correct: true
+        explanation: "ถูกต้อง $s = 15(7) + \\frac{1}{2}(-3)(7^2) = 105 - 1.5(49) = 105 - 73.5 = 31.5\\text{ m}$"
+      - id: o2
+        text: "37.5 m"
+        correct: false
+        error_tag: peak_displacement_only
+        explanation: "ตอบระยะทางถึงจุดสูงสุดที่ $t=5\\text{ s}$ ($s = 15(5) - 1.5(25) = 37.5\\text{ m}$) โดยลืมว่าช่วงเวลา 5-7 s วัตถุไถลกลับลงมาแล้ว"
+      - id: o3
+        text: "178.5 m"
+        correct: false
+        error_tag: sign_error
+        explanation: "ใส่เครื่องหมายความเร่งเป็นบวก ($105 + 73.5 = 178.5\\text{ m}$)"
+      - id: o4
+        text: "43.5 m"
+        correct: false
+        error_tag: distance_instead_of_displacement
+        explanation: "คิดระยะทางตามแนวการเคลื่อนที่จริง (ขึ้น 37.5 + ลง 6 = 43.5 m) แทนที่จะตอบการกระจัด"
+      - id: o5
+        text: "21.0 m"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คิดเลขทศนิยมผิดพลาด"
+  hints:
+    - level: 1
+      text: "ให้ทิศขึ้นตามพื้นเอียงเป็นบวก (+) ดังนั้น $u = +15\\text{ m/s}$ และความหน่วงมีทิศลง $a = -3\\text{ m/s}^2$"
+    - level: 2
+      text: "การกระจัด $s$ สามารถคำนวณรวดเดียวจากสูตร $s = ut + \\frac{1}{2}at^2$ โดยใส่เครื่องหมายตามเวกเตอร์"
+    - level: 3
+      text: "$s = (15)(7) + \\frac{1}{2}(-3)(7)^2 = 105 - 1.5 \\times 49 = 105 - 73.5 = 31.5\\text{ m}$"
+  solution:
+    steps:
+      - id: s1
+        text: "กำหนดทิศขึ้นตามพื้นเอียงเป็นบวก: $u = +15\\text{ m/s}$, ความหน่วง $a = -3\\text{ m/s}^2$"
+      - id: s2
+        text: "เวลาพิจารณาคือ $t = 7\\text{ s}$"
+      - id: s3
+        text: "คำนวณการกระจัด: $s = ut + \\frac{1}{2}at^2$"
+      - id: s4
+        text: "$s = 15(7) + \\frac{1}{2}(-3)(49) = 105 - 73.5 = 31.5\\text{ m}$"
+    summary: "การกระจัดของวัตถุหลังจาก 7 วินาทีคือ 31.5 เมตรจากจุดเริ่มต้น"
+    common_mistakes: "ระวังความต่างระหว่าง 'การกระจัด' (ตำแหน่งห่างจากจุดตั้งต้น = 31.5 m) กับ 'ระยะทางจริง' (ขึ้นไป 37.5 แล้วถอยลงมา 6 m = 43.5 m)"

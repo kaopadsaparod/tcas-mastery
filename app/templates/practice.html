@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}ข้อสอบ {{ q.id }} • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <!-- Header with Timer and Verification Tier -->
+  <!-- Header with Timer, Verification Tier and Bookmark -->
+  <div class="card-header">
+    <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+      <span class="badge badge-tier-{{ q.verification.tier }}">Tier {{ q.verification.tier }} ({{ q.verification.verified_by }})</span>
+      <span class="badge" style="background: #e2e8f0; color: #1e293b;">{{ q.source.label }}</span>
+      <span style="font-weight: 700; color: var(--primary);">{{ q.id }}</span>
+      <button type="button" id="btnBookmark" class="btn btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.82rem; border-color: #cbd5e1;" onclick="toggleBookmark('{{ q.id }}')">
+        <span id="bookmarkStar">{% if is_bookmarked %}★{% else %}☆{% endif %}</span> <span id="bookmarkText">{% if is_bookmarked %}บันทึกแล้ว{% else %}บันทึกข้อนี้{% endif %}</span>
+      </button>
+    </div>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span style="font-size: 0.85rem; color: var(--text-muted);">เวลาที่ใช้:</span>
+      <div id="timerDisplay" class="timer-badge">00:00</div>
+    </div>
+  </div>
+
+  <!-- Question Stem -->
+  <div style="font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-main); font-weight: 500;">
+    {{ q.stem }}
+  </div>
+
+  <!-- Attached Image (from PDF Import Studio or Question Bank) -->
+  {% if q.image_url %}
+  <div style="margin-bottom: 1.5rem; text-align: center; background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: 10px; padding: 1rem; overflow: hidden;">
+    <a href="{{ q.image_url }}" target="_blank" title="คลิกเพื่อดูรูปภาพขนาดเต็มในแท็บใหม่">
+      <img src="{{ q.image_url }}" alt="รูปภาพประกอบข้อสอบ {{ q.id }}" style="max-width: 100%; max-height: 500px; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); display: inline-block;">
+    </a>
+    <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem;">
+      🔍 คลิกที่รูปภาพเพื่อเปิดดูภาพขยายขนาดเต็มในแท็บใหม่
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Plan Step: Formula/Principle Selection -->
+  {% if q.plan_step %}
+  <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 10px; padding: 1.25rem; margin-bottom: 1.5rem;">
+    <div style="font-weight: 700; color: #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+      <span>📐</span> ขั้นตอนที่ 1: เลือกสมการหรือหลักการก่อนคำนวณ
+    </div>
+    <div style="font-size: 0.95rem; margin-bottom: 0.75rem; color: #475569;">
+      {{ q.plan_step.prompt }}
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+      {% for opt_key, opt_text in q.plan_step.options.items() %}
+        <label class="option-item" style="padding: 0.55rem 0.85rem; background: white;">
+          <input type="radio" name="plan_step_option" value="{{ opt_key }}">
+          <span><strong>({{ opt_key }})</strong> {{ opt_text }}</span>
+        </label>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Checkpoints -->
+  {% if q.checkpoints %}
+  <div style="background: #eff6ff; border: 1px dashed #93c5fd; border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.5rem;">
+    <div style="font-weight: 700; color: #1e40af; font-size: 0.9rem; margin-bottom: 0.4rem;">
+      🚩 จุดตรวจระหว่างทาง (Checkpoints)
+    </div>
+    {% for cp in q.checkpoints %}
+      <div style="font-size: 0.9rem; color: #1e3a8a;">
+        • {{ cp.prompt }} (คำตอบตรวจสอบ: <code>{{ cp.answer }}</code>)
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <!-- Answer Inputs -->
+  <form id="attemptForm" onsubmit="handleFormSubmit(event)">
+    <div style="margin-bottom: 1.5rem;">
+      <div style="font-weight: 700; margin-bottom: 0.75rem; color: var(--text-main);">
+        คำตอบของคุณ:
+      </div>
+
+      {% if q.answer.type == "single_choice" %}
+        <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+          {% for opt in q.answer.options %}
+            <label class="option-item" id="label-{{ opt.id }}">
+              <input type="radio" name="user_choice" value="{{ opt.id }}" required onchange="highlightOption(this)">
+              <span style="font-weight: 600; width: 1.5rem;">{{ loop.index }}.</span>
+              <span style="flex: 1;">{{ opt.text }}</span>
+            </label>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div style="display: flex; align-items: center; gap: 0.75rem; max-width: 400px;">
+          <input type="text" id="numericAnswer" class="option-item" style="flex: 1; padding: 0.75rem; font-size: 1.1rem;" placeholder="กรอกตัวเลข หรือเศษส่วน เช่น 3/4" required>
+          {% if q.answer.unit %}
+            <span style="font-weight: 600; color: var(--text-muted);">{{ q.answer.unit }}</span>
+          {% endif %}
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.35rem;">
+          💡 รองรับเครื่องหมายลบแบบยูนิโค้ด (−), จุลภาคคั่นหลักพัน, เศษส่วน (เช่น 3/4) และสัญกรณ์วิทยาศาสตร์ (เช่น 2e3)
+        </p>
+      {% endif %}
+    </div>
+
+    <!-- Confidence Selector -->
+    <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; background: #fdfdfd; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
+      <span style="font-size: 0.9rem; font-weight: 600; color: var(--text-muted);">ระดับความมั่นใจ:</span>
+      <label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem; cursor: pointer;">
+        <input type="radio" name="confidence" value="sure" checked> มั่นใจมาก (Sure)
+      </label>
+      <label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem; cursor: pointer;">
+        <input type="radio" name="confidence" value="unsure"> ไม่ค่อยแน่ใจ (Unsure)
+      </label>
+      <label style="display: flex; align-items: center; gap: 0.3rem; font-size: 0.9rem; cursor: pointer;">
+        <input type="radio" name="confidence" value="guessed"> เดาคำตอบ (Guessed)
+      </label>
+    </div>
+
+    <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+      <button type="submit" id="btnSubmit" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1.05rem;">
+        ตรวจคำตอบ
+      </button>
+      <button type="button" class="btn btn-outline" onclick="toggleHintDrawer()">
+        💡 เปิดคำใบ้ (<span id="hintOpenedCount">0</span>/{{ q.hints|length }})
+      </button>
+      <button type="button" class="btn btn-outline" style="color: #0284c7; border-color: #bae6fd; background: #f0f9ff;" onclick="copyPreSolveAIPrompt()">
+        🤖 ขอแนวคิดเริ่มต้นจาก AI
+      </button>
+    </div>
+  </form>
+
+  <!-- Result Drawer (Hidden until submitted) -->
+  <div id="resultDrawer" style="display: none; margin-top: 2rem; border-top: 2px solid var(--border-color); padding-top: 1.5rem;">
+    <div id="resultBanner" class="alert"></div>
+
+    <!-- Error Tag Diagnosis Alert -->
+    <div id="errorTagAlert" class="alert alert-danger" style="display: none;">
+      <strong style="font-size: 1rem;">🔍 วินิจฉัยข้อผิดพลาด (Misconception Diagnosis):</strong>
+      <div id="errorTagText" style="margin-top: 0.35rem;"></div>
+    </div>
+
+    <!-- 3-Level Hints -->
+    <div style="margin-top: 1.5rem;">
+      <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem;">💡 คำใบ้ตามระดับ (Structured Hints)</h3>
+      {% for h in q.hints %}
+        <div class="accordion" id="hint-acc-{{ h.level }}">
+          <div class="accordion-header">
+            <span>คำใบ้ระดับ {{ h.level }}: {% if h.level == 1 %}สิ่งที่โจทย์ให้และหลักการ{% elif h.level == 2 %}สมการและเงื่อนไข{% else %}แนวทางลงมือทำ{% endif %}</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-body">
+            {{ h.text }}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Verified Solution Steps -->
+    {% if q.solution %}
+    <div style="margin-top: 1.5rem;">
+      <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 0.75rem;">📝 เฉลยละเอียดทุกขั้นตอน (Verified Solution)</h3>
+      <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; background: #f8fafc;">
+        <ol style="margin-left: 1.25rem; line-height: 1.8;">
+          {% for s in q.solution.steps %}
+            <li style="margin-bottom: 0.5rem;">{{ s.text }}</li>
+          {% endfor %}
+        </ol>
+        {% if q.solution.summary %}
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); font-weight: 600; color: #0f172a;">
+            สรุป: {{ q.solution.summary }}
+          </div>
+        {% endif %}
+        {% if q.solution.common_mistakes %}
+          <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #991b1b;">
+            ⚠️ จุดที่ผิดบ่อย: {{ q.solution.common_mistakes }}
+          </div>
+        {% endif %}
+        {% if q.solution.sanity_check %}
+          <div style="margin-top: 0.5rem; font-size: 0.9rem; color: #065f46;">
+            ✓ ตรวจความสมเหตุสมผล: {{ q.solution.sanity_check }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- AI Tutor Helper Button -->
+    <div style="margin-top: 2rem; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1.5rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: #166534;">🤖 ผู้ช่วย AI Tutor แบบ 1-คลิก (One-Click AI Helper)</h4>
+          <p style="font-size: 0.85rem; color: #15803d; margin-top: 0.2rem;">
+            ระบบได้สร้าง Prompt พร้อมบริบทโจทย์ ช้อยส์ที่เลือก ข้อผิดพลาด และเฉลยทางการไว้แล้ว นำไปวางใน ChatGPT/Claude/Gemini ได้ทันที
+          </p>
+        </div>
+        <button id="btnCopyAI" type="button" class="btn btn-copy" onclick="copyAIPrompt()">
+          📋 คัดลอกบริบทไปถาม AI
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let timer = new PracticeTimer('timerDisplay');
+let hintsOpenedCount = 0;
+let generatedAIPrompt = "";
+let isSubmitted = false;
+
+window.addEventListener('DOMContentLoaded', () => {
+  timer.start();
+});
+
+function highlightOption(radio) {
+  document.querySelectorAll('.option-item').forEach(el => el.classList.remove('selected'));
+  const parent = radio.closest('.option-item');
+  if (parent) parent.classList.add('selected');
+}
+
+function toggleHintDrawer() {
+  const hints = document.querySelectorAll('[id^="hint-acc-"]');
+  if (hints.length > 0) {
+    const nextHint = Array.from(hints).find(h => !h.classList.contains('open'));
+    if (nextHint) {
+      nextHint.classList.add('open');
+      hintsOpenedCount++;
+      document.getElementById('hintOpenedCount').textContent = hintsOpenedCount;
+      renderMathInDocument();
+    } else {
+      showToast('เปิดคำใบ้ครบทุกระดับแล้ว');
+    }
+  }
+}
+
+async function handleFormSubmit(e) {
+  e.preventDefault();
+  if (isSubmitted) return;
+
+  const thinkingTime = timer.stop();
+
+  // Get user answer
+  let userAns = "";
+  const choiceEl = document.querySelector('input[name="user_choice"]:checked');
+  if (choiceEl) {
+    userAns = choiceEl.value;
+  } else {
+    const numEl = document.getElementById('numericAnswer');
+    if (numEl) userAns = numEl.value;
+  }
+
+  // Get plan step
+  const planEl = document.querySelector('input[name="plan_step_option"]:checked');
+  const planAns = planEl ? planEl.value : null;
+
+  // Get confidence
+  const confEl = document.querySelector('input[name="confidence"]:checked');
+  const confidence = confEl ? confEl.value : "sure";
+
+  const payload = {
+    question_id: "{{ q.id }}",
+    user_answer: userAns,
+    confidence: confidence,
+    hints_opened: hintsOpenedCount,
+    plan_step_answer: planAns,
+    time_spent_sec: thinkingTime,
+    review_time_sec: 0.0
+  };
+
+  try {
+    const resp = await fetch('/api/submit-attempt', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const data = await resp.json();
+
+    isSubmitted = true;
+    document.getElementById('btnSubmit').disabled = true;
+
+    // Show result drawer
+    const drawer = document.getElementById('resultDrawer');
+    drawer.style.display = 'block';
+
+    let paceBadgeHtml = '';
+    if (data.pace_feedback) {
+      const paceBg = data.pace_status === 'fast' ? '#dcfce7' : (data.pace_status === 'optimal' ? '#dbeafe' : '#fee2e2');
+      const paceColor = data.pace_status === 'fast' ? '#15803d' : (data.pace_status === 'optimal' ? '#1d4ed8' : '#b91c1c');
+      paceBadgeHtml = `<div style="margin-top: 0.5rem; display: inline-block; padding: 0.25rem 0.65rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; background: ${paceBg}; color: ${paceColor};">${data.pace_feedback}</div>`;
+    }
+
+    const banner = document.getElementById('resultBanner');
+    if (data.is_correct) {
+      if (data.status === 'correct_assisted') {
+        banner.className = 'alert alert-warning';
+        banner.innerHTML = `<strong>✓ ตอบถูกต้อง (หลังเปิดคำใบ้)</strong><br>ระบบจะจัดคิวให้ทบทวนข้อนี้อีกครั้งใน 1 วันเพื่อวัดผลว่าทำได้เองจริงหรือไม่<br>${paceBadgeHtml}`;
+      } else {
+        banner.className = 'alert alert-success';
+        banner.innerHTML = `<strong>🎉 ถูกต้องยอดเยี่ยม!</strong> คุณทำได้เองตั้งแต่รอบแรก (Honest Mastery)<br>ระบบจัดคิวทบทวนข้อนี้ในอีก ${data.next_review_interval_days} วัน<br>${paceBadgeHtml}`;
+      }
+    } else {
+      banner.className = 'alert alert-danger';
+      banner.innerHTML = `<strong>❌ คำตอบยังไม่ถูกต้อง</strong> คำตอบที่ถูกต้องคือ: <strong>${data.correct_answer}</strong><br>${paceBadgeHtml}`;
+    }
+
+    // Error tag
+    if (data.error_tag && data.error_tag_description) {
+      const errBox = document.getElementById('errorTagAlert');
+      const errText = document.getElementById('errorTagText');
+      errText.innerHTML = `สาเหตุ: <strong>${data.error_tag_description}</strong> (แท็ก: <code>${data.error_tag}</code>)`;
+      errBox.style.display = 'block';
+    }
+
+    generatedAIPrompt = data.ai_prompt || "";
+
+    // Render Math in newly shown elements
+    renderMathInDocument();
+    drawer.scrollIntoView({ behavior: 'smooth' });
+
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการส่งคำตอบ');
+  }
+}
+
+function copyAIPrompt() {
+  if (generatedAIPrompt) {
+    copyToClipboard(generatedAIPrompt, "คัดลอก Prompt สำหรับถาม AI เรียบร้อยแล้ว!");
+  } else {
+    showToast("กรุณาตรวจคำตอบก่อนคัดลอกบริบท");
+  }
+}
+
+function copyPreSolveAIPrompt() {
+  const prePrompt = `{{ presolve_prompt | replace('\n', '\\n') | replace('"', '\\"') }}`;
+  copyToClipboard(prePrompt, "คัดลอก Prompt แนวคิดสำหรับถาม AI เรียบร้อยแล้ว! (ไม่เฉลยคำตอบ)");
+}
+
+async function toggleBookmark(qid) {
+  try {
+    const resp = await fetch('/api/bookmark/toggle', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question_id: qid })
+    });
+    const data = await resp.json();
+    const star = document.getElementById('bookmarkStar');
+    const text = document.getElementById('bookmarkText');
+    if (data.bookmarked) {
+      star.textContent = '★';
+      text.textContent = 'บันทึกแล้ว';
+      showToast('ติดดาวบันทึกข้อนี้แล้ว ⭐');
+    } else {
+      star.textContent = '☆';
+      text.textContent = 'บันทึกข้อนี้';
+      showToast('ยกเลิกการบันทึกข้อนี้แล้ว');
+    }
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการบันทึก Bookmark');
+  }
+}
+</script>
+{% endblock %}

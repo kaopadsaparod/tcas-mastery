@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}บัตรเรียกคืนสูตร • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">🧠 บัตรเรียกคืนสูตรฟิสิกส์ (Active Formula Recall)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        แก้ปัญหา "จำสูตรไม่ได้" และ "ใช้สูตรผิดเงื่อนไข" ด้วยการทดสอบความเข้าใจเงื่อนไขและตัวแปร
+      </p>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 2rem;">
+    {% for card in formulas %}
+      <div style="border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; background: white; box-shadow: var(--shadow);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">{{ card.title }}</h2>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">{{ card.topic }} • ID: {{ card.id }}</span>
+          </div>
+          <div style="font-size: 1.4rem; background: #eef2ff; color: #4338ca; padding: 0.35rem 1rem; border-radius: 8px; font-weight: 700;">
+            ${{ card.latex }}$
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-bottom: 1.25rem;">
+          <!-- Conditions & Cues -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-bottom: 0.4rem;">
+              ⚠️ เงื่อนไขการใช้สูตร:
+            </div>
+            <ul style="margin-left: 1.2rem; font-size: 0.9rem; color: #475569;">
+              {% for cond in card.conditions %}
+                <li>{{ cond }}</li>
+              {% endfor %}
+            </ul>
+
+            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-top: 0.75rem; margin-bottom: 0.4rem;">
+              🎯 สัญญาณเตือนในการเลือกสูตร:
+            </div>
+            <ul style="margin-left: 1.2rem; font-size: 0.9rem; color: #475569;">
+              {% for cue in card.selection_cues %}
+                <li>{{ cue }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <!-- Variables -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
+            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-bottom: 0.4rem;">
+              🏷️ ความหมายของตัวแปร & หน่วย SI:
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem;">
+              {% for var_name, var_desc in card.variables.items() %}
+                <div>• <strong>${{ var_name }}$</strong> : {{ var_desc }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Active Recall Quiz -->
+        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 1.25rem;">
+          <div style="font-weight: 700; color: #92400e; font-size: 0.95rem; margin-bottom: 0.75rem;">
+            ⚡ แบบทดสอบดึงความจำ (Recall Challenge):
+          </div>
+
+          {% for q in card.recall_questions %}
+            {% set q_idx = loop.index0 %}
+            <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #fcd34d;">
+              <div style="font-weight: 600; font-size: 0.95rem; color: #78350f; margin-bottom: 0.5rem;">
+                {{ loop.index }}. {{ q.prompt }}
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                {% for opt_key, opt_text in q.options.items() %}
+                  <label class="option-item" style="background: white; padding: 0.5rem 0.75rem; margin-bottom: 0.2rem;" id="formula-opt-{{ card.id }}-{{ q_idx }}-{{ opt_key }}">
+                    <input type="radio" name="formula_q_{{ card.id }}_{{ q_idx }}" value="{{ opt_key }}" onchange="submitFormulaAnswer('{{ card.id }}', {{ q_idx }}, '{{ opt_key }}')">
+                    <span><strong>({{ opt_key }})</strong> {{ opt_text }}</span>
+                  </label>
+                {% endfor %}
+              </div>
+              <div id="formula-feedback-{{ card.id }}-{{ q_idx }}" style="display: none; margin-top: 0.5rem; font-size: 0.9rem;"></div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function submitFormulaAnswer(cardId, questionIndex, selectedOption) {
+  const inputs = document.querySelectorAll(`input[name="formula_q_${cardId}_${questionIndex}"]`);
+  inputs.forEach(inp => inp.disabled = true);
+
+  try {
+    const resp = await fetch('/api/formulas/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        formula_id: cardId,
+        question_index: questionIndex,
+        user_answer: selectedOption
+      })
+    });
+    const data = await resp.json();
+
+    const fb = document.getElementById(`formula-feedback-${cardId}-${questionIndex}`);
+    fb.style.display = 'block';
+
+    if (data.is_correct) {
+      fb.innerHTML = `
+        <div style="background: #ecfdf5; border: 1px solid #a7f3d0; border-radius: 6px; padding: 0.6rem 0.8rem; color: #065f46;">
+          <strong>🎉 ยอดเยี่ยม ถูกต้อง!</strong> ${data.explanation}
+        </div>`;
+    } else {
+      fb.innerHTML = `
+        <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.6rem 0.8rem; color: #991b1b; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div>
+            <strong>❌ ยังไม่ถูกต้อง</strong> คำตอบที่แท้จริงคือข้อ <strong>(${data.correct_answer})</strong> — ${data.explanation}
+          </div>
+          <button type="button" class="btn btn-outline" style="padding: 0.2rem 0.6rem; font-size: 0.8rem;" onclick="resetFormulaQuestion('${cardId}', ${questionIndex})">
+            🔄 ลองใหม่
+          </button>
+        </div>`;
+    }
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการตรวจคำตอบ');
+    inputs.forEach(inp => inp.disabled = false);
+  }
+}
+
+function resetFormulaQuestion(cardId, questionIndex) {
+  const inputs = document.querySelectorAll(`input[name="formula_q_${cardId}_${questionIndex}"]`);
+  inputs.forEach(inp => {
+    inp.disabled = false;
+    inp.checked = false;
+  });
+  const fb = document.getElementById(`formula-feedback-${cardId}-${questionIndex}`);
+  if (fb) fb.style.display = 'none';
+}
+</script>
+{% endblock %}

@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %}สถิติจุดอ่อนและคิวทบทวน • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">📊 สถิติการเรียนรู้และการวินิจฉัยจุดอ่อน (Learning Analytics)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        แยกผลการทำเองออกจากผลที่มีตัวช่วยอย่างตรงไปตรงมา พร้อมเกณฑ์ Honest Mastery และ Confidence Calibration
+      </p>
+    </div>
+  </div>
+
+  <!-- Big Numbers -->
+  <div class="grid-4" style="margin-bottom: 2rem;">
+    <div class="stat-box">
+      <div class="stat-val" style="color: var(--primary);">{{ stats.honest_mastery_rate }}%</div>
+      <div class="stat-label">ความเชี่ยวชาญแท้จริง (Honest Mastery)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" style="color: var(--success);">{{ stats.honest_mastery_count }} / {{ stats.total_attempts }}</div>
+      <div class="stat-label">ทำถูกรอบแรก (เฉพาะ มั่นใจ/ลังเล)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" style="color: #64748b;">{{ stats.lucky_guesses }}</div>
+      <div class="stat-label">ถูกเพราะเดา (ตัดออกจาก Mastery)</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" style="color: var(--danger);">{{ stats.misconception_count }}</div>
+      <div class="stat-label">มั่นใจแต่ตอบผิด (Severe Trap)</div>
+    </div>
+  </div>
+
+  <!-- Time analysis -->
+  <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <span style="font-size: 0.9rem; color: var(--text-muted);">เวลาคิดโจทย์เฉลี่ย (Thinking Time):</span>
+      <strong style="font-size: 1.1rem; color: var(--text-main); margin-left: 0.5rem;">{{ stats.avg_think_time_sec }} วินาที/ข้อ</strong>
+    </div>
+    <div>
+      <span style="font-size: 0.9rem; color: var(--text-muted);">เวลาอ่านเฉลยเฉลี่ย (Review Time):</span>
+      <strong style="font-size: 1.1rem; color: var(--text-main); margin-left: 0.5rem;">{{ stats.avg_review_time_sec }} วินาที/ข้อ</strong>
+    </div>
+  </div>
+
+  <!-- Confidence Calibration Breakdown -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <div class="card-header">
+      <h2 class="card-title">🎯 กราฟความสัมพันธ์ความมั่นใจ vs ความถูกต้องจริง (Confidence Calibration)</h2>
+      <span class="badge badge-priority-high">Overconfidence Rate: {{ stats.misconception_rate_pct }}%</span>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+      การสอบระดับสูงต้องประเมินตนเองได้อย่างแม่นยำ (Metacognition) หาก "มั่นใจ" ควรมีความแม่นยำเกิน 90% ถ้ามั่นใจแต่ตอบผิดบ่อยแสดงว่ามีจุดเข้าใจผิด (Misconception)
+    </p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+      <div style="background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #166534;">🟢 มั่นใจ (Sure)</strong>
+          <span style="font-size: 1.1rem; font-weight: 700; color: #15803d;">{{ stats.confidence_calibration.sure.accuracy_pct }}% ถูกจริง</span>
+        </div>
+        <div style="font-size: 0.85rem; color: #374151;">
+          ทำไป {{ stats.confidence_calibration.sure.total }} ข้อ • ถูก {{ stats.confidence_calibration.sure.correct }} ข้อ
+        </div>
+      </div>
+      <div style="background: #eff6ff; border: 1.5px solid #bfdbfe; border-radius: 8px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #1e40af;">🔵 ลังเล (Unsure)</strong>
+          <span style="font-size: 1.1rem; font-weight: 700; color: #1d4ed8;">{{ stats.confidence_calibration.unsure.accuracy_pct }}% ถูกจริง</span>
+        </div>
+        <div style="font-size: 0.85rem; color: #374151;">
+          ทำไป {{ stats.confidence_calibration.unsure.total }} ข้อ • ถูก {{ stats.confidence_calibration.unsure.correct }} ข้อ
+        </div>
+      </div>
+      <div style="background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 8px; padding: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+          <strong style="color: #991b1b;">⚪ เดา (Guessed)</strong>
+          <span style="font-size: 1.1rem; font-weight: 700; color: #b91c1c;">{{ stats.confidence_calibration.guessed.accuracy_pct }}% ถูกจริง</span>
+        </div>
+        <div style="font-size: 0.85rem; color: #374151;">
+          ทำไป {{ stats.confidence_calibration.guessed.total }} ข้อ • ถูก {{ stats.confidence_calibration.guessed.correct }} ข้อ (ไม่นับเป็นความเชี่ยวชาญ)
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mistake Tags Breakdown -->
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="card" style="margin-bottom: 0;">
+      <div class="card-header">
+        <h2 class="card-title">🔍 จุดผิดพลาดที่พบบ่อย (Error Tags)</h2>
+      </div>
+      {% if stats.top_error_tags %}
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          {% for tag in stats.top_error_tags %}
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border-radius: 6px; background: #fff1f2; border: 1px solid #fecdd3;">
+              <div>
+                <strong style="color: #9f1239;">{{ tag.error_tag }}</strong>
+              </div>
+              <span class="badge badge-priority-high">{{ tag.count }} ครั้ง</span>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p style="color: var(--text-muted); font-size: 0.9rem;">ยังไม่มีข้อมูลความผิดพลาดที่บันทึกไว้</p>
+      {% endif %}
+    </div>
+
+    <!-- Topic Breakdown -->
+    <div class="card" style="margin-bottom: 0;">
+      <div class="card-header">
+        <h2 class="card-title">📚 ประสิทธิภาพรายบทเรียน</h2>
+      </div>
+      {% if stats.topic_breakdown %}
+        <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+          {% for t in stats.topic_breakdown %}
+            <div style="padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 6px; background: white;">
+              <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem;">
+                <span>{{ t.topic }}</span>
+                <span>Honest Mastery: {{ t.honest_mastery or 0 }} / {{ t.total }}</span>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">
+                อัตราทำถูกทั้งหมด: {{ t.total_correct or 0 }} จาก {{ t.total }} ครั้ง
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <p style="color: var(--text-muted); font-size: 0.9rem;">ยังไม่มีข้อมูลประวัติการทำโจทย์รายบท</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Procedural Drills Analytics Card -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <div class="card-header">
+      <h2 class="card-title">🔢 สถิติการฝึกคิดเลขเร็วในใจ (Mental Math Drills)</h2>
+      <span class="badge badge-tier-A">{{ stats.total_drills }} ครั้ง</span>
+    </div>
+    <div class="grid-4" style="margin-bottom: 1.25rem;">
+      <div class="stat-box">
+        <div class="stat-val" style="color: var(--primary);">{{ stats.total_drills }}</div>
+        <div class="stat-label">จำนวนโจทย์ที่ฝึกทั้งหมด</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color: var(--success);">{{ stats.correct_drills }}</div>
+        <div class="stat-label">คิดถูกต้อง (ข้อ)</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color: var(--info);">{{ stats.drill_accuracy_pct }}%</div>
+        <div class="stat-label">ความแม่นยำในการคิดเลข</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" style="color: var(--warning);">{{ stats.avg_drill_time_sec }}s</div>
+        <div class="stat-label">เวลาเฉลี่ยต่อข้อ (วินาที)</div>
+      </div>
+    </div>
+
+    {% if stats.drills_by_type %}
+      <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-muted);">แจกแจงตามประเภทการฝึก:</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem;">
+        {% for d in stats.drills_by_type %}
+          <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.75rem 1rem;">
+            <div style="font-weight: 600; font-size: 0.85rem; color: #1e293b;">
+              {% if d.drill_type == 'unit_kmh_ms' %}⚡ แปลงหน่วย km/h ↔ m/s
+              {% elif d.drill_type == 'kinematics_5eq' %}🏃 5 สูตรการเคลื่อนที่
+              {% elif d.drill_type == 'area_volume' %}📦 พื้นที่ ปริมาตร ความหนาแน่น
+              {% elif d.drill_type == 'fractions_powers' %}📐 สัดส่วนและเลขยกกำลัง
+              {% else %}{{ d.drill_type }}{% endif %}
+            </div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+              ทำไป {{ d.total }} ข้อ • ถูก {{ d.correct }} ข้อ ({{ (d.correct / d.total * 100)|round(1) if d.total > 0 else 0 }}%)
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="font-size: 0.85rem; color: var(--text-muted);">ยังไม่มีประวัติการฝึกคิดเลขเร็ว</p>
+    {% endif %}
+  </div>
+
+  <!-- Review Queue Table -->
+  <div>
+    <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📅 รายการในคิวทบทวน (Review Queue)</h2>
+    {% if due_reviews %}
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border-color);">
+              <th style="padding: 0.75rem 1rem;">รหัสโจทย์</th>
+              <th style="padding: 0.75rem 1rem;">บทเรียน</th>
+              <th style="padding: 0.75rem 1rem;">ความสำคัญ</th>
+              <th style="padding: 0.75rem 1rem;">รอบที่</th>
+              <th style="padding: 0.75rem 1rem;">ช่วงเว้น (วัน)</th>
+              <th style="padding: 0.75rem 1rem;">จัดการ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in due_reviews %}
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem 1rem; font-weight: 700; color: var(--primary);">{{ r.question_id }}</td>
+                <td style="padding: 0.75rem 1rem; color: #475569;">{{ r.topic }}</td>
+                <td style="padding: 0.75rem 1rem;">
+                  <span class="badge {% if r.priority == 'high' %}badge-priority-high{% else %}badge-priority-normal{% endif %}">
+                    {{ r.priority }}
+                  </span>
+                </td>
+                <td style="padding: 0.75rem 1rem;">{{ r.repetition_count }}</td>
+                <td style="padding: 0.75rem 1rem;">{{ r.interval_days }}</td>
+                <td style="padding: 0.75rem 1rem;">
+                  <a href="/practice/{{ r.question_id }}" class="btn btn-outline" style="padding: 0.25rem 0.6rem; font-size: 0.8rem;">ทำซ้ำ</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p style="color: var(--text-muted); font-size: 0.9rem;">ไม่มีรายการที่ค้างทบทวนในขณะนี้</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

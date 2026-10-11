@@ -1,0 +1,132 @@
+# คลังโจทย์คณิตศาสตร์ประยุกต์ 1: ฟังก์ชันและพีชคณิต
+# ได้รับการตรวจสอบระดับ Tier B (มี Python Assertion Test ยืนยันผลคำนวณ)
+
+- id: mat-alg-0001
+  subject: math
+  topic: math.algebra.functions
+  source:
+    type: official
+    label: "ข้อสอบ MyTCAS คณิตประยุกต์ 1"
+    exam_year: 2566
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_mat_alg_0001"
+  skills:
+    primary: quadratic_inequalities
+    secondary:
+      - sign_convention
+  stem: |
+    เซตคำตอบของอสมการ $\frac{x^2 - 4x - 5}{x - 2} \le 0$ คือช่วงในข้อใดต่อไปนี้
+  plan_step:
+    prompt: "ขั้นตอนแรกในการแก้อสมการพหุนามและเศษส่วนพหุนามคืออะไร?"
+    options:
+      a: "คูณไขว้ตัวส่วน (x - 2) ขึ้นไปอีกฝั่งได้ทันที"
+      b: "แยกตัวประกอบของตัวเศษ และระบุเงื่อนไขตัวส่วนห้ามเท่ากับศูนย์ ($x \\neq 2$)"
+      c: "ยกกำลังสองทั้งสองข้าง"
+    answer: "b"
+    explanation: "ห้ามคูณไขว้ตัวแปรที่มีโอกาสติดลบโดยเด็ดขาด ต้องแยกตัวประกอบและเขียนเส้นจำนวนพร้อมระบุ $x \\neq 2$"
+  checkpoints:
+    - prompt: "ค่าวิกฤต (Critical points) ทั้งหมดบนเส้นจำนวนมีกี่ค่า?"
+      answer: 3
+      skill: quadratic_inequalities
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "(-\\infty, -1] \\cup (2, 5]"
+        correct: true
+        explanation: "ถูกต้อง จาก $\\frac{(x-5)(x+1)}{x-2} \\le 0$ จุดวิกฤตคือ -1, 2, 5 โดย 2 เป็นช่วงเปิดเพราะเป็นตัวส่วน"
+      - id: o2
+        text: "(-\\infty, -1] \\cup [2, 5]"
+        correct: false
+        error_tag: forgot_domain_restriction
+        explanation: "ลืมเงื่อนไขตัวส่วน $x \\neq 2$ ใส่เป็นช่วงปิดที่ 2 ซึ่งผิดเพราะทำให้ส่วนเป็นศูนย์"
+      - id: o3
+        text: "[-1, 2) \\cup [5, \\infty)"
+        correct: false
+        error_tag: sign_interval_inversion
+        explanation: "ใส่เครื่องหมายบนเส้นจำนวนสลับกัน (เลือกช่วงบวกแทนช่วงลบ)"
+      - id: o4
+        text: "[-1, 5]"
+        correct: false
+        error_tag: cross_multiplied_denominator
+        explanation: "คูณไขว้ $(x - 2)$ ทิ้งไปโดยไม่คิดเครื่องหมาย ทำให้ได้แค่ $(x-5)(x+1) \\le 0$"
+      - id: o5
+        text: "(-\\infty, 2) \\cup (2, 5]"
+        correct: false
+        error_tag: factor_error
+        explanation: "แยกตัวประกอบพหุนามผิดพลาด"
+  hints:
+    - level: 1
+      text: "แยกตัวประกอบตัวเศษ: $x^2 - 4x - 5 = (x - 5)(x + 1)$ และจำไว้เสมอว่าส่วนห้ามเป็น 0 นั่นคือ $x \\neq 2$"
+    - level: 2
+      text: "พิจารณาอสมการ $\\frac{(x - 5)(x + 1)}{x - 2} \\le 0$ ค่าวิกฤตบนเส้นจำนวนเรียงจากน้อยไปมากคือ $-1, 2, 5$"
+    - level: 3
+      text: "ลงเครื่องหมาย $+ , - , + , -$ จากขวาสุด: ช่วง $(5, \\infty)$ เป็น $+$, ช่วง $(2, 5]$ เป็น $-$, ช่วง $(-1, 2)$ เป็น $+$, ช่วง $(-\\infty, -1]$ เป็น $-$ ดังนั้นเลือกช่วงลบที่มีเครื่องหมาย $\\le$"
+  solution:
+    steps:
+      - id: s1
+        text: "แยกตัวประกอบตัวเศษ: $\\frac{(x - 5)(x + 1)}{x - 2} \\le 0$"
+      - id: s2
+        text: "เงื่อนไขตัวส่วน: $x - 2 \\neq 0 \\implies x \\neq 2$"
+      - id: s3
+        text: "จุดวิกฤตบนเส้นจำนวนคือ $x = -1, 2, 5$"
+      - id: s4
+        text: "ทดสอบช่วง: ช่วงที่ให้ค่าน้อยกว่าหรือเท่ากับศูนย์คือ $(-\\infty, -1] \\cup (2, 5]$ (เปิดที่ 2 เพราะส่วนห้ามเป็นศูนย์)"
+    summary: "เซตคำตอบคือ $(-\\infty, -1] \\cup (2, 5]$"
+    common_mistakes: "จุดที่ระวังมากที่สุดคือห้ามใส่ก้ามปูปิดที่ 2 เพราะส่วนของเศษส่วนห้ามเป็น 0"
+
+- id: mat-alg-0002
+  subject: math
+  topic: math.algebra.functions
+  source:
+    type: official
+    label: "ข้อสอบคณิตประยุกต์ 1 A-Level"
+    exam_year: 2565
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_mat_alg_0002"
+  skills:
+    primary: exponential_equations
+    secondary:
+      - quadratic_inequalities
+  stem: |
+    ผลบวกของคำตอบทั้งหมดของสมการ $4^x - 10 \\cdot 2^x + 16 = 0$ มีค่าเท่ากับเท่าใด
+  plan_step:
+    prompt: "การแก้สมการเอ็กซ์โพเนนเชียลที่มีฐาน $4^x$ และ $2^x$ ควรกำหนดตัวแปรช่วยอย่างไร?"
+    options:
+      a: "ให้ A = 2^x แล้วเปลี่ยนสมการเป็น A^2 - 10A + 16 = 0"
+      b: "เทค log ฐาน 10 ทั้งสองข้างทันที"
+      c: "หารตลอดด้วย 16"
+    answer: "a"
+    explanation: "เพราะ $4^x = (2^x)^2$ เมื่อให้ $A = 2^x$ สมการจะกลายเป็นกำลังสองในรูป $A^2 - 10A + 16 = 0$"
+  checkpoints:
+    - prompt: "ค่าของ $A = 2^x$ มีคำตอบสองค่าคือจำนวนใดบ้าง (คั่นด้วยจุลภาค เช่น 1, 2)?"
+      answer: "2, 8"
+      skill: exponential_equations
+  answer:
+    type: numeric
+    correct_value: 4
+    tolerance: 0.001
+    explanation: "$A^2 - 10A + 16 = 0 \\implies (A-2)(A-8) = 0 \\implies 2^x = 2 (x=1) \\text{ หรือ } 2^x = 8 (x=3) \\implies ผลบวกคือ 1 + 3 = 4$"
+  hints:
+    - level: 1
+      text: "สังเกตว่า $4^x = (2^2)^x = (2^x)^2$ ให้ตัวแปรช่วย $A = 2^x$ โดยที่ $A > 0$"
+    - level: 2
+      text: "สมการกลายเป็น $A^2 - 10A + 16 = 0$ แยกตัวประกอบหาค่า $A$"
+    - level: 3
+      text: "$(A - 2)(A - 8) = 0$ จะได้ $A = 2$ หรือ $A = 8$ นำกลับไปแทน $2^x = 2 \\implies x = 1$ และ $2^x = 8 \\implies x = 3$"
+  solution:
+    steps:
+      - id: s1
+        text: "จัดรูปสมการ: $(2^x)^2 - 10(2^x) + 16 = 0$"
+      - id: s2
+        text: "ให้ $A = 2^x$ (โดยที่ $A > 0$) จะได้ $A^2 - 10A + 16 = 0$"
+      - id: s3
+        text: "แยกตัวประกอบ: $(A - 2)(A - 8) = 0 \\implies A = 2 \\text{ หรือ } A = 8$"
+      - id: s4
+        text: "แทนกลับหาค่า $x$: กรณี $2^x = 2 \\implies x = 1$, กรณี $2^x = 8 = 2^3 \\implies x = 3$"
+      - id: s5
+        text: "ผลบวกของคำตอบทั้งหมด: $1 + 3 = 4$"
+    summary: "ผลบวกของคำตอบเท่ากับ 4"
+    common_mistakes: "อย่าตอบผลบวกของ A ($2 + 8 = 10$) โจทย์ถามผลบวกของคำตอบ x"

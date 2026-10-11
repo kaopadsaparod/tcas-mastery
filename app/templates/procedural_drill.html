@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+{% block title %}แบบฝึกคำนวณไม่อั้น • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">🔢 แบบฝึกคำนวณสุ่มตัวเลขไม่จำกัด (Infinite Procedural Drills)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        ฝึกคิดเลขในใจให้คล่อง ตัวเลขคัดสรรให้คิดมือได้ลงตัวตามมาตรฐานสนามสอบ TCAS ที่ไม่อนุญาตให้ใช้เครื่องคิดเลข
+      </p>
+    </div>
+    <div id="drillTimer" class="timer-badge">00:00</div>
+  </div>
+
+  <!-- Drill Type Tabs -->
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+    <a href="/drills?drill_type=unit_kmh_ms" class="btn {% if current_type == 'unit_kmh_ms' %}btn-primary{% else %}btn-outline{% endif %}">
+      ⚡ แปลงหน่วย km/h ↔ m/s
+    </a>
+    <a href="/drills?drill_type=kinematics_5eq" class="btn {% if current_type == 'kinematics_5eq' %}btn-primary{% else %}btn-outline{% endif %}">
+      🏃 5 สูตรการเคลื่อนที่แนวตรง
+    </a>
+    <a href="/drills?drill_type=area_volume" class="btn {% if current_type == 'area_volume' %}btn-primary{% else %}btn-outline{% endif %}">
+      📦 พื้นที่ ปริมาตร ความหนาแน่น
+    </a>
+    <a href="/drills?drill_type=fractions_powers" class="btn {% if current_type == 'fractions_powers' %}btn-primary{% else %}btn-outline{% endif %}">
+      📐 สัดส่วนและเลขยกกำลัง
+    </a>
+  </div>
+
+  <!-- Interactive Drill Box -->
+  <div id="drillContainer" style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.75rem; margin-bottom: 1.5rem;">
+    <div id="drillStem" style="font-size: 1.25rem; font-weight: 600; color: var(--text-main); line-height: 1.8; margin-bottom: 1.5rem;">
+      {{ drill.stem }}
+    </div>
+
+    <form id="drillForm" onsubmit="handleDrillSubmit(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; max-width: 400px;">
+        <input type="text" id="drillInput" class="option-item" style="flex: 1; font-size: 1.2rem; padding: 0.75rem 1rem;" placeholder="กรอกตัวเลข หรือเศษส่วน" required autofocus>
+        <span id="drillUnit" style="font-size: 1rem; font-weight: 700; color: var(--text-muted);">{{ drill.unit }}</span>
+      </div>
+
+      <div style="display: flex; gap: 1rem; align-items: center; margin-top: 0.5rem;">
+        <button type="submit" id="btnSubmitDrill" class="btn btn-primary" style="padding: 0.65rem 1.8rem;">
+          ตรวจคำตอบ
+        </button>
+        <button type="button" id="btnNextDrill" class="btn btn-outline" style="display: none;" onclick="loadNextDrill()">
+          ข้อถัดไป (สุ่มโจทย์ใหม่) ➔
+        </button>
+      </div>
+    </form>
+
+    <!-- Feedback section -->
+    <div id="drillFeedback" style="display: none; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color);">
+      <div id="drillAlert" class="alert"></div>
+      <div style="background: #f8fafc; border-left: 4px solid var(--primary); padding: 1rem 1.25rem; border-radius: 4px; font-size: 0.95rem;">
+        <strong>💡 เคล็ดลับการคิดในใจ / วิธีทำ:</strong>
+        <div id="drillExplanation" style="margin-top: 0.35rem; color: #334155; line-height: 1.7;">
+          {{ drill.explanation }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let currentDrill = {{ drill | tojson }};
+let currentType = "{{ current_type }}";
+let drillTimer = new PracticeTimer('drillTimer');
+let isDrillSubmitted = false;
+
+window.addEventListener('DOMContentLoaded', () => {
+  drillTimer.start();
+  renderMathInDocument();
+});
+
+async function handleDrillSubmit(e) {
+  e.preventDefault();
+  if (isDrillSubmitted) return;
+
+  const timeSpent = drillTimer.stop();
+  const userAns = document.getElementById('drillInput').value.trim();
+
+  try {
+    const resp = await fetch('/api/drills/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        drill_type: currentDrill.drill_type,
+        question_stem: currentDrill.stem,
+        user_answer: userAns,
+        expected_answer: currentDrill.expected_answer,
+        expected_unit: currentDrill.unit || null,
+        tolerance: 0.001,
+        time_spent_sec: timeSpent
+      })
+    });
+    const result = await resp.json();
+
+    isDrillSubmitted = true;
+    document.getElementById('btnSubmitDrill').style.display = 'none';
+    document.getElementById('btnNextDrill').style.display = 'inline-flex';
+
+    const feedback = document.getElementById('drillFeedback');
+    const alertBox = document.getElementById('drillAlert');
+    feedback.style.display = 'block';
+
+    if (result.is_correct) {
+      alertBox.className = 'alert alert-success';
+      alertBox.innerHTML = `<strong>🎉 ถูกต้องยอดเยี่ยม!</strong> คุณคิดเลขได้ถูกต้อง (${result.expected_answer} ${currentDrill.unit || ''})`;
+    } else {
+      alertBox.className = 'alert alert-danger';
+      alertBox.innerHTML = `<strong>❌ ยังไม่ถูกต้อง</strong> คำตอบที่แท้จริงคือ <strong>${result.expected_answer} ${currentDrill.unit || ''}</strong>`;
+    }
+
+    document.getElementById('drillExplanation').innerHTML = currentDrill.explanation;
+    renderMathInDocument();
+
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการตรวจ');
+  }
+}
+
+async function loadNextDrill() {
+  try {
+    const resp = await fetch(`/api/drills/new?drill_type=${currentType}`);
+    currentDrill = await resp.json();
+
+    isDrillSubmitted = false;
+    document.getElementById('drillStem').innerHTML = currentDrill.stem;
+    document.getElementById('drillUnit').textContent = currentDrill.unit || '';
+    document.getElementById('drillInput').value = '';
+    document.getElementById('drillFeedback').style.display = 'none';
+    document.getElementById('btnSubmitDrill').style.display = 'inline-flex';
+    document.getElementById('btnNextDrill').style.display = 'none';
+
+    drillTimer.seconds = 0;
+    drillTimer.start();
+    document.getElementById('drillInput').focus();
+
+    renderMathInDocument();
+  } catch (err) {
+    showToast('ไม่สามารถสุ่มโจทย์ใหม่ได้');
+  }
+}
+</script>
+{% endblock %}

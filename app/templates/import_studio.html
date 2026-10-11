@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+
+{% block title %}นำเข้าข้อสอบจาก PDF / รูปภาพ • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">📥 นำเข้าข้อสอบจาก PDF หรือรูปภาพ (Exam Import Studio)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        เจอชีตข้อสอบแจกฟรีใน IG, Facebook หรือไฟล์ PDF เก่า สามารถอัปโหลด ตัดภาพหน้าข้อสอบ และเพิ่มเข้าคลังโจทย์ของเว็บได้ทันที
+      </p>
+    </div>
+  </div>
+
+  <!-- Step 1: Upload File -->
+  <div style="background: #f8fafc; border: 2px dashed #cbd5e1; border-radius: var(--radius); padding: 2rem; text-align: center; margin-bottom: 2rem;">
+    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📄</div>
+    <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;">
+      ลากไฟล์ PDF หรือรูปภาพข้อสอบมาวางที่นี่ หรือเลือกไฟล์
+    </h3>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">
+      รองรับไฟล์ <code>.pdf</code>, <code>.png</code>, <code>.jpg</code>, <code>.jpeg</code> (ระบบจะแปลงหน้า PDF เป็นรูปภาพคมชัดให้อัตโนมัติ)
+    </p>
+    <input type="file" id="fileUploadInput" accept=".pdf,image/png,image/jpeg,image/webp" style="display: none;" onchange="handleFileUpload(event)">
+    <button type="button" class="btn btn-primary" onclick="document.getElementById('fileUploadInput').click()">
+      📁 เลือกไฟล์จากเครื่องของคุณ
+    </button>
+    <div id="uploadStatus" style="margin-top: 1rem; font-size: 0.9rem; color: var(--primary); font-weight: 600; display: none;"></div>
+  </div>
+
+  <!-- Step 2: Split View Studio (Hidden until file uploaded) -->
+  <div id="importStudio" style="display: none;">
+    <div class="grid-2" style="align-items: start;">
+      
+      <!-- Left Column: Document Page Viewer -->
+      <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 700;">👁️ เอกสารต้นฉบับ</h3>
+          <div style="display: flex; align-items: center; gap: 0.5rem;">
+            <label style="font-size: 0.85rem; color: var(--text-muted);">หน้า:</label>
+            <select id="pageSelect" class="option-item" style="padding: 0.25rem 0.6rem; margin-bottom: 0;" onchange="changePage(this.value)">
+            </select>
+          </div>
+        </div>
+
+        <!-- Page Image Container -->
+        <div style="border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; background: #f1f5f9; text-align: center; min-height: 400px; max-height: 600px; overflow-y: auto;">
+          <img id="pagePreviewImg" src="" alt="Page Preview" style="max-width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+
+        <!-- Text snippet if any -->
+        <div style="margin-top: 1rem;">
+          <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);">ข้อความที่ดึงได้จากหน้านี้ (สามารถคัดลอกได้):</label>
+          <textarea id="pageTextSnippet" rows="3" style="width: 100%; border: 1px solid var(--border-color); border-radius: 6px; padding: 0.5rem; font-size: 0.85rem; margin-top: 0.35rem;" readonly></textarea>
+        </div>
+      </div>
+
+      <!-- Right Column: Question Builder Form -->
+      <div style="background: #ffffff; border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.25rem;">
+        <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem;">⚙️ สร้างและบันทึกข้อสอบเข้าคลัง</h3>
+        
+        <form id="questionBuilderForm" onsubmit="saveQuestionToBank(event)">
+          <!-- Subject & Topic -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">วิชา:</label>
+              <select id="builderSubject" class="option-item" style="width: 100%; padding: 0.5rem;" required>
+                <option value="physics">ฟิสิกส์ (Physics)</option>
+                <option value="math">คณิตประยุกต์ 1 (Math 1)</option>
+                <option value="tpat3">TPAT3 (ความถนัดเชิงกล)</option>
+                <option value="tgat2">TGAT2 (การคิดอย่างมีเหตุผล)</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">บทเรียนตาม Roadmap:</label>
+              <select id="builderTopic" class="option-item" style="width: 100%; padding: 0.5rem;" required>
+                {% for t in roadmap_topics %}
+                  <option value="{{ t.topic_id }}">{{ t.topic_name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+
+          <!-- Question Stem -->
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">ข้อความโจทย์ (พิมพ์เนื้อหา หรือพิมพ์ 'ดูโจทย์ในรูปภาพ'):</label>
+            <textarea id="builderStem" rows="3" class="option-item" style="width: 100%; padding: 0.6rem; font-size: 0.95rem;" placeholder="พิมพ์โจทย์ที่นี่ (รองรับสมการ LaTeX เช่น $v = u + at$)" required></textarea>
+          </div>
+
+          <!-- Attach Image Option -->
+          <div style="margin-bottom: 1rem; background: #f8fafc; padding: 0.75rem; border-radius: 8px; border: 1px solid var(--border-color);">
+            <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer;">
+              <input type="checkbox" id="attachCurrentPageImg" checked>
+              <span>แนบรูปภาพหน้านี้เข้ากับโจทย์ด้วย (จะแสดงในหน้าทำข้อสอบ)</span>
+            </label>
+          </div>
+
+          <!-- Answer Type -->
+          <div style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">ประเภทคำตอบ:</label>
+            <div style="display: flex; gap: 1rem; margin-top: 0.35rem;">
+              <label style="cursor: pointer; font-size: 0.9rem;">
+                <input type="radio" name="ansTypeRadio" value="single_choice" checked onchange="toggleAnsType('single_choice')"> ปรนัย 5 ตัวเลือก
+              </label>
+              <label style="cursor: pointer; font-size: 0.9rem;">
+                <input type="radio" name="ansTypeRadio" value="numeric" onchange="toggleAnsType('numeric')"> อัตนัยเติมตัวเลข
+              </label>
+            </div>
+          </div>
+
+          <!-- MCQ Choices Inputs -->
+          <div id="mcqChoicesBox" style="margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.5rem; display: block;">
+              ตัวเลือกและเฉลย (ติ๊กวงกลมที่ข้อที่ถูกต้อง):
+            </label>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+              {% for i in range(1, 6) %}
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <input type="radio" name="builderCorrectOpt" value="o{{ i }}" {% if i == 1 %}checked{% endif %} title="เลือกเป็นข้อถูก">
+                  <span style="font-weight: 600; font-size: 0.85rem;">{{ i }}.</span>
+                  <input type="text" id="builderOptText_{{ i }}" class="option-item" style="flex: 1; padding: 0.4rem 0.6rem; margin-bottom: 0;" placeholder="ข้อความตัวเลือกที่ {{ i }}" required>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <!-- Numeric Answer Input (Hidden by default) -->
+          <div id="numericAnsBox" style="display: none; margin-bottom: 1rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">คำตอบตัวเลขที่ถูกต้อง:</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center; margin-top: 0.35rem;">
+              <input type="text" id="builderNumericVal" class="option-item" style="flex: 1; padding: 0.5rem;" placeholder="เช่น 25 หรือ 1.5">
+              <input type="text" id="builderUnit" class="option-item" style="width: 100px; padding: 0.5rem;" placeholder="หน่วย (เช่น m)">
+            </div>
+          </div>
+
+          <!-- Solution Summary -->
+          <div style="margin-bottom: 1.25rem;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">เฉลยย่อ / แนวคิด:</label>
+            <textarea id="builderSolution" rows="2" class="option-item" style="width: 100%; padding: 0.5rem; font-size: 0.9rem;" placeholder="อธิบายแนวคิดหลักสั้นๆ"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="btnSaveQuestion" class="btn btn-primary" style="width: 100%; padding: 0.85rem;">
+            💾 บันทึกเข้าคลังโจทย์และเริ่มฝึกทำทันที
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let uploadedData = null;
+let currentPageIndex = 0;
+
+async function handleFileUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const statusEl = document.getElementById('uploadStatus');
+  statusEl.style.display = 'block';
+  statusEl.textContent = '⏳ กำลังประมวลผลไฟล์และเรนเดอร์หน้า...';
+
+  const formData = new FormData();
+  formData.append('file', file);
+
+  try {
+    const resp = await fetch('/api/import/upload', {
+      method: 'POST',
+      body: formData
+    });
+    if (!resp.ok) {
+      const err = await resp.json();
+      throw new Error(err.detail || 'Upload failed');
+    }
+    uploadedData = await resp.json();
+
+    statusEl.textContent = `✓ ประมวลผลสำเร็จ! มีทั้งหมด ${uploadedData.page_count} หน้า`;
+    document.getElementById('importStudio').style.display = 'block';
+
+    // Populate page select
+    const sel = document.getElementById('pageSelect');
+    sel.innerHTML = '';
+    uploadedData.pages.forEach((p, idx) => {
+      sel.innerHTML += `<option value="${idx}">หน้า ${p.page_number}</option>`;
+    });
+
+    changePage(0);
+    document.getElementById('importStudio').scrollIntoView({ behavior: 'smooth' });
+
+  } catch (err) {
+    statusEl.textContent = '❌ เกิดข้อผิดพลาด: ' + err.message;
+  }
+}
+
+function changePage(index) {
+  currentPageIndex = parseInt(index);
+  const page = uploadedData.pages[currentPageIndex];
+  if (!page) return;
+
+  document.getElementById('pagePreviewImg').src = page.image_url;
+  const snippet = (page.text_snippet && page.text_snippet.trim()) 
+    ? page.text_snippet 
+    : '💡 ไม่พบตัวพิมพ์ในหน้านี้ (ไฟล์สแกน/รูปภาพ) — ท่านสามารถดูโจทย์จากภาพด้านบน แล้วติ๊ก "แนบรูปภาพหน้านี้" ได้เลยครับ';
+  document.getElementById('pageTextSnippet').value = snippet;
+}
+
+function toggleAnsType(type) {
+  if (type === 'single_choice') {
+    document.getElementById('mcqChoicesBox').style.display = 'block';
+    document.getElementById('numericAnsBox').style.display = 'none';
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById(`builderOptText_${i}`).required = true;
+    }
+  } else {
+    document.getElementById('mcqChoicesBox').style.display = 'none';
+    document.getElementById('numericAnsBox').style.display = 'block';
+    for (let i = 1; i <= 5; i++) {
+      document.getElementById(`builderOptText_${i}`).required = false;
+    }
+  }
+}
+
+async function saveQuestionToBank(e) {
+  e.preventDefault();
+  if (!uploadedData) return;
+
+  const ansType = document.querySelector('input[name="ansTypeRadio"]:checked').value;
+  const attachImg = document.getElementById('attachCurrentPageImg').checked;
+  const currentImgUrl = attachImg ? uploadedData.pages[currentPageIndex].image_url : null;
+
+  let optionsList = [];
+  let correctOpt = "o1";
+  let numericVal = null;
+  let unit = "";
+
+  if (ansType === 'single_choice') {
+    correctOpt = document.querySelector('input[name="builderCorrectOpt"]:checked').value;
+    for (let i = 1; i <= 5; i++) {
+      optionsList.push({
+        id: `o${i}`,
+        text: document.getElementById(`builderOptText_${i}`).value.trim()
+      });
+    }
+  } else {
+    numericVal = document.getElementById('builderNumericVal').value.trim();
+    unit = document.getElementById('builderUnit').value.trim();
+  }
+
+  const payload = {
+    subject: document.getElementById('builderSubject').value,
+    topic: document.getElementById('builderTopic').value,
+    stem: document.getElementById('builderStem').value.trim(),
+    image_url: currentImgUrl,
+    answer_type: ansType,
+    options: optionsList,
+    correct_option: correctOpt,
+    numeric_value: numericVal,
+    unit: unit,
+    solution_summary: document.getElementById('builderSolution').value.trim() || 'เฉลยสำหรับข้อสอบข้อนี้',
+    source_label: `นำเข้าจาก ${uploadedData.original_filename} (หน้า ${currentPageIndex + 1})`
+  };
+
+  try {
+    const btn = document.getElementById('btnSaveQuestion');
+    btn.disabled = true;
+    btn.textContent = '⏳ กำลังบันทึก...';
+
+    const resp = await fetch('/api/import/create-question', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    const res = await resp.json();
+
+    if (res.success) {
+      showToast('🎉 บันทึกเข้าคลังเรียบร้อยแล้ว!');
+      setTimeout(() => {
+        window.location.href = `/practice/${res.question_id}`;
+      }, 1200);
+    }
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการบันทึก');
+    document.getElementById('btnSaveQuestion').disabled = false;
+  }
+}
+</script>
+{% endblock %}

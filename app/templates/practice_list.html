@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}คลังโจทย์หลัก • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">คลังโจทย์หลักสำหรับฝึกฝน</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        ทุกข้อมีขั้นตอนเลือกสูตร จุดตรวจระหว่างทาง คำใบ้ 3 ระดับ และการตรวจคำตอบที่แน่นอน (Deterministic Grading)
+      </p>
+    </div>
+  </div>
+
+  <!-- Filters -->
+  <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+    <a href="/practice" class="btn {% if not current_subject and not current_topic and not bookmarked_only and not is_interleaved %}btn-primary{% else %}btn-outline{% endif %}">ทั้งหมด</a>
+    <a href="/practice/interleaved" class="btn {% if is_interleaved %}btn-primary{% else %}btn-outline{% endif %}" style="border-color: #818cf8; color: {% if is_interleaved %}white{% else %}#4f46e5{% endif %}; background: {% if is_interleaved %}#4f46e5{% else %}#eef2ff{% endif %}; font-weight: 700;">
+      🔀 โหมดสลับบท (Interleaved)
+    </a>
+    <a href="/practice?subject=physics" class="btn {% if current_subject == 'physics' and not is_interleaved %}btn-primary{% else %}btn-outline{% endif %}">ฟิสิกส์</a>
+    <a href="/practice?subject=math" class="btn {% if current_subject == 'math' and not is_interleaved %}btn-primary{% else %}btn-outline{% endif %}">คณิตประยุกต์ 1</a>
+    <a href="/practice?subject=tpat3" class="btn {% if current_subject == 'tpat3' and not is_interleaved %}btn-primary{% else %}btn-outline{% endif %}">TPAT3</a>
+    <a href="/practice?bookmarked_only=true" class="btn {% if bookmarked_only %}btn-primary{% else %}btn-outline{% endif %}" style="color: {% if bookmarked_only %}white{% else %}#b45309{% endif %}; border-color: #fde68a; background: {% if bookmarked_only %}var(--primary){% else %}#fefce8{% endif %};">
+      ⭐ ที่บันทึกไว้ ({{ bookmarked_ids|length }})
+    </a>
+  </div>
+
+  {% if is_interleaved %}
+    <div style="background: #eef2ff; border-left: 4px solid #4f46e5; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1.5rem; color: #1e1b4b; font-size: 0.95rem;">
+      <strong>🔀 โหมดฝึกสลับหัวข้อ (Interleaved Practice Activated):</strong>
+      ระบบคัดเลือกโจทย์หมุนเวียนสลับบทและวิชาอย่างต่อเนื่อง (Physics ➔ Math ➔ TPAT3) พร้อมดึงข้อที่ถึงกำหนดทบทวนใน Review Queue มาแทรก เพื่อสร้างความคล่องตัวในการหยิบใช้สูตรเสมือนนั่งในห้องสอบจริง
+    </div>
+  {% endif %}
+
+  <!-- Questions List -->
+  <div style="display: flex; flex-direction: column; gap: 1rem;">
+    {% for q in questions %}
+      <div style="border: 1.5px solid {% if q.id in bookmarked_ids %}#fde047{% else %}var(--border-color){% endif %}; border-radius: var(--radius); padding: 1.25rem; background: white; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.03);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            {% if q.id in bookmarked_ids %}
+              <span class="badge" style="background: #fef08a; color: #854d0e;">⭐ บันทึกไว้</span>
+            {% endif %}
+            <span class="badge badge-tier-{{ q.verification.tier }}">Tier {{ q.verification.tier }} ({{ q.verification.verified_by }})</span>
+            <span class="badge" style="background: #f1f5f9; color: #334155;">{{ q.source.label }}</span>
+            <strong style="color: var(--primary);">{{ q.id }}</strong>
+          </div>
+          <span style="font-size: 0.85rem; color: var(--text-muted);">{{ q.topic }}</span>
+        </div>
+
+        <div style="margin-bottom: 1rem; font-size: 1rem; color: var(--text-main);">
+          {{ q.stem[:180] }}{% if q.stem|length > 180 %}...{% endif %}
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+          <div style="font-size: 0.85rem; color: var(--text-muted);">
+            ทักษะหลัก: <code>{{ q.skills.primary }}</code>
+            {% if q.skills.secondary %}
+              • ทักษะรอง: {% for s in q.skills.secondary %}<code>{{ s }}</code> {% endfor %}
+            {% endif %}
+          </div>
+          <a href="/practice/{{ q.id }}" class="btn btn-primary" style="padding: 0.45rem 1rem;">ทำโจทย์ข้อนี้ →</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

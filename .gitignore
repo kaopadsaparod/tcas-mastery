@@ -1,0 +1,41 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and Coverage
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Environments
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+
+# SQLite databases & runtime data
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/backups/*.db
+data/sources/*
+data/assets/pages/*
+*.tmp
+*.log
+
+# Preserve directory structures
+!data/.gitkeep
+!data/backups/.gitkeep
+!data/sources/.gitkeep
+!data/assets/.gitkeep
+!data/assets/pages/.gitkeep
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini

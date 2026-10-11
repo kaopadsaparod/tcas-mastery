@@ -1,0 +1,151 @@
+# คลังโจทย์ฟิสิกส์: แรง กฎการเคลื่อนที่ และงาน-พลังงาน (Forces & Energy)
+# ได้รับการตรวจสอบระดับ Tier B (มี Python Assertion Test ยืนยันผลคำนวณ)
+
+- id: phy-frc-0001
+  subject: physics
+  topic: physics.forces_energy
+  source:
+    type: official
+    label: "ข้อสอบโควตามหาวิทยาลัย"
+    exam_year: 2565
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_frc_0001"
+  skills:
+    primary: free_body_diagram
+    secondary:
+      - frictional_force
+      - choose_constant_accel_eq
+  stem: |
+    ออกแรงในแนวระดับ $F = 50\text{ N}$ ดึงวัตถุมวล $5\text{ kg}$ ที่วางอยู่บนพื้นราบที่มีสัมประสิทธิ์ความเสียดทานจลน์ $\mu_k = 0.4$ จงหาขนาดของความเร่งของวัตถุในหน่วย $\text{m/s}^2$ (กำหนดให้ $g = 10\text{ m/s}^2$)
+  plan_step:
+    prompt: "กฎข้อที่สองของนิวตันในการหาความเร่งคือสมการใด?"
+    options:
+      a: '\Sigma F = ma'
+      b: 'F = \mu N'
+      c: "W = Fs"
+    answer: "a"
+    explanation: 'เมื่อมีแรงลัพธ์ที่ไม่เป็นศูนย์กระทำต่อวัตถุ ความเร่งหาได้จาก \Sigma F = ma'
+  checkpoints:
+    - prompt: 'แรงเสียดทานจลน์ที่ต้านการเคลื่อนที่ $f_k = \mu_k N$ มีขนาดกี่นิวตัน?'
+      answer: 20
+      skill: frictional_force
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "6 m/s²"
+        correct: true
+        explanation: 'ถูกต้อง \Sigma F = F - f_k = 50 - (0.4 \times 5 \times 10) = 50 - 20 = 30 N => a = 30 / 5 = 6 m/s²'
+      - id: o2
+        text: "10 m/s²"
+        correct: false
+        error_tag: forgot_friction
+        explanation: 'ลืมหักแรงเสียดทาน คิดตรงๆ ว่า a = 50 / 5 = 10 m/s²'
+      - id: o3
+        text: "14 m/s²"
+        correct: false
+        error_tag: sign_error_friction
+        explanation: 'เอาแรงเสียดทานไปบวกเข้ากับแรงดึงแทนที่จะนำมาลบต้าน (50 + 20 = 70 => a = 14)'
+      - id: o4
+        text: "4 m/s²"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คำนวณเลขผิดพลาด"
+      - id: o5
+        text: "2 m/s²"
+        correct: false
+        error_tag: mass_error
+        explanation: "คำนวณสับสนเรื่องค่าน้ำหนักกับมวล"
+  hints:
+    - level: 1
+      text: 'วาด Free-body diagram: แรงดึงไปข้างหน้า F = 50 N, แรงเสียดทานต้านกลับ f_k, แรงตั้งฉาก N = mg'
+    - level: 2
+      text: 'คำนวณแรงเสียดทาน: f_k = \mu_k N = \mu_k mg = 0.4 \times 5 \times 10 = 20 N'
+    - level: 3
+      text: 'หาแรงลัพธ์ \Sigma F = F - f_k = 50 - 20 = 30 N จากนั้นหาความเร่ง a = \Sigma F / m = 30 / 5 = 6 m/s²'
+  solution:
+    steps:
+      - id: s1
+        text: "พิจารณาแกนดิ่ง: วัตถุไม่เคลื่อนที่ในแนวดิ่ง N = mg = 5 × 10 = 50 N"
+      - id: s2
+        text: 'คำนวณแรงเสียดทานจลน์: f_k = \mu_k N = 0.4 \times 50 = 20 N'
+      - id: s3
+        text: 'พิจารณาแกนระดับ: \Sigma F_x = ma => F - f_k = ma'
+      - id: s4
+        text: "แทนค่า: 50 - 20 = 5a => 30 = 5a => a = 6 m/s²"
+    summary: "ความเร่งของวัตถุมีขนาดเท่ากับ 6 m/s²"
+
+- id: phy-eng-0001
+  subject: physics
+  topic: physics.forces_energy
+  source:
+    type: official
+    label: "ข้อสอบเข้ามหาวิทยาลัย วิชาสามัญ ฟิสิกส์"
+    exam_year: 2563
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_phy_eng_0001"
+  skills:
+    primary: conservation_of_energy
+    secondary:
+      - work_energy_theorem
+  stem: |
+    ปล่อยกล่องมวล $2\text{ kg}$ จากตำแหน่งหยุดนิ่งที่ยอดพื้นเอียงลื่นสูง $5\text{ m}$ เหนือพื้นราบ เมื่อกล่องไถลลงมาถึงพื้นราบ กล่องจะเคลื่อนที่ต่อไปบนพื้นราบที่มีความฝืดด้วยสัมประสิทธิ์ความเสียดทานจลน์ $\mu_k = 0.25$ จงหาระยะทางที่กล่องเคลื่อนที่ไปได้บนพื้นราบก่อนจะหยุดนิ่ง (กำหนดให้ $g = 10\text{ m/s}^2$)
+  plan_step:
+    prompt: "กฎการอนุรักษ์พลังงานหรือทฤษฎีงาน-พลังงานในการแก้ข้อนี้สรุปเป็นสมการอย่างไร?"
+    options:
+      a: "E_1 + W_{other} = E_2"
+      b: '\Sigma F = 0'
+      c: "p_1 = p_2"
+    answer: "a"
+    explanation: 'พลังงานกลตั้งต้น (พลังงานศักย์โน้มถ่วง) ถูกเปลี่ยนเป็นงานต้านของแรงเสียดทานบนพื้นราบจนหยุดนิ่ง mgh = f_k s'
+  checkpoints:
+    - prompt: "พลังงานศักย์โน้มถ่วงเริ่มต้นที่ยอดพื้นเอียงมีค่ากี่จูล?"
+      answer: 100
+      skill: conservation_of_energy
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "20 m"
+        correct: true
+        explanation: 'ถูกต้อง พลังงานเริ่มต้น mgh = f_k s = \mu_k mg s => h = \mu_k s => s = h / \mu_k = 5 / 0.25 = 20 m'
+      - id: o2
+        text: "10 m"
+        correct: false
+        error_tag: missing_factor_half
+        explanation: "คำนวณสับสนกับพลังงานจลน์หรือใช้เลขผิดพลาด"
+      - id: o3
+        text: "25 m"
+        correct: false
+        error_tag: multiplication_instead_of_division
+        explanation: "เอา 5 × 5 = 25 หรือสลับตำแหน่งเศษส่วน"
+      - id: o4
+        text: "40 m"
+        correct: false
+        error_tag: mass_double_counted
+        explanation: "คูณมวลซ้ำซ้อน"
+      - id: o5
+        text: "5 m"
+        correct: false
+        error_tag: forgot_friction
+        explanation: "ตอบเท่ากับความสูงเดิม"
+  hints:
+    - level: 1
+      text: 'ที่ยอดพื้นเอียง กล่องมีพลังงานศักย์โน้มถ่วง E_p = mgh เมื่อลงมาถึงพื้นลื่นจะเปลี่ยนเป็นพลังงานจลน์ทั้งหมด'
+    - level: 2
+      text: 'บนพื้นราบ แรงเสียดทาน f_k = \mu_k mg ทำงานต้านการเคลื่อนที่เป็นระยะทาง s งานคือ W_f = f_k s'
+    - level: 3
+      text: 'พลังงานเริ่มต้นเท่ากับงานต้านจนหยุดนิ่ง: mgh = \mu_k mg s => h = \mu_k s => s = 5 / 0.25 = 20 m (สังเกตว่ามวล m ตัดกันได้)'
+  solution:
+    steps:
+      - id: s1
+        text: "พลังงานศักย์โน้มถ่วงเริ่มต้น: E_1 = mgh = 2 × 10 × 5 = 100 J"
+      - id: s2
+        text: 'บนพื้นราบ แรงเสียดทาน f_k = \mu_k mg = 0.25 × 2 × 10 = 5 N'
+      - id: s3
+        text: "จากกฎงาน-พลังงาน: งานต้านของแรงเสียดทานเท่ากับพลังงานที่หายไป: f_k × s = E_1"
+      - id: s4
+        text: "แทนค่า: 5 × s = 100 => s = 20 m"
+    summary: "กล่องเคลื่อนที่บนพื้นราบได้ระยะทาง 20 เมตรก่อนหยุดนิ่ง"

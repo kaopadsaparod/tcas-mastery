@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}ชุดข้อสอบจำลอง • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">📝 โหมดกรอกกระดาษคำตอบ (Answer Sheet Mode)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        จำลองการทำข้อสอบเก่าจริงบนกระดาษตามเวลาจริง แล้วกรอกคำตอบเพื่อตรวจคะแนนและแยกสถิติจุดอ่อนรายบททันที
+      </p>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 1rem;">
+    {% for paper in papers %}
+      <div style="border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; background: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 style="font-size: 1.2rem; font-weight: 700; color: var(--text-main);">{{ paper.title }}</h2>
+          <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.35rem;">
+            วิชา: <strong>{{ paper.subject }}</strong> • จำนวน: <strong>{{ paper.questions|length }} ข้อ</strong> • เวลาสอบ: <strong>{{ paper.time_limit_min }} นาที</strong>
+          </div>
+        </div>
+        <a href="/answer-sheet/{{ paper.id }}" class="btn btn-primary" style="padding: 0.65rem 1.4rem;">
+          เริ่มกรอกกระดาษคำตอบ ➔
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

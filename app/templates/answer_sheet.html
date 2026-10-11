@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}กระดาษคำตอบ {{ paper.title }} • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">{{ paper.title }}</h1>
+      <span style="font-size: 0.85rem; color: var(--text-muted);">
+        จำนวน {{ paper.questions|length }} ข้อ • เวลาจำลอง {{ paper.time_limit_min }} นาที
+      </span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <span style="font-size: 0.85rem; color: var(--text-muted);">เวลาที่เหลือ:</span>
+      <div id="examTimer" class="timer-badge">00:00</div>
+    </div>
+  </div>
+
+  <form id="answerSheetForm" onsubmit="handleSheetSubmit(event)">
+    <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1.5rem;">
+      ทำข้อสอบบนกระดาษข้อสอบจริงตามเวลาที่กำหนด แล้วคลิกเลือกตัวเลือกหรือพิมพ์คำตอบลงในกระดาษคำตอบด้านล่างนี้:
+    </p>
+
+    <!-- Grid of Answer Bubbles -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+      {% for q in paper.questions %}
+        <div style="border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem; background: #ffffff;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <strong style="color: var(--primary); font-size: 1rem;">ข้อ {{ q.number }}</strong>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">{{ q.topic.split('.')[-1] }} ({{ q.score }} คะแนน)</span>
+          </div>
+
+          {% if q.correct_answer in ["1", "2", "3", "4", "5"] %}
+            <!-- MCQ 5 choices bubbles -->
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.25rem;">
+              {% for opt in ["1", "2", "3", "4", "5"] %}
+                <label style="display: flex; flex-direction: column; align-items: center; cursor: pointer; font-size: 0.85rem; padding: 0.35rem 0.5rem; border-radius: 6px; border: 1px solid var(--border-color); flex: 1; text-align: center;">
+                  <input type="radio" name="ans_{{ q.number }}" value="{{ opt }}" style="margin-bottom: 0.2rem;">
+                  <span>{{ opt }}</span>
+                </label>
+              {% endfor %}
+            </div>
+          {% else %}
+            <!-- Numeric Input -->
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+              <input type="text" name="ans_{{ q.number }}" class="option-item" style="padding: 0.4rem 0.75rem; margin-bottom: 0; width: 100%;" placeholder="กรอกตัวเลขคำตอบ">
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+      <button type="submit" id="btnSubmitSheet" class="btn btn-primary" style="padding: 0.85rem 3rem; font-size: 1.1rem;">
+        📥 ส่งกระดาษคำตอบและตรวจคะแนน
+      </button>
+    </div>
+  </form>
+
+  <!-- Results Section (Hidden until submitted) -->
+  <div id="sheetResults" style="display: none; margin-top: 2.5rem; border-top: 2px solid var(--primary); padding-top: 1.5rem;">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-main);">ผลการสอบและวิเคราะห์คะแนน</h2>
+      <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap;">
+        <div class="stat-box" style="min-width: 160px;">
+          <div id="scoreEarned" class="stat-val">0</div>
+          <div class="stat-label">คะแนนที่ได้ / เต็ม <span id="scoreMax">0</span></div>
+        </div>
+        <div class="stat-box" style="min-width: 160px;">
+          <div id="scorePercent" class="stat-val" style="color: var(--success);">0%</div>
+          <div class="stat-label">คิดเป็นร้อยละ</div>
+        </div>
+        <div class="stat-box" style="min-width: 160px;">
+          <div id="correctRatio" class="stat-val" style="color: var(--info);">0/0</div>
+          <div class="stat-label">จำนวนข้อที่ตอบถูก</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Breakdown by Topic -->
+    <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">📊 วิเคราะห์จุดแข็ง-จุดอ่อนรายบท</h3>
+    <div id="topicBreakdownContainer" style="display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem;"></div>
+
+    <!-- Detailed Question Review -->
+    <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">🔍 ตรวจเช็กรายข้อ</h3>
+    <div id="detailedReviewContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem;"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let remainingSeconds = {{ paper.time_limit_min }} * 60;
+let timerInterval = null;
+let sheetSubmitted = false;
+
+window.addEventListener('DOMContentLoaded', () => {
+  updateTimerDisplay();
+  timerInterval = setInterval(() => {
+    if (remainingSeconds > 0) {
+      remainingSeconds--;
+      updateTimerDisplay();
+    } else {
+      clearInterval(timerInterval);
+      showToast('หมดเวลาสอบแล้ว!');
+    }
+  }, 1000);
+});
+
+function updateTimerDisplay() {
+  const el = document.getElementById('examTimer');
+  const m = Math.floor(remainingSeconds / 60);
+  const s = remainingSeconds % 60;
+  el.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+}
+
+async function handleSheetSubmit(e) {
+  e.preventDefault();
+  if (sheetSubmitted) return;
+
+  if (timerInterval) clearInterval(timerInterval);
+  const timeTakenMin = (({{ paper.time_limit_min }} * 60) - remainingSeconds) / 60;
+
+  // Collect answers
+  const form = document.getElementById('answerSheetForm');
+  const formData = new FormData(form);
+  const answers = {};
+
+  {% for q in paper.questions %}
+    {% if q.correct_answer in ["1", "2", "3", "4", "5"] %}
+      const optVal = formData.get("ans_{{ q.number }}");
+      if (optVal) answers["{{ q.number }}"] = optVal;
+    {% else %}
+      const textVal = form.querySelector('[name="ans_{{ q.number }}"]').value.trim();
+      if (textVal) answers["{{ q.number }}"] = textVal;
+    {% endif %}
+  {% endfor %}
+
+  try {
+    const resp = await fetch('/api/answer-sheet/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        paper_id: "{{ paper.id }}",
+        answers: answers,
+        time_taken_min: timeTakenMin
+      })
+    });
+    const result = await resp.json();
+
+    sheetSubmitted = true;
+    document.getElementById('btnSubmitSheet').disabled = true;
+
+    // Display summary
+    document.getElementById('sheetResults').style.display = 'block';
+    document.getElementById('scoreEarned').textContent = result.total_score;
+    document.getElementById('scoreMax').textContent = result.max_score;
+    document.getElementById('scorePercent').textContent = result.score_percent + '%';
+    document.getElementById('correctRatio').textContent = `${result.correct_count}/${result.total_questions}`;
+
+    // Render topic breakdown
+    const topicContainer = document.getElementById('topicBreakdownContainer');
+    topicContainer.innerHTML = '';
+    for (const [topic, tData] of Object.entries(result.breakdown_by_topic)) {
+      const pct = Math.round((tData.score_earned / tData.max_score) * 100);
+      topicContainer.innerHTML += `
+        <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 600; font-size: 0.95rem; margin-bottom: 0.35rem;">
+            <span>${topic}</span>
+            <span>${tData.score_earned}/${tData.max_score} คะแนน (${pct}%)</span>
+          </div>
+          <div style="background: #e2e8f0; border-radius: 9999px; height: 8px; overflow: hidden;">
+            <div style="background: ${pct >= 70 ? 'var(--success)' : pct >= 40 ? 'var(--warning)' : 'var(--danger)'}; width: ${pct}%; height: 100%;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Render detailed review
+    const detailContainer = document.getElementById('detailedReviewContainer');
+    detailContainer.innerHTML = '';
+    result.detailed_results.forEach(d => {
+      detailContainer.innerHTML += `
+        <div style="border: 1px solid ${d.is_correct ? '#86efac' : '#fca5a5'}; background: ${d.is_correct ? '#f0fdf4' : '#fef2f2'}; border-radius: 8px; padding: 0.75rem 1rem;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700;">
+            <span>ข้อ ${d.number}</span>
+            <span>${d.is_correct ? '✓ ถูก' : '❌ ผิด'}</span>
+          </div>
+          <div style="font-size: 0.85rem; color: #475569; margin-top: 0.25rem;">
+            คุณตอบ: <strong>${d.user_answer || '-'}</strong> | เฉลย: <strong>${d.correct_answer}</strong>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('sheetResults').scrollIntoView({ behavior: 'smooth' });
+
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการส่งกระดาษคำตอบ');
+  }
+}
+</script>
+{% endblock %}

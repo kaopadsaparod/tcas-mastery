@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}การดูแลระบบและสำรองข้อมูล • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <div>
+      <h1 class="card-title">🛡️ การดูแลระบบและสำรองข้อมูล (System & Safe Backup)</h1>
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
+        ดูแลความสมบูรณ์ของฐานข้อมูล SQLite และสำรองข้อมูลแบบจุดเดียวจบด้วยเทคโนโลยี <code>VACUUM INTO</code>
+      </p>
+    </div>
+  </div>
+
+  <!-- DB Health Status -->
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: var(--radius); padding: 1.25rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; color: #166534; margin-bottom: 0.5rem;">
+        สถานะความสมบูรณ์ของฐานข้อมูล (Database Integrity)
+      </h2>
+      <div style="font-size: 0.95rem; color: #15803d; line-height: 1.8;">
+        <div>• <strong>Integrity Check:</strong> <span class="badge badge-tier-A">{{ integrity.integrity_message }}</span></div>
+        <div>• <strong>Foreign Keys:</strong> <span class="badge badge-tier-A">ผ่าน (ไม่มีข้อขัดแย้ง)</span></div>
+        <div>• <strong>Journal Mode:</strong> <span class="badge badge-tier-B">WAL (Write-Ahead Logging)</span></div>
+      </div>
+    </div>
+
+    <!-- Safety notice for Windows / OneDrive -->
+    <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: var(--radius); padding: 1.25rem;">
+      <h2 style="font-size: 1.1rem; font-weight: 700; color: #92400e; margin-bottom: 0.5rem;">
+        💡 คำแนะนำความปลอดภัยไฟล์บน Windows
+      </h2>
+      <p style="font-size: 0.85rem; color: #78350f; line-height: 1.6;">
+        คำสั่ง <code>VACUUM INTO</code> จะสร้างสำเนาฐานข้อมูลที่สมบูรณ์ 100% แม้แอปกำลังทำงานอยู่ หากนำไฟล์สำรองไปเก็บบน Google Drive หรือ OneDrive จะปลอดภัยจากการชนของไฟล์ (File Locking)
+      </p>
+    </div>
+  </div>
+
+  <!-- Backup Action Box -->
+  <div style="border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; background: white; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-main);">สร้างไฟล์สำรองข้อมูลเดี๋ยวนี้</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
+        สร้างไฟล์ snapshot ณ วินาทีนี้ เก็บไว้ที่โฟลเดอร์ <code>data/backups/</code>
+      </p>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="triggerBackup()" style="padding: 0.75rem 1.75rem;">
+      💾 สำรองข้อมูลทันที (Create Backup)
+    </button>
+  </div>
+
+  <!-- Backups List Table -->
+  <div>
+    <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;">📁 รายการไฟล์สำรองทั้งหมด ({{ backups|length }} ไฟล์)</h3>
+    {% if backups %}
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.9rem;">
+          <thead>
+            <tr style="background: #f1f5f9; border-bottom: 2px solid var(--border-color);">
+              <th style="padding: 0.75rem 1rem;">ชื่อไฟล์</th>
+              <th style="padding: 0.75rem 1rem;">ขนาด (KB)</th>
+              <th style="padding: 0.75rem 1rem;">เวลาที่สร้าง</th>
+              <th style="padding: 0.75rem 1rem;">จัดการ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for b in backups %}
+              <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 0.75rem 1rem; font-weight: 600; color: var(--primary);">{{ b.filename }}</td>
+                <td style="padding: 0.75rem 1rem;">{{ b.size_kb }} KB</td>
+                <td style="padding: 0.75rem 1rem; color: var(--text-muted);">{{ b.created_at }}</td>
+                <td style="padding: 0.75rem 1rem;">
+                  <button type="button" class="btn btn-outline" style="padding: 0.25rem 0.6rem; font-size: 0.8rem; color: #ef4444; border-color: #fca5a5;" onclick="deleteBackup('{{ b.filename }}')">
+                    🗑️ ลบ
+                  </button>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p style="color: var(--text-muted); font-size: 0.9rem;">ยังไม่มีไฟล์สำรองข้อมูล</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function triggerBackup() {
+  try {
+    const resp = await fetch('/api/backup/create', { method: 'POST' });
+    const data = await resp.json();
+    if (data.success) {
+      showToast('สร้างไฟล์สำรองสำเร็จ: ' + data.filename);
+      setTimeout(() => window.location.reload(), 1500);
+    } else {
+      showToast('ไม่สามารถสร้างไฟล์สำรองได้');
+    }
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการสำรองข้อมูล');
+  }
+}
+
+async function deleteBackup(filename) {
+  if (!confirm(`คุณต้องการลบไฟล์สำรอง ${filename} ใช่หรือไม่?`)) return;
+  try {
+    const resp = await fetch('/api/backup/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ filename: filename })
+    });
+    const data = await resp.json();
+    if (data.success) {
+      showToast('ลบไฟล์สำรองเรียบร้อยแล้ว');
+      setTimeout(() => window.location.reload(), 800);
+    } else {
+      showToast('ไม่สามารถลบไฟล์ได้');
+    }
+  } catch (err) {
+    showToast('เกิดข้อผิดพลาดในการลบไฟล์');
+  }
+}
+</script>
+{% endblock %}

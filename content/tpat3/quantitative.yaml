@@ -1,0 +1,75 @@
+# คลังโจทย์ TPAT3: ความถนัดด้านวิทยาศาสตร์และวิศวกรรมศาสตร์ (Quantitative & Engineering Aptitude)
+# ได้รับการตรวจสอบระดับ Tier B (มี Python Assertion Test ยืนยันผลคำนวณ)
+
+- id: tpat3-quant-0001
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: official
+    label: "แนวข้อสอบ TPAT3 ความถนัดเชิงกลและวิศวกรรม"
+    exam_year: 2566
+  verification:
+    tier: B
+    verified_by: "test_physics_answers.test_tpat3_quant_0001"
+  skills:
+    primary: gear_and_pulley_ratio
+    secondary:
+      - fractions_ratio
+  stem: |
+    ชุดเฟืองส่งกำลังประกอบด้วยเฟือง A ที่มีจำนวนฟัน 20 ฟัน ขบอยู่กับเฟือง B ที่มีจำนวนฟัน 60 ฟัน และบนเพลาเดียวกับเฟือง B มีเฟือง C ขนาด 15 ฟันติดอยู่แน่น ซึ่งไปขบกับเฟือง D ที่มีจำนวนฟัน 45 ฟัน หากเฟืองขับ A หมุนด้วยอัตราเร็ว 360 รอบต่อนาที (rpm) จงหาอัตราเร็วรอบของเฟืองตาม D
+  plan_step:
+    prompt: 'อัตราส่วนการส่งกำลังของชุดเฟือง (Gear Ratio) มีความสัมพันธ์ระหว่างจำนวนฟัน ($N$) กับอัตราเร็วรอบ ($\omega$ หรือ $n$) อย่างไร?'
+    options:
+      a: "n_1 / n_2 = N_2 / N_1 (แปรผกผัน)"
+      b: "n_1 / n_2 = N_1 / N_2 (แปรผันตรง)"
+      c: "n_1 * N_1 = n_2 / N_2"
+    answer: "a"
+    explanation: "เฟืองฟันเยอะกว่าจะหมุนรอบช้ากว่า ดังนั้นอัตราเร็วรอบแปรผกผันกับจำนวนฟัน $n_A N_A = n_B N_B$"
+  checkpoints:
+    - prompt: "เฟือง B หมุนด้วยอัตราเร็วรอบกี่ rpm?"
+      answer: 120
+      skill: gear_and_pulley_ratio
+  answer:
+    type: single_choice
+    options:
+      - id: o1
+        text: "40 rpm"
+        correct: true
+        explanation: "ถูกต้อง เฟือง A ขับ B: $n_B = 360 \\times (20/60) = 120\\text{ rpm}$ เพลาเดียวกันทำให้ $n_C = 120\\text{ rpm}$ จากนั้น C ขับ D: $n_D = 120 \\times (15/45) = 40\\text{ rpm}$"
+      - id: o2
+        text: "120 rpm"
+        correct: false
+        error_tag: intermediate_stage_only
+        explanation: "ตอบแค่อัตราเร็วของเฟือง B ลืมคิดการทดต่อของเฟือง C และ D"
+      - id: o3
+        text: "3240 rpm"
+        correct: false
+        error_tag: inverse_ratio_flipped
+        explanation: "คูณกลับเศษเป็นส่วน ทำให้คิดว่ารอบหมุนเร็วขึ้นมหาศาล ($360 \\times 3 \\times 3 = 3240$)"
+      - id: o4
+        text: "80 rpm"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คิดเลขทดรอบผิดพลาด"
+      - id: o5
+        text: "36 rpm"
+        correct: false
+        error_tag: ratio_miscalculation
+        explanation: "คิดอัตราส่วนฟันผิดคู่"
+  hints:
+    - level: 1
+      text: "แยกคิด 2 สเต็ป: สเต็ปแรกเฟือง A ขับเฟือง B, สเต็ปสองเฟือง C ขับเฟือง D (โดย B กับ C อยู่บนแกนเพลาเดียวกันจึงหมุนด้วยอัตราเร็วรอบเท่ากัน)"
+    - level: 2
+      text: "สำหรับคู่เฟือง A-B: $n_B = n_A \\times \\frac{N_A}{N_B} = 360 \\times \\frac{20}{60} = 120\\text{ rpm}$"
+    - level: 3
+      text: "สำหรับคู่เฟือง C-D: $n_D = n_C \\times \\frac{N_C}{N_D} = 120 \\times \\frac{15}{45} = 120 \\times \\frac{1}{3} = 40\\text{ rpm}$"
+  solution:
+    steps:
+      - id: s1
+        text: "วิเคราะห์คู่ขับ A และ B: $n_A N_A = n_B N_B \\implies n_B = 360 \\times (20 / 60) = 120\\text{ rpm}$"
+      - id: s2
+        text: "เนื่องจากเฟือง B และ C ยึดติดบนเพลาเดียวกัน: $n_C = n_B = 120\\text{ rpm}$"
+      - id: s3
+        text: "วิเคราะห์คู่ขับ C และ D: $n_C N_C = n_D N_D \\implies n_D = 120 \\times (15 / 45) = 120 \\times \\frac{1}{3} = 40\\text{ rpm}$"
+    summary: "เฟือง D หมุนด้วยอัตราเร็ว 40 รอบต่อนาที"
+    common_mistakes: "ระวังอย่าจับฟันทั้งหมดมาบวกกัน ต้องคิดแบบ compound gear train อัตราทดรวมคือ (60/20) * (45/15) = 3 * 3 = 9 เท่า"

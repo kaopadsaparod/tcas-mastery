@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, #4f46e5 0%, #3730a3 100%); color: white; padding: 2rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+    <div>
+      <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">ระบบฝึกทำข้อสอบ TCAS ประจำวัน</h1>
+      <p style="opacity: 0.9; font-size: 1rem;">Local-First • ตรวจคำตอบอัตโนมัติแม่นยำ • เจาะลึกสูตร-ทักษะคำนวณ • จัดคิวทบทวนตามหลักวิทยาศาสตร์</p>
+    </div>
+    <div style="background: rgba(255,255,255,0.15); padding: 0.8rem 1.4rem; border-radius: 12px; text-align: center; backdrop-filter: blur(8px);">
+      <div style="font-size: 0.85rem; opacity: 0.9;">ความพร้อมภาพรวม</div>
+      <div style="font-size: 1.8rem; font-weight: 800;">{{ stats.honest_mastery_rate }}%</div>
+      <div style="font-size: 0.75rem; opacity: 0.8;">ทำถูกเองตั้งแต่รอบแรก</div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Grid -->
+<div class="grid-4" style="margin-bottom: 2rem;">
+  <div class="stat-box">
+    <div class="stat-val">{{ stats.total_attempts }}</div>
+    <div class="stat-label">โจทย์ที่ทำไปทั้งหมด (ครั้ง)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: var(--success);">{{ stats.first_try_correct }}</div>
+    <div class="stat-label">ทำถูกเองโดยไม่พึ่งตัวช่วย</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: var(--warning);">{{ stats.assisted_correct }}</div>
+    <div class="stat-label">ถูกหลังเปิดคำใบ้ (Assisted)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: var(--danger);">{{ stats.misconception_count }}</div>
+    <div class="stat-label">มั่นใจแต่ตอบผิด (ต้องทบทวนด่วน!)</div>
+  </div>
+</div>
+
+<!-- Secondary Stats Strip (Drills & Bookmarks) -->
+<div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: var(--shadow);">
+  <div style="display: flex; align-items: center; gap: 0.75rem;">
+    <span style="font-size: 1.5rem;">🔢</span>
+    <div>
+      <div style="font-weight: 700; color: var(--text-main);">การฝึกคิดเลขเร็ว (Procedural Drills): {{ stats.total_drills }} ครั้ง</div>
+      <div style="font-size: 0.82rem; color: var(--text-muted);">ความแม่นยำ {{ stats.drill_accuracy_pct }}% (ใช้เวลาเฉลี่ย {{ stats.avg_drill_time_sec }} วิ/ข้อ)</div>
+    </div>
+  </div>
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <a href="/practice?bookmarked_only=true" class="btn btn-outline" style="padding: 0.4rem 0.85rem; font-size: 0.85rem; color: #b45309; border-color: #fde68a; background: #fefce8;">
+      ⭐ ข้อที่ติดดาวไว้ ({{ stats.bookmarked_count }})
+    </a>
+    <a href="/drills" class="btn btn-primary" style="padding: 0.4rem 0.85rem; font-size: 0.85rem;">
+      ฝึกคิดเลขเพิ่ม ➔
+    </a>
+  </div>
+</div>
+
+<!-- Main 2-column layout -->
+<div class="grid-2">
+  <!-- Left column: Review Queue -->
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">📅 คิวทบทวนวันนี้ (Spaced Repetition)</h2>
+      <span class="badge badge-tier-B">{{ due_reviews|length }} รายการ</span>
+    </div>
+
+    {% if due_reviews %}
+      <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+        ข้อต่อไปนี้ถึงกำหนดทบทวนตามรอบเวลา หรือมีจุดเข้าใจผิด (Misconception) ที่ควรทำซ้ำ:
+      </p>
+      <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+        {% for r in due_reviews %}
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; background: #fdfdfd;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="badge {% if r.priority == 'high' %}badge-priority-high{% else %}badge-priority-normal{% endif %}">
+                  {{ 'ทบทวนด่วน' if r.priority == 'high' else 'ถึงกำหนด' }}
+                </span>
+                <strong style="font-size: 0.95rem;">{{ r.question_id }}</strong>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+                {{ r.topic }} • รอบที่ {{ r.repetition_count }} (เว้น {{ r.interval_days }} วัน)
+              </div>
+            </div>
+            <a href="/practice/{{ r.question_id }}" class="btn btn-outline" style="padding: 0.35rem 0.8rem; font-size: 0.85rem;">ทำซ้ำ</a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="text-align: center; padding: 2.5rem 1rem; color: var(--text-muted);">
+        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✨</div>
+        <p style="font-weight: 600;">ยอดเยี่ยม! ไม่มีข้อที่ค้างทบทวนในวันนี้</p>
+        <p style="font-size: 0.85rem; margin-top: 0.25rem;">คุณสามารถเริ่มทำโจทย์ใหม่หรือฝึกคำนวณเพื่อเพิ่มความคล่องได้ทันที</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Right column: Quick Actions -->
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="card-title">⚡ เมนูลัดสำหรับฝึกประจำวัน</h2>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+        <a href="/practice" class="btn btn-primary" style="justify-content: flex-start; padding: 1rem 1.25rem;">
+          <span style="font-size: 1.2rem;">📖</span>
+          <div style="text-align: left; margin-left: 0.5rem;">
+            <div>คลังโจทย์หลัก (เจาะลึก 1D Kinematics & แรง)</div>
+            <div style="font-size: 0.8rem; font-weight: normal; opacity: 0.9;">มีเลือกสูตรก่อนทำ, Checkpoint และวินิจฉัยช้อยส์ดักผิด ({{ total_questions }} ข้อ)</div>
+          </div>
+        </a>
+
+        <a href="/drills" class="btn btn-outline" style="justify-content: flex-start; padding: 1rem 1.25rem;">
+          <span style="font-size: 1.2rem;">🔢</span>
+          <div style="text-align: left; margin-left: 0.5rem;">
+            <div>ฝึกคำนวณไม่อั้น (Procedural Drills)</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">แปลงหน่วย km/h ↔ m/s, พื้นที่, 5 สูตรการเคลื่อนที่ สุ่มเลขคิดในใจได้</div>
+          </div>
+        </a>
+
+        <a href="/formulas" class="btn btn-outline" style="justify-content: flex-start; padding: 1rem 1.25rem;">
+          <span style="font-size: 1.2rem;">🧠</span>
+          <div style="text-align: left; margin-left: 0.5rem;">
+            <div>บัตรเรียกคืนสูตร (Active Formula Recall)</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">เช็กเงื่อนไขการใช้สูตร และจำแนกตัวแปร ({{ total_formulas }} บัตรสูตร)</div>
+          </div>
+        </a>
+
+        <a href="/answer-sheet" class="btn btn-outline" style="justify-content: flex-start; padding: 1rem 1.25rem;">
+          <span style="font-size: 1.2rem;">📝</span>
+          <div style="text-align: left; margin-left: 0.5rem;">
+            <div>โหมดกรอกกระดาษคำตอบ (Answer Sheet Mode)</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">ทำข้อสอบเก่าบนกระดาษ แล้วกรอกตรวจแยกบททันที</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Top error tags -->
+    {% if stats.top_error_tags %}
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title" style="font-size: 1rem;">🔍 จุดที่มักพลาดบ่อยที่สุดของคุณ</h3>
+      </div>
+      <div>
+        {% for tag in stats.top_error_tags %}
+          <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); font-size: 0.9rem;">
+            <span>⚠️ <code>{{ tag.error_tag }}</code></span>
+            <span class="badge badge-priority-high">{{ tag.count }} ครั้ง</span>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
