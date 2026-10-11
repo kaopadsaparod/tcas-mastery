@@ -163,9 +163,31 @@ def init_db() -> None:
             total_score REAL DEFAULT 0.0,
             max_score REAL DEFAULT 100.0,
             score_percent REAL DEFAULT 0.0,
+            questions_json TEXT DEFAULT '[]',
             answers_json TEXT DEFAULT '{}',
             flagged_json TEXT DEFAULT '[]',
             report_json TEXT DEFAULT '{}',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            completed_at TIMESTAMP
+        );
+        """)
+
+        # Migration: ensure questions_json column exists
+        cursor.execute("PRAGMA table_info(mock_exam_sessions);")
+        mock_cols = {c["name"] for c in cursor.fetchall()}
+        if "questions_json" not in mock_cols:
+            cursor.execute("ALTER TABLE mock_exam_sessions ADD COLUMN questions_json TEXT DEFAULT '[]';")
+
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS study_sessions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT UNIQUE NOT NULL,
+            target_exam TEXT NOT NULL,
+            daily_minutes INTEGER NOT NULL,
+            blocks_completed_json TEXT DEFAULT '[]',
+            total_time_spent_min REAL DEFAULT 0.0,
+            status TEXT DEFAULT 'in_progress',
+            notes TEXT DEFAULT '',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             completed_at TIMESTAMP
         );

@@ -157,7 +157,13 @@ def restore_backup(filename: str) -> dict[str, Any]:
             "error": f"Cannot restore invalid backup: {verification.get('error') or verification.get('message')}",
         }
 
-    # 2. SQLite Online Backup API to safely restore into active database
+    # 2. Create automatic safety backup of current live database before restoring
+    try:
+        safety_backup_path = create_backup()
+    except Exception as e:
+        return {"success": False, "error": f"Failed to create pre-restore safety backup: {str(e)}"}
+
+    # 3. SQLite Online Backup API to safely restore into active database
     src_conn = sqlite3.connect(str(backup_path), timeout=10.0)
     dest_conn = sqlite3.connect(str(DB_PATH), timeout=15.0)
     try:
@@ -169,7 +175,11 @@ def restore_backup(filename: str) -> dict[str, Any]:
         if not (len(chk) == 1 and chk[0][0] == "ok"):
             return {"success": False, "error": "Restored database failed integrity check"}
 
-        return {"success": True, "message": f"Successfully restored database from {filename}"}
+        return {
+            "success": True,
+            "message": f"Successfully restored database from {filename}",
+            "safety_backup": safety_backup_path.name,
+        }
     except Exception as e:
         return {"success": False, "error": f"Restore failed: {str(e)}"}
     finally:

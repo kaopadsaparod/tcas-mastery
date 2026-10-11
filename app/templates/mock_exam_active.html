@@ -264,6 +264,7 @@ function goToQuestion(idx) {
         userAnswers[numStr] = opt.id;
         updateAnsweredCount();
         renderPalette();
+        saveProgress();
       };
 
       label.appendChild(radio);
@@ -292,6 +293,12 @@ function goToQuestion(idx) {
       userAnswers[numStr] = e.target.value.trim();
       updateAnsweredCount();
       renderPalette();
+    };
+    input.onchange = () => {
+      saveProgress();
+    };
+    input.onblur = () => {
+      saveProgress();
     };
 
     wrap.appendChild(input);
@@ -325,6 +332,7 @@ function toggleFlagCurrentQuestion() {
     flaggedQuestions = flaggedQuestions.filter(x => x !== qNum);
   }
   renderPalette();
+  saveProgress();
 }
 
 function confirmSubmitExam() {

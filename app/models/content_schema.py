@@ -88,6 +88,8 @@ class Question(BaseModel):
     plan_step: PlanStep | None = None
     checkpoints: list[Checkpoint] | None = None
     answer: AnswerConfig
+    difficulty: int = 3  # 1 (Basic/Recall) to 5 (Advanced/Multi-step)
+    estimated_seconds: int = 180  # Default target 3 minutes
     hints: list[Hint] = Field(default_factory=list)
     solution: FullSolution | None = None
     solution_steps: list[SolutionStep] | None = None
@@ -115,6 +117,10 @@ class PastPaperQuestion(BaseModel):
     tolerance: float = 0.001
     unit: str | None = None
     require_unit: bool = False
+    stem: str | None = None
+    options: list[ChoiceOption] | None = None
+    question_id: str | None = None
+    solution: str | None = None
 
 
 class PastPaper(BaseModel):

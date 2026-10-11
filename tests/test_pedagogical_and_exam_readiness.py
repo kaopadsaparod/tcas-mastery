@@ -11,7 +11,13 @@ from app.services.backup_service import create_backup, restore_backup, verify_ba
 from app.services.content_loader import content_loader
 from app.services.grader import grade_attempt, grade_numeric, grade_numeric_detailed
 from app.services.learning_path import analyze_topic_readiness, get_prerequisites_for_topic, get_skill_remediation
-from app.services.mock_exam import get_mock_exam_session, start_mock_exam, submit_mock_exam
+from app.services.mock_exam import (
+    get_mock_exam_sanitized_questions,
+    get_mock_exam_session,
+    save_mock_exam_progress,
+    start_mock_exam,
+    submit_mock_exam,
+)
 from app.services.review_engine import record_attempt
 from app.services.roadmap_service import get_roadmap_topics
 from app.services.study_planner import get_daily_study_plan
@@ -239,9 +245,12 @@ def test_real_backup_restore_and_verification():
     # 3. Perform real restore
     r_res = restore_backup(backup_path.name)
     assert r_res["success"] is True
+    assert "safety_backup" in r_res
 
     # 4. Cleanup
     backup_path.unlink(missing_ok=True)
+    if "safety_backup" in r_res:
+        (backup_path.parent / r_res["safety_backup"]).unlink(missing_ok=True)
 
 
 # ==============================================================================
@@ -355,3 +364,86 @@ def test_api_planner_and_mock_exam_routes(client):
     res_mock = client.get("/mock-exam")
     assert res_mock.status_code == 200
     assert "ระบบจำลองสอบเสมือนจริง" in res_mock.text
+
+
+def test_mock_exam_single_question_snapshot_freezing():
+    """
+    Phase 1: Session must store a frozen snapshot in questions_json.
+    Sanitized question stream must hide answers, and grading must verify against snapshot IDs.
+    """
+    sess = start_mock_exam("alevel_physics_practice_20")
+    session_id = sess["session_id"]
+
+    db_sess = get_mock_exam_session(session_id)
+    assert db_sess is not None
+    assert len(db_sess["questions"]) == sess["total_questions"]
+    assert db_sess["questions"][0]["question_id"] is not None
+
+    # Sanitized questions do not expose correct_answer
+    sanitized = get_mock_exam_sanitized_questions(session_id)
+    for q in sanitized:
+        assert "correct_answer" not in q
+
+    # Grade with exact answers from snapshot
+    target_q = db_sess["questions"][0]
+    num = str(target_q["number"])
+    ans = target_q["correct_answer"]
+
+    rep = submit_mock_exam(session_id, {num: ans}, time_spent_min=10.0)
+    assert rep["correct_count"] >= 1
+    match_item = next(item for item in rep["detailed_results"] if item["number"] == target_q["number"])
+    assert match_item["is_correct"] is True
+    assert match_item["question_id"] == target_q["question_id"]
+
+
+def test_mock_exam_resumption_and_autosave():
+    """
+    Phase 1: Progress auto-saved during an active exam must be retained on reload/resume.
+    """
+    sess = start_mock_exam("alevel_physics_practice_20")
+    session_id = sess["session_id"]
+
+    # Autosave progress
+    save_ok = save_mock_exam_progress(
+        session_id=session_id,
+        answers={"1": "2", "2": "4"},
+        flagged=[2, 5],
+        time_spent_min=12.5,
+    )
+    assert save_ok is True
+
+    # Resume session
+    resumed = get_mock_exam_session(session_id)
+    assert resumed["answers"] == {"1": "2", "2": "4"}
+    assert resumed["flagged"] == [2, 5]
+    assert resumed["time_spent_min"] == 12.5
+
+
+def test_mock_exam_submission_idempotency():
+    """
+    Phase 1: Submitting an already completed mock exam session returns the existing report
+    and avoids double submission or altered scores.
+    """
+    sess = start_mock_exam("alevel_physics_practice_20")
+    session_id = sess["session_id"]
+
+    rep1 = submit_mock_exam(session_id, {"1": "2"}, time_spent_min=20.0)
+    rep2 = submit_mock_exam(session_id, {"1": "999"}, time_spent_min=99.0)
+
+    assert rep1["total_score"] == rep2["total_score"]
+    assert rep1["time_spent_min"] == rep2["time_spent_min"]
+    assert rep2["session_id"] == session_id
+
+
+def test_mock_exam_tpat3_flow():
+    """
+    Phase 1: TPAT3 practice flow runs smoothly from initialization to grading.
+    """
+    sess = start_mock_exam("tpat3_practice_25")
+    assert sess["total_questions"] > 0
+    assert sess["time_limit_min"] == 60
+
+    rep = submit_mock_exam(sess["session_id"], {}, time_spent_min=2.0)
+    assert rep["total_score"] >= 0.0
+    assert rep["pace_status"] == "optimal"
+

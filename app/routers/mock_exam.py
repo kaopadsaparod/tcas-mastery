@@ -7,6 +7,7 @@ from app.config import BASE_DIR
 from app.services.mock_exam import (
     EXAM_BLUEPRINTS,
     get_mock_exam_history,
+    get_mock_exam_sanitized_questions,
     get_mock_exam_session,
     save_mock_exam_progress,
     start_mock_exam,
@@ -35,10 +36,12 @@ class SubmitExamRequest(BaseModel):
 @router.get("/mock-exam", response_class=HTMLResponse)
 async def mock_exam_landing_page(request: Request):
     history = get_mock_exam_history()
+    primary_keys = ["alevel_physics_practice_20", "alevel_physics_mock_30", "tpat3_practice_25", "tpat3_mock_70"]
+    visible_blueprints = {k: EXAM_BLUEPRINTS[k] for k in primary_keys if k in EXAM_BLUEPRINTS}
     return templates.TemplateResponse(
         request=request,
         name="mock_exam_landing.html",
-        context={"blueprints": EXAM_BLUEPRINTS, "history": history},
+        context={"blueprints": visible_blueprints, "history": history},
     )
 
 
@@ -59,36 +62,8 @@ async def mock_exam_active_page(request: Request, session_id: str):
         from fastapi.responses import RedirectResponse
         return RedirectResponse(url=f"/mock-exam/{session_id}/report")
 
-    # Load questions without answers
-    from app.services.mock_exam import start_mock_exam
-    blueprint = EXAM_BLUEPRINTS.get(sess["exam_type"], EXAM_BLUEPRINTS["alevel_physics"])
-
-    # Load question data for this session
-    from app.services.content_loader import content_loader
-    past_papers = content_loader.get_past_papers_by_subject(blueprint["subject"])
-    questions = []
-    if past_papers:
-        paper = past_papers[0]
-        for q in paper.questions:
-            full_q = content_loader.get_question_by_id(f"phy-kin-000{q.number}")
-            stem = full_q.stem if full_q else f"ข้อสอบข้อที่ {q.number} ({q.topic})"
-            opts = []
-            if full_q and full_q.answer.options:
-                opts = [{"id": o.id, "text": o.text} for o in full_q.answer.options]
-            elif (q.answer_type or "single_choice") == "single_choice":
-                opts = [{"id": str(x), "text": f"ตัวเลือก {x}"} for x in range(1, 6)]
-
-            ans_type = q.answer_type or ("single_choice" if str(q.correct_answer) in {"1", "2", "3", "4", "5"} else "numeric")
-            questions.append({
-                "number": q.number,
-                "stem": stem,
-                "topic": q.topic,
-                "skill": q.skill,
-                "answer_type": ans_type,
-                "options": opts,
-                "score": q.score,
-                "unit": q.unit,
-            })
+    blueprint = EXAM_BLUEPRINTS.get(sess["exam_type"], EXAM_BLUEPRINTS["alevel_physics_practice_20"])
+    questions = get_mock_exam_sanitized_questions(session_id)
 
     return templates.TemplateResponse(
         request=request,
