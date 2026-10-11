@@ -341,8 +341,9 @@ def test_full_mock_exam_lifecycle():
     assert sess["status"] == "in_progress"
 
     # 3. Submit exam with sample answers
-    # Answer question 1 correctly ("2" based on sample paper)
-    answers = {"1": "2", "2": "4", "19": "25"}
+    # Answer question 1 correctly using the session's question snapshot
+    q1_ans = sess["questions"][0]["correct_answer"]
+    answers = {"1": q1_ans}
     report = submit_mock_exam(session_id, answers, time_spent_min=45.0)
 
     assert report["session_id"] == session_id
@@ -440,10 +441,57 @@ def test_mock_exam_tpat3_flow():
     Phase 1: TPAT3 practice flow runs smoothly from initialization to grading.
     """
     sess = start_mock_exam("tpat3_practice_25")
-    assert sess["total_questions"] > 0
+    assert sess["total_questions"] == 25
     assert sess["time_limit_min"] == 60
 
     rep = submit_mock_exam(sess["session_id"], {}, time_spent_min=2.0)
     assert rep["total_score"] >= 0.0
     assert rep["pace_status"] == "optimal"
+
+
+def test_content_audit_report_generation():
+    """
+    Phase 2: Content quality audit produces verified status breakdown and validates blueprints.
+    """
+    from app.services.content_audit import get_content_audit_report
+
+    audit = get_content_audit_report()
+    assert "summary" in audit
+    assert "topics" in audit
+    assert "past_papers" in audit
+
+    sum_data = audit["summary"]
+    assert sum_data["past_papers_count"] >= 3
+    assert sum_data["total_paper_questions"] >= 75
+    assert sum_data["mock_ready_count"] > 0
+
+    # Verify A-Level 30-item blueprint exists and is valid
+    bp30 = next((p for p in audit["past_papers"] if p["id"] == "alevel-phy-blueprint-30"), None)
+    assert bp30 is not None
+    assert bp30["question_count"] == 30
+    assert bp30["single_choice_count"] == 25
+    assert bp30["numeric_count"] == 5
+    assert bp30["max_score"] == 100.0
+    assert bp30["is_blueprint_valid"] is True
+
+
+def test_alevel_30_blueprint_mock_exam_lifecycle():
+    """
+    Phase 2: Complete A-Level Physics 30-question official blueprint simulation lifecycle.
+    """
+    sess = start_mock_exam("alevel_physics_mock_30")
+    assert sess["total_questions"] == 30
+    assert sess["max_score"] == 100.0
+    assert sess["time_limit_min"] == 90
+
+    # Submit with question 1 ("3") and numeric question 26 ("50")
+    answers = {"1": "3", "26": "50"}
+    rep = submit_mock_exam(sess["session_id"], answers, time_spent_min=45.0)
+
+    assert rep["total_questions"] == 30
+    assert rep["correct_count"] >= 2
+    # Question 1: 3.2 pts + Question 26: 4.0 pts = 7.2 pts
+    assert rep["total_score"] >= 7.2
+    assert rep["pace_status"] == "optimal"  # 45 min / 30 q = 1.5 min/q <= 3.0 min/q
+
 

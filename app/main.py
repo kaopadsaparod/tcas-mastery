@@ -18,6 +18,7 @@ from app.config import (
 )
 from app.database import init_db
 from app.routers.answer_sheet import router as answer_sheet_router
+from app.routers.content_audit import router as content_audit_router
 from app.routers.drills import router as drills_router
 from app.routers.formulas import router as formulas_router
 from app.routers.import_studio import router as import_studio_router
@@ -152,6 +153,7 @@ app.include_router(import_studio_router)
 app.include_router(roadmap_router)
 app.include_router(planner_router)
 app.include_router(mock_exam_router)
+app.include_router(content_audit_router)
 
 
 @app.get("/", response_class=HTMLResponse)

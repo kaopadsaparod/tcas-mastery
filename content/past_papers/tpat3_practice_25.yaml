@@ -1,0 +1,548 @@
+# ชุดข้อสอบจำลอง TPAT3 ความถนัดด้านวิทยาศาสตร์ เทคโนโลยี และวิศวกรรมศาสตร์ (ชุดฝึกซ้อม 25 ข้อ)
+# ประกอบด้วย 5 ส่วนตามแนวข้อสอบทางการ ส่วนละ 5 ข้อ (ข้อละ 4.0 คะแนน = 100 คะแนนเต็ม) เวลา 60 นาที
+
+id: tpat3-practice-25
+title: "TPAT3 วิทยาศาสตร์และเทคโนโลยี (ชุดฝึกซ้อม 25 ข้อ)"
+subject: tpat3
+year: 2567
+time_limit_min: 60
+questions:
+  # ==========================================
+  # ส่วนที่ 1: การทดสอบความถนัดเชิงตัวเลข (Numerical Reasoning)
+  # ==========================================
+  - number: 1
+    question_id: "tpat3-q01"
+    topic: "tpat3.quantitative"
+    skill: "sequence_pattern"
+    score: 4.0
+    answer_type: single_choice
+    stem: "พิจารณาอนุกรมตัวเลขต่อไปนี้: $2, 6, 12, 20, 30, ?$ ตัวเลขถัดไปคือค่าใด"
+    options:
+      - id: "1"
+        text: "38"
+      - id: "2"
+        text: "40"
+      - id: "3"
+        text: "42"
+      - id: "4"
+        text: "44"
+      - id: "5"
+        text: "46"
+    correct_answer: "3"
+    solution: "ผลต่างระหว่างพจน์คือ +4, +6, +8, +10 ดังนั้นพจน์ถัดไปคือ 30 + 12 = 42 (หรือ n*(n+1) สำหรับ n=1..6 => 6*7 = 42)"
+
+  - number: 2
+    question_id: "tpat3-q02"
+    topic: "tpat3.quantitative"
+    skill: "ratio_proportion"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เกียร์ $A$ มี 20 ฟัน ขบกับเกียร์ $B$ ซึ่งมี 60 ฟัน ถ้าเกียร์ $A$ หมุนด้วยอัตราเร็ว 120 รอบต่อนาที (rpm) เกียร์ $B$ จะหมุนด้วยอัตราเร็วกี่รอบต่อนาที"
+    options:
+      - id: "1"
+        text: "20 rpm"
+      - id: "2"
+        text: "40 rpm"
+      - id: "3"
+        text: "60 rpm"
+      - id: "4"
+        text: "180 rpm"
+      - id: "5"
+        text: "360 rpm"
+    correct_answer: "2"
+    solution: "อัตราทดรอบ: N_A * w_A = N_B * w_B => 20 * 120 = 60 * w_B => w_B = 2400 / 60 = 40 rpm"
+
+  - number: 3
+    question_id: "tpat3-q03"
+    topic: "tpat3.quantitative"
+    skill: "work_rate"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เครื่องจักร $A$ ทำงานชิ้นหนึ่งเสร็จใน 4 ชั่วโมง ส่วนเครื่องจักร $B$ ทำงานชิ้นเดียวกันเสร็จใน 6 ชั่วโมง ถ้าเปิดทั้งสองเครื่องพร้อมกันจะทำงานชิ้นนี้เสร็จในเวลากี่ชั่วโมง"
+    options:
+      - id: "1"
+        text: "2.0 ชั่วโมง"
+      - id: "2"
+        text: "2.4 ชั่วโมง"
+      - id: "3"
+        text: "2.5 ชั่วโมง"
+      - id: "4"
+        text: "3.0 ชั่วโมง"
+      - id: "5"
+        text: "5.0 ชั่วโมง"
+    correct_answer: "2"
+    solution: "อัตราเร็วรวม = 1/4 + 1/6 = 5/12 งาน/ชม. เวลาที่ใช้ = 12/5 = 2.4 ชั่วโมง"
+
+  - number: 4
+    question_id: "tpat3-q04"
+    topic: "tpat3.quantitative"
+    skill: "percentage_efficiency"
+    score: 4.0
+    answer_type: single_choice
+    stem: "มอเตอร์ไฟฟ้าเครื่องหนึ่งใช้กำลังไฟฟ้าขาเข้า $1000\\text{ W}$ และจ่ายกำลังกลขาออกได้ $850\\text{ W}$ ประสิทธิภาพของมอเตอร์นี้คิดเป็นกี่เปอร์เซ็นต์"
+    options:
+      - id: "1"
+        text: "75%"
+      - id: "2"
+        text: "80%"
+      - id: "3"
+        text: "85%"
+      - id: "4"
+        text: "90%"
+      - id: "5"
+        text: "92%"
+    correct_answer: "3"
+    solution: "ประสิทธิภาพ = (P_out / P_in) * 100 = (850 / 1000) * 100 = 85%"
+
+  - number: 5
+    question_id: "tpat3-q05"
+    topic: "tpat3.quantitative"
+    skill: "numeric_volume"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ถังน้ำทรงกระบอกมีรัศมีฐาน $1\\text{ m}$ สูง $2\\text{ m}$ บรรจุน้ำเต็มถัง ปริมาตรของน้ำมีค่าประมาณกี่ลูกบาศก์เมตร (กำหนด $\\pi \\approx 3.14$)"
+    options:
+      - id: "1"
+        text: "3.14 m³"
+      - id: "2"
+        text: "6.28 m³"
+      - id: "3"
+        text: "9.42 m³"
+      - id: "4"
+        text: "12.56 m³"
+      - id: "5"
+        text: "15.70 m³"
+    correct_answer: "2"
+    solution: "V = π r^2 h = 3.14 * (1^2) * 2 = 6.28 m³"
+
+  # ==========================================
+  # ส่วนที่ 2: การทดสอบมิติสัมพันธ์ (Spatial Relations)
+  # ==========================================
+  - number: 6
+    question_id: "tpat3-q06"
+    topic: "tpat3.spatial"
+    skill: "isometric_projection"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ลูกบาศก์ขนาด $3\\times 3\\times 3$ ก้อน ถูกทาสีแดงทั้ง 6 ด้าน เมื่อตัดแบ่งออกเป็นลูกบาศก์ย่อยขนาด $1\\times 1\\times 1$ จำนวน 27 ก้อน จะมีลูกบาศก์ย่อยที่ไม่มีหน้าใดถูกทาสีแดงเลยกี่ก้อน"
+    options:
+      - id: "1"
+        text: "0 ก้อน"
+      - id: "2"
+        text: "1 ก้อน"
+      - id: "3"
+        text: "6 ก้อน"
+      - id: "4"
+        text: "8 ก้อน"
+      - id: "5"
+        text: "12 ก้อน"
+    correct_answer: "2"
+    solution: "ก้อนที่ไม่ถูกทาสีคือแกนกลางด้านในสุด ขนาด (3-2) * (3-2) * (3-2) = 1 * 1 * 1 = 1 ก้อน"
+
+  - number: 7
+    question_id: "tpat3-q07"
+    topic: "tpat3.spatial"
+    skill: "orthographic_views"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ในการเขียนแบบวิศวกรรม มุมมองด้านหน้า (Front view), ด้านบน (Top view), และด้านข้าง (Side view) เรียกรวมกันว่าอะไร"
+    options:
+      - id: "1"
+        text: "การฉายภาพออร์โธกราฟิก (Orthographic Projection)"
+      - id: "2"
+        text: "ภาพไอโซเมตริก (Isometric Projection)"
+      - id: "3"
+        text: "ภาพเพอร์สเปกทีฟ (Perspective Drawing)"
+      - id: "4"
+        text: "ภาพตัดขวาง (Cross-section)"
+      - id: "5"
+        text: "ภาพคลี่ (Pattern Development)"
+    correct_answer: "1"
+    solution: "ภาพสามด้านตั้งฉากกันคือการฉายภาพแบบออร์โธกราฟิก (Orthographic Projection)"
+
+  - number: 8
+    question_id: "tpat3-q08"
+    topic: "tpat3.spatial"
+    skill: "folding_cube"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ลูกเต๋ามาตรฐาน หน้าตรงข้ามกันจะมีผลรวมของแต้มเท่ากับเท่าใดเสมอ"
+    options:
+      - id: "1"
+        text: "5"
+      - id: "2"
+        text: "6"
+      - id: "3"
+        text: "7"
+      - id: "4"
+        text: "8"
+      - id: "5"
+        text: "9"
+    correct_answer: "3"
+    solution: "แต้มบนลูกเต๋ามาตรฐาน หน้าตรงข้ามกัน (1 กับ 6, 2 กับ 5, 3 กับ 4) มีผลรวมเท่ากับ 7 เสมอ"
+
+  - number: 9
+    question_id: "tpat3-q09"
+    topic: "tpat3.spatial"
+    skill: "rotation_3d"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เมื่อหมุนรูปทรงกรวยตันรอบแกนสมมาตรของมันเป็นมุม $360^\\circ$ ภาพที่ได้หลังการหมุนจะตรงกับข้อใด"
+    options:
+      - id: "1"
+        text: "ทรงกระบอก"
+      - id: "2"
+        text: "ทรงกรวยเดิม"
+      - id: "3"
+        text: "ทรงกลม"
+      - id: "4"
+        text: "พีระมิด"
+      - id: "5"
+        text: "ครึ่งทรงกลม"
+    correct_answer: "2"
+    solution: "การหมุนรูปทรงรอบแกนสมมาตรของตัวมันเอง 360 องศา จะได้รูปทรงเดิมไม่เปลี่ยนแปลง"
+
+  - number: 10
+    question_id: "tpat3-q10"
+    topic: "tpat3.spatial"
+    skill: "surface_area"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ปริซึมสี่เหลี่ยมผืนผ้าขนาด $2\\times 3\\times 4\\text{ cm}$ มีพื้นที่ผิวทั้งหมดกี่ตารางเซนติเมตร"
+    options:
+      - id: "1"
+        text: "24 cm²"
+      - id: "2"
+        text: "48 cm²"
+      - id: "3"
+        text: "52 cm²"
+      - id: "4"
+        text: "56 cm²"
+      - id: "5"
+        text: "60 cm²"
+    correct_answer: "3"
+    solution: "พื้นที่ผิว = 2(2*3 + 3*4 + 4*2) = 2(6 + 12 + 8) = 2(26) = 52 cm²"
+
+  # ==========================================
+  # ส่วนที่ 3: เชิงกลศาสตร์และฟิสิกส์ประยุกต์ (Mechanical Principles)
+  # ==========================================
+  - number: 11
+    question_id: "tpat3-q11"
+    topic: "tpat3.mechanical"
+    skill: "lever_mechanical_advantage"
+    score: 4.0
+    answer_type: single_choice
+    stem: "คานงัดอันหนึ่ง แขนของแรงพยายามยาว $1.5\\text{ m}$ และแขนของแรงต้านทานยาว $0.3\\text{ m}$ การได้เปรียบเชิงกล (Mechanical Advantage, MA) ของคานนี้มีค่าเท่าใด"
+    options:
+      - id: "1"
+        text: "0.2"
+      - id: "2"
+        text: "3"
+      - id: "3"
+        text: "5"
+      - id: "4"
+        text: "10"
+      - id: "5"
+        text: "15"
+    correct_answer: "3"
+    solution: "MA = ความยาวแขนแรงพยายาม / ความยาวแขนแรงต้าน = 1.5 / 0.3 = 5"
+
+  - number: 12
+    question_id: "tpat3-q12"
+    topic: "tpat3.mechanical"
+    skill: "pulley_systems"
+    score: 4.0
+    answer_type: single_choice
+    stem: "รอกเดี่ยวเคลื่อนที่ (Movable Pulley) 1 ตัว เมื่อใช้ยกของน้ำหนัก $400\\text{ N}$ จะต้องออกแรงดึงในแนวดิ่งอย่างน้อยกี่นิวตัน (ไม่คิดน้ำหนักรอกและความเสียดทาน)"
+    options:
+      - id: "1"
+        text: "100 N"
+      - id: "2"
+        text: "200 N"
+      - id: "3"
+        text: "400 N"
+      - id: "4"
+        text: "800 N"
+      - id: "5"
+        text: "50 N"
+    correct_answer: "2"
+    solution: "รอกเดี่ยวเคลื่อนที่ช่วยผ่อนแรง 2 เท่า => F = W / 2 = 400 / 2 = 200 N"
+
+  - number: 13
+    question_id: "tpat3-q13"
+    topic: "tpat3.mechanical"
+    skill: "hydraulics_pascal"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เครื่องอัดไฮดรอลิก ลูกสูบเล็กมีพื้นที่หน้าตัด $10\\text{ cm}^2$ ลูกสูบใหญ่มีพื้นที่หน้าตัด $200\\text{ cm}^2$ ถ้าออกแรงกด $50\\text{ N}$ ที่ลูกสูบเล็ก ลูกสูบใหญ่จะยกน้ำหนักได้กี่นิวตัน"
+    options:
+      - id: "1"
+        text: "500 N"
+      - id: "2"
+        text: "1000 N"
+      - id: "3"
+        text: "2000 N"
+      - id: "4"
+        text: "5000 N"
+      - id: "5"
+        text: "10000 N"
+    correct_answer: "2"
+    solution: "ตามกฎปาสคาล F1 / A1 = F2 / A2 => 50 / 10 = F2 / 200 => F2 = 5 * 200 = 1000 N"
+
+  - number: 14
+    question_id: "tpat3-q14"
+    topic: "tpat3.mechanical"
+    skill: "fluid_buoyancy"
+    score: 4.0
+    answer_type: single_choice
+    stem: "วัตถุชิ้นหนึ่งลอยนิ่งในน้ำโดยมีปริมาตรจมอยู่ $60\\%$ ของปริมาตรทั้งหมด ความหนาแน่นของวัตถุนี้มีค่ากี่ $\\text{kg/m}^3$ (กำหนดความหนาแน่นน้ำ $= 1000\\text{ kg/m}^3$)"
+    options:
+      - id: "1"
+        text: "400 kg/m³"
+      - id: "2"
+        text: "600 kg/m³"
+      - id: "3"
+        text: "800 kg/m³"
+      - id: "4"
+        text: "1000 kg/m³"
+      - id: "5"
+        text: "1200 kg/m³"
+    correct_answer: "2"
+    solution: "แรงลอยตัวเท่ากับน้ำหนัก: ρ_obj * V_total * g = ρ_water * V_sub * g => ρ_obj = 1000 * 0.60 = 600 kg/m³"
+
+  - number: 15
+    question_id: "tpat3-q15"
+    topic: "tpat3.mechanical"
+    skill: "bernoulli_aerodynamics"
+    score: 4.0
+    answer_type: single_choice
+    stem: "หลักการของแบร์นูลลี (Bernoulli's principle) อธิบายการเกิดแรงยกที่ปีกเครื่องบินว่าเกิดจากสาเหตุใด"
+    options:
+      - id: "1"
+        text: "อากาศเหนือปีกไหลเร็วกว่าใต้ปีก ทำให้ความดันเหนือปีกต่ำกว่าใต้ปีก"
+      - id: "2"
+        text: "อากาศเหนือปีกไหลช้ากว่าใต้ปีก ทำให้ความดันเหนือปีกสูงกว่าใต้ปีก"
+      - id: "3"
+        text: "อุณหภูมิเหนือปีกสูงกว่าใต้ปีก"
+      - id: "4"
+        text: "ความหนาแน่นของอากาศเหนือปีกมากกว่าใต้ปีก"
+      - id: "5"
+        text: "แรงเสียดทานของอากาศที่กระทำต่อผิวปีกด้านล่างมากกว่า"
+    correct_answer: "1"
+    solution: "อากาศเหนือปีกไหลเร็ว ความดันจะลดลง เกิดผลต่างความดันดันปีกขึ้นด้านบน (แรงยก)"
+
+  # ==========================================
+  # ส่วนที่ 4: ความรู้ด้านวิทยาศาสตร์และเทคโนโลยี (Science & Tech)
+  # ==========================================
+  - number: 16
+    question_id: "tpat3-q16"
+    topic: "tpat3.technology"
+    skill: "logic_gates"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ลอจิกเกตชนิดใดที่ให้เอาต์พุตเป็น 1 (High) ก็ต่อเมื่ออินพุตทั้งสองตัวเป็น 1 พร้อมกันเท่านั้น"
+    options:
+      - id: "1"
+        text: "OR gate"
+      - id: "2"
+        text: "AND gate"
+      - id: "3"
+        text: "NOT gate"
+      - id: "4"
+        text: "NAND gate"
+      - id: "5"
+        text: "NOR gate"
+    correct_answer: "2"
+    solution: "AND gate ให้เอาต์พุต 1 เมื่ออินพุตทุกตัวเป็น 1 พร้อมกัน"
+
+  - number: 17
+    question_id: "tpat3-q17"
+    topic: "tpat3.technology"
+    skill: "sensor_types"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เซนเซอร์ชนิดใดเหมาะที่สุดสำหรับวัดระยะห่างระหว่างรถยนต์กับสิ่งกีดขวางขณะถอยหลังเข้าจอด"
+    options:
+      - id: "1"
+        text: "เซนเซอร์วัดค่าความเป็นกรด-ด่าง (pH sensor)"
+      - id: "2"
+        text: "เซนเซอร์วัดความชื้น (Humidity sensor)"
+      - id: "3"
+        text: "เซนเซอร์คลื่นเสียงความถี่สูง (Ultrasonic sensor)"
+      - id: "4"
+        text: "เทอร์โมคัปเปิล (Thermocouple)"
+      - id: "5"
+        text: "สเตรนเกจ (Strain gauge)"
+    correct_answer: "3"
+    solution: "Ultrasonic sensor ส่งคลื่นอัลตราโซนิกแล้วคำนวณเวลาสะท้อนกลับเพื่อวัดระยะห่าง นิยมใช้ในระบบช่วยจอด"
+
+  - number: 18
+    question_id: "tpat3-q18"
+    topic: "tpat3.technology"
+    skill: "renewable_energy"
+    score: 4.0
+    answer_type: single_choice
+    stem: "เซลล์แสงอาทิตย์ (Solar Cell) แปลงพลังงานแสงเป็นพลังงานไฟฟ้าโดยอาศัยปรากฏการณ์ใด"
+    options:
+      - id: "1"
+        text: "ปรากฏการณ์โฟโตโวลตาอิก (Photovoltaic effect)"
+      - id: "2"
+        text: "การเหนี่ยวนำแม่เหล็กไฟฟ้า (Electromagnetic induction)"
+      - id: "3"
+        text: "ปรากฏการณ์เทอร์โมอิเล็กทริก (Seebeck effect)"
+      - id: "4"
+        text: "ปฏิกิริยานิวเคลียร์ฟิชชัน"
+      - id: "5"
+        text: "การขยายตัวเชิงความร้อน"
+    correct_answer: "1"
+    solution: "Solar cell ใช้ปรากฏการณ์โฟโตโวลตาอิก (Photovoltaic effect) ในสารกึ่งตัวนำ"
+
+  - number: 19
+    question_id: "tpat3-q19"
+    topic: "tpat3.technology"
+    skill: "material_properties"
+    score: 4.0
+    answer_type: single_choice
+    stem: "สมบัติของวัสดุที่แสดงถึงความสามารถในการต้านทานการเสียรูปถาวรเมื่อถูกแรงภายนอกกระทำเรียกว่าอะไร"
+    options:
+      - id: "1"
+        text: "ความเหนียว (Ductility)"
+      - id: "2"
+        text: "ความเปราะ (Brittleness)"
+      - id: "3"
+        text: "ความแข็งแรง (Strength)"
+      - id: "4"
+        text: "ความแข็ง (Hardness)"
+      - id: "5"
+        text: "ความยืดหยุ่น (Elasticity)"
+    correct_answer: "3"
+    solution: "ความแข็งแรง (Strength) คือความสามารถต้านทานการเสียรูปหรือแตกหักเมื่อรับภาระกรรม"
+
+  - number: 20
+    question_id: "tpat3-q20"
+    topic: "tpat3.technology"
+    skill: "energy_storage"
+    score: 4.0
+    answer_type: single_choice
+    stem: "แบตเตอรี่ชนิดใดที่นิยมใช้ในยานยนต์ไฟฟ้า (EV) และสมาร์ทโฟนในปัจจุบันเนื่องจากมีความหนาแน่นพลังงานต่อน้ำหนักสูง"
+    options:
+      - id: "1"
+        text: "แบตเตอรี่ตะกั่ว-กรด (Lead-Acid)"
+      - id: "2"
+        text: "แบตเตอรี่นิกเกิล-แคดเมียม (NiCd)"
+      - id: "3"
+        text: "แบตเตอรี่ลิเทียมไอออน (Lithium-ion)"
+      - id: "4"
+        text: "แบตเตอรี่สังกะสี-คาร์บอน"
+      - id: "5"
+        text: "เซลล์เชื้อเพลิงไฮโดรเจน"
+    correct_answer: "3"
+    solution: "แบตเตอรี่ลิเทียมไอออน (Li-ion) มี Energy Density สูงและรอบการชาร์จยืนยาว"
+
+  # ==========================================
+  # ส่วนที่ 5: การคิดเชิงตรรกะและแก้ปัญหา (Logical Thinking)
+  # ==========================================
+  - number: 21
+    question_id: "tpat3-q21"
+    topic: "tpat3.logic"
+    skill: "conditional_logic"
+    score: 4.0
+    answer_type: single_choice
+    stem: "กำหนดข้อความ: 'ถ้าฝนตก แล้วถนนจะเปียก' ข้อสรุปในข้อใดสมเหตุสมผลตามหลักตรรกศาสตร์อย่างแน่นอน"
+    options:
+      - id: "1"
+        text: "ถ้าถนนเปียก แสดงว่าฝนตก"
+      - id: "2"
+        text: "ถ้าฝนไม่ตก แล้วถนนจะไม่เปียก"
+      - id: "3"
+        text: "ถ้าถนนไม่เปียก แล้วฝนไม่ตก"
+      - id: "4"
+        text: "ถนนเปียกเสมอแม้ฝนไม่ตก"
+      - id: "5"
+        text: "ไม่มีข้อสรุปใดถูกต้อง"
+    correct_answer: "3"
+    solution: "ประพจน์แย้งสลับที่ (Contrapositive): p -> q สมมูลกับ ~q -> ~p (ถ้าถนนไม่เปียก แล้วฝนไม่ตก)"
+
+  - number: 22
+    question_id: "tpat3-q22"
+    topic: "tpat3.logic"
+    skill: "flowchart_analysis"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ในผังงาน (Flowchart) สัญลักษณ์รูปสี่เหลี่ยมขนมเปียกปูน (Rhombus/Diamond) ใช้แทนความหมายใด"
+    options:
+      - id: "1"
+        text: "จุดเริ่มต้นหรือจุดสิ้นสุด (Start/End)"
+      - id: "2"
+        text: "การประมวลผลข้อมูล (Process)"
+      - id: "3"
+        text: "การตัดสินใจหรือเลือกเงื่อนไข (Decision)"
+      - id: "4"
+        text: "การรับหรือแสดงผลข้อมูล (Input/Output)"
+      - id: "5"
+        text: "จุดเชื่อมต่อ (Connector)"
+    correct_answer: "3"
+    solution: "รูปข้าวหลามตัดหรือสี่เหลี่ยมขนมเปียกปูนใช้สำหรับการตัดสินใจ (Decision / Condition checking)"
+
+  - number: 23
+    question_id: "tpat3-q23"
+    topic: "tpat3.logic"
+    skill: "debugging_logic"
+    score: 4.0
+    answer_type: single_choice
+    stem: "วิศวกรพบว่าระบบจ่ายน้ำอัตโนมัติไม่ทำงานเมื่อความชื้นในดินต่ำ สาเหตุใดต่อไปนี้ควรตรวจสอบเป็นลำดับแรกสุดตามหลักการแก้ไขปัญหา (Troubleshooting)"
+    options:
+      - id: "1"
+        text: "เขียนโปรแกรมควบคุมระบบใหม่ทั้งหมด"
+      - id: "2"
+        text: "ตรวจสอบแหล่งจ่ายไฟและสายสัญญาณของเซนเซอร์วัดความชื้น"
+      - id: "3"
+        text: "เปลี่ยนท่อน้ำและปั๊มน้ำใหม่ทั้งระบบ"
+      - id: "4"
+        text: "เปลี่ยนชนิดของดินในแปลงปลูก"
+      - id: "5"
+        text: "เพิ่มขนาดถังเก็บน้ำ"
+    correct_answer: "2"
+    solution: "ตามหลัก troubleshooting ต้องตรวจสอบแหล่งจ่ายไฟและการเชื่อมต่อสัญญาณพื้นฐานก่อนเสมอ"
+
+  - number: 24
+    question_id: "tpat3-q24"
+    topic: "tpat3.logic"
+    skill: "critical_path"
+    score: 4.0
+    answer_type: single_choice
+    stem: "โครงการหนึ่งมี 3 งานย่อย: งาน A ใช้เวลา 2 วัน, งาน B ต้องรองาน A เสร็จและใช้เวลา 3 วัน, งาน C ทำพร้อมงาน B ได้และใช้เวลา 1 วัน เมื่อเริ่มพร้อมกันโครงการจะเสร็จในเวลากี่วัน"
+    options:
+      - id: "1"
+        text: "3 วัน"
+      - id: "2"
+        text: "4 วัน"
+      - id: "3"
+        text: "5 วัน"
+      - id: "4"
+        text: "6 วัน"
+      - id: "5"
+        text: "7 วัน"
+    correct_answer: "3"
+    solution: "งาน A ใช้ 2 วัน จากนั้นงาน B (3 วัน) และ C (1 วัน) ทำขนานกัน สายวิกฤตคือ A + B = 2 + 3 = 5 วัน"
+
+  - number: 25
+    question_id: "tpat3-q25"
+    topic: "tpat3.logic"
+    skill: "safety_factors"
+    score: 4.0
+    answer_type: single_choice
+    stem: "ในการออกแบบวิศวกรรม ค่า Safety Factor = 2.0 หมายความว่าอย่างไร"
+    options:
+      - id: "1"
+        text: "ชิ้นส่วนจะพังทันทีเมื่อรับภาระเป็น 2 เท่าของภาระงานที่ออกแบบไว้"
+      - id: "2"
+        text: "ชิ้นส่วนถูกออกแบบให้รับภาระได้สูงสุด 2 เท่าของภาระสูงสุดที่คาดว่าจะเกิดขึ้นจริง"
+      - id: "3"
+        text: "ชิ้นส่วนมีอายุการใช้งาน 2 ปี"
+      - id: "4"
+        text: "โอกาสเกิดอุบัติเหตุลดลง 50%"
+      - id: "5"
+        text: "ใช้วัสดุในการผลิตเพิ่มขึ้น 2 เท่า"
+    correct_answer: "2"
+    solution: "Safety Factor = กำลังรับภาระสูงสุดของโครงสร้าง / ภาระใช้งานจริงที่ยอมให้เกิดขึ้น ออกแบบไว้ 2 เท่าเพื่อความปลอดภัย"

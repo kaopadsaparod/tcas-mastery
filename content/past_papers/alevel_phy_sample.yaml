@@ -1,5 +1,5 @@
-# ชุดข้อสอบจำลอง A-Level ฟิสิกส์ สำหรับโหมดกรอกกระดาษคำตอบ (Answer Sheet Mode)
-# สำหรับทำบนกระดาษตามเวลาจริง แล้วกรอกคำตอบเพื่อตรวจและแยกคะแนนรายบททันที
+# ชุดข้อสอบจำลอง A-Level ฟิสิกส์ 2566 (ชุดฝึกจับเวลา 20 ข้อ)
+# ประกอบด้วยข้อสอบปรนัย 18 ข้อ (ข้อละ 3.0 คะแนน) และอัตนัยเติมตัวเลข 2 ข้อ (ข้อละ 5.0 คะแนน) รวม 64.0 คะแนน เวลา 60 นาที
 
 id: alevel-phy-2566-mock
 title: "A-Level ฟิสิกส์ 2566 (ชุดฝึกจับเวลา 20 ข้อ)"
@@ -8,106 +8,406 @@ year: 2566
 time_limit_min: 60
 questions:
   - number: 1
+    question_id: "sample20-q01"
     correct_answer: "2"
+    answer_type: single_choice
     topic: "physics.kinematics.1d"
     skill: "choose_constant_accel_eq"
     score: 3.0
+    stem: "รถยนต์เคลื่อนที่ด้วยความเร็ว $72\\text{ km/h}$ เมื่อแตะเบรกจะหยุดนิ่งได้ในเวลา $5\\text{ s}$ ด้วยความหน่วงคงตัว จงหาระยะทางที่รถเคลื่อนที่ได้นับตั้งแต่เริ่มเบรกจนกระทั่งหยุดนิ่ง"
+    options:
+      - id: "1"
+        text: "25 m"
+      - id: "2"
+        text: "50 m"
+      - id: "3"
+        text: "75 m"
+      - id: "4"
+        text: "100 m"
+      - id: "5"
+        text: "120 m"
+    solution: "u = 72 km/h = 20 m/s, v = 0, t = 5 s => s = ((u+v)/2)*t = (20/2)*5 = 50 m"
+
   - number: 2
+    question_id: "sample20-q02"
     correct_answer: "4"
+    answer_type: single_choice
     topic: "physics.kinematics.1d"
     skill: "unit_kmh_to_ms"
     score: 3.0
+    stem: "อัตราเร็วของพายุหมุนวัดได้ $144\\text{ km/h}$ คิดเป็นอัตราเร็วกี่เมตรต่อวินาที (m/s)"
+    options:
+      - id: "1"
+        text: "20 m/s"
+      - id: "2"
+        text: "25 m/s"
+      - id: "3"
+        text: "30 m/s"
+      - id: "4"
+        text: "40 m/s"
+      - id: "5"
+        text: "50 m/s"
+    solution: "144 * (5/18) = 8 * 5 = 40 m/s"
+
   - number: 3
+    question_id: "sample20-q03"
     correct_answer: "1"
+    answer_type: single_choice
     topic: "physics.kinematics.1d"
     skill: "vertical_free_fall"
     score: 3.0
+    stem: "ปล่อยก้อนหินให้ตกอย่างอิสระจากยอดตึกสูง เมื่อเวลาผ่านไป $2\\text{ s}$ ก้อนหินจะมีความเร็วกี่เมตรต่อวินาที (กำหนด $g = 10\\text{ m/s}^2$)"
+    options:
+      - id: "1"
+        text: "20 m/s"
+      - id: "2"
+        text: "10 m/s"
+      - id: "3"
+        text: "30 m/s"
+      - id: "4"
+        text: "40 m/s"
+      - id: "5"
+        text: "5 m/s"
+    solution: "v = u + gt = 0 + 10(2) = 20 m/s"
+
   - number: 4
+    question_id: "sample20-q04"
     correct_answer: "3"
+    answer_type: single_choice
     topic: "physics.kinematics.1d"
     skill: "vt_graph_interpretation"
     score: 3.0
+    stem: "จากกราฟความเร็ว-เวลา ($v-t$) ถ้าความเร็วคงที่สม่ำเสมอเป็นเส้นตรงแนวนอนที่ $v = 15\\text{ m/s}$ เป็นเวลา $10\\text{ s}$ การกระจัดของวัตถุมีค่ากี่เมตร"
+    options:
+      - id: "1"
+        text: "50 m"
+      - id: "2"
+        text: "100 m"
+      - id: "3"
+        text: "150 m"
+      - id: "4"
+        text: "200 m"
+      - id: "5"
+        text: "225 m"
+    solution: "พื้นที่ใต้กราฟ = 15 * 10 = 150 m"
+
   - number: 5
+    question_id: "sample20-q05"
     correct_answer: "5"
+    answer_type: single_choice
     topic: "physics.forces_energy"
     skill: "free_body_diagram"
     score: 3.0
+    stem: "แรงสองแรงขนาด $3\\text{ N}$ และ $4\\text{ N}$ กระทำต่อมวล $1\\text{ kg}$ ในทิศตั้งฉากกัน ขนาดของแรงลัพธ์มีค่ากี่นิวตัน"
+    options:
+      - id: "1"
+        text: "1 N"
+      - id: "2"
+        text: "2 N"
+      - id: "3"
+        text: "3.5 N"
+      - id: "4"
+        text: "7 N"
+      - id: "5"
+        text: "5 N"
+    correct_answer: "5"
+    solution: "R = sqrt(3^2 + 4^2) = sqrt(9 + 16) = 5 N"
+
   - number: 6
+    question_id: "sample20-q06"
     correct_answer: "2"
+    answer_type: single_choice
     topic: "physics.forces_energy"
     skill: "frictional_force"
     score: 3.0
+    stem: "วัตถุมวล $2\\text{ kg}$ วางบนพื้นราบที่มีสัมประสิทธิ์ความเสียดทานสถิต $\\mu_s = 0.5$ แรงดึงในแนวราบขนาดน้อยที่สุดที่จะทำให้วัตถุเริ่มเคลื่อนที่มีค่ากี่นิวตัน ($g = 10\\text{ m/s}^2$)"
+    options:
+      - id: "1"
+        text: "5 N"
+      - id: "2"
+        text: "10 N"
+      - id: "3"
+        text: "15 N"
+      - id: "4"
+        text: "20 N"
+      - id: "5"
+        text: "25 N"
+    solution: "fs_max = μs * N = 0.5 * (2 * 10) = 10 N"
+
   - number: 7
+    question_id: "sample20-q07"
     correct_answer: "1"
+    answer_type: single_choice
     topic: "physics.forces_energy"
     skill: "conservation_of_energy"
     score: 3.0
+    stem: "ปล่อยวัตถุมวล $1\\text{ kg}$ จากที่สูง $5\\text{ m}$ สู่พื้นดิน พลังงานจลน์ของวัตถุขณะกระทบพื้นมีค่ากี่จูล ($g = 10\\text{ m/s}^2$)"
+    options:
+      - id: "1"
+        text: "50 J"
+      - id: "2"
+        text: "25 J"
+      - id: "3"
+        text: "10 J"
+      - id: "4"
+        text: "100 J"
+      - id: "5"
+        text: "5 J"
+    solution: "Ek = mgh = 1 * 10 * 5 = 50 J"
+
   - number: 8
+    question_id: "sample20-q08"
     correct_answer: "3"
+    answer_type: single_choice
     topic: "physics.forces_energy"
     skill: "work_energy_theorem"
     score: 3.0
+    stem: "วัตถุมวล $2\\text{ kg}$ เคลื่อนที่ด้วยความเร็วเพิ่มขึ้นจาก $2\\text{ m/s}$ เป็น $6\\text{ m/s}$ งานของแรงลัพธ์ที่กระทำต่อวัตถุมีค่ากี่จูล"
+    options:
+      - id: "1"
+        text: "16 J"
+      - id: "2"
+        text: "24 J"
+      - id: "3"
+        text: "32 J"
+      - id: "4"
+        text: "40 J"
+      - id: "5"
+        text: "48 J"
+    solution: "W = (1/2)m(v^2 - u^2) = (1/2)(2)(36 - 4) = 32 J"
+
   - number: 9
+    question_id: "sample20-q09"
     correct_answer: "4"
+    answer_type: single_choice
     topic: "physics.momentum"
     skill: "conservation_of_momentum"
     score: 3.0
+    stem: "ลูกปืนมวล $10\\text{ g}$ ถูกยิงออกจากปืนมวล $2\\text{ kg}$ ด้วยความเร็ว $400\\text{ m/s}$ ความเร็วถอยหลังของตัวปืนมีค่ากี่เมตรต่อวินาที"
+    options:
+      - id: "1"
+        text: "0.5 m/s"
+      - id: "2"
+        text: "1.0 m/s"
+      - id: "3"
+        text: "1.5 m/s"
+      - id: "4"
+        text: "2.0 m/s"
+      - id: "5"
+        text: "4.0 m/s"
+    solution: "0.01 * 400 = 2 * v_gun => 4 = 2 v_gun => v_gun = 2.0 m/s"
+
   - number: 10
+    question_id: "sample20-q10"
     correct_answer: "2"
+    answer_type: single_choice
     topic: "physics.momentum"
     skill: "impulse_momentum"
     score: 3.0
+    stem: "แรงดลเฉลี่ย $50\\text{ N}$ กระทำต่อลูกบอลมวล $0.2\\text{ kg}$ เป็นเวลา $0.04\\text{ s}$ การดลที่ลูกบอลได้รับมีค่ากี่นิวตัน-วินาที"
+    options:
+      - id: "1"
+        text: "1.0 N·s"
+      - id: "2"
+        text: "2.0 N·s"
+      - id: "3"
+        text: "4.0 N·s"
+      - id: "4"
+        text: "5.0 N·s"
+      - id: "5"
+        text: "10.0 N·s"
+    solution: "I = F * Δt = 50 * 0.04 = 2.0 N·s"
+
   - number: 11
+    question_id: "sample20-q11"
     correct_answer: "5"
+    answer_type: single_choice
     topic: "physics.circular_shm"
     skill: "centripetal_force"
     score: 3.0
+    stem: "รถยนต์มวล $1000\\text{ kg}$ เลี้ยวโค้งบนถนนราบรัศมีความโค้ง $100\\text{ m}$ ด้วยอัตราเร็ว $10\\text{ m/s}$ แรงสู่ศูนย์กลางที่กระทำต่อรถมีค่ากี่นิวตัน"
+    options:
+      - id: "1"
+        text: "200 N"
+      - id: "2"
+        text: "400 N"
+      - id: "3"
+        text: "600 N"
+      - id: "4"
+        text: "800 N"
+      - id: "5"
+        text: "1000 N"
+    solution: "Fc = m v^2 / r = 1000 * (10^2) / 100 = 1000 * 100 / 100 = 1000 N"
+
   - number: 12
+    question_id: "sample20-q12"
     correct_answer: "1"
+    answer_type: single_choice
     topic: "physics.circular_shm"
     skill: "simple_harmonic_motion"
     score: 3.0
+    stem: "การเคลื่อนที่แบบฮาร์มอนิกอย่างง่าย ที่ตำแหน่งสมดุล (displacement $x = 0$) ปริมาณใดมีค่าเป็นศูนย์"
+    options:
+      - id: "1"
+        text: "ความเร่งและแรงดึงกลับ"
+      - id: "2"
+        text: "ความเร็ว"
+      - id: "3"
+        text: "พลังงานจลน์"
+      - id: "4"
+        text: "โมเมนตัม"
+      - id: "5"
+        text: "ความถี่เชิงมุม"
+    solution: "ที่ตำแหน่งสมดุล x=0 ทำให้ F = -kx = 0 และ a = -ω^2 x = 0"
+
   - number: 13
+    question_id: "sample20-q13"
     correct_answer: "3"
+    answer_type: single_choice
     topic: "physics.waves"
     skill: "wave_speed_equation"
     score: 3.0
+    stem: "คลื่นกลมีความถี่ $100\\text{ Hz}$ มีความยาวคลื่น $3.4\\text{ m}$ คลื่นนี้มีความเร็วกี่เมตรต่อวินาที"
+    options:
+      - id: "1"
+        text: "34 m/s"
+      - id: "2"
+        text: "170 m/s"
+      - id: "3"
+        text: "340 m/s"
+      - id: "4"
+        text: "680 m/s"
+      - id: "5"
+        text: "1000 m/s"
+    solution: "v = f * λ = 100 * 3.4 = 340 m/s"
+
   - number: 14
+    question_id: "sample20-q14"
     correct_answer: "4"
+    answer_type: single_choice
     topic: "physics.waves"
     skill: "standing_wave_resonance"
     score: 3.0
+    stem: "เชือกยาว $1\\text{ m}$ ขึงตึงทั้งสองข้าง เกิดคลื่นนิ่งในฮาร์มอนิกแรก (1 loop) ความยาวคลื่นมีค่ากี่เมตร"
+    options:
+      - id: "1"
+        text: "0.25 m"
+      - id: "2"
+        text: "0.5 m"
+      - id: "3"
+        text: "1.0 m"
+      - id: "4"
+        text: "2.0 m"
+      - id: "5"
+        text: "4.0 m"
+    solution: "L = λ/2 => λ = 2L = 2(1) = 2.0 m"
+
   - number: 15
+    question_id: "sample20-q15"
     correct_answer: "2"
+    answer_type: single_choice
     topic: "physics.electricity"
     skill: "coulomb_law"
     score: 3.0
+    stem: "ประจุ $+2\\mu\\text{C}$ และ $+3\\mu\\text{C}$ วางห่างกัน $3\\text{ m}$ ในสุญญากาศ แรงผลักระหว่างประจุมีค่ากี่นิวตัน ($k = 9\\times 10^9\\text{ N}\\cdot\\text{m}^2/\\text{C}^2$)"
+    options:
+      - id: "1"
+        text: "0.003 N"
+      - id: "2"
+        text: "0.006 N"
+      - id: "3"
+        text: "0.012 N"
+      - id: "4"
+        text: "0.018 N"
+      - id: "5"
+        text: "0.024 N"
+    solution: "F = (9e9 * 2e-6 * 3e-6) / (3^2) = (54e-3) / 9 = 6e-3 = 0.006 N"
+
   - number: 16
+    question_id: "sample20-q16"
     correct_answer: "5"
+    answer_type: single_choice
     topic: "physics.electricity"
     skill: "ohm_law_resistors"
     score: 3.0
+    stem: "ลวดตัวนำมีค่าความต้านทาน $10\\,\\Omega$ เมื่อต่อเข้ากับแหล่งจ่ายไฟ $50\\text{ V}$ กระแสไฟฟ้าที่ไหลผ่านลวดมีค่ากี่แอมแปร์"
+    options:
+      - id: "1"
+        text: "1 A"
+      - id: "2"
+        text: "2 A"
+      - id: "3"
+        text: "3 A"
+      - id: "4"
+        text: "4 A"
+      - id: "5"
+        text: "5 A"
+    solution: "I = V / R = 50 / 10 = 5 A"
+
   - number: 17
+    question_id: "sample20-q17"
     correct_answer: "1"
+    answer_type: single_choice
     topic: "physics.electricity"
     skill: "electric_power"
     score: 3.0
+    stem: "เตารีดไฟฟ้าใช้กำลังไฟ $1100\\text{ W}$ เมื่อเสียบปลั๊กกับไฟบ้าน $220\\text{ V}$ กระแสไฟฟ้าที่ไหลผ่านเตารีดมีค่ากี่แอมแปร์"
+    options:
+      - id: "1"
+        text: "5 A"
+      - id: "2"
+        text: "10 A"
+      - id: "3"
+        text: "15 A"
+      - id: "4"
+        text: "20 A"
+      - id: "5"
+        text: "2.5 A"
+    solution: "P = VI => I = 1100 / 220 = 5 A"
+
   - number: 18
+    question_id: "sample20-q18"
     correct_answer: "3"
+    answer_type: single_choice
     topic: "physics.modern_physics"
     skill: "photoelectric_effect"
     score: 3.0
+    stem: "สมการโฟโตอิเล็กทริกของไอน์สไตน์ พลังงานจลน์สูงสุดของอิเล็กตรอน ($E_{k,\\max}$) มีค่าเท่ากับข้อใด"
+    options:
+      - id: "1"
+        text: "hf + W"
+      - id: "2"
+        text: "W - hf"
+      - id: "3"
+        text: "hf - W"
+      - id: "4"
+        text: "hf / W"
+      - id: "5"
+        text: "W / hf"
+    solution: "Ek_max = hf - W"
+
   - number: 19
+    question_id: "sample20-q19"
     correct_answer: "25"
     answer_type: "numeric"
     tolerance: 0.01
+    unit: "m"
+    require_unit: false
     topic: "physics.kinematics.1d"
     skill: "numeric_calculation"
     score: 5.0
+    stem: "ขว้างก้อนหินขึ้นตรงๆ ด้วยความเร็วต้น $10\\text{ m/s}$ จากจุดที่สูง $20\\text{ m}$ เหนือพื้นดิน จงหาระดับความสูงสูงสุดจากพื้นดินที่ก้อนหินขึ้นไปถึง ในหน่วยเมตร ($g = 10\\text{ m/s}^2$)"
+    solution: "h_peak_from_throw = u^2 / (2g) = 100 / 20 = 5 m. ความสูงรวมจากพื้นดิน = 20 + 5 = 25 m"
+
   - number: 20
+    question_id: "sample20-q20"
     correct_answer: "50"
     answer_type: "numeric"
     tolerance: 0.01
+    unit: "J"
+    require_unit: false
     topic: "physics.forces_energy"
     skill: "numeric_calculation"
     score: 5.0
+    stem: "สปริงที่มีค่านิจ $k = 100\\text{ N/m}$ ถูกดึงให้ยืดออก $1\\text{ m}$ จากตำแหน่งสมดุล พลังงานศักย์ยืดหยุ่นที่สะสมในสปริงมีค่ากี่จูล"
+    solution: "Ep = (1/2) k x^2 = 0.5 * 100 * (1^2) = 50 J"
