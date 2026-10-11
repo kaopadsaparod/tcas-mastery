@@ -23,6 +23,7 @@ ERROR_TAG_DESCRIPTIONS = {
     "intermediate_stage_only": "ตอบเฉพาะผลลัพธ์ของขั้นกลาง ยังไม่ได้คิดต่อจนถึงขั้นสุดท้าย",
     "inverse_ratio_flipped": "สลับเศษเป็นส่วนในอัตราส่วนผกผัน",
     "wrong_unit": "ระบุหน่วยไม่ตรงกับที่โจทย์ต้องการ หรือลืมแปลงหน่วย",
+    "missing_unit": "ไม่ระบุหน่วยกำกับคำตอบ ทั้งที่โจทย์ต้องการให้ระบุหน่วย",
     "arithmetic_error": "คำนวณเลขหรือคิดเลขผิดพลาด",
     "peak_displacement_only": "ตอบระยะทางถึงจุดสูงสุด ลืมคิดการกระจัดที่แท้จริงหลังจากนั้น",
     "distance_instead_of_displacement": "สับสนระหว่าง 'ระยะทางจริง' กับ 'การกระจัด'",
@@ -150,43 +151,106 @@ def normalize_numeric_string(raw: str) -> float | None:
         return None
 
 
+class NumericGradeResult(tuple):
+    """
+    Custom tuple subclass for full backward compatibility:
+    Can be unpacked as `is_correct, error_tag = grade_numeric_detailed(...)`
+    while also exposing rich attributes: .is_correct, .error_tag, .numeric_status, .unit_status.
+    """
+    is_correct: bool
+    error_tag: str | None
+    numeric_status: str  # 'correct', 'incorrect', 'invalid_number'
+    unit_status: str     # 'correct', 'wrong_unit', 'missing_unit', 'not_required'
+
+    def __new__(
+        cls,
+        is_correct: bool,
+        error_tag: str | None,
+        numeric_status: str = "correct",
+        unit_status: str = "not_required",
+    ):
+        obj = super().__new__(cls, (is_correct, error_tag))
+        obj.is_correct = is_correct
+        obj.error_tag = error_tag
+        obj.numeric_status = numeric_status
+        obj.unit_status = unit_status
+        return obj
+
+
 def grade_numeric_detailed(
     user_input: str,
     expected_value: float | str,
     tolerance: float = 0.005,
     expected_unit: str | None = None,
-) -> tuple[bool, str | None]:
+    require_unit: bool = False,
+) -> NumericGradeResult:
     """
-    Deterministically grades numeric input, taking expected_unit into account.
-    Returns (is_correct, error_tag).
+    Deterministically grades numeric input, taking expected_unit and require_unit into account.
+    Returns NumericGradeResult which behaves as (is_correct, error_tag).
     If user specifies a unit that differs from expected_unit, marks as wrong with 'no_unit_conversion'.
+    If require_unit is True and no unit was given, marks as wrong with 'missing_unit'.
     """
     if user_input is None:
-        return False, None
+        return NumericGradeResult(
+            False,
+            None,
+            numeric_status="invalid_number",
+            unit_status="missing_unit" if require_unit else "not_required",
+        )
 
     _, user_unit = extract_number_and_unit(str(user_input))
 
-    # If user provided a unit and expected unit is defined, verify match
-    if user_unit and expected_unit:
-        if not units_match(user_unit, expected_unit):
-            return False, "no_unit_conversion"
+    # Evaluate unit status
+    unit_status = "not_required"
+    if expected_unit:
+        if user_unit:
+            if units_match(user_unit, expected_unit):
+                unit_status = "correct"
+            else:
+                unit_status = "wrong_unit"
+        else:
+            if require_unit:
+                unit_status = "missing_unit"
+            else:
+                unit_status = "not_required"
 
     u_val = normalize_numeric_string(user_input)
     if u_val is None:
-        return False, "arithmetic_error"
+        return NumericGradeResult(
+            False, "arithmetic_error", numeric_status="invalid_number", unit_status=unit_status
+        )
     e_val = normalize_numeric_string(str(expected_value))
     if e_val is None:
-        return False, None
+        return NumericGradeResult(
+            False, None, numeric_status="invalid_number", unit_status=unit_status
+        )
 
     if e_val == 0:
-        is_ok = abs(u_val) < 1e-9
-        return is_ok, None if is_ok else "arithmetic_error"
+        is_numeric_ok = abs(u_val) < 1e-9
+    else:
+        # Scale absolute tolerance proportionally so small scientific values (e.g. 2e-6, 1.6e-19)
+        # do not accept 0 or 5e-5 as correct
+        scaled_abs_tol = min(1e-12, tolerance * abs(e_val))
+        is_numeric_ok = math.isclose(u_val, e_val, rel_tol=tolerance, abs_tol=scaled_abs_tol)
 
-    # Scale absolute tolerance proportionally so small scientific values (e.g. 2e-6, 1.6e-19)
-    # do not accept 0 or 5e-5 as correct
-    scaled_abs_tol = min(1e-12, tolerance * abs(e_val))
-    is_ok = math.isclose(u_val, e_val, rel_tol=tolerance, abs_tol=scaled_abs_tol)
-    return is_ok, None if is_ok else "arithmetic_error"
+    numeric_status = "correct" if is_numeric_ok else "incorrect"
+
+    if unit_status == "wrong_unit":
+        return NumericGradeResult(
+            False, "no_unit_conversion", numeric_status=numeric_status, unit_status=unit_status
+        )
+    elif unit_status == "missing_unit":
+        return NumericGradeResult(
+            False, "missing_unit", numeric_status=numeric_status, unit_status=unit_status
+        )
+    elif not is_numeric_ok:
+        return NumericGradeResult(
+            False, "arithmetic_error", numeric_status=numeric_status, unit_status=unit_status
+        )
+    else:
+        return NumericGradeResult(
+            True, None, numeric_status=numeric_status, unit_status=unit_status
+        )
 
 
 def grade_numeric(
@@ -194,12 +258,13 @@ def grade_numeric(
     expected_value: float | str,
     tolerance: float = 0.005,
     expected_unit: str | None = None,
+    require_unit: bool = False,
 ) -> bool:
     """Grades a numeric user input against an expected value with percentage tolerance and optional unit validation."""
-    is_correct, _ = grade_numeric_detailed(
-        user_input, expected_value, tolerance, expected_unit
+    res = grade_numeric_detailed(
+        user_input, expected_value, tolerance, expected_unit, require_unit=require_unit
     )
-    return is_correct
+    return res.is_correct
 
 
 def grade_attempt(
@@ -256,8 +321,9 @@ def grade_attempt(
         expected = question.answer.correct_value
         tol = question.answer.tolerance if question.answer.tolerance is not None else 0.01
         exp_unit = question.answer.unit
+        req_unit = getattr(question.answer, "require_unit", False)
         is_correct, unit_err = grade_numeric_detailed(
-            user_clean, expected, tol, expected_unit=exp_unit
+            user_clean, expected, tol, expected_unit=exp_unit, require_unit=req_unit
         )
         if not is_correct and unit_err:
             error_tag = unit_err

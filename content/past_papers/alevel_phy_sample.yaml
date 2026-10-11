@@ -99,11 +99,15 @@ questions:
     score: 3.0
   - number: 19
     correct_answer: "25"
+    answer_type: "numeric"
+    tolerance: 0.01
     topic: "physics.kinematics.1d"
     skill: "numeric_calculation"
     score: 5.0
   - number: 20
     correct_answer: "50"
+    answer_type: "numeric"
+    tolerance: 0.01
     topic: "physics.forces_energy"
     skill: "numeric_calculation"
     score: 5.0

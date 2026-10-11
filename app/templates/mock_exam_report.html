@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}รายงานผลการจำลองสอบ: {{ report.title }} • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 100%); color: white; padding: 2rem; margin-bottom: 2rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+    <div>
+      <span class="badge" style="background: rgba(255,255,255,0.25); color: white; margin-bottom: 0.5rem; display: inline-block;">
+        🏆 รายงานผลการสอบเสมือนจริง (Diagnostic Report)
+      </span>
+      <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.25rem;">{{ report.title }}</h1>
+      <p style="opacity: 0.9; font-size: 0.95rem; margin-bottom: 0;">
+        ใช้เวลาทำทั้งหมด {{ report.time_spent_min }} นาที • เฉลี่ย {{ report.avg_pace_min }} นาที / ข้อ
+      </p>
+    </div>
+
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <div style="background: rgba(255,255,255,0.15); padding: 1rem 1.75rem; border-radius: 12px; text-align: center; backdrop-filter: blur(8px);">
+        <div style="font-size: 0.85rem; opacity: 0.9;">คะแนนที่ได้</div>
+        <div style="font-size: 2.2rem; font-weight: 900; color: #38bdf8;">
+          {{ report.total_score }} <span style="font-size: 1.2rem; font-weight: 600; opacity: 0.8;">/ {{ report.max_score }}</span>
+        </div>
+        <div style="font-size: 0.85rem; font-weight: 700;">({{ report.score_percent }}%)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Stats Summary Strip -->
+<div class="grid-4" style="margin-bottom: 2rem;">
+  <div class="stat-box">
+    <div class="stat-val" style="color: var(--success);">{{ report.correct_count }} / {{ report.total_questions }}</div>
+    <div class="stat-label">จำนวนข้อที่ตอบถูก</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: {% if report.pace_status == 'optimal' %}var(--success){% else %}var(--warning){% endif %};">
+      {{ report.avg_pace_min }} น.
+    </div>
+    <div class="stat-label">ความเร็วเฉลี่ย (เป้าหมาย ≤ {{ report.target_pace_min }} น.)</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: #4f46e5;">{{ report.score_percent }}%</div>
+    <div class="stat-label">ร้อยละคะแนนรวม</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-val" style="color: #0284c7;">{{ report.time_spent_min }} น.</div>
+    <div class="stat-label">เวลาที่ใช้ไปทั้งหมด</div>
+  </div>
+</div>
+
+<!-- Topic Breakdown Card -->
+<div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
+  <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-main);">
+    📊 ผลการสอบแยกรายบท (Topic-by-Topic Breakdown)
+  </h2>
+
+  <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+    {% for topic, tdata in report.topic_breakdown.items() %}
+    {% set pct = (tdata.score_earned / tdata.max_score * 100)|round(1) if tdata.max_score > 0 else 0 %}
+    <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 0.85rem 1rem;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700; margin-bottom: 0.35rem;">
+        <span>{{ topic }}</span>
+        <span>{{ tdata.score_earned }} / {{ tdata.max_score }} คะแนน ({{ pct }}%)</span>
+      </div>
+      <div style="background: #e2e8f0; border-radius: 9999px; height: 8px; overflow: hidden;">
+        <div style="background: {% if pct >= 80 %}var(--success){% elif pct >= 50 %}var(--warning){% else %}var(--danger){% endif %}; width: {{ pct }}%; height: 100%;"></div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Detailed Question Analysis -->
+<div class="card" style="padding: 1.5rem; margin-bottom: 2rem;">
+  <h2 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem; color: var(--text-main);">
+    📝 รายละเอียดคำตอบรายข้อ
+  </h2>
+
+  <div style="overflow-x: auto;">
+    <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+      <thead>
+        <tr style="background: #f8fafc; border-bottom: 1.5px solid var(--border-color); color: #475569;">
+          <th style="padding: 0.75rem;">ข้อที่</th>
+          <th style="padding: 0.75rem;">บทเรียน</th>
+          <th style="padding: 0.75rem;">ทักษะ</th>
+          <th style="padding: 0.75rem;">คำตอบของคุณ</th>
+          <th style="padding: 0.75rem;">คำตอบที่ถูกต้อง</th>
+          <th style="padding: 0.75rem; text-align: center;">ผลการตรวจ</th>
+          <th style="padding: 0.75rem; text-align: right;">คะแนน</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in report.detailed_results %}
+        <tr style="border-bottom: 1px solid var(--border-color); {% if not r.is_correct %}background: #fff5f5;{% endif %}">
+          <td style="padding: 0.75rem; font-weight: 700;">{{ r.number }}</td>
+          <td style="padding: 0.75rem; color: #475569;">{{ r.topic }}</td>
+          <td style="padding: 0.75rem; color: #64748b; font-size: 0.82rem;">{{ r.skill }}</td>
+          <td style="padding: 0.75rem; font-weight: 600;">{{ r.user_answer or "—" }}</td>
+          <td style="padding: 0.75rem; font-weight: 700; color: #166534;">{{ r.correct_answer }}</td>
+          <td style="padding: 0.75rem; text-align: center;">
+            {% if r.is_correct %}
+              <span class="badge" style="background: #dcfce7; color: #166534; font-weight: 700;">✓ ถูกต้อง</span>
+            {% else %}
+              <span class="badge" style="background: #fee2e2; color: #991b1b; font-weight: 700;">✗ ตอบผิด</span>
+            {% endif %}
+          </td>
+          <td style="padding: 0.75rem; text-align: right; font-weight: 700;">
+            {{ r.score_earned }} / {{ r.max_score }}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Bottom Navigation Actions -->
+<div style="display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;">
+  <a href="/mock-exam" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+    ◀ กลับหน้ารวมข้อสอบจำลอง
+  </a>
+  <div style="display: flex; gap: 0.75rem;">
+    <a href="/planner" class="btn btn-primary" style="padding: 0.6rem 1.25rem;">
+      🎯 ปรับแผนติวใน Study Planner ➔
+    </a>
+  </div>
+</div>
+{% endblock %}

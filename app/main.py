@@ -21,6 +21,8 @@ from app.routers.answer_sheet import router as answer_sheet_router
 from app.routers.drills import router as drills_router
 from app.routers.formulas import router as formulas_router
 from app.routers.import_studio import router as import_studio_router
+from app.routers.mock_exam import router as mock_exam_router
+from app.routers.planner import router as planner_router
 from app.routers.practice import router as practice_router
 from app.routers.roadmap import router as roadmap_router
 from app.routers.stats import router as stats_router
@@ -109,6 +111,7 @@ async def security_and_csrf_middleware(request: Request, call_next):
         if TCAS_ACCESS_PIN and request.url.path in [
             "/api/backup/delete",
             "/api/backup/create",
+            "/api/backup/restore",
             "/api/import/upload",
             "/api/import/create-question",
         ]:
@@ -147,6 +150,8 @@ app.include_router(stats_router)
 app.include_router(system_router)
 app.include_router(import_studio_router)
 app.include_router(roadmap_router)
+app.include_router(planner_router)
+app.include_router(mock_exam_router)
 
 
 @app.get("/", response_class=HTMLResponse)

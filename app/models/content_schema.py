@@ -8,11 +8,15 @@ class SourceInfo(BaseModel):
     label: str
     exam_year: int | None = None
     round: str | None = None
+    source_url: str | None = None
+    item_number: int | None = None
 
 
 class VerificationInfo(BaseModel):
     tier: Literal["A", "B", "C", "D", "E"] = "B"
     verified_by: str = "automated_assertion"
+    verifier: str | None = None
+    status: Literal["draft", "reviewed", "verified"] = "verified"
     notes: str | None = None
 
 
@@ -49,6 +53,7 @@ class AnswerConfig(BaseModel):
     correct_value: float | int | str | None = None
     unit: str | None = None
     tolerance: float | None = 0.02
+    require_unit: bool = False
 
 
 class Hint(BaseModel):
@@ -106,6 +111,10 @@ class PastPaperQuestion(BaseModel):
     topic: str
     skill: str
     score: float = 1.0
+    answer_type: Literal["single_choice", "numeric"] | None = None
+    tolerance: float = 0.001
+    unit: str | None = None
+    require_unit: bool = False
 
 
 class PastPaper(BaseModel):

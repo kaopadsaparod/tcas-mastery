@@ -113,6 +113,9 @@ class ContentLoader:
     def get_all_past_papers(self) -> list[PastPaper]:
         return list(self._past_papers.values())
 
+    def get_past_papers_by_subject(self, subject: str) -> list[PastPaper]:
+        return [p for p in self.get_all_past_papers() if p.subject == subject]
+
     def get_past_paper_by_id(self, pid: str) -> PastPaper | None:
         return self._past_papers.get(pid)
 

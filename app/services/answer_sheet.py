@@ -28,13 +28,29 @@ def grade_answer_sheet(
         expected_ans = str(q.correct_answer).strip()
         max_score += q.score
 
-        # Check correctness: exact match or numeric tolerance match
+        # Check correctness strictly based on question type
+        ans_type = getattr(q, "answer_type", None)
+        if ans_type is None:
+            # Infer from expected answer: standard choices ("1"-"5", "a"-"e") are single_choice
+            if expected_ans.strip().lower() in {"1", "2", "3", "4", "5", "a", "b", "c", "d", "e"}:
+                ans_type = "single_choice"
+            else:
+                ans_type = "numeric"
+
         is_correct = False
         if user_ans:
-            if user_ans.lower() == expected_ans.lower():
-                is_correct = True
-            elif grade_numeric(user_ans, expected_ans, tolerance=0.02):
-                is_correct = True
+            if ans_type == "single_choice":
+                # Multiple choice: STRICT EXACT MATCH ONLY!
+                # E.g. entering "3.05" for choice "3" is strictly rejected!
+                is_correct = (user_ans.strip().lower() == expected_ans.strip().lower())
+            else:
+                # Numeric item: grade with item's tolerance and unit checking
+                tol = getattr(q, "tolerance", 0.001) or 0.001
+                unit = getattr(q, "unit", None)
+                req_unit = getattr(q, "require_unit", False)
+                is_correct = grade_numeric(
+                    user_ans, expected_ans, tolerance=tol, expected_unit=unit, require_unit=req_unit
+                )
         score_earned = q.score if is_correct else 0.0
         if is_correct:
             correct_count += 1

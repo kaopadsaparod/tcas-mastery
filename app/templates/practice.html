@@ -180,9 +180,16 @@
             ✓ ตรวจความสมเหตุสมผล: {{ q.solution.sanity_check }}
           </div>
         {% endif %}
-      </div>
     </div>
     {% endif %}
+
+    <!-- 5-Step Pedagogical Tutor Breakdown -->
+    <div id="tutorBreakdownSection" style="display: none; margin-top: 1.5rem; background: #faf5ff; border: 1.5px solid #d8b4fe; border-radius: 12px; padding: 1.5rem;">
+      <h3 style="font-size: 1.1rem; font-weight: 800; color: #6b21a8; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span>🎓 ลำดับวิธีคิดแก้โจทย์ 5 ขั้นตอน (Step-by-Step Pedagogical Tutor)</span>
+      </h3>
+      <div id="tutorBreakdownContent" style="display: flex; flex-direction: column; gap: 0.85rem;"></div>
+    </div>
 
     <!-- AI Tutor Helper Button -->
     <div style="margin-top: 2rem; background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 1.5rem;">
@@ -310,6 +317,50 @@ async function handleFormSubmit(e) {
       const errText = document.getElementById('errorTagText');
       errText.innerHTML = `สาเหตุ: <strong>${data.error_tag_description}</strong> (แท็ก: <code>${data.error_tag}</code>)`;
       errBox.style.display = 'block';
+    }
+
+    // 5-Step Pedagogical Tutor Breakdown
+    if (data.tutor_breakdown) {
+      const tb = data.tutor_breakdown;
+      const sec = document.getElementById('tutorBreakdownSection');
+      const cont = document.getElementById('tutorBreakdownContent');
+      let stepsHtml = '';
+      if (tb.step_3_substitution && tb.step_3_substitution.steps) {
+        stepsHtml = '<ol style="margin-left: 1.25rem; margin-top: 0.25rem;">' +
+          tb.step_3_substitution.steps.map(s => `<li>${s.text}</li>`).join('') +
+          '</ol>';
+      }
+      let drillHtml = '';
+      if (tb.step_5_variant && tb.step_5_variant.remediation_drill) {
+        const d = tb.step_5_variant.remediation_drill;
+        drillHtml = `<div style="margin-top: 0.5rem; background: #ede9fe; padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.85rem;">
+          🎯 แบบฝึกหัดทักษะนี้โดยตรง: <a href="/drills?type=${d.drill_type}" style="font-weight: 700; color: #6d28d9;">${d.title} ➔</a>
+        </div>`;
+      }
+      cont.innerHTML = `
+        <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
+          <strong style="color: #6b21a8;">1. สิ่งที่โจทย์กำหนดและสิ่งที่ถามหา:</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">${tb.step_1_given_goal.content}</div>
+        </div>
+        <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
+          <strong style="color: #6b21a8;">2. การเลือกหลักการและสูตร:</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">${tb.step_2_principle.content}</div>
+        </div>
+        <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
+          <strong style="color: #6b21a8;">3. การแทนค่าทีละขั้นและตรวจสอบหน่วย:</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">${stepsHtml}</div>
+        </div>
+        <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
+          <strong style="color: #6b21a8;">4. ตรวจสอบความสมเหตุสมผลของคำตอบ:</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">${tb.step_4_sanity_check.content}</div>
+        </div>
+        <div style="background: white; border: 1px solid #e9d5ff; border-radius: 8px; padding: 0.75rem 1rem;">
+          <strong style="color: #6b21a8;">5. ฝึกซ้ำในหลักการเดียวกัน:</strong>
+          <div style="font-size: 0.9rem; color: #475569; margin-top: 0.2rem;">ฝึกทำโจทย์ประเภทเดียวกันเพื่อยืนยันความเข้าใจ ไม่ให้ติดกับดักเดิม</div>
+          ${drillHtml}
+        </div>
+      `;
+      sec.style.display = 'block';
     }
 
     generatedAIPrompt = data.ai_prompt || "";

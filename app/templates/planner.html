@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Personal Study Planner • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, #0ea5e9 0%, #1e40af 100%); color: white; padding: 2rem; margin-bottom: 2rem;">
+  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+    <div>
+      <span class="badge" style="background: rgba(255,255,255,0.25); color: white; margin-bottom: 0.5rem; display: inline-block;">
+        🎯 แผนอ่านหนังสือรายบุคคล (Adaptive Study Planner)
+      </span>
+      <h1 style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.4rem;">ตารางติวประจำวันของคุณ</h1>
+      <p style="opacity: 0.9; font-size: 0.95rem; margin-bottom: 0;">
+        ระบบจัดสรรเวลาให้อัตโนมัติตามจุดอ่อนจริง คิว Spaced Repetition และความพร้อมของพื้นฐาน
+      </p>
+    </div>
+    
+    <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+      <div style="background: rgba(255,255,255,0.15); padding: 0.75rem 1.25rem; border-radius: 12px; text-align: center; backdrop-filter: blur(8px);">
+        <div style="font-size: 0.8rem; opacity: 0.9;">เวลาที่เหลือถึงสอบ</div>
+        <div style="font-size: 1.5rem; font-weight: 800;">{{ plan.days_left }} วัน</div>
+        <div style="font-size: 0.75rem; opacity: 0.8;">({{ plan.weeks_left }} สัปดาห์)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Time budget selector -->
+  <div style="margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+    <div style="font-size: 0.9rem; font-weight: 600;">
+      ⏱️ วันนี้มีเวลาว่างอ่านหนังสือเท่าใด:
+    </div>
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      {% for m in [30, 45, 60, 90, 120] %}
+        <a href="/planner?minutes={{ m }}&exam={{ plan.target_exam }}" 
+           class="btn" 
+           style="padding: 0.35rem 0.85rem; font-size: 0.85rem; {% if plan.daily_minutes == m %}background: white; color: #0284c7; font-weight: 700;{% else %}background: rgba(255,255,255,0.15); color: white; border: 1px solid rgba(255,255,255,0.3);{% endif %}">
+          {{ m }} นาที
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Prerequisite Warning Alert if needed -->
+{% if plan.prerequisite_alert %}
+<div class="card" style="border-left: 5px solid var(--warning); background: #fffbeb; padding: 1.25rem; margin-bottom: 2rem;">
+  <div style="display: flex; align-items: flex-start; gap: 0.75rem;">
+    <span style="font-size: 1.5rem;">⚠️</span>
+    <div>
+      <h3 style="font-size: 1rem; font-weight: 700; color: #92400e; margin-bottom: 0.25rem;">
+        แนะนำเก็บพื้นฐานก่อน: บท {{ plan.prerequisite_alert.unready_prereq }}
+      </h3>
+      <p style="font-size: 0.88rem; color: #78350f; margin-bottom: 0;">
+        {{ plan.prerequisite_alert.message }} ระบบได้ปรับแผนของวันนี้ให้เน้นปูพื้นฐานข้อนี้ก่อนเริ่มบทขั้นสูง
+      </p>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+<!-- Study Blocks List -->
+<div style="margin-bottom: 2rem;">
+  <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+    <span>📋 ขั้นตอนการติวตามแผน (รวม {{ plan.daily_minutes }} นาที)</span>
+  </h2>
+
+  <div style="display: flex; flex-direction: column; gap: 1rem;">
+    {% for block in plan.blocks %}
+    <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1.25rem; border-left: 4px solid {{ block.badge_color }};">
+      <div style="flex: 1; min-width: 260px;">
+        <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.4rem; flex-wrap: wrap;">
+          <span class="badge" style="background: {{ block.badge_color }}22; color: {{ block.badge_color }}; font-weight: 700;">
+            {{ block.badge }}
+          </span>
+          <span style="font-size: 0.85rem; font-weight: 700; color: #475569;">
+            ⏱️ {{ block.allocated_minutes }} นาที
+          </span>
+          <h3 style="font-size: 1.05rem; font-weight: 700; margin: 0; color: var(--text-main);">
+            {{ block.title }}
+          </h3>
+        </div>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">
+          {{ block.details }}
+        </p>
+      </div>
+
+      <div>
+        <a href="{{ block.action_url }}" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem; font-weight: 600;">
+          {{ block.action_label }}
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<!-- Bottom Study Guidance & Tips -->
+<div class="grid-2">
+  <div class="card" style="padding: 1.25rem;">
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">
+      💡 หลักการติวที่มีประสิทธิภาพ
+    </h3>
+    <ul style="font-size: 0.88rem; color: #475569; padding-left: 1.2rem; line-height: 1.6;">
+      <li><strong>เริ่มด้วยข้อที่ทบทวนก่อนเสมอ:</strong> สมองจะจำได้ดีเมื่อถูกดึงข้อมูลเก่ากลับมาใช้ (Active Recall)</li>
+      <li><strong>อย่าข้ามพื้นฐาน:</strong> ถ้าโจทย์ขั้นสูงสะดุด มักเกิดจากเครื่องหมายเวกเตอร์หรือแปลงหน่วยไม่แม่นยำ</li>
+      <li><strong>ปิดท้ายด้วย Micro-Quiz:</strong> 3 ข้อสั้นๆ ทันทีหลังอ่านช่วยเปลี่ยนความจำระยะสั้นเป็นระยะยาว</li>
+    </ul>
+  </div>
+
+  <div class="card" style="padding: 1.25rem;">
+    <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-main);">
+      📊 สรุปคิวค้างของวันนี้
+    </h3>
+    <div style="font-size: 0.88rem; color: #475569; line-height: 1.6;">
+      <div>• โจทย์ที่ครบกำหนด Spaced Repetition: <strong>{{ plan.due_reviews_count }} ข้อ</strong></div>
+      <div>• จุดอ่อนที่เคยคิดว่าถูกแต่ผิด (Misconceptions): <strong>{{ plan.high_priority_misconceptions }} ข้อ</strong></div>
+      <div style="margin-top: 0.75rem;">
+        <a href="/roadmap" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.82rem;">
+          ดู Roadmap เต็ม ➔
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

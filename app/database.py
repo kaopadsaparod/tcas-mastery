@@ -149,6 +149,28 @@ def init_db() -> None:
         );
         """)
 
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS mock_exam_sessions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT UNIQUE NOT NULL,
+            exam_type TEXT NOT NULL,       -- 'alevel_physics', 'tpat3', 'custom'
+            title TEXT NOT NULL,
+            time_limit_min INTEGER NOT NULL,
+            time_spent_min REAL DEFAULT 0.0,
+            status TEXT NOT NULL,           -- 'in_progress', 'completed', 'timed_out'
+            total_questions INTEGER NOT NULL,
+            correct_count INTEGER DEFAULT 0,
+            total_score REAL DEFAULT 0.0,
+            max_score REAL DEFAULT 100.0,
+            score_percent REAL DEFAULT 0.0,
+            answers_json TEXT DEFAULT '{}',
+            flagged_json TEXT DEFAULT '[]',
+            report_json TEXT DEFAULT '{}',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            completed_at TIMESTAMP
+        );
+        """)
+
         # Seed initial topic priorities if empty
         cursor.execute("SELECT COUNT(*) as cnt FROM topic_priorities;")
         if cursor.fetchone()["cnt"] == 0:

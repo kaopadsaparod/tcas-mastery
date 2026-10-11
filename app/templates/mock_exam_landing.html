@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Full Mock Exam • TCAS Mastery{% endblock %}
+
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); color: white; padding: 2rem; margin-bottom: 2rem;">
+  <div style="max-width: 800px;">
+    <span class="badge" style="background: rgba(255,255,255,0.2); color: white; margin-bottom: 0.5rem; display: inline-block;">
+      ⏱️ ระบบจำลองสอบเสมือนจริง (Full Mock Exam Mode)
+    </span>
+    <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">ทดสอบความพร้อมในสภาวะสอบจริง</h1>
+    <p style="opacity: 0.9; font-size: 0.95rem; margin-bottom: 0;">
+      จับเวลาถอยหลังจริงตามเกณฑ์ทางการ • ไม่อนุญาตให้เปิดเฉลยระหว่างทำ • ข้ามข้อและปักหมุดข้อที่ลังเลได้ • ส่งคำตอบแล้ววิเคราะห์ความเร็ว จุดอ่อนรายบท และพัฒนาการเทียบกับรอบก่อนหน้าทันที
+    </p>
+  </div>
+</div>
+
+<!-- Exam Selection Cards -->
+<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">เลือกชุดข้อสอบจำลองที่คุณต้องการทดสอบ</h2>
+
+<div class="grid-2" style="margin-bottom: 2.5rem;">
+  {% for key, bp in blueprints.items() %}
+  <div class="card" style="padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; border-top: 4px solid #6366f1;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+        <span class="badge" style="background: #e0e7ff; color: #4338ca; font-weight: 700;">{{ bp.subject|upper }}</span>
+        <span style="font-size: 0.85rem; font-weight: 700; color: #475569;">⏱️ เวลาสอบ {{ bp.time_limit_min }} นาที</span>
+      </div>
+      <h3 style="font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; color: var(--text-main);">{{ bp.title }}</h3>
+      <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">
+        {{ bp.description }}
+      </p>
+      <div style="background: #f8fafc; padding: 0.75rem; border-radius: 8px; font-size: 0.82rem; color: #475569; margin-bottom: 1.25rem;">
+        <div>• คะแนนเต็ม: <strong>{{ bp.max_score }} คะแนน</strong></div>
+        <div>• เป้าหมายความเร็ว: <strong>{{ bp.pace_target_min }} นาที / ข้อ</strong></div>
+      </div>
+    </div>
+    
+    <button type="button" class="btn btn-primary" style="width: 100%; padding: 0.65rem; font-weight: 700;" onclick="startExam('{{ bp.id }}')">
+      🚀 เริ่มจับเวลาสอบจริง ➔
+    </button>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Past Mock Exam Attempts History -->
+<h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem;">📈 ประวัติการจำลองสอบที่ผ่านมา</h2>
+
+{% if history %}
+<div class="card" style="padding: 0; overflow-x: auto;">
+  <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left;">
+    <thead>
+      <tr style="background: #f8fafc; border-bottom: 1.5px solid var(--border-color); color: #475569;">
+        <th style="padding: 0.85rem 1rem;">ชุดข้อสอบ</th>
+        <th style="padding: 0.85rem 1rem;">คะแนนที่ได้</th>
+        <th style="padding: 0.85rem 1rem;">ความแม่นยำ</th>
+        <th style="padding: 0.85rem 1rem;">เวลาที่ใช้</th>
+        <th style="padding: 0.85rem 1rem;">วันที่ทำ</th>
+        <th style="padding: 0.85rem 1rem; text-align: right;">รายงาน</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for h in history %}
+      <tr style="border-bottom: 1px solid var(--border-color);">
+        <td style="padding: 0.85rem 1rem; font-weight: 600;">{{ h.title }}</td>
+        <td style="padding: 0.85rem 1rem; font-weight: 700; color: #4f46e5;">{{ h.total_score }} / {{ h.max_score }}</td>
+        <td style="padding: 0.85rem 1rem;">
+          <span class="badge {% if h.score_percent >= 60 %}badge-tier-A{% else %}badge-tier-C{% endif %}">
+            {{ h.score_percent }}% ({{ h.correct_count }}/{{ h.total_questions }} ข้อ)
+          </span>
+        </td>
+        <td style="padding: 0.85rem 1rem; color: #64748b;">{{ h.time_spent_min }} นาที</td>
+        <td style="padding: 0.85rem 1rem; color: #64748b; font-size: 0.82rem;">{{ h.completed_at }}</td>
+        <td style="padding: 0.85rem 1rem; text-align: right;">
+          <a href="/mock-exam/{{ h.session_id }}/report" class="btn btn-outline" style="padding: 0.3rem 0.7rem; font-size: 0.8rem;">
+            ดูผลวิเคราะห์ ➔
+          </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="card" style="text-align: center; padding: 2.5rem; color: #64748b;">
+  <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📝</div>
+  <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem;">ยังไม่มีประวัติการจำลองสอบ</h3>
+  <p style="font-size: 0.88rem; margin-bottom: 1rem;">กดเลือกชุดข้อสอบด้านบนเพื่อเริ่มการสอบครั้งแรก</p>
+</div>
+{% endif %}
+
+<script>
+async function startExam(examType) {
+  if (!confirm("คุณพร้อมที่จะเริ่มจำลองสอบจับเวลาจริงแล้วใช่หรือไม่? (ระบบจะเริ่มนับเวลาทันที)")) {
+    return;
+  }
+  try {
+    const res = await fetch("/api/mock-exam/start", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ exam_type: examType })
+    });
+    const data = await res.json();
+    if (data.session_id) {
+      window.location.href = `/mock-exam/${data.session_id}`;
+    }
+  } catch (err) {
+    alert("เกิดข้อผิดพลาดในการเริ่มสอบ กรุณาลองใหม่อีกครั้ง");
+  }
+}
+</script>
+{% endblock %}

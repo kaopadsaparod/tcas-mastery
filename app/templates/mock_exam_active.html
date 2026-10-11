@@ -1,0 +1,363 @@
+{% extends "base.html" %}
+
+{% block title %}ห้องสอบ: {{ session.title }} • TCAS Mastery{% endblock %}
+
+{% block content %}
+<!-- Exam Top Sticky Banner -->
+<div style="position: sticky; top: 1rem; z-index: 100; background: #0f172a; color: white; padding: 0.85rem 1.5rem; border-radius: var(--radius); margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <div>
+    <span class="badge" style="background: #334155; color: #94a3b8; font-size: 0.75rem;">LIVE EXAM</span>
+    <h2 style="font-size: 1.1rem; font-weight: 700; margin: 0.2rem 0 0 0; color: white;">
+      {{ session.title }}
+    </h2>
+  </div>
+
+  <div style="display: flex; align-items: center; gap: 1.5rem;">
+    <!-- Progress Indicator -->
+    <div style="font-size: 0.85rem; color: #cbd5e1;">
+      ตอบแล้ว: <strong id="answeredCount" style="color: #38bdf8;">0</strong> / {{ session.total_questions }} ข้อ
+    </div>
+
+    <!-- Countdown Timer -->
+    <div style="background: #1e293b; padding: 0.4rem 1rem; border-radius: 8px; border: 1.5px solid #334155; text-align: center;">
+      <span style="font-size: 0.75rem; color: #94a3b8; display: block;">เวลาที่เหลือ</span>
+      <span id="timerDisplay" style="font-family: monospace; font-size: 1.25rem; font-weight: 800; color: #38bdf8;">
+        --:--
+      </span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="button" class="btn btn-primary" style="background: #ef4444; border-color: #dc2626; padding: 0.5rem 1.2rem; font-weight: 700;" onclick="confirmSubmitExam()">
+      🛑 ส่งข้อสอบ
+    </button>
+  </div>
+</div>
+
+<!-- Main Exam Body -->
+<div style="display: grid; grid-template-columns: 1fr 300px; gap: 1.5rem; align-items: start;">
+  
+  <!-- Left Column: Current Question Viewer -->
+  <div class="card" style="padding: 1.75rem; min-height: 480px; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.75rem;">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <h3 id="questionHeader" style="font-size: 1.25rem; font-weight: 800; margin: 0; color: var(--text-main);">
+            ข้อที่ 1
+          </h3>
+          <span id="questionTopicBadge" class="badge" style="background: #f1f5f9; color: #475569;">
+            physics.kinematics.1d
+          </span>
+          <span id="questionScoreBadge" class="badge" style="background: #e0e7ff; color: #4338ca;">
+            3.0 คะแนน
+          </span>
+        </div>
+
+        <div>
+          <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer; color: #b45309; font-weight: 600;">
+            <input type="checkbox" id="flagCheckbox" onchange="toggleFlagCurrentQuestion()">
+            <span>🚩 ปักหมุดไว้ทบทวน</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Stem Content -->
+      <div id="questionStem" style="font-size: 1.05rem; line-height: 1.7; color: var(--text-main); margin-bottom: 1.5rem;">
+        กำลังโหลดข้อสอบ...
+      </div>
+
+      <!-- Answer Input Area -->
+      <div id="answerArea" style="margin-bottom: 1.5rem;">
+        <!-- Injected via JavaScript based on answer_type -->
+      </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1.5rem;">
+      <button type="button" id="prevBtn" class="btn btn-outline" onclick="goToQuestion(currentQuestionIndex - 1)">
+        ◀ ข้อก่อนหน้า
+      </button>
+      <span style="font-size: 0.85rem; color: #64748b;">
+        ข้อ <span id="currentNumDisplay">1</span> จาก {{ session.total_questions }}
+      </span>
+      <button type="button" id="nextBtn" class="btn btn-primary" onclick="goToQuestion(currentQuestionIndex + 1)">
+        ข้อถัดไป ▶
+      </button>
+    </div>
+  </div>
+
+  <!-- Right Column: Question Palette Drawer -->
+  <div class="card" style="padding: 1.25rem;">
+    <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text-main);">
+      🗺️ ผังข้อสอบทั้งหมด
+    </h4>
+
+    <!-- Legend -->
+    <div style="display: flex; gap: 0.75rem; font-size: 0.75rem; color: #64748b; margin-bottom: 1rem; flex-wrap: wrap;">
+      <span style="display: flex; align-items: center; gap: 0.25rem;">
+        <span style="width: 10px; height: 10px; border-radius: 3px; background: #22c55e;"></span> ตอบแล้ว
+      </span>
+      <span style="display: flex; align-items: center; gap: 0.25rem;">
+        <span style="width: 10px; height: 10px; border-radius: 3px; background: #eab308;"></span> ปักหมุด
+      </span>
+      <span style="display: flex; align-items: center; gap: 0.25rem;">
+        <span style="width: 10px; height: 10px; border-radius: 3px; background: #f1f5f9; border: 1px solid #cbd5e1;"></span> ยังไม่ตอบ
+      </span>
+    </div>
+
+    <!-- Number Palette Grid -->
+    <div id="paletteGrid" style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.4rem;">
+      <!-- Generated via JS -->
+    </div>
+
+    <!-- Quick Submit Card -->
+    <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-color); text-align: center;">
+      <button type="button" class="btn btn-primary" style="width: 100%; padding: 0.5rem; font-weight: 700;" onclick="confirmSubmitExam()">
+        ตรวจและส่งข้อสอบ ➔
+      </button>
+      <div style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">
+        บันทึกความคืบหน้าอัตโนมัติ
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Embed Question Data and Session State -->
+<script>
+const SESSION_ID = "{{ session.session_id }}";
+const TIME_LIMIT_MIN = {{ session.time_limit_min }};
+const QUESTIONS = {{ questions|tojson }};
+let userAnswers = {{ session.answers|tojson }};
+let flaggedQuestions = {{ session.flagged|tojson }};
+let currentQuestionIndex = 0;
+let timeSpentSec = {{ session.time_spent_min }} * 60;
+let remainingSec = Math.max(0, (TIME_LIMIT_MIN * 60) - timeSpentSec);
+
+// Timer loop
+const timerInterval = setInterval(() => {
+  remainingSec--;
+  timeSpentSec++;
+
+  const min = Math.floor(remainingSec / 60);
+  const sec = remainingSec % 60;
+  const disp = document.getElementById("timerDisplay");
+  disp.textContent = `${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+
+  if (remainingSec <= 300) {
+    disp.style.color = "#f87171"; // Red warning when under 5 min
+  }
+
+  if (remainingSec <= 0) {
+    clearInterval(timerInterval);
+    alert("หมดเวลาสอบแล้ว! ระบบจะทำการส่งข้อสอบของคุณโดยอัตโนมัติ");
+    submitExam();
+  }
+}, 1000);
+
+// Auto-save every 30 seconds
+setInterval(() => {
+  saveProgress();
+}, 30000);
+
+async function saveProgress() {
+  try {
+    await fetch(`/api/mock-exam/${SESSION_ID}/save`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        answers: userAnswers,
+        flagged: flaggedQuestions,
+        time_spent_min: timeSpentSec / 60
+      })
+    });
+  } catch (err) {
+    console.error("Auto-save failed", err);
+  }
+}
+
+function updateAnsweredCount() {
+  const count = Object.keys(userAnswers).filter(k => userAnswers[k] && userAnswers[k].trim() !== "").length;
+  document.getElementById("answeredCount").textContent = count;
+}
+
+function renderPalette() {
+  const grid = document.getElementById("paletteGrid");
+  grid.innerHTML = "";
+
+  QUESTIONS.forEach((q, idx) => {
+    const num = q.number;
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = num;
+    btn.style.padding = "0.45rem 0";
+    btn.style.fontSize = "0.85rem";
+    btn.style.fontWeight = "700";
+    btn.style.borderRadius = "6px";
+    btn.style.cursor = "pointer";
+    btn.style.border = (idx === currentQuestionIndex) ? "2px solid #2563eb" : "1px solid #cbd5e1";
+
+    const hasAnswer = userAnswers[String(num)] && userAnswers[String(num)].trim() !== "";
+    const isFlagged = flaggedQuestions.includes(num);
+
+    if (isFlagged) {
+      btn.style.background = "#fef08a";
+      btn.style.color = "#854d0e";
+    } else if (hasAnswer) {
+      btn.style.background = "#dcfce7";
+      btn.style.color = "#166534";
+    } else {
+      btn.style.background = "#f8fafc";
+      btn.style.color = "#475569";
+    }
+
+    btn.onclick = () => goToQuestion(idx);
+    grid.appendChild(btn);
+  });
+}
+
+function goToQuestion(idx) {
+  if (idx < 0 || idx >= QUESTIONS.length) return;
+  currentQuestionIndex = idx;
+  const q = QUESTIONS[idx];
+  const numStr = String(q.number);
+
+  document.getElementById("questionHeader").textContent = `ข้อที่ ${q.number}`;
+  document.getElementById("questionTopicBadge").textContent = q.topic;
+  document.getElementById("questionScoreBadge").textContent = `${q.score} คะแนน`;
+  document.getElementById("currentNumDisplay").textContent = q.number;
+  document.getElementById("questionStem").innerHTML = q.stem.replace(/\n/g, "<br>");
+
+  document.getElementById("prevBtn").disabled = (idx === 0);
+  document.getElementById("nextBtn").disabled = (idx === QUESTIONS.length - 1);
+
+  // Flag state
+  document.getElementById("flagCheckbox").checked = flaggedQuestions.includes(q.number);
+
+  // Render Answer Area
+  const area = document.getElementById("answerArea");
+  area.innerHTML = "";
+
+  if (q.answer_type === "single_choice" && q.options) {
+    q.options.forEach(opt => {
+      const label = document.createElement("label");
+      label.className = "option-item";
+      label.style.display = "flex";
+      label.style.alignItems = "center";
+      label.style.gap = "0.75rem";
+      label.style.cursor = "pointer";
+      label.style.padding = "0.6rem 0.85rem";
+      label.style.borderRadius = "6px";
+      label.style.border = "1.5px solid #cbd5e1";
+      label.style.marginBottom = "0.5rem";
+
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = `ans_${q.number}`;
+      radio.value = opt.id;
+      if (userAnswers[numStr] && userAnswers[numStr].toLowerCase() === opt.id.toLowerCase()) {
+        radio.checked = true;
+        label.style.background = "#eff6ff";
+        label.style.borderColor = "#3b82f6";
+      }
+
+      radio.onchange = () => {
+        userAnswers[numStr] = opt.id;
+        updateAnsweredCount();
+        renderPalette();
+      };
+
+      label.appendChild(radio);
+      const span = document.createElement("span");
+      span.textContent = `${opt.id}. ${opt.text}`;
+      label.appendChild(span);
+      area.appendChild(label);
+    });
+  } else {
+    // Numeric input
+    const wrap = document.createElement("div");
+    wrap.style.display = "flex";
+    wrap.style.alignItems = "center";
+    wrap.style.gap = "0.5rem";
+
+    const input = document.createElement("input");
+    input.type = "text";
+    input.className = "option-item";
+    input.placeholder = "กรอกคำตอบตัวเลข (เช่น 25)";
+    input.style.width = "220px";
+    input.style.fontSize = "1rem";
+    input.style.padding = "0.5rem 0.75rem";
+    input.value = userAnswers[numStr] || "";
+
+    input.oninput = (e) => {
+      userAnswers[numStr] = e.target.value.trim();
+      updateAnsweredCount();
+      renderPalette();
+    };
+
+    wrap.appendChild(input);
+    if (q.unit) {
+      const uSpan = document.createElement("span");
+      uSpan.textContent = q.unit;
+      uSpan.style.fontWeight = "600";
+      wrap.appendChild(uSpan);
+    }
+    area.appendChild(wrap);
+  }
+
+  // Auto-render KaTeX if available
+  if (window.renderMathInElement) {
+    renderMathInElement(document.getElementById("questionStem"), {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false }
+      ]
+    });
+  }
+
+  renderPalette();
+}
+
+function toggleFlagCurrentQuestion() {
+  const qNum = QUESTIONS[currentQuestionIndex].number;
+  if (document.getElementById("flagCheckbox").checked) {
+    if (!flaggedQuestions.includes(qNum)) flaggedQuestions.push(qNum);
+  } else {
+    flaggedQuestions = flaggedQuestions.filter(x => x !== qNum);
+  }
+  renderPalette();
+}
+
+function confirmSubmitExam() {
+  const answered = Object.keys(userAnswers).filter(k => userAnswers[k] && userAnswers[k].trim() !== "").length;
+  const unanswered = QUESTIONS.length - answered;
+  let msg = `คุณตอบไปแล้ว ${answered} ข้อ (ยังไม่ตอบ ${unanswered} ข้อ)\nคุณแน่ใจว่าต้องการส่งข้อสอบเพื่อดูผลวิเคราะห์หรือไม่?`;
+  if (confirm(msg)) {
+    submitExam();
+  }
+}
+
+async function submitExam() {
+  clearInterval(timerInterval);
+  try {
+    const res = await fetch(`/api/mock-exam/${SESSION_ID}/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        answers: userAnswers,
+        time_spent_min: timeSpentSec / 60
+      })
+    });
+    const data = await res.json();
+    if (data.success) {
+      window.location.href = `/mock-exam/${SESSION_ID}/report`;
+    }
+  } catch (err) {
+    alert("เกิดข้อผิดพลาดในการส่งข้อสอบ กรุณาลองใหม่อีกครั้ง");
+  }
+}
+
+// Initial render
+goToQuestion(0);
+updateAnsweredCount();
+</script>
+{% endblock %}

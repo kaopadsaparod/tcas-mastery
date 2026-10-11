@@ -183,6 +183,12 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
     # Synchronize actual spaced repetition interval from queue database
     grade_result.next_review_interval_days = queue_record["interval_days"]
 
+    # Generate 5-step Pedagogical Tutor breakdown
+    from app.services.tutor_engine import build_tutor_breakdown
+    tutor_breakdown = build_tutor_breakdown(
+        question=q, user_answer=req.user_answer, error_tag=grade_result.error_tag
+    )
+
     # Generate AI copy prompt
     ai_prompt = generate_ai_tutor_prompt(
         question=q, user_answer=req.user_answer, error_tag=grade_result.error_tag
@@ -193,4 +199,14 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
     res_dict["next_review_at"] = queue_record["next_review_at"]
     res_dict["queue_priority"] = queue_record["priority"]
     res_dict["ai_prompt"] = ai_prompt
+    res_dict["tutor_breakdown"] = tutor_breakdown
     return JSONResponse(res_dict)
+
+
+@router.get("/api/tutor/breakdown/{question_id}")
+async def api_tutor_breakdown(question_id: str):
+    q = content_loader.get_question_by_id(question_id)
+    if not q:
+        raise HTTPException(status_code=404, detail="Question not found")
+    from app.services.tutor_engine import build_tutor_breakdown
+    return JSONResponse(build_tutor_breakdown(q))

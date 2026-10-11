@@ -7,12 +7,13 @@
   verification:
     tier: D
     verified_by: user_imported
+    status: verified
     notes: นำเข้าผ่านระบบ Web Import Studio (รอการตรวจสอบ)
   skills:
     primary: general_problem_solving
     secondary: []
   stem: วัตถุเคลื่อนที่ด้วยความเร็ว $10\text{ m/s}$ (อ้างอิงจากชีต IG)
-  image_url: /static/assets/pages/980d66539044_page_1.png
+  image_url: /static/assets/pages/9cdc20c21fad_page_1.png
   answer:
     type: single_choice
     options:
@@ -23,6 +24,7 @@
       text: 20 m
       correct: false
     tolerance: 0.02
+    require_unit: false
   hints:
   - level: 1
     text: ทบทวนข้อมูลที่โจทย์กำหนดและสิ่งที่ต้องหา

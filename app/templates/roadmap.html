@@ -146,8 +146,20 @@
 
           <!-- Progress Bar & Target -->
           <div style="margin-top: 0.75rem; background: #f8fafc; padding: 0.85rem 1rem; border-radius: 8px; border: 1px solid var(--border-color);">
-            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem;">
-              <span>ความเชี่ยวชาญ (Honest Mastery): <strong>{{ t.current_mastery_pct }}%</strong> (ทำไป {{ t.total_attempts }} ครั้ง)</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <span>ความเชี่ยวชาญ: <strong>{{ t.current_mastery_pct }}%</strong></span>
+                <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.5rem;">
+                  (ครั้งแรก: {{ t.first_attempt_accuracy }}% | ล่าสุด: {{ t.recent_accuracy }}%)
+                </span>
+                {% if t.sufficiency == 'not_enough_data' %}
+                  <span class="badge" style="background: #e2e8f0; color: #64748b; font-size: 0.75rem;">ยังไม่มีข้อมูลทำโจทย์</span>
+                {% elif t.mastery_confidence == 'high' %}
+                  <span class="badge" style="background: #dcfce7; color: #166534; font-size: 0.75rem;">มั่นใจสูง ({{ t.unique_questions_attempted }} ข้อ)</span>
+                {% else %}
+                  <span class="badge" style="background: #fef9c3; color: #854d0e; font-size: 0.75rem;">กำลังสะสมหลักฐาน ({{ t.unique_questions_attempted }} ข้อ)</span>
+                {% endif %}
+              </div>
               <span>เป้าหมายของคุณ: <strong>{{ t.target_score_pct }}%</strong></span>
             </div>
             
@@ -158,9 +170,11 @@
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; font-size: 0.85rem;">
               <div>
                 {% if t.is_goal_met %}
-                  <span style="color: var(--success); font-weight: 700;">✓ พิชิตเป้าหมายบทนี้แล้ว!</span>
+                  <span style="color: var(--success); font-weight: 700;">✓ พิชิตเป้าหมายบทนี้แล้ว! (มีหลักฐาน {{ t.unique_questions_attempted }} ข้อขึ้นไป)</span>
+                {% elif t.sufficiency == 'not_enough_data' %}
+                  <span style="color: var(--text-muted);">เริ่มทำข้อสอบเพื่อวัดระดับความสามารถจริง</span>
                 {% else %}
-                  <span style="color: var(--text-muted);">ยังต้องการฝึกฝนเพิ่มเติมให้ถึงเป้าหมาย</span>
+                  <span style="color: var(--text-muted);">ฝึกอีกอย่างน้อย {{ [0, 3 - t.unique_questions_attempted]|max }} ข้อใหม่เพื่อยืนยันความแม่นยำ</span>
                 {% endif %}
               </div>
               <div style="display: flex; gap: 0.5rem; align-items: center;">

@@ -48,6 +48,31 @@ async def api_list_backups():
     return JSONResponse(list_backups())
 
 
+@router.post("/api/backup/restore")
+async def api_restore_backup(req: Request):
+    payload = await req.json()
+    filename = payload.get("filename")
+    if not filename:
+        return JSONResponse({"success": False, "error": "Missing filename"}, status_code=400)
+    from app.services.backup_service import restore_backup
+    res = restore_backup(filename)
+    status_code = 200 if res.get("success") else 400
+    return JSONResponse(res, status_code=status_code)
+
+
+@router.post("/api/backup/verify")
+async def api_verify_backup(req: Request):
+    payload = await req.json()
+    filename = payload.get("filename")
+    if not filename:
+        return JSONResponse({"valid": False, "error": "Missing filename"}, status_code=400)
+    from app.config import BACKUPS_DIR
+    from app.services.backup_service import verify_backup_file
+    p = BACKUPS_DIR / filename
+    res = verify_backup_file(p)
+    return JSONResponse(res)
+
+
 @router.get("/api/system/integrity")
 async def api_check_integrity():
     return JSONResponse(check_db_integrity())

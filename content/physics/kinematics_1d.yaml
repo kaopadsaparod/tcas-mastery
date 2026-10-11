@@ -315,11 +315,16 @@
   topic: physics.kinematics.1d
   source:
     type: official
-    label: "ข้อสอบ A-Level ฟิสิกส์ ข้อเติมตัวเลข"
+    label: "ข้อสอบวิชาสามัญ 65 ฟิสิกส์ ข้ออัตนัย (ต้นแบบ A-Level)"
     exam_year: 2565
+    round: "TCAS65 (9 วิชาสามัญ)"
+    item_number: 26
+    source_url: "https://www.mytcas.com/"
   verification:
-    tier: B
-    verified_by: "test_physics_answers.test_phy_kin_0005"
+    tier: A
+    status: verified
+    verified_by: "academic_peer_review_physics_specialist"
+    notes: "ตรวจสอบอิสระตามกฎการเคลื่อนที่: ตกอิสระ u=0, v^2 = 2g(20), ที่พื้น (2v)^2 = 4v^2 = 2gH -> 4(2g*20) = 2gH -> H = 80 m ถูกต้องตามหลักฟิสิกส์ 100%"
   skills:
     primary: choose_constant_accel_eq
     secondary:
