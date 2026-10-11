@@ -98,9 +98,15 @@ class ContentLoader:
                     for pq in paper.questions:
                         qid = pq.question_id or f"{paper.id}-q{pq.number}"
                         if qid not in target_questions:
-                            target_questions[qid] = self._adapt_past_paper_question(paper, pq)
+                            adapted_q = self._adapt_past_paper_question(paper, pq)
+                            if adapted_q is not None:
+                                target_questions[qid] = adapted_q
 
-    def _adapt_past_paper_question(self, paper: PastPaper, q: Any) -> Question:
+    def _adapt_past_paper_question(self, paper: PastPaper, q: Any) -> Question | None:
+        # Gating: Question must have a real non-empty stem
+        if not q.stem or not str(q.stem).strip():
+            return None
+
         qid = q.question_id or f"{paper.id}-q{q.number}"
         ans_type = q.answer_type
         correct_ans_str = str(q.correct_answer).strip()
@@ -112,27 +118,21 @@ class ContentLoader:
                 ans_type = "numeric"
 
         if ans_type == "single_choice":
+            # Gating: Multiple choice must have authentic choice options (no dummy choices)
+            if not q.options or len(q.options) < 2:
+                return None
+
             options_list = []
-            if q.options:
-                for opt in q.options:
-                    options_list.append(
-                        ChoiceOption(
-                            id=opt.id,
-                            text=opt.text,
-                            correct=(opt.id.strip().lower() == correct_ans_str.lower()),
-                            explanation=getattr(opt, "explanation", None),
-                            error_tag=getattr(opt, "error_tag", None),
-                        )
+            for opt in q.options:
+                options_list.append(
+                    ChoiceOption(
+                        id=opt.id,
+                        text=opt.text,
+                        correct=(opt.id.strip().lower() == correct_ans_str.lower()),
+                        explanation=getattr(opt, "explanation", None),
+                        error_tag=getattr(opt, "error_tag", None),
                     )
-            else:
-                for i in range(1, 6):
-                    options_list.append(
-                        ChoiceOption(
-                            id=str(i),
-                            text=f"ตัวเลือก {i}",
-                            correct=(str(i) == correct_ans_str),
-                        )
-                    )
+                )
             ans_config = AnswerConfig(type="single_choice", options=options_list)
         else:
             ans_config = AnswerConfig(
@@ -149,25 +149,29 @@ class ContentLoader:
             summary=sol_summary,
         )
 
-        stem = q.stem or f"ข้อสอบ {paper.title} ข้อที่ {q.number} ({q.topic})"
+        # Inherit honest source and verification metadata from the past paper definition
+        source_type = getattr(paper, "source_type", None) or "simulated_blueprint"
+        tier = getattr(paper, "verification_tier", None) or "B"
+        status = getattr(paper, "verification_status", None) or "reviewed"
+        verified_by = getattr(paper, "verified_by", None) or "automated_assertion"
 
         return Question(
             id=qid,
             subject=paper.subject,
             topic=q.topic,
             source=SourceInfo(
-                type="official",
+                type=source_type,
                 label=f"{paper.title} ข้อ {q.number}",
                 exam_year=paper.year,
                 item_number=q.number,
             ),
             verification=VerificationInfo(
-                tier="A" if "blueprint" in paper.id else "B",
-                verified_by="official_answer_key",
-                status="verified",
+                tier=tier,
+                verified_by=verified_by,
+                status=status,
             ),
             skills=SkillInfo(primary=q.skill, secondary=[]),
-            stem=stem,
+            stem=q.stem,
             answer=ans_config,
             difficulty=3,
             estimated_seconds=180 if paper.subject in ["physics", "math"] else 150,
@@ -181,7 +185,12 @@ class ContentLoader:
     def get_all_questions(self, verified_only: bool = False) -> list[Question]:
         questions = list(self._questions.values())
         if verified_only:
-            return [q for q in questions if q.verification.tier in ["A", "B", "C"]]
+            return [
+                q
+                for q in questions
+                if q.verification.status in ["verified", "reviewed"]
+                and q.verification.tier in ["A", "B", "C"]
+            ]
         return questions
 
     def get_question_by_id(self, qid: str) -> Question | None:

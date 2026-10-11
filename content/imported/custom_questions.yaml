@@ -7,13 +7,13 @@
   verification:
     tier: D
     verified_by: user_imported
-    status: verified
+    status: draft
     notes: นำเข้าผ่านระบบ Web Import Studio (รอการตรวจสอบ)
   skills:
     primary: general_problem_solving
     secondary: []
   stem: วัตถุเคลื่อนที่ด้วยความเร็ว $10\text{ m/s}$ (อ้างอิงจากชีต IG)
-  image_url: /static/assets/pages/9091660ab640_page_1.png
+  image_url: /static/assets/pages/886ce7507e9d_page_1.png
   answer:
     type: single_choice
     options:

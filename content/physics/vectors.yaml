@@ -5,14 +5,12 @@
   subject: physics
   topic: physics.vectors
   source:
-    type: official
-    label: "พื้นฐานฟิสิกส์: เวกเตอร์และการรวมเวกเตอร์"
-    exam_year: 2566
-    item_number: 1
+    type: authored_drill
+    label: "แบบฝึกหัดพัฒนาทักษะพื้นฐาน: เวกเตอร์และการรวมเวกเตอร์"
   verification:
-    tier: A
+    tier: B
     verified_by: automated_assertion
-    status: verified
+    status: reviewed
   skills:
     primary: vector_addition
     secondary:
@@ -66,14 +64,12 @@
   subject: physics
   topic: physics.vectors
   source:
-    type: official
-    label: "พื้นฐานฟิสิกส์: การแตกเวกเตอร์เข้าแกนมุมฉาก"
-    exam_year: 2566
-    item_number: 2
+    type: authored_drill
+    label: "แบบฝึกหัดพัฒนาทักษะพื้นฐาน: การแตกเวกเตอร์เข้าแกนมุมฉาก"
   verification:
-    tier: A
+    tier: B
     verified_by: automated_assertion
-    status: verified
+    status: reviewed
   skills:
     primary: vector_components
     secondary:
@@ -104,14 +100,12 @@
   subject: physics
   topic: physics.vectors
   source:
-    type: official
-    label: "พื้นฐานฟิสิกส์: เวกเตอร์บอกตำแหน่งและการกระจัด"
-    exam_year: 2566
-    item_number: 3
+    type: authored_drill
+    label: "แบบฝึกหัดพัฒนาทักษะพื้นฐาน: เวกเตอร์บอกตำแหน่งและการกระจัด"
   verification:
-    tier: A
+    tier: B
     verified_by: automated_assertion
-    status: verified
+    status: reviewed
   skills:
     primary: displacement_vector
     secondary:

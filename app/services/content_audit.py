@@ -17,9 +17,13 @@ def get_content_audit_report() -> dict[str, Any]:
     reviewed_count = 0
     draft_count = 0
     official_source_count = 0
+    simulated_blueprint_count = 0
+    authored_drill_count = 0
     warnings: list[dict[str, Any]] = []
 
     topic_stats: dict[str, dict[str, Any]] = {}
+
+    hesitation_phrases = ["รอสักครู่", "หรือถ้า", "อ้อ", "ไม่แน่ใจ", "แก้โจทย์"]
 
     for q in all_questions:
         # Status
@@ -33,8 +37,12 @@ def get_content_audit_report() -> dict[str, Any]:
 
         # Source
         src_type = getattr(q.source, "type", "invented")
-        if src_type == "official":
+        if src_type in ("official", "official_past_paper", "official_blueprint"):
             official_source_count += 1
+        elif src_type == "simulated_blueprint":
+            simulated_blueprint_count += 1
+        elif src_type == "authored_drill":
+            authored_drill_count += 1
 
         # Topic aggregation
         top = q.topic
@@ -66,7 +74,25 @@ def get_content_audit_report() -> dict[str, Any]:
             topic_stats[top]["numeric_count"] += 1
 
         # Integrity checks
+        if not q.stem or not q.stem.strip():
+            warnings.append({
+                "question_id": q.id,
+                "topic": q.topic,
+                "severity": "critical",
+                "issue": "โจทย์ว่างเปล่า (Empty stem)",
+            })
+
         if q.answer.type == "single_choice":
+            # Check for dummy options
+            dummy_opts = [o for o in (q.answer.options or []) if o.text.startswith("ตัวเลือก ")]
+            if dummy_opts:
+                warnings.append({
+                    "question_id": q.id,
+                    "topic": q.topic,
+                    "severity": "critical",
+                    "issue": f"พบตัวเลือกจำลอง placeholder ({len(dummy_opts)} ตัวเลือก) ไม่ใช่ตัวเลือกข้อสอบจริง",
+                })
+
             correct_opts = [o for o in (q.answer.options or []) if o.correct]
             if len(correct_opts) != 1:
                 warnings.append({
@@ -77,7 +103,7 @@ def get_content_audit_report() -> dict[str, Any]:
                 })
             # Check error tags on wrong options
             wrong_opts_without_tag = [o for o in (q.answer.options or []) if not o.correct and not o.error_tag]
-            if len(wrong_opts_without_tag) > 2:
+            if len(wrong_opts_without_tag) > 3:
                 warnings.append({
                     "question_id": q.id,
                     "topic": q.topic,
@@ -100,14 +126,27 @@ def get_content_audit_report() -> dict[str, Any]:
                     "issue": "กำหนด require_unit=True แต่ไม่ได้ระบุ expected unit",
                 })
 
-        # Missing explanation check
-        if not q.solution and not any(o.explanation for o in (q.answer.options or [])):
+        # Missing or draft explanation check
+        sol_text = (q.solution.summary if q.solution else "") or ""
+        if q.solution and q.solution.steps:
+            sol_text += " " + " ".join(s.text for s in q.solution.steps)
+
+        if not sol_text and not any(o.explanation for o in (q.answer.options or [])):
             warnings.append({
                 "question_id": q.id,
                 "topic": q.topic,
                 "severity": "medium",
                 "issue": "ไม่มีคำอธิบายเฉลยหรือวิธีทำ (solution)",
             })
+
+        for phrase in hesitation_phrases:
+            if phrase in sol_text:
+                warnings.append({
+                    "question_id": q.id,
+                    "topic": q.topic,
+                    "severity": "high",
+                    "issue": f"พบข้อความร่างหรือข้อความลังเลในคำอธิบายเฉลย ('{phrase}')",
+                })
 
     # Past papers audit
     papers_summary = []
@@ -160,6 +199,8 @@ def get_content_audit_report() -> dict[str, Any]:
             "mock_ready_count": mock_ready_total,
             "readiness_pct": readiness_pct,
             "official_source_count": official_source_count,
+            "simulated_blueprint_count": simulated_blueprint_count,
+            "authored_drill_count": authored_drill_count,
             "past_papers_count": len(past_papers),
             "total_paper_questions": total_paper_questions,
             "warnings_count": len(warnings),

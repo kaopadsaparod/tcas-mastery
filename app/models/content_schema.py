@@ -4,7 +4,17 @@ from pydantic import BaseModel, Field
 
 
 class SourceInfo(BaseModel):
-    type: Literal["official", "textbook", "invented", "exam_prep"] = "invented"
+    type: Literal[
+        "official_past_paper",
+        "official_blueprint",
+        "simulated_blueprint",
+        "authored_drill",
+        "official",
+        "textbook",
+        "invented",
+        "exam_prep",
+        "community",
+    ] = "invented"
     label: str
     exam_year: int | None = None
     round: str | None = None
@@ -16,7 +26,7 @@ class VerificationInfo(BaseModel):
     tier: Literal["A", "B", "C", "D", "E"] = "B"
     verified_by: str = "automated_assertion"
     verifier: str | None = None
-    status: Literal["draft", "reviewed", "verified"] = "verified"
+    status: Literal["draft", "reviewed", "verified"] = "draft"
     notes: str | None = None
 
 
@@ -129,4 +139,15 @@ class PastPaper(BaseModel):
     subject: str
     year: int
     time_limit_min: int = 90
+    source_type: Literal[
+        "official_past_paper",
+        "official_blueprint",
+        "simulated_blueprint",
+        "authored_drill",
+        "official",
+        "invented",
+    ] = "simulated_blueprint"
+    verification_tier: Literal["A", "B", "C", "D"] = "B"
+    verification_status: Literal["draft", "reviewed", "verified"] = "reviewed"
+    verified_by: str = "automated_assertion"
     questions: list[PastPaperQuestion]

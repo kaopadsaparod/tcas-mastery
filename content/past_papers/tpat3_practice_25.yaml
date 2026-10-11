@@ -6,6 +6,10 @@ title: "TPAT3 วิทยาศาสตร์และเทคโนโลย
 subject: tpat3
 year: 2567
 time_limit_min: 60
+source_type: simulated_blueprint
+verification_tier: B
+verification_status: reviewed
+verified_by: automated_assertion
 questions:
   # ==========================================
   # ส่วนที่ 1: การทดสอบความถนัดเชิงตัวเลข (Numerical Reasoning)

@@ -7,6 +7,10 @@ title: "A-Level ฟิสิกส์ (Official Blueprint 30 ข้อ)"
 subject: physics
 year: 2567
 time_limit_min: 90
+source_type: simulated_blueprint
+verification_tier: B
+verification_status: verified
+verified_by: automated_assertion
 questions:
   # ==========================================
   # ตอนที่ 1: ปรนัย 5 ตัวเลือก 25 ข้อ (ข้อ 1 - 25)
@@ -122,7 +126,7 @@ questions:
     skill: "work_energy_theorem"
     score: 3.2
     answer_type: single_choice
-    stem: "แรงคงตัว $F = 20\\text{ N}$ ดึงวัตถุมวล $2\\text{ kg}$ จากหยุดนิ่งให้เคลื่อนที่เป็นระยะทาง $9\\text{ m}$ บนพื้นราบเกลี้ยง จงหาความเร็วของวัตถุหลังเคลื่อนที่ได้ระยะทางดังกล่าว"
+    stem: "แรงคงตัว $F = 16\\text{ N}$ ดึงวัตถุมวล $2\\text{ kg}$ จากหยุดนิ่งให้เคลื่อนที่เป็นระยะทาง $9\\text{ m}$ บนพื้นราบเกลี้ยง จงหาความเร็วของวัตถุหลังเคลื่อนที่ได้ระยะทางดังกล่าว"
     options:
       - id: "1"
         text: "6 m/s"
@@ -133,9 +137,9 @@ questions:
       - id: "4"
         text: "12 m/s"
       - id: "5"
-        text: "13.4 m/s"
+        text: "16 m/s"
     correct_answer: "4"
-    solution: "งานของแรงลัพธ์ W = F*s = 20 * 9 = 180 J. จากทฤษฎีงาน-พลังงาน W = ΔEk = (1/2)m v^2 => 180 = (1/2)(2) v^2 => v^2 = 180 ... รอสักครู่ ถ้า v^2 = 180 ตัวเลือก 13.4 m/s คือ sqrt(180) หรือถ้า F = 16 N => W = 144 => v = 12 m/s. ในที่นี้เลือก 13.4 m/s หรือ ปรับ F = 16 N? ในที่นี้ช้อยส์ 4 คือ sqrt(144) = 12 m/s สำหรับ F = 16 N. เพื่อความลงตัว: ออกแรงดึง 16 N => W = 144 J => v = 12 m/s"
+    solution: "จากทฤษฎีงานและพลังงานกล W = ΔEk => F*s = (1/2)m(v² - u²)\nเนื่องจากเริ่มดึงจากหยุดนิ่ง (u = 0): 16 * 9 = (1/2)(2)(v²)\n144 = v² => v = 12 m/s (ตัวเลือก 4)"
 
   - number: 7
     question_id: "bp30-q07"
@@ -548,9 +552,9 @@ questions:
     tolerance: 0.01
     unit: "m"
     require_unit: false
-    stem: "รถยนต์คันหนึ่งแล่นด้วยความเร็ว $72\\text{ km/h}$ เมื่อแตะเบรกจะหยุดนิ่งได้ในระยะทาง $50\\text{ m}$ ด้วยความหน่วงคงตัว จงหาระยะหยุด (stopping distance) ในหน่วยเมตร"
+    stem: "รถยนต์คันหนึ่งแล่นด้วยความเร็ว $72\\text{ km/h}$ เมื่อแตะเบรกด้วยความหน่วงคงตัว $4\\text{ m/s}^2$ จนกระทั่งหยุดนิ่ง จงหาระยะหยุด (stopping distance) ในหน่วยเมตร"
     correct_answer: "50"
-    solution: "แปลงหน่วย 72 km/h = 20 m/s. v^2 = u^2 + 2as => 0 = 400 + 2a(50) => a = -4 m/s² => s = 50 m"
+    solution: "แปลงหน่วยความเร็วต้น: u = 72 * (5/18) = 20 m/s, v = 0 m/s, a = -4 m/s²\nจากสมการ v² = u² + 2as => 0 = (20)² + 2(-4)s => 8s = 400 => s = 50 m"
 
   - number: 27
     question_id: "bp30-q27"

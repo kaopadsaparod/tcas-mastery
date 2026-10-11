@@ -5,14 +5,12 @@
   subject: math
   topic: math.algebra.basics
   source:
-    type: official
-    label: "พื้นฐานคณิตศาสตร์: การแก้สมการเชิงเส้น"
-    exam_year: 2566
-    item_number: 1
+    type: authored_drill
+    label: "แบบฝึกหัดพัฒนาทักษะพื้นฐาน: การแก้สมการเชิงเส้น"
   verification:
-    tier: A
+    tier: B
     verified_by: automated_assertion
-    status: verified
+    status: reviewed
   skills:
     primary: linear_equations
     secondary:
@@ -66,14 +64,12 @@
   subject: math
   topic: math.algebra.basics
   source:
-    type: official
-    label: "พื้นฐานคณิตศาสตร์: การแยกตัวประกอบพหุนามกำลังสอง"
-    exam_year: 2566
-    item_number: 2
+    type: authored_drill
+    label: "แบบฝึกหัดพัฒนาทักษะพื้นฐาน: การแยกตัวประกอบพหุนามกำลังสอง"
   verification:
-    tier: A
+    tier: B
     verified_by: automated_assertion
-    status: verified
+    status: reviewed
   skills:
     primary: quadratic_factoring
     secondary:

@@ -3,6 +3,10 @@ title: TPAT3 Official Blueprint (70 ข้อ ฉบับสมบูรณ์)
 subject: tpat3
 year: 2567
 time_limit_min: 180
+source_type: simulated_blueprint
+verification_tier: B
+verification_status: verified
+verified_by: automated_assertion
 questions:
 - number: 1
   question_id: tpat3-70-q01
@@ -298,9 +302,8 @@ questions:
     text: 32 cm
   - id: '5'
     text: 36 cm
-  correct_answer: '1'
-  solution: 'แต่ละครั้งเหลือ 2/3 เดิม: 81 * (2/3)^3 = 81 * (8/27) = 3 * 8 = 24 cm...
-    อ้อ 81*(8/27)=24 cm (ตอบ 24)'
+  correct_answer: '2'
+  solution: "ในแต่ละขั้นตอน ลวดจะเหลือความยาว 2/3 ของความยาวก่อนหน้า: ความยาวที่เหลือหลังตัด 3 ครั้ง = 81 * (2/3)³ = 81 * (8/27) = 3 * 8 = 24 cm (ตัวเลือก 2)"
 - number: 15
   question_id: tpat3-70-q15
   topic: tpat3.quantitative
@@ -382,9 +385,8 @@ questions:
     text: ด้านล่าง
   - id: '5'
     text: ด้านขวา
-  correct_answer: '1'
-  solution: หมุนขวา 90° หน้าซ้ายไปอยู่หน้าตรงหน้า จากนั้นหมุนคว่ำลงข้างหน้า 90° หน้าที่อยู่ด้านหน้าจะกลายเป็นด้านล่าง
-    หรือถ้าแกนหมุนคงที่จะพบว่าย้ายไปหน้าด้านหน้า
+  correct_answer: '4'
+  solution: "ขั้นตอนที่ 1: หมุนลูกบาศก์ไปทางขวา 90° รอบแกนดิ่ง หน้าที่เดิมอยู่ 'ด้านซ้าย' จะหมุนมาอยู่ที่ 'ด้านหน้า'\nขั้นตอนที่ 2: หมุนคว่ำลงข้างหน้าอีก 90° รอบแกนนอน หน้าที่เพิ่งย้ายมาอยู่ 'ด้านหน้า' จะพลิกคว่ำลงไปอยู่ 'ด้านล่าง' (ตัวเลือก 4)"
 - number: 19
   question_id: tpat3-70-q19
   topic: tpat3.spatial_relations
