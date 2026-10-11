@@ -28,15 +28,22 @@ async def api_submit_formula_recall(req: FormulaRecallSubmitRequest):
     q = card.recall_questions[req.question_index]
     is_correct = req.user_answer.strip().lower() == q["answer"].strip().lower()
 
+    from datetime import datetime, timedelta, timezone
+
+    now = datetime.now(timezone.utc)
+    interval_days = 3 if is_correct else 1
+    next_review_at = (now + timedelta(days=interval_days)).strftime("%Y-%m-%d %H:%M:%S")
+
     with get_db() as conn:
         cursor = conn.cursor()
         cursor.execute(
             """
-            INSERT INTO formula_reviews (formula_id, subject, correct_count, wrong_count, last_reviewed_at)
-            VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+            INSERT INTO formula_reviews (formula_id, subject, correct_count, wrong_count, next_review_at, last_reviewed_at)
+            VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
             ON CONFLICT(formula_id) DO UPDATE SET
                 correct_count = correct_count + ?,
                 wrong_count = wrong_count + ?,
+                next_review_at = excluded.next_review_at,
                 last_reviewed_at = CURRENT_TIMESTAMP
         """,
             (
@@ -44,6 +51,7 @@ async def api_submit_formula_recall(req: FormulaRecallSubmitRequest):
                 card.subject,
                 1 if is_correct else 0,
                 0 if is_correct else 1,
+                next_review_at,
                 1 if is_correct else 0,
                 0 if is_correct else 1,
             ),

@@ -193,54 +193,116 @@ def init_db() -> None:
         );
         """)
 
-        # Seed initial topic priorities if empty
-        cursor.execute("SELECT COUNT(*) as cnt FROM topic_priorities;")
-        if cursor.fetchone()["cnt"] == 0:
-            default_topics = [
-                (
-                    "physics.kinematics.1d",
-                    "physics",
-                    "การเคลื่อนที่แนวตรง (1D Kinematics)",
-                    1,
-                    85.0,
-                    "หัวใจสำคัญของกลศาสตร์ ต้องทำให้แม่นยำก่อนบทอื่น",
-                    1,
-                ),
-                (
-                    "physics.forces_energy",
-                    "physics",
-                    "แรง กฎนิวตัน และงาน-พลังงาน",
-                    1,
-                    80.0,
-                    "บทที่ออกข้อสอบ A-Level สัดส่วนสูงที่สุด",
-                    2,
-                ),
-                (
-                    "math.algebra.functions",
-                    "math",
-                    "พีชคณิตและฟังก์ชัน",
-                    2,
-                    75.0,
-                    "พื้นฐานสำคัญของคณิตประยุกต์ 1",
-                    3,
-                ),
-                (
-                    "tpat3.quantitative",
-                    "tpat3",
-                    "ความถนัดเชิงปริมาณและกลศาสตร์ TPAT3",
-                    1,
-                    80.0,
-                    "สอบช่วงปลาย ม.ค. ต้องเก็บก่อน A-Level",
-                    4,
-                ),
-            ]
-            cursor.executemany(
-                """
-                INSERT INTO topic_priorities (topic_id, subject, topic_name, priority_level, target_score_pct, notes, order_index)
-                VALUES (?, ?, ?, ?, ?, ?, ?);
-            """,
-                default_topics,
-            )
+        # Seed and ensure essential topic priorities exist
+        default_topics = [
+            (
+                "physics.vectors",
+                "physics",
+                "เวกเตอร์และการแตกแรงพื้นฐาน",
+                1,
+                80.0,
+                "พื้นฐานสำคัญที่สุดของฟิสิกส์ทุกบท (Prerequisite ของ Kinematics & แรง)",
+                1,
+            ),
+            (
+                "physics.kinematics.1d",
+                "physics",
+                "การเคลื่อนที่แนวตรง (1D Kinematics)",
+                1,
+                85.0,
+                "หัวใจสำคัญของกลศาสตร์ ต้องทำให้แม่นยำก่อนบทอื่น",
+                2,
+            ),
+            (
+                "physics.forces_energy",
+                "physics",
+                "แรง กฎนิวตัน และงาน-พลังงาน",
+                1,
+                80.0,
+                "บทที่ออกข้อสอบ A-Level สัดส่วนสูงที่สุด",
+                3,
+            ),
+            (
+                "physics.waves",
+                "physics",
+                "คลื่น แสง และเสียง",
+                2,
+                75.0,
+                "ออกสอบ A-Level สม่ำเสมอ",
+                4,
+            ),
+            (
+                "physics.electricity",
+                "physics",
+                "ไฟฟ้าและแม่เหล็ก",
+                2,
+                75.0,
+                "สัดส่วนคะแนนสูงในข้อสอบฟิสิกส์",
+                5,
+            ),
+            (
+                "physics.modern_physics",
+                "physics",
+                "ฟิสิกส์ยุคใหม่และนิวเคลียร์",
+                2,
+                80.0,
+                "บทเก็บคะแนนเร็ว เนื้อหาตรงไปตรงมา",
+                6,
+            ),
+            (
+                "math.algebra.basics",
+                "math",
+                "พีชคณิตพื้นฐานและการแยกตัวประกอบ",
+                1,
+                80.0,
+                "พื้นฐานสมการของคณิตและฟิสิกส์ (Prerequisite ของ Functions)",
+                7,
+            ),
+            (
+                "math.algebra.functions",
+                "math",
+                "พีชคณิตและฟังก์ชัน",
+                2,
+                75.0,
+                "พื้นฐานสำคัญของคณิตประยุกต์ 1",
+                8,
+            ),
+            (
+                "tpat3.quantitative",
+                "tpat3",
+                "ความถนัดเชิงปริมาณและกลศาสตร์ TPAT3",
+                1,
+                80.0,
+                "สอบช่วงปลาย ม.ค. ต้องเก็บก่อน A-Level",
+                9,
+            ),
+            (
+                "tpat3.spatial_relations",
+                "tpat3",
+                "มิติสัมพันธ์และการมองภาพ 3 มิติ",
+                1,
+                85.0,
+                "พาร์ทเก็บคะแนนหลักของ TPAT3",
+                10,
+            ),
+            (
+                "tpat3.engineering_mechanics",
+                "tpat3",
+                "กลศาสตร์เชิงกลและฟิสิกส์วิศวกรรม",
+                1,
+                80.0,
+                "วิเคราะห์ระบบกลไก คาน รอก เฟือง",
+                11,
+            ),
+        ]
+        cursor.executemany(
+            """
+            INSERT INTO topic_priorities (topic_id, subject, topic_name, priority_level, target_score_pct, notes, order_index)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(topic_id) DO NOTHING;
+        """,
+            default_topics,
+        )
 
         # Indexes for query performance
         cursor.execute(

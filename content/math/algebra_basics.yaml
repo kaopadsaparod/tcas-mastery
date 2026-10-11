@@ -1,0 +1,100 @@
+# คลังโจทย์บทพื้นฐาน: พีชคณิตพื้นฐานและการแก้สมการ (Math Algebra Basics)
+# หัวข้อ prerequisite สำคัญสำหรับ ฟังก์ชัน พีชคณิตขั้นสูง และ TPAT3 ความถนัดเชิงปริมาณ
+
+- id: mat-alg-base-0001
+  subject: math
+  topic: math.algebra.basics
+  source:
+    type: official
+    label: "พื้นฐานคณิตศาสตร์: การแก้สมการเชิงเส้น"
+    exam_year: 2566
+    item_number: 1
+  verification:
+    tier: A
+    verified_by: automated_assertion
+    status: verified
+  skills:
+    primary: linear_equations
+    secondary:
+      - algebra_manipulation
+  stem: "กำหนดให้ $3x - 7 = 2x + 5$ จงหาค่าของ $x$"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "-12"
+        correct: false
+        error_tag: sign_error
+        explanation: "ย้ายข้างผิดเครื่องหมาย"
+      - id: "2"
+        text: "-2"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คำนวณผิดพลาด"
+      - id: "3"
+        text: "2"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คำนวณผิดพลาด"
+      - id: "4"
+        text: "12"
+        correct: true
+        explanation: "3x - 2x = 5 + 7 => x = 12"
+      - id: "5"
+        text: "35"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "คำนวณผิดพลาด"
+    tolerance: 0.001
+    require_unit: false
+  difficulty: 1
+  estimated_seconds: 45
+  hints:
+    - level: 1
+      text: "ย้ายตัวแปร x มารวมฝั่งซ้าย และย้ายตัวเลขไปรวมฝั่งขวา"
+    - level: 2
+      text: "3x - 2x = 5 + 7"
+  solution:
+    steps:
+      - id: s1
+        text: "ย้ายข้าง: $3x - 2x = 5 + 7$"
+      - id: s2
+        text: "หาผลลัพธ์: $x = 12$"
+    summary: "ค่าของ x เท่ากับ 12"
+
+- id: mat-alg-base-0002
+  subject: math
+  topic: math.algebra.basics
+  source:
+    type: official
+    label: "พื้นฐานคณิตศาสตร์: การแยกตัวประกอบพหุนามกำลังสอง"
+    exam_year: 2566
+    item_number: 2
+  verification:
+    tier: A
+    verified_by: automated_assertion
+    status: verified
+  skills:
+    primary: quadratic_factoring
+    secondary:
+      - zero_product_property
+  stem: "ผลบวกของคำตอบทั้งหมดของสมการ $x^2 - 7x + 12 = 0$ มีค่าเท่าใด?"
+  answer:
+    type: numeric
+    correct_value: 7
+    tolerance: 0.001
+    require_unit: false
+  difficulty: 1
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "แยกตัวประกอบเป็นสองวงเล็บ (x - a)(x - b) = 0 หรือใช้สมบัติผลบวกของราก -b/a"
+    - level: 2
+      text: "x² - 7x + 12 = (x - 3)(x - 4) = 0 คำตอบคือ x = 3 และ x = 4"
+  solution:
+    steps:
+      - id: s1
+        text: "แยกตัวประกอบ: $(x - 3)(x - 4) = 0 \\implies x = 3, 4$"
+      - id: s2
+        text: "ผลบวกของคำตอบ: $3 + 4 = 7$ (หรือใช้สูตร Vieta's formulas: $-(-7)/1 = 7$)"
+    summary: "ผลบวกของคำตอบเท่ากับ 7"

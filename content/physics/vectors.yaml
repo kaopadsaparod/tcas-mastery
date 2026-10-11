@@ -1,0 +1,137 @@
+# คลังโจทย์บทพื้นฐาน: เวกเตอร์และการแตกแรง (Physics Vectors)
+# หัวข้อ prerequisite สำคัญสำหรับ 1D Kinematics, แรงและพลังงาน
+
+- id: phy-vec-0001
+  subject: physics
+  topic: physics.vectors
+  source:
+    type: official
+    label: "พื้นฐานฟิสิกส์: เวกเตอร์และการรวมเวกเตอร์"
+    exam_year: 2566
+    item_number: 1
+  verification:
+    tier: A
+    verified_by: automated_assertion
+    status: verified
+  skills:
+    primary: vector_addition
+    secondary:
+      - pythagorean_theorem
+  stem: "แรงสองแรงมีขนาด $3\\text{ N}$ และ $4\\text{ N}$ กระทำต่อวัตถุเดียวกันในทิศตั้งฉากซึ่งกันและกัน จงหาขนาดของแรงลัพธ์ที่กระทำต่อวัตถุ (ในหน่วยนิวตัน)"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "1 N"
+        correct: false
+        error_tag: sign_error
+        explanation: "การลบเวกเตอร์ 4 - 3 = 1 N ใช้ได้เฉพาะเมื่อเวกเตอร์มีทิศตรงข้ามกันเท่านั้น ไม่ใช่กรณีตั้งฉาก"
+      - id: "2"
+        text: "5 N"
+        correct: true
+        explanation: "เนื่องจากเวกเตอร์ตั้งฉากกัน ขนาดแรงลัพธ์ R = √(3² + 4²) = √(9 + 16) = √25 = 5 N"
+      - id: "3"
+        text: "7 N"
+        correct: false
+        error_tag: vector_scalar_confusion
+        explanation: "การบวกเลขตรงๆ 3 + 4 = 7 N เป็นการบวกปริมาณสเกลาร์ ไม่ได้คำนึงถึงทิศทางของเวกเตอร์"
+      - id: "4"
+        text: "12 N"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "ไม่ใช่การนำขนาดแรงมาคูณกัน"
+      - id: "5"
+        text: "25 N"
+        correct: false
+        error_tag: arithmetic_error
+        explanation: "25 คือค่าของ R² ยังไม่ได้ถอดรากที่สอง"
+    tolerance: 0.001
+    require_unit: false
+  difficulty: 1
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "โจทย์กำหนดให้แรงทั้งสองตั้งฉากกัน (มุม 90 องศา)"
+    - level: 2
+      text: "ใช้ทฤษฎีบทพีทาโกรัส: R = √(F₁² + F₂²)"
+  solution:
+    steps:
+      - id: s1
+        text: "ตั้งสูตรแรงลัพธ์กรณีตั้งฉาก: $R = \\sqrt{F_1^2 + F_2^2}$"
+      - id: s2
+        text: "แทนค่า: $R = \\sqrt{3^2 + 4^2} = \\sqrt{9 + 16} = \\sqrt{25} = 5\\text{ N}$"
+    summary: "ขนาดแรงลัพธ์เท่ากับ 5 นิวตัน"
+
+- id: phy-vec-0002
+  subject: physics
+  topic: physics.vectors
+  source:
+    type: official
+    label: "พื้นฐานฟิสิกส์: การแตกเวกเตอร์เข้าแกนมุมฉาก"
+    exam_year: 2566
+    item_number: 2
+  verification:
+    tier: A
+    verified_by: automated_assertion
+    status: verified
+  skills:
+    primary: vector_components
+    secondary:
+      - trigonometry_sin_cos
+  stem: "แรงดึงขนาด $20\\text{ N}$ กระทำต่อกล่องทำมุม $60^\\circ$ กับแนวระดับ จงหาขนาดขององค์ประกอบแรงในแนวระดับ (ในหน่วยนิวตัน)"
+  answer:
+    type: numeric
+    correct_value: 10
+    unit: N
+    tolerance: 0.001
+    require_unit: false
+  difficulty: 2
+  estimated_seconds: 90
+  hints:
+    - level: 1
+      text: "แนวระดับอยู่ติดกับมุม 60° (ด้านประชิดมุม)"
+    - level: 2
+      text: "องค์ประกอบแรงชิดมุมใช้ฟังก์ชัน cos: F_x = F cos(60°)"
+  solution:
+    steps:
+      - id: s1
+        text: "แตกแรงเข้าแนวระดับ: $F_x = F \\cos(60^\\circ)$"
+      - id: s2
+        text: "แทนค่า $\\cos(60^\\circ) = 0.5$: $F_x = 20 \\times 0.5 = 10\\text{ N}$"
+    summary: "องค์ประกอบแรงในแนวระดับมีขนาด 10 นิวตัน"
+
+- id: phy-vec-0003
+  subject: physics
+  topic: physics.vectors
+  source:
+    type: official
+    label: "พื้นฐานฟิสิกส์: เวกเตอร์บอกตำแหน่งและการกระจัด"
+    exam_year: 2566
+    item_number: 3
+  verification:
+    tier: A
+    verified_by: automated_assertion
+    status: verified
+  skills:
+    primary: displacement_vector
+    secondary:
+      - pythagorean_theorem
+  stem: "นักเรียนเดินไปทางทิศเหนือเป็นระยะทาง $60\\text{ m}$ จากนั้นเลี้ยวเดินไปทางทิศตะวันออกเป็นระยะทาง $80\\text{ m}$ จงหาขนาดของการกระจัดรวมจากจุดเริ่มต้น (ในหน่วยเมตร)"
+  answer:
+    type: numeric
+    correct_value: 100
+    unit: m
+    tolerance: 0.001
+    require_unit: false
+  difficulty: 1
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "ทิศเหนือกับทิศตะวันออกตั้งฉากกัน 90°"
+    - level: 2
+      text: "การกระจัดคือระยะห่างเส้นตรงจากจุดเริ่มต้นถึงจุดสุดท้าย: d = √(60² + 80²)"
+  solution:
+    steps:
+      - id: s1
+        text: "การกระจัดลัพธ์ $d = \\sqrt{60^2 + 80^2} = \\sqrt{3600 + 6400} = \\sqrt{10000} = 100\\text{ m}$"
+    summary: "ขนาดของการกระจัดเท่ากับ 100 เมตร"

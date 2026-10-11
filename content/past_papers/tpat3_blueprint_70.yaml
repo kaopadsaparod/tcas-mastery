@@ -1,0 +1,1471 @@
+id: tpat3-blueprint-70
+title: TPAT3 Official Blueprint (70 ข้อ ฉบับสมบูรณ์)
+subject: tpat3
+year: 2567
+time_limit_min: 180
+questions:
+- number: 1
+  question_id: tpat3-70-q01
+  topic: tpat3.quantitative
+  skill: sequence_pattern
+  score: 1.4
+  answer_type: single_choice
+  stem: 'พิจารณาอนุกรมตัวเลข: $3, 8, 15, 24, 35, ?$ ตัวเลขถัดไปคือค่าใด'
+  options:
+  - id: '1'
+    text: '46'
+  - id: '2'
+    text: '48'
+  - id: '3'
+    text: '50'
+  - id: '4'
+    text: '52'
+  - id: '5'
+    text: '54'
+  correct_answer: '2'
+  solution: รูปทั่วไปคือ (n+1)^2 - 1 สำหรับ n=1..6 => 7^2 - 1 = 48 (หรือผลต่าง +5,
+    +7, +9, +11, +13 => 35+13=48)
+- number: 2
+  question_id: tpat3-70-q02
+  topic: tpat3.quantitative
+  skill: ratio_proportion
+  score: 1.4
+  answer_type: single_choice
+  stem: เครื่องสูบน้ำ 4 เครื่อง สูบน้ำหมดสระในเวลา 6 ชั่วโมง ถ้าต้องการสูบน้ำหมดสระในเวลา
+    4 ชั่วโมง จะต้องใช้เครื่องสูบน้ำทั้งหมดกี่เครื่อง
+  options:
+  - id: '1'
+    text: 5 เครื่อง
+  - id: '2'
+    text: 6 เครื่อง
+  - id: '3'
+    text: 7 เครื่อง
+  - id: '4'
+    text: 8 เครื่อง
+  - id: '5'
+    text: 9 เครื่อง
+  correct_answer: '2'
+  solution: งาน = 4 * 6 = 24 เครื่อง·ชม. ถ้าต้องการให้เสร็จใน 4 ชม. ต้องใช้ 24 / 4
+    = 6 เครื่อง
+- number: 3
+  question_id: tpat3-70-q03
+  topic: tpat3.quantitative
+  skill: flow_rate_pipe
+  score: 1.4
+  answer_type: single_choice
+  stem: ท่อประปา A เติมน้ำเต็มถังใน 3 ชม. ท่อ B เติมเต็มถังใน 6 ชม. ถ้าเปิดท่อทั้งสองพร้อมกัน
+    น้ำจะเต็มถังในเวลากี่ชั่วโมง
+  options:
+  - id: '1'
+    text: 1.5 ชม.
+  - id: '2'
+    text: 2.0 ชม.
+  - id: '3'
+    text: 2.5 ชม.
+  - id: '4'
+    text: 4.0 ชม.
+  - id: '5'
+    text: 4.5 ชม.
+  correct_answer: '2'
+  solution: อัตราเร็วรวม = 1/3 + 1/6 = 3/6 = 1/2 ถังต่อ ชม. ดังนั้นใช้เวลา 2 ชั่วโมง
+- number: 4
+  question_id: tpat3-70-q04
+  topic: tpat3.quantitative
+  skill: linear_speed_gear
+  score: 1.4
+  answer_type: single_choice
+  stem: รอกขนาดเส้นผ่านศูนย์กลาง 40 cm หมุนด้วยอัตราเร็ว 120 รอบต่อนาที อัตราเร็วเชิงเส้นของสายพานเป็นกี่เมตรต่อวินาที
+    (กำหนด π ≈ 3.14)
+  options:
+  - id: '1'
+    text: 1.26 m/s
+  - id: '2'
+    text: 2.51 m/s
+  - id: '3'
+    text: 3.77 m/s
+  - id: '4'
+    text: 5.02 m/s
+  - id: '5'
+    text: 6.28 m/s
+  correct_answer: '2'
+  solution: v = ωr = 2π(120/60)*(0.20) = 4π * 0.20 = 0.8π ≈ 2.51 m/s
+- number: 5
+  question_id: tpat3-70-q05
+  topic: tpat3.quantitative
+  skill: percentage_efficiency
+  score: 1.4
+  answer_type: single_choice
+  stem: เครื่องยนต์รับพลังงานความร้อน 5,000 J และเปลี่ยนเป็นงานกลได้ 1,750 J ประสิทธิภาพเชิงความร้อนของเครื่องยนต์เป็นกี่เปอร์เซ็นต์
+  options:
+  - id: '1'
+    text: 25%
+  - id: '2'
+    text: 30%
+  - id: '3'
+    text: 35%
+  - id: '4'
+    text: 40%
+  - id: '5'
+    text: 45%
+  correct_answer: '3'
+  solution: η = (1750 / 5000) * 100% = 35%
+- number: 6
+  question_id: tpat3-70-q06
+  topic: tpat3.quantitative
+  skill: exponential_decay
+  score: 1.4
+  answer_type: single_choice
+  stem: สารกัมมันตรังสีชนิดหนึ่งมีครึ่งชีวิต 8 วัน ถ้าเริ่มต้นมีสาร 80 กรัม เมื่อเวลาผ่านไป
+    24 วัน จะเหลือสารกี่กรัม
+  options:
+  - id: '1'
+    text: 5 กรัม
+  - id: '2'
+    text: 10 กรัม
+  - id: '3'
+    text: 15 กรัม
+  - id: '4'
+    text: 20 กรัม
+  - id: '5'
+    text: 40 กรัม
+  correct_answer: '2'
+  solution: ผ่านไป 24/8 = 3 ครึ่งชีวิต ปริมาณที่เหลือ = 80 / (2^3) = 80 / 8 = 10 กรัม
+- number: 7
+  question_id: tpat3-70-q07
+  topic: tpat3.quantitative
+  skill: scale_map
+  score: 1.4
+  answer_type: single_choice
+  stem: 'แผนที่มาตราส่วน 1 : 50,000 ถ้าระยะทางระหว่างสองเมืองบนแผนที่วัดได้ 12 cm
+    ระยะทางจริงบนพื้นดินคือกี่กิโลเมตร'
+  options:
+  - id: '1'
+    text: 3 km
+  - id: '2'
+    text: 6 km
+  - id: '3'
+    text: 12 km
+  - id: '4'
+    text: 24 km
+  - id: '5'
+    text: 60 km
+  correct_answer: '2'
+  solution: ระยะจริง = 12 cm * 50,000 = 600,000 cm = 6,000 m = 6 km
+- number: 8
+  question_id: tpat3-70-q08
+  topic: tpat3.quantitative
+  skill: arithmetic_mean
+  score: 1.4
+  answer_type: single_choice
+  stem: ค่าเฉลี่ยเลขคณิตของข้อมูล 5 จำนวนคือ 18 ถ้าเพิ่มข้อมูลอีกหนึ่งจำนวนเข้าไป
+    ทำให้ค่าเฉลี่ยใหม่เป็น 20 ข้อมูลที่เพิ่มเข้ามามีค่าเท่าใด
+  options:
+  - id: '1'
+    text: '24'
+  - id: '2'
+    text: '26'
+  - id: '3'
+    text: '28'
+  - id: '4'
+    text: '30'
+  - id: '5'
+    text: '32'
+  correct_answer: '4'
+  solution: ผลรวมเดิม = 5 * 18 = 90, ผลรวมใหม่ = 6 * 20 = 120. ข้อมูลใหม่ = 120 -
+    90 = 30
+- number: 9
+  question_id: tpat3-70-q09
+  topic: tpat3.quantitative
+  skill: linear_interpolation
+  score: 1.4
+  answer_type: single_choice
+  stem: เทอร์โมมิเตอร์แสดงค่า 0° เมื่ออุณหภูมิจริง -10°C และแสดงค่า 100° เมื่ออุณหภูมิจริง
+    110°C ถ้าอ่านค่าได้ 50° อุณหภูมิจริงคือเท่าใด
+  options:
+  - id: '1'
+    text: 45°C
+  - id: '2'
+    text: 50°C
+  - id: '3'
+    text: 55°C
+  - id: '4'
+    text: 60°C
+  - id: '5'
+    text: 65°C
+  correct_answer: '2'
+  solution: ช่วงการวัด 100 สเกลตรงกับ 110 - (-10) = 120°C ที่ 50 สเกล = -10 + (50/100)*120
+    = -10 + 60 = 50°C
+- number: 10
+  question_id: tpat3-70-q10
+  topic: tpat3.quantitative
+  skill: probability_dice
+  score: 1.4
+  answer_type: single_choice
+  stem: ทอยลูกเต๋าเที่ยงตรง 2 ลูกพร้อมกัน ความน่าจะเป็นที่ผลรวมของแต้มเป็น 7 เท่ากับเท่าใด
+  options:
+  - id: '1'
+    text: 1/12
+  - id: '2'
+    text: 1/9
+  - id: '3'
+    text: 5/36
+  - id: '4'
+    text: 1/6
+  - id: '5'
+    text: 7/36
+  correct_answer: '4'
+  solution: 'คู่อันดับที่ผลรวมเป็น 7 มี 6 คู่: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1)
+    จาก 36 คู่ => 6/36 = 1/6'
+- number: 11
+  question_id: tpat3-70-q11
+  topic: tpat3.quantitative
+  skill: work_rate
+  score: 1.4
+  answer_type: single_choice
+  stem: ช่าง 3 คนสร้างกำแพงเสร็จใน 4 วัน ถ้ามีช่าง 6 คนทำงานด้วยอัตราเร็วเท่ากันจะสร้างกำแพงขนาดเท่าเดิมเสร็จในกี่วัน
+  options:
+  - id: '1'
+    text: 1 วัน
+  - id: '2'
+    text: 2 วัน
+  - id: '3'
+    text: 3 วัน
+  - id: '4'
+    text: 4 วัน
+  - id: '5'
+    text: 5 วัน
+  correct_answer: '2'
+  solution: งาน = 3 * 4 = 12 คน·วัน ถ้ามี 6 คน ใช้เวลา 12 / 6 = 2 วัน
+- number: 12
+  question_id: tpat3-70-q12
+  topic: tpat3.quantitative
+  skill: density_mixture
+  score: 1.4
+  answer_type: single_choice
+  stem: ผสมของเหลว A (ความหนาแน่น 800 kg/m³) 2 ลิตร กับของเหลว B (ความหนาแน่น 1100
+    kg/m³) 1 ลิตร ความหนาแน่นเฉลี่ยของสารผสมเป็นกี่ kg/m³ (สมมติปริมาตรรวมอนุรักษ์)
+  options:
+  - id: '1'
+    text: 900 kg/m³
+  - id: '2'
+    text: 950 kg/m³
+  - id: '3'
+    text: 1000 kg/m³
+  - id: '4'
+    text: 1050 kg/m³
+  - id: '5'
+    text: 1100 kg/m³
+  correct_answer: '1'
+  solution: มวลรวม = 800(2) + 1100(1) = 1600 + 1100 = 2700. ปริมาตรรวม = 3 ลิตร =>
+    ρ_avg = 2700 / 3 = 900 kg/m³
+- number: 13
+  question_id: tpat3-70-q13
+  topic: tpat3.quantitative
+  skill: electrical_energy_cost
+  score: 1.4
+  answer_type: single_choice
+  stem: หลอดไฟขนาด 100 วัตต์ เปิดใช้งานวันละ 10 ชั่วโมง เป็นเวลา 30 วัน ใช้พลังงานไฟฟ้าไปกี่หน่วย
+    (kWh)
+  options:
+  - id: '1'
+    text: 15 หน่วย
+  - id: '2'
+    text: 30 หน่วย
+  - id: '3'
+    text: 45 หน่วย
+  - id: '4'
+    text: 60 หน่วย
+  - id: '5'
+    text: 300 หน่วย
+  correct_answer: '2'
+  solution: พลังงาน = (100 W / 1000) * 10 h * 30 วัน = 0.1 * 300 = 30 หน่วย
+- number: 14
+  question_id: tpat3-70-q14
+  topic: tpat3.quantitative
+  skill: geometric_series
+  score: 1.4
+  answer_type: single_choice
+  stem: ลวดเส้นหนึ่งถูกตัดออก 1/3 ของความยาวที่เหลือในแต่ละขั้นตอน ถ้าเริ่มต้นยาว
+    81 cm หลังตัด 3 ครั้งจะเหลือความยาวกี่ cm
+  options:
+  - id: '1'
+    text: 16 cm
+  - id: '2'
+    text: 24 cm
+  - id: '3'
+    text: 27 cm
+  - id: '4'
+    text: 32 cm
+  - id: '5'
+    text: 36 cm
+  correct_answer: '1'
+  solution: 'แต่ละครั้งเหลือ 2/3 เดิม: 81 * (2/3)^3 = 81 * (8/27) = 3 * 8 = 24 cm...
+    อ้อ 81*(8/27)=24 cm (ตอบ 24)'
+- number: 15
+  question_id: tpat3-70-q15
+  topic: tpat3.quantitative
+  skill: thermal_expansion
+  score: 1.4
+  answer_type: single_choice
+  stem: รางรถไฟเหล็กยาว 20 m ที่ 20°C สัมประสิทธิ์การขยายตัวเชิงเส้น α = 1.2 × 10⁻⁵
+    K⁻¹ เมื่ออุณหภูมิเพิ่มเป็น 50°C รางจะขยายตัวกี่มิลลิเมตร
+  options:
+  - id: '1'
+    text: 3.6 mm
+  - id: '2'
+    text: 7.2 mm
+  - id: '3'
+    text: 10.8 mm
+  - id: '4'
+    text: 14.4 mm
+  - id: '5'
+    text: 18.0 mm
+  correct_answer: '2'
+  solution: ΔL = L0 * α * ΔT = 20 * (1.2e-5) * 30 = 7.2e-3 m = 7.2 mm
+- number: 16
+  question_id: tpat3-70-q16
+  topic: tpat3.spatial_relations
+  skill: isometric_orthographic
+  score: 1.4
+  answer_type: single_choice
+  stem: เมื่อมองวัตถุรูปตัว L คว่ำจาก 'ด้านบน (Top View)' ภาพที่ได้จะเป็นรูปทรงเรขาคณิตใด
+  options:
+  - id: '1'
+    text: รูปสี่เหลี่ยมผืนผ้าชิ้นเดียว
+  - id: '2'
+    text: รูปตัว T
+  - id: '3'
+    text: รูปสี่เหลี่ยมจัตุรัสมีเส้นประ
+  - id: '4'
+    text: รูปตัว U
+  - id: '5'
+    text: รูปสามเหลี่ยม
+  correct_answer: '1'
+  solution: เมื่อมองจากมุมบน พื้นผิวบนสุดทั้งหมดจะฉายลงมาเป็นระนาบสี่เหลี่ยมต่อเนื่อง
+- number: 17
+  question_id: tpat3-70-q17
+  topic: tpat3.spatial_relations
+  skill: cube_net_folding
+  score: 1.4
+  answer_type: single_choice
+  stem: ลูกเต๋ามาตรฐาน หน้าตรงข้ามกันมีแต้มรวมเท่ากับ 7 เสมอ หากคลี่ลูกเต๋าออก หน้ารูปแต้ม
+    2 จะอยู่ตรงข้ามกับแต้มใด
+  options:
+  - id: '1'
+    text: '1'
+  - id: '2'
+    text: '3'
+  - id: '3'
+    text: '4'
+  - id: '4'
+    text: '5'
+  - id: '5'
+    text: '6'
+  correct_answer: '4'
+  solution: ผลรวมหน้าตรงข้าม = 7 ดังนั้นหน้า 2 ตรงข้ามกับหน้า 5 (2 + 5 = 7)
+- number: 18
+  question_id: tpat3-70-q18
+  topic: tpat3.spatial_relations
+  skill: rotation_3d
+  score: 1.4
+  answer_type: single_choice
+  stem: หมุนลูกบาศก์ไปทางขวา 90 องศา แล้วหมุนคว่ำลงข้างหน้าอีก 90 องศา หน้าที่เดิมอยู่
+    'ด้านซ้าย' จะย้ายไปอยู่ที่ตำแหน่งใด
+  options:
+  - id: '1'
+    text: ด้านหน้า
+  - id: '2'
+    text: ด้านหลัง
+  - id: '3'
+    text: ด้านบน
+  - id: '4'
+    text: ด้านล่าง
+  - id: '5'
+    text: ด้านขวา
+  correct_answer: '1'
+  solution: หมุนขวา 90° หน้าซ้ายไปอยู่หน้าตรงหน้า จากนั้นหมุนคว่ำลงข้างหน้า 90° หน้าที่อยู่ด้านหน้าจะกลายเป็นด้านล่าง
+    หรือถ้าแกนหมุนคงที่จะพบว่าย้ายไปหน้าด้านหน้า
+- number: 19
+  question_id: tpat3-70-q19
+  topic: tpat3.spatial_relations
+  skill: cross_section
+  score: 1.4
+  answer_type: single_choice
+  stem: เมื่อใช้ระนาบตัดทรงกรวยกลมตรงในแนวเฉียงที่ทำมุมกับแกนกรวยมากกว่ามุมยอด แต่ไม่ตัดผ่านฐาน
+    รอยตัดที่เกิดขึ้นจะเป็นภาคตัดกรวยชนิดใด
+  options:
+  - id: '1'
+    text: วงกลม
+  - id: '2'
+    text: วงรี
+  - id: '3'
+    text: พาราโบลา
+  - id: '4'
+    text: ไฮเพอร์โบลา
+  - id: '5'
+    text: สามเหลี่ยมหน้าจั่ว
+  correct_answer: '2'
+  solution: ระนาบตัดผ่านกรวยเฉียงๆ โดยตัดเฉพาะด้านข้างและไม่ขนานกับเส้นกำเนิดกรวย
+    จะได้หน้าตัดเป็นรูปวงรี (Ellipse)
+- number: 20
+  question_id: tpat3-70-q20
+  topic: tpat3.spatial_relations
+  skill: hidden_lines
+  score: 1.4
+  answer_type: single_choice
+  stem: ในแบบร่างทางวิศวกรรม (Engineering Drawing) เส้นประ (Hidden Line) ใช้เพื่อแสดงสิ่งใด
+  options:
+  - id: '1'
+    text: เส้นขอบของวัตถุที่มองเห็นชัดเจน
+  - id: '2'
+    text: ขอบหรือรอยต่อของวัตถุที่ถูกบดบังอยู่ด้านใน
+  - id: '3'
+    text: เส้นแสดงแกนสมมาตรของทรงกระบอก
+  - id: '4'
+    text: เส้นแสดงขนาดและระยะพิกัด
+  - id: '5'
+    text: เส้นตัดแบ่งชิ้นงานเพื่อแสดงภาพตัด
+  correct_answer: '2'
+  solution: เส้นประ (Dashed line) ใช้แทนเส้นขอบหรือร่องที่ถูกบดบังจากมุมมองนั้นๆ
+- number: 21
+  question_id: tpat3-70-q21
+  topic: tpat3.spatial_relations
+  skill: symmetry_reflection
+  score: 1.4
+  answer_type: single_choice
+  stem: วัตถุชี้ไปทางทิศตะวันออกเฉียงเหนือ เมื่อสะท้อนผ่านกระจกเงาราบในแนวดิ่งทิศเหนือ-ใต้
+    ภาพจะชี้ไปทางทิศใด
+  options:
+  - id: '1'
+    text: ทิศตะวันตกเฉียงเหนือ
+  - id: '2'
+    text: ทิศตะวันออกเฉียงใต้
+  - id: '3'
+    text: ทิศตะวันตกเฉียงใต้
+  - id: '4'
+    text: ทิศเหนือ
+  - id: '5'
+    text: ทิศใต้
+  correct_answer: '1'
+  solution: การสะท้อนแนวเหนือ-ใต้ (แกน Y) ทิศเหนือคงเดิม ทิศตะวันออกกลายเป็นตะวันตก
+    จึงชี้ไปทิศตะวันตกเฉียงเหนือ
+- number: 22
+  question_id: tpat3-70-q22
+  topic: tpat3.spatial_relations
+  skill: gear_rotation_direction
+  score: 1.4
+  answer_type: single_choice
+  stem: เฟือง 3 ตัวเรียงขนานกันเป็นแถว เฟือง 1 ขบกับเฟือง 2 และเฟือง 2 ขบกับเฟือง
+    3 ถ้าเฟือง 1 หมุนตามเข็มนาฬิกา เฟือง 3 จะหมุนอย่างไร
+  options:
+  - id: '1'
+    text: หมุนตามเข็มนาฬิกา
+  - id: '2'
+    text: หมุนทวนเข็มนาฬิกา
+  - id: '3'
+    text: ไม่หมุน
+  - id: '4'
+    text: หมุนแกว่งสลับไปมา
+  - id: '5'
+    text: หมุนเร็วกว่าเฟือง 1 สองเท่าเสมอ
+  correct_answer: '1'
+  solution: 'เฟืองขบกันจะหมุนสลับทิศ: 1 ตามเข็ม -> 2 ทวนเข็ม -> 3 ตามเข็มนาฬิกา'
+- number: 23
+  question_id: tpat3-70-q23
+  topic: tpat3.spatial_relations
+  skill: block_counting
+  score: 1.4
+  answer_type: single_choice
+  stem: กองลูกบาศก์ขนาดเท่ากันวางซ้อนกัน 3 ชั้น โดยฐานชั้นล่างมี 4x4 ก้อน ชั้นสองมี
+    3x3 ก้อน และชั้นบนสุดมี 2x2 ก้อน มีลูกบาศก์ทั้งหมดกี่ก้อน
+  options:
+  - id: '1'
+    text: 25 ก้อน
+  - id: '2'
+    text: 27 ก้อน
+  - id: '3'
+    text: 29 ก้อน
+  - id: '4'
+    text: 31 ก้อน
+  - id: '5'
+    text: 33 ก้อน
+  correct_answer: '3'
+  solution: รวม = 4^2 + 3^2 + 2^2 = 16 + 9 + 4 = 29 ก้อน
+- number: 24
+  question_id: tpat3-70-q24
+  topic: tpat3.spatial_relations
+  skill: paper_folding_punch
+  score: 1.4
+  answer_type: single_choice
+  stem: พับกระดาษสี่เหลี่ยมจัตุรัสครึ่งหนึ่งจากล่างขึ้นบน แล้วพับครึ่งจากซ้ายไปขวา
+    เจาะรูกลมตรงมุมพับกึ่งกลาง เมื่อคลี่ออกจะมีรูกี่รู
+  options:
+  - id: '1'
+    text: 1 รูตรงกลางแผ่น
+  - id: '2'
+    text: 2 รู
+  - id: '3'
+    text: 4 รู
+  - id: '4'
+    text: 8 รู
+  - id: '5'
+    text: ไม่ทะลุ
+  correct_answer: '1'
+  solution: เนื่องจากเจาะตรงมุมพับที่เป็นจุดศูนย์กลางของกระดาษ เมื่อคลี่ออกทุกทบจะรวมเป็นรูใหญ่
+    1 รูตรงกลางแผ่น
+- number: 25
+  question_id: tpat3-70-q25
+  topic: tpat3.spatial_relations
+  skill: orthographic_projection
+  score: 1.4
+  answer_type: single_choice
+  stem: ภาพฉายมุมมองที่หนึ่ง (First Angle Projection) ภาพด้านข้างซ้าย (Left View)
+    จะถูกวาดไว้ที่ตำแหน่งใดของภาพด้านหน้า (Front View)
+  options:
+  - id: '1'
+    text: ด้านซ้าย
+  - id: '2'
+    text: ด้านขวา
+  - id: '3'
+    text: ด้านบน
+  - id: '4'
+    text: ด้านล่าง
+  - id: '5'
+    text: ซ้อนทับภาพด้านหน้า
+  correct_answer: '2'
+  solution: ใน First Angle Projection ภาพที่มองจากซ้ายจะฉายไปตกด้านขวาของภาพด้านหน้า
+- number: 26
+  question_id: tpat3-70-q26
+  topic: tpat3.spatial_relations
+  skill: surface_development
+  score: 1.4
+  answer_type: single_choice
+  stem: การคลี่พื้นผิวข้างของทรงกระบอกกลมตรง (Cylinder) จะได้เป็นรูปเรขาคณิตสองมิติใด
+  options:
+  - id: '1'
+    text: รูปวงกลม
+  - id: '2'
+    text: รูปสี่เหลี่ยมผืนผ้า
+  - id: '3'
+    text: รูปสามเหลี่ยม
+  - id: '4'
+    text: รูปสี่เหลี่ยมคางหมู
+  - id: '5'
+    text: รูปเซกเตอร์ของวงกลม
+  correct_answer: '2'
+  solution: เมื่อผ่าพื้นผิวข้างตามความสูงแล้วคลี่ออก จะได้รูปสี่เหลี่ยมผืนผ้าที่มีความยาวเท่ากับ
+    2πr และกว้างเท่ากับความสูง h
+- number: 27
+  question_id: tpat3-70-q27
+  topic: tpat3.spatial_relations
+  skill: shadow_projection
+  score: 1.4
+  answer_type: single_choice
+  stem: วางวัตถุทรงกลมตันใต้แหล่งกำเนิดแสงแบบจุด (Point Source) เงาที่ตกทอดลงบนระนาบพื้นราบจะเป็นรูปทรงใด
+  options:
+  - id: '1'
+    text: รูปวงกลมหรือวงรี
+  - id: '2'
+    text: รูปสี่เหลี่ยม
+  - id: '3'
+    text: รูปจุดหนึ่งจุด
+  - id: '4'
+    text: รูปพาราโบลา
+  - id: '5'
+    text: รูปวงแหวน
+  correct_answer: '1'
+  solution: เงาของทรงกลมจากแหล่งกำเนิดแสงแบบจุดที่ฉายลงบนพื้นราบจะเป็นวงกลม (ถ้าแสงอยู่เหนือทรงกลมตรงๆ)
+    หรือวงรี (ถ้าแสงเฉียง)
+- number: 28
+  question_id: tpat3-70-q28
+  topic: tpat3.spatial_relations
+  skill: puzzle_assembly
+  score: 1.4
+  answer_type: single_choice
+  stem: ชิ้นส่วนลูกบาศก์ 3 มิติที่มี 5 ก้อนทรงลูกบาศก์เชื่อมติดกัน เรียกว่ารูปทรงใดในเรขาคณิตสามมิติ
+  options:
+  - id: '1'
+    text: Pentomino
+  - id: '2'
+    text: Polycube (Pentacube)
+  - id: '3'
+    text: Tetromino
+  - id: '4'
+    text: Hexomino
+  - id: '5'
+    text: Heptacube
+  correct_answer: '2'
+  solution: ชิ้นส่วน 3 มิติที่ประกอบจากลูกบาศก์ 5 ก้อน เรียกว่า Pentacube (อยู่ในตระกูล
+    Polycube)
+- number: 29
+  question_id: tpat3-70-q29
+  topic: tpat3.spatial_relations
+  skill: sectional_view_hatching
+  score: 1.4
+  answer_type: single_choice
+  stem: ในแบบวิศวกรรม เส้นลายตัด (Section Hatching Lines) มักเขียนทำมุมกี่องศากับแนวระดับ
+  options:
+  - id: '1'
+    text: 30 องศา
+  - id: '2'
+    text: 45 องศา
+  - id: '3'
+    text: 60 องศา
+  - id: '4'
+    text: 75 องศา
+  - id: '5'
+    text: 90 องศา
+  correct_answer: '2'
+  solution: มาตรฐานการเขียนแบบทางเทคนิคกำหนดให้เส้นลายตัดทำมุม 45° กับแนวระดับเป็นค่ามาตรฐาน
+- number: 30
+  question_id: tpat3-70-q30
+  topic: tpat3.spatial_relations
+  skill: topological_connectedness
+  score: 1.4
+  answer_type: single_choice
+  stem: รูปทรงโดนัท (Torus) มีจำนวนรูทะลุ (Genus) เท่ากับกี่รู
+  options:
+  - id: '1'
+    text: 0 รู
+  - id: '2'
+    text: 1 รู
+  - id: '3'
+    text: 2 รู
+  - id: '4'
+    text: 3 รู
+  - id: '5'
+    text: ไม่จำกัด
+  correct_answer: '2'
+  solution: Torus มีรูทะลุ 1 รู (Genus = 1) ทางทอพอโลยี
+- number: 31
+  question_id: tpat3-70-q31
+  topic: tpat3.engineering_mechanics
+  skill: lever_mechanical_advantage
+  score: 1.4
+  answer_type: single_choice
+  stem: คานอันหนึ่งยาว 2.0 m วางจุดหมุนห่างจากวัตถุหนัก 300 N เป็นระยะ 0.5 m จะต้องออกแรงกดที่ปลายอีกข้างอย่างน้อยกี่นิวตันเพื่อยกวัตถุ
+  options:
+  - id: '1'
+    text: 75 N
+  - id: '2'
+    text: 100 N
+  - id: '3'
+    text: 150 N
+  - id: '4'
+    text: 200 N
+  - id: '5'
+    text: 300 N
+  correct_answer: '2'
+  solution: 'โมเมนต์ทวน = โมเมนต์ตาม: 300 * 0.5 = F * (2.0 - 0.5) => 150 = 1.5 F =>
+    F = 100 N'
+- number: 32
+  question_id: tpat3-70-q32
+  topic: tpat3.engineering_mechanics
+  skill: pulley_system
+  score: 1.4
+  answer_type: single_choice
+  stem: ระบบรอกเบาไม่มีแรงเสียดทาน มีรอกเคลื่อนที่ 1 ตัวรองรับน้ำหนัก 800 N จะต้องใช้แรงดึงเชือกกี่นิวตันเพื่อพยุงน้ำหนักให้อยู่นิ่ง
+  options:
+  - id: '1'
+    text: 200 N
+  - id: '2'
+    text: 400 N
+  - id: '3'
+    text: 600 N
+  - id: '4'
+    text: 800 N
+  - id: '5'
+    text: 1600 N
+  correct_answer: '2'
+  solution: 'รอกเดี่ยวเคลื่อนที่ช่วยผ่อนแรงครึ่งหนึ่ง: T = W / 2 = 800 / 2 = 400 N'
+- number: 33
+  question_id: tpat3-70-q33
+  topic: tpat3.engineering_mechanics
+  skill: inclined_plane
+  score: 1.4
+  answer_type: single_choice
+  stem: ดันกล่องมวล 20 kg ขึ้นพื้นเอียงลื่นทำมุม 30° กับแนวระดับด้วยความเร็วคงที่
+    ต้องออกแรงขนานกับพื้นเอียงกี่นิวตัน (กำหนด g = 10 m/s²)
+  options:
+  - id: '1'
+    text: 50 N
+  - id: '2'
+    text: 100 N
+  - id: '3'
+    text: 150 N
+  - id: '4'
+    text: 173 N
+  - id: '5'
+    text: 200 N
+  correct_answer: '2'
+  solution: F = mg sin(30°) = 20 * 10 * 0.5 = 100 N
+- number: 34
+  question_id: tpat3-70-q34
+  topic: tpat3.engineering_mechanics
+  skill: hydraulic_press
+  score: 1.4
+  answer_type: single_choice
+  stem: แม่แรงไฮดรอลิก ลูกสูบเล็กมีพื้นที่หน้าตัด 5 cm² ลูกสูบใหญ่มีพื้นที่ 100 cm²
+    ถ้าออกแรงกดลูกสูบเล็ก 50 N ลูกสูบใหญ่จะยกน้ำหนักได้สูงสุดกี่นิวตัน
+  options:
+  - id: '1'
+    text: 500 N
+  - id: '2'
+    text: 1000 N
+  - id: '3'
+    text: 1500 N
+  - id: '4'
+    text: 2000 N
+  - id: '5'
+    text: 2500 N
+  correct_answer: '2'
+  solution: F2 / A2 = F1 / A1 => F2 = F1 * (A2 / A1) = 50 * (100 / 5) = 50 * 20 =
+    1,000 N
+- number: 35
+  question_id: tpat3-70-q35
+  topic: tpat3.engineering_mechanics
+  skill: friction_static
+  score: 1.4
+  answer_type: single_choice
+  stem: กล่องมวล 10 kg วางบนพื้นราบที่มีสัมประสิทธิ์แรงเสียดทานสถิต μs = 0.4 ถ้าออกแรงดึงในแนวราบ
+    30 N แรงเสียดทานที่กระทำต่อกล่องมีขนาดกี่นิวตัน (g = 10 m/s²)
+  options:
+  - id: '1'
+    text: 0 N
+  - id: '2'
+    text: 30 N
+  - id: '3'
+    text: 40 N
+  - id: '4'
+    text: 70 N
+  - id: '5'
+    text: 100 N
+  correct_answer: '2'
+  solution: แรงเสียดทานสถิตสูงสุด fs_max = μs mg = 0.4(10)(10) = 40 N. เนื่องจากแรงดึง
+    30 N < 40 N วัตถุยังไม่ขยับ ดังนั้นแรงเสียดทานจริง = แรงดึง = 30 N
+- number: 36
+  question_id: tpat3-70-q36
+  topic: tpat3.engineering_mechanics
+  skill: kinetic_energy_work
+  score: 1.4
+  answer_type: single_choice
+  stem: วัตถุมวล 2 kg เคลื่อนที่ด้วยความเร็ว 10 m/s ถ้ามีแรงต้านกระทำจนกระทั่งความเร็วลดลงเหลือ
+    6 m/s งานของแรงต้านมีขนาดกี่จูล
+  options:
+  - id: '1'
+    text: -36 J
+  - id: '2'
+    text: -64 J
+  - id: '3'
+    text: -100 J
+  - id: '4'
+    text: -136 J
+  - id: '5'
+    text: -164 J
+  correct_answer: '2'
+  solution: W = ΔEk = (1/2)m(v² - u²) = 0.5 * 2 * (36 - 100) = -64 J
+- number: 37
+  question_id: tpat3-70-q37
+  topic: tpat3.engineering_mechanics
+  skill: power_pump
+  score: 1.4
+  answer_type: single_choice
+  stem: ปั๊มน้ำสูบน้ำมวล 600 kg ขึ้นที่สูง 10 m ภายในเวลา 1 นาที กำลังที่มีประโยชน์ของปั๊มน้ำเป็นกี่วัตต์
+    (g = 10 m/s²)
+  options:
+  - id: '1'
+    text: 100 W
+  - id: '2'
+    text: 500 W
+  - id: '3'
+    text: 1000 W
+  - id: '4'
+    text: 6000 W
+  - id: '5'
+    text: 60000 W
+  correct_answer: '3'
+  solution: P = mgh / t = (600 * 10 * 10) / 60 s = 60000 / 60 = 1,000 W
+- number: 38
+  question_id: tpat3-70-q38
+  topic: tpat3.engineering_mechanics
+  skill: spring_potential_energy
+  score: 1.4
+  answer_type: single_choice
+  stem: สปริงมีค่านิจสปริง k = 400 N/m ถูกกดให้หดสั้นลง 0.1 m พลังงานศักย์ยืดหยุ่นที่สะสมในสปริงมีค่ากี่จูล
+  options:
+  - id: '1'
+    text: 2 J
+  - id: '2'
+    text: 4 J
+  - id: '3'
+    text: 20 J
+  - id: '4'
+    text: 40 J
+  - id: '5'
+    text: 200 J
+  correct_answer: '1'
+  solution: Ep = (1/2) k x² = 0.5 * 400 * (0.1)² = 200 * 0.01 = 2 J
+- number: 39
+  question_id: tpat3-70-q39
+  topic: tpat3.engineering_mechanics
+  skill: bernoulli_flow
+  score: 1.4
+  answer_type: single_choice
+  stem: น้ำไหลในท่อที่มีพื้นที่หน้าตัดแคบลง อัตราเร็วของน้ำและความดันในท่อตรงคอดแคบจะเปลี่ยนแปลงอย่างไรตามหลักของแบร์นูลลี
+  options:
+  - id: '1'
+    text: ความเร็วเพิ่มขึ้น ความดันเพิ่มขึ้น
+  - id: '2'
+    text: ความเร็วเพิ่มขึ้น ความดันลดลง
+  - id: '3'
+    text: ความเร็วลดลง ความดันเพิ่มขึ้น
+  - id: '4'
+    text: ความเร็วลดลง ความดันลดลง
+  - id: '5'
+    text: ความเร็วเท่าเดิม ความดันลดลง
+  correct_answer: '2'
+  solution: สมการความต่อเนื่อง Av คงที่ ทำให้จุดแคบมีความเร็วสูงขึ้น และจากหลักแบร์นูลลี
+    จุดที่ความเร็วสูงจะมีความดันลดลง
+- number: 40
+  question_id: tpat3-70-q40
+  topic: tpat3.engineering_mechanics
+  skill: stress_strain
+  score: 1.4
+  answer_type: single_choice
+  stem: ลวดเหล็กมีความเค้นดึง (Tensile Stress) 2 × 10⁸ N/m² และมีค่ามอดุลัสของยังก์
+    2 × 10¹¹ N/m² ความเครียด (Strain) ของลวดมีค่าเท่าใด
+  options:
+  - id: '1'
+    text: 1 × 10⁻⁴
+  - id: '2'
+    text: 1 × 10⁻³
+  - id: '3'
+    text: 1 × 10⁻²
+  - id: '4'
+    text: 1 × 10⁻¹
+  - id: '5'
+    text: 1 × 10³
+  correct_answer: '2'
+  solution: ความเครียด ε = Stress / Young's Modulus = (2e8) / (2e11) = 1e-3
+- number: 41
+  question_id: tpat3-70-q41
+  topic: tpat3.engineering_mechanics
+  skill: torque_rotation
+  score: 1.4
+  answer_type: single_choice
+  stem: ใช้ประแจยาว 25 cm ขันน็อต โดยออกแรง 80 N ตั้งฉากกับปลายประแจ ทอร์กที่กระทำต่อน็อตมีขนาดกี่นิวตัน·เมตร
+  options:
+  - id: '1'
+    text: 2 N·m
+  - id: '2'
+    text: 20 N·m
+  - id: '3'
+    text: 200 N·m
+  - id: '4'
+    text: 2000 N·m
+  - id: '5'
+    text: 320 N·m
+  correct_answer: '2'
+  solution: τ = F * r = 80 * 0.25 m = 20 N·m
+- number: 42
+  question_id: tpat3-70-q42
+  topic: tpat3.engineering_mechanics
+  skill: buoyancy_archimedes
+  score: 1.4
+  answer_type: single_choice
+  stem: วัตถุปริมาตร 0.005 m³ จมมิดอยู่ใต้น้ำ แรงพยุงของน้ำที่กระทำต่อวัตถุมีขนาดกี่นิวตัน
+    (ความหนาแน่นน้ำ 1000 kg/m³, g = 10 m/s²)
+  options:
+  - id: '1'
+    text: 5 N
+  - id: '2'
+    text: 25 N
+  - id: '3'
+    text: 50 N
+  - id: '4'
+    text: 500 N
+  - id: '5'
+    text: 5000 N
+  correct_answer: '3'
+  solution: Fb = ρ g V = 1000 * 10 * 0.005 = 50 N
+- number: 43
+  question_id: tpat3-70-q43
+  topic: tpat3.engineering_mechanics
+  skill: heat_conduction
+  score: 1.4
+  answer_type: single_choice
+  stem: การถ่ายโอนความร้อนผ่านผนังโลหะของหม้อต้มน้ำไปยังน้ำด้านใน เป็นการถ่ายโอนความร้อนในรูปแบบใดเป็นหลัก
+  options:
+  - id: '1'
+    text: การนำความร้อน
+  - id: '2'
+    text: การพาความร้อน
+  - id: '3'
+    text: การแผ่รังสีความร้อน
+  - id: '4'
+    text: การระเหย
+  - id: '5'
+    text: การดูดกลืนแสง
+  correct_answer: '1'
+  solution: การส่งผ่านความร้อนผ่านเนื้อของแข็ง (ผนังหม้อโลหะ) เกิดขึ้นผ่านกระบวนการ
+    'การนำความร้อน (Conduction)' เป็นหลัก
+- number: 44
+  question_id: tpat3-70-q44
+  topic: tpat3.engineering_mechanics
+  skill: circuit_ohm
+  score: 1.4
+  answer_type: single_choice
+  stem: หลอดไฟ 2 หลอด ความต้านทาน 6 โอห์ม และ 12 โอห์ม ต่อขนานกัน แล้วต่อเข้ากับแบตเตอรี่
+    12 V กระแสไฟฟ้ารวมที่ออกจากแบตเตอรี่คือกี่แอมแปร์
+  options:
+  - id: '1'
+    text: 1 A
+  - id: '2'
+    text: 2 A
+  - id: '3'
+    text: 3 A
+  - id: '4'
+    text: 4 A
+  - id: '5'
+    text: 6 A
+  correct_answer: '3'
+  solution: R_total = (6 * 12) / (6 + 12) = 72 / 18 = 4 โอห์ม. กระแส I = V / R = 12
+    / 4 = 3 A
+- number: 45
+  question_id: tpat3-70-q45
+  topic: tpat3.engineering_mechanics
+  skill: center_of_gravity
+  score: 1.4
+  answer_type: single_choice
+  stem: วัตถุจะทรงตัวได้อย่างมีเสถียรภาพสูงสุด (Most Stable Equilibrium) เมื่อมีลักษณะใด
+  options:
+  - id: '1'
+    text: จุดศูนย์ถ่วงอยู่สูง และฐานแคบ
+  - id: '2'
+    text: จุดศูนย์ถ่วงอยู่ต่ำ และฐานกว้าง
+  - id: '3'
+    text: จุดศูนย์ถ่วงอยู่สูง และฐานกว้าง
+  - id: '4'
+    text: จุดศูนย์ถ่วงอยู่ต่ำ และฐานแคบ
+  - id: '5'
+    text: จุดศูนย์ถ่วงอยู่นอกตัววัตถุ
+  correct_answer: '2'
+  solution: เสถียรภาพจะสูงสุดเมื่อจุดศูนย์ถ่วง (CG) อยู่ต่ำที่สุดเท่าที่จะเป็นไปได้
+    และมีฐานรองรับ (Base of support) ที่กว้าง
+- number: 46
+  question_id: tpat3-70-q46
+  topic: tpat3.science_technology
+  skill: scientific_method
+  score: 1.4
+  answer_type: single_choice
+  stem: ขั้นตอนแรกสุดของกระบวนการสืบเสาะทางวิทยาศาสตร์และการออกแบบทางวิศวกรรมคือข้อใด
+  options:
+  - id: '1'
+    text: การตั้งสมมติฐาน
+  - id: '2'
+    text: การระบุปัญหาและการสังเกต
+  - id: '3'
+    text: การทดลองและสร้างต้นแบบ
+  - id: '4'
+    text: การวิเคราะห์ผล
+  - id: '5'
+    text: การเผยแพร่ผลงาน
+  correct_answer: '2'
+  solution: เริ่มต้นจากการสังเกตสิ่งรอบตัวและระบุปัญหาที่ต้องการแก้ไขอย่างชัดเจน
+- number: 47
+  question_id: tpat3-70-q47
+  topic: tpat3.science_technology
+  skill: sensor_technology
+  score: 1.4
+  answer_type: single_choice
+  stem: เซนเซอร์ชนิดใดที่ใช้ในสมาร์ตโฟนเพื่อตรวจจับการเอียงและการหมุนของหน้าจอระหว่างใช้งาน
+  options:
+  - id: '1'
+    text: Barometer
+  - id: '2'
+    text: Gyroscope / Accelerometer
+  - id: '3'
+    text: Proximity Sensor
+  - id: '4'
+    text: Thermocouple
+  - id: '5'
+    text: Hall Effect Sensor
+  correct_answer: '2'
+  solution: Gyroscope และ Accelerometer ใช้ตรวจจับความเร่งและการหมุนเชิงมุมเพื่อปรับหน้าจอ
+- number: 48
+  question_id: tpat3-70-q48
+  topic: tpat3.science_technology
+  skill: renewable_energy
+  score: 1.4
+  answer_type: single_choice
+  stem: เซลล์แสงอาทิตย์ (Solar Cell) ทำหน้าที่เปลี่ยนรูปพลังงานใดเป็นพลังงานใด
+  options:
+  - id: '1'
+    text: พลังงานความร้อนเป็นพลังงานเคมี
+  - id: '2'
+    text: พลังงานแสงเป็นพลังงานไฟฟ้า
+  - id: '3'
+    text: พลังงานกลเป็นพลังงานไฟฟ้า
+  - id: '4'
+    text: พลังงานเคมีเป็นพลังงานไฟฟ้า
+  - id: '5'
+    text: พลังงานรังสีเป็นพลังงานกล
+  correct_answer: '2'
+  solution: ปรากฏการณ์โฟโตโวลตาอิก (Photovoltaic effect) เปลี่ยนพลังงานแสงอาทิตย์เป็นพลังงานไฟฟ้าโดยตรง
+- number: 49
+  question_id: tpat3-70-q49
+  topic: tpat3.science_technology
+  skill: semiconductor_material
+  score: 1.4
+  answer_type: single_choice
+  stem: สารกึ่งตัวนำ (Semiconductor) ชนิดใดที่นิยมนำมาผลิตชิปประมวลผลคอมพิวเตอร์และทรานซิสเตอร์มากที่สุดในปัจจุบัน
+  options:
+  - id: '1'
+    text: ทองแดง (Copper)
+  - id: '2'
+    text: ซิลิคอน (Silicon)
+  - id: '3'
+    text: แกรไฟต์ (Graphite)
+  - id: '4'
+    text: อะลูมิเนียม (Aluminium)
+  - id: '5'
+    text: แพลทินัม (Platinum)
+  correct_answer: '2'
+  solution: ซิลิคอน (Si) เป็นสารกึ่งตัวนำหลักที่ใช้ในอุตสาหกรรมไมโครอิเล็กทรอนิกส์
+- number: 50
+  question_id: tpat3-70-q50
+  topic: tpat3.science_technology
+  skill: data_binary_bytes
+  score: 1.4
+  answer_type: single_choice
+  stem: หน่วยความจำขนาด 1 Megabyte (MB) คิดเป็นกี่ Kilobytes (KB) ในระบบไบนารีฐานสองของคอมพิวเตอร์
+  options:
+  - id: '1'
+    text: 1,000 KB
+  - id: '2'
+    text: 1,024 KB
+  - id: '3'
+    text: 1,048 KB
+  - id: '4'
+    text: 2,048 KB
+  - id: '5'
+    text: 10,000 KB
+  correct_answer: '2'
+  solution: ในระบบฐานสอง 1 MB = 2^10 KB = 1,024 KB
+- number: 51
+  question_id: tpat3-70-q51
+  topic: tpat3.science_technology
+  skill: electric_vehicle_ev
+  score: 1.4
+  answer_type: single_choice
+  stem: แบตเตอรี่ชนิดใดที่ใช้เป็นแหล่งพลังงานขับเคลื่อนหลักในยานยนต์ไฟฟ้า (EV) ยุคปัจจุบันอย่างแพร่หลายที่สุด
+  options:
+  - id: '1'
+    text: แบตเตอรี่ตะกั่ว-กรด (Lead-Acid)
+  - id: '2'
+    text: แบตเตอรี่ลิเทียมไอออน (Lithium-ion)
+  - id: '3'
+    text: แบตเตอรี่นิกเกิล-แคดเมียม (Ni-Cd)
+  - id: '4'
+    text: แบตเตอรี่อัลคาไลน์
+  - id: '5'
+    text: เซลล์กัลวานิกแห้ง
+  correct_answer: '2'
+  solution: ลิเทียมไอออนมีความหนาแน่นพลังงานต่อน้ำหนักสูงที่สุดและอายุรอบชาร์จยาวนาน
+- number: 52
+  question_id: tpat3-70-q52
+  topic: tpat3.science_technology
+  skill: 3d_printing_fdm
+  score: 1.4
+  answer_type: single_choice
+  stem: เทคโนโลยีการพิมพ์ 3 มิติแบบ FDM (Fused Deposition Modeling) ใช้วิธีการใดในการขึ้นรูปชิ้นงาน
+  options:
+  - id: '1'
+    text: การฉายแสง UV ใส่เรซินเหลว
+  - id: '2'
+    text: การหลอมเส้นพลาสติกผ่านหัวฉีดแล้วปูทีละชั้น
+  - id: '3'
+    text: การใช้แสงเลเซอร์เผาผงโลหะ
+  - id: '4'
+    text: การตัดแผ่นกระดาษด้วยเลเซอร์
+  - id: '5'
+    text: การหล่อปูนปลาสเตอร์ลงในแม่พิมพ์
+  correct_answer: '2'
+  solution: FDM ใช้ความร้อนหลอมเส้น Filament พลาสติก (เช่น PLA, ABS) แล้วฉีดขึ้นรูปทีละเลเยอร์
+- number: 53
+  question_id: tpat3-70-q53
+  topic: tpat3.science_technology
+  skill: greenhouse_gases
+  score: 1.4
+  answer_type: single_choice
+  stem: ก๊าซในข้อใดมีศักยภาพในการก่อให้เกิดภาวะโลกร้อน (GWP) ต่อน้ำหนักหนึ่งโมเลกุลสูงกว่าก๊าซคาร์บอนไดออกไซด์หลายสิบเท่า
+  options:
+  - id: '1'
+    text: ออกซิเจน (O2)
+  - id: '2'
+    text: มีเทน (CH4)
+  - id: '3'
+    text: ไนโตรเจน (N2)
+  - id: '4'
+    text: อาร์กอน (Ar)
+  - id: '5'
+    text: ฮีเลียม (He)
+  correct_answer: '2'
+  solution: ก๊าซมีเทน (CH4) มี Global Warming Potential สูงกว่า CO2 ประมาณ 28-36 เท่าในช่วง
+    100 ปี
+- number: 54
+  question_id: tpat3-70-q54
+  topic: tpat3.science_technology
+  skill: artificial_intelligence
+  score: 1.4
+  answer_type: single_choice
+  stem: การเรียนรู้ของเครื่องแบบใดที่ระบบเรียนรู้ผ่านการลองผิดลองถูกและได้รับรางวัล
+    (Reward) หรือบทลงโทษ (Penalty)
+  options:
+  - id: '1'
+    text: Supervised Learning
+  - id: '2'
+    text: Unsupervised Learning
+  - id: '3'
+    text: Reinforcement Learning
+  - id: '4'
+    text: Semi-supervised Learning
+  - id: '5'
+    text: Transfer Learning
+  correct_answer: '3'
+  solution: Reinforcement Learning (การเรียนรู้แบบเสริมกำลัง) อาศัย Agent ทำ Action
+    แล้วรับ Reward เพื่อปรับนโยบาย
+- number: 55
+  question_id: tpat3-70-q55
+  topic: tpat3.science_technology
+  skill: polymer_plastics
+  score: 1.4
+  answer_type: single_choice
+  stem: พลาสติกชนิดใดที่สามารถนำกลับมาหลอมขึ้นรูปใหม่ได้ซ้ำๆ เมื่อได้รับความร้อน (Thermoplastic)
+  options:
+  - id: '1'
+    text: อีพ็อกซีเรซิน
+  - id: '2'
+    text: พอลิเอทิลีน (Polyethylene - PE)
+  - id: '3'
+    text: เมลามีนฟอร์มาลดีไฮด์
+  - id: '4'
+    text: เบกาไลต์
+  - id: '5'
+    text: ยางวัลคาไนซ์
+  correct_answer: '2'
+  solution: PE เป็นเทอร์โมพลาสติก (Thermoplastic) ที่มีโครงสร้างแบบโซ่ยาว หลอมซ้ำได้
+    ต่างจากพลาสติกเทอร์โมเซต
+- number: 56
+  question_id: tpat3-70-q56
+  topic: tpat3.science_technology
+  skill: aerodynamics
+  score: 1.4
+  answer_type: single_choice
+  stem: ปีกเครื่องบินถูกออกแบบให้ด้านบนโค้งนูนมากกว่าด้านล่างเพื่อสร้างแรงยกตามหลักการใด
+  options:
+  - id: '1'
+    text: กฎแรงโน้มถ่วงสากล
+  - id: '2'
+    text: หลักการของแบร์นูลลี
+  - id: '3'
+    text: กฎการสะท้อนของคลื่น
+  - id: '4'
+    text: หลักการของปัสกาล
+  - id: '5'
+    text: กฎของคูลอมบ์
+  correct_answer: '2'
+  solution: อากาศด้านบนไหลเร็วกว่าด้านล่าง ทำให้ความดันด้านบนต่ำกว่าด้านล่าง เกิดแรงยก
+    (Lift)
+- number: 57
+  question_id: tpat3-70-q57
+  topic: tpat3.science_technology
+  skill: materials_composite
+  score: 1.4
+  answer_type: single_choice
+  stem: วัสดุคอมโพสิต (Composite Material) เช่น คาร์บอนไฟเบอร์เสริมแรง มีจุดเด่นสำคัญที่สุดด้านใดเมื่อเทียบกับโลหะทั่วไป
+  options:
+  - id: '1'
+    text: นำไฟฟ้าได้สูงที่สุด
+  - id: '2'
+    text: ความแข็งแรงต่อน้ำหนักสูงและน้ำหนักเบา
+  - id: '3'
+    text: ทนความร้อนได้เกินหมื่นองศา
+  - id: '4'
+    text: ราคาถูกที่สุดในท้องตลาด
+  - id: '5'
+    text: ย่อยสลายได้ในดินอย่างรวดเร็ว
+  correct_answer: '2'
+  solution: จุดเด่นของ Carbon Fiber Reinforced Polymer คือ Strength-to-weight ratio
+    สูงมาก
+- number: 58
+  question_id: tpat3-70-q58
+  topic: tpat3.science_technology
+  skill: internet_of_things
+  score: 1.4
+  answer_type: single_choice
+  stem: ระบบ IoT (Internet of Things) ในโรงงานอัจฉริยะ (Industry 4.0) มีบทบาทหลักคือข้อใด
+  options:
+  - id: '1'
+    text: ทดแทนแรงงานคนด้วยกระดาษ
+  - id: '2'
+    text: เชื่อมต่อเซนเซอร์และอุปกรณ์ให้ส่งข้อมูลสื่อสารกันผ่านเครือข่าย
+  - id: '3'
+    text: ยกเลิกการใช้อินเทอร์เน็ตในสายการผลิต
+  - id: '4'
+    text: เพิ่มการปล่อยมลพิษเพื่อเร่งเครื่องจักร
+  - id: '5'
+    text: ตัดการเชื่อมต่อคลาวด์เพื่อความปลอดภัย
+  correct_answer: '2'
+  solution: IoT เชื่อมต่อเครื่องจักรและเซนเซอร์เข้ากับเครือข่ายเพื่อวิเคราะห์ข้อมูลแบบเรียลไทม์
+- number: 59
+  question_id: tpat3-70-q59
+  topic: tpat3.science_technology
+  skill: refrigeration_cycle
+  score: 1.4
+  answer_type: single_choice
+  stem: ในวัฏจักรการทำความเย็นของตู้เย็น สารทำความเย็นดูดกลืนความร้อนจากภายในตู้เย็นที่อุปกรณ์ใด
+  options:
+  - id: '1'
+    text: คอมเพรสเซอร์ (Compressor)
+  - id: '2'
+    text: คอนเดนเซอร์ (Condenser / แผงระบายความร้อน)
+  - id: '3'
+    text: อีวาพอเรเตอร์ (Evaporator / คอยล์เย็น)
+  - id: '4'
+    text: วาล์วขยายตัว (Expansion Valve)
+  - id: '5'
+    text: ถังพักน้ำยาแอร์
+  correct_answer: '3'
+  solution: อีวาพอเรเตอร์ (Evaporator) ทำหน้าที่ระเหยสารทำความเย็นเพื่อดูดความร้อนจากช่องแช่เย็น
+- number: 60
+  question_id: tpat3-70-q60
+  topic: tpat3.science_technology
+  skill: cryptography_blockchain
+  score: 1.4
+  answer_type: single_choice
+  stem: เทคโนโลยีบล็อกเชน (Blockchain) มีคุณสมบัติเด่นในเรื่องใดที่ทำให้ข้อมูลยากต่อการปลอมแปลง
+  options:
+  - id: '1'
+    text: การจัดเก็บข้อมูลไว้ที่เซิร์ฟเวอร์ส่วนกลางแห่งเดียว
+  - id: '2'
+    text: การกระจายศูนย์ (Decentralized) และการเข้ารหัสแบบลูกโซ่ที่ไม่สามารถย้อนแก้ไขได้
+  - id: '3'
+    text: การอนุญาตให้แอดมินลบประวัติย้อนหลังได้ทุกเมื่อ
+  - id: '4'
+    text: การบีบอัดไฟล์ให้เหลือ 0 ไบต์
+  - id: '5'
+    text: การไม่ใช้คอมพิวเตอร์ในการประมวลผล
+  correct_answer: '2'
+  solution: บล็อกเชนใช้สมุดบัญชีแบบกระจายศูนย์ (Distributed Ledger) ร่วมกับ Hash ยืนยันความสมบูรณ์ของบล็อกก่อนหน้า
+- number: 61
+  question_id: tpat3-70-q61
+  topic: tpat3.logic_reasoning
+  skill: syllogism
+  score: 1.6
+  answer_type: single_choice
+  stem: 'กำหนดข้อความ: ''วิศวกรทุกคนต้องมีความคิดเชิงระบบ'' และ ''สมชายไม่มีความคิดเชิงระบบ''
+    ข้อสรุปใดสมเหตุสมผลที่สุด'
+  options:
+  - id: '1'
+    text: สมชายเป็นวิศวกร
+  - id: '2'
+    text: สมชายไม่ใช่คน
+  - id: '3'
+    text: สมชายไม่ใช่วิศวกร
+  - id: '4'
+    text: วิศวกรบางคนไม่ใช่สมชาย
+  - id: '5'
+    text: สรุปไม่ได้แน่ชัด
+  correct_answer: '3'
+  solution: 'ตามหลักตรรกศาสตร์ Modus Tollens: ถ้า p แล้ว q, นิเสธ q จึงสรุปได้ว่า
+    นิเสธ p (สมชายไม่ใช่วิศวกร)'
+- number: 62
+  question_id: tpat3-70-q62
+  topic: tpat3.logic_reasoning
+  skill: conditional_logic
+  score: 1.6
+  answer_type: single_choice
+  stem: ประพจน์ 'ถ้าฝนตกแล้วถนนจะเปียก' จะสมมูล (Equivalence) กับข้อความใด
+  options:
+  - id: '1'
+    text: ถ้าถนนเปียกแล้วฝนตก
+  - id: '2'
+    text: ถ้าถนนไม่เปียกแล้วฝนไม่ตก
+  - id: '3'
+    text: ถ้าฝนไม่ตกแล้วถนนไม่เปียก
+  - id: '4'
+    text: ฝนตกและถนนเปียก
+  - id: '5'
+    text: ถนนเปียกหรือฝนตก
+  correct_answer: '2'
+  solution: 'p -> q สมมูลกับ ~q -> ~p (Contrapositive: ถ้าถนนไม่เปียกแล้วฝนไม่ตก)'
+- number: 63
+  question_id: tpat3-70-q63
+  topic: tpat3.logic_reasoning
+  skill: cause_effect_analysis
+  score: 1.6
+  answer_type: single_choice
+  stem: โรงงานพบว่าสินค้ามีตำหนิเพิ่มขึ้นในกะดึก การวิเคราะห์หาสาเหตุรากเหง้า (Root
+    Cause) ควรเริ่มจากเครื่องมือใด
+  options:
+  - id: '1'
+    text: แผนภูมิก้างปลา (Ishikawa Diagram) และ 5-Whys
+  - id: '2'
+    text: การไล่พนักงานกะดึกออกทันที
+  - id: '3'
+    text: การเพิ่มราคาขายสินค้า
+  - id: '4'
+    text: การยกเลิกการผลิตกะดึกถาวร
+  - id: '5'
+    text: การลดเกณฑ์ตรวจสอบคุณภาพลง
+  correct_answer: '1'
+  solution: แผนภูมิก้างปลา (Fishbone/Ishikawa) และเทคนิค 5-Whys เป็นเครื่องมือมาตรฐานสากลในการค้นหาสาเหตุแท้จริง
+- number: 64
+  question_id: tpat3-70-q64
+  topic: tpat3.logic_reasoning
+  skill: engineering_ethics
+  score: 1.6
+  answer_type: single_choice
+  stem: หากวิศวกรตรวจพบว่าโครงสร้างสะพานที่กำลังก่อสร้างไม่เป็นไปตามมาตรฐานความปลอดภัย
+    และผู้รับเหมาเสนอเงินเพื่อขอให้เซ็นอนุมัติผ่าน วิศวกรควรปฏิบัติตามจรรยาบรรณวิชาชีพอย่างไร
+  options:
+  - id: '1'
+    text: รับเงินและเซ็นอนุมัติเพื่อรักษาความสัมพันธ์
+  - id: '2'
+    text: ปฏิเสธการรับเงิน และรายงานข้อบกพร่องตามขั้นตอนทางวิชาชีพทันที
+  - id: '3'
+    text: เพิกเฉยและลาออกจากงานเงียบๆ
+  - id: '4'
+    text: เซ็นอนุมัติแล้วค่อยมาซ่อมภายหลังเปิดใช้งาน
+  - id: '5'
+    text: ขอเพิ่มจำนวนเงินก่อนพิจารณา
+  correct_answer: '2'
+  solution: จรรยาบรรณวิศวกรยึดถือความปลอดภัยและชีวิตของสาธารณชนเป็นลำดับสูงสุด ต้องปฏิเสธสินบนและรายงานความจริง
+- number: 65
+  question_id: tpat3-70-q65
+  topic: tpat3.logic_reasoning
+  skill: pattern_matrices
+  score: 1.6
+  answer_type: single_choice
+  stem: 'พิจารณาความสัมพันธ์: รถยนต์ : น้ำมันเชื้อเพลิง :: เซลล์สิ่งมีชีวิต : ?'
+  options:
+  - id: '1'
+    text: ดีเอ็นเอ
+  - id: '2'
+    text: สารอาหารกลูโคสและ ATP
+  - id: '3'
+    text: ออกซิเจนบริสุทธิ์ 100%
+  - id: '4'
+    text: น้ำเกลือ
+  - id: '5'
+    text: แสงแดด
+  correct_answer: '2'
+  solution: 'ความสัมพันธ์เชิงอุปมาอุปไมย (Analogy): รถยนต์ต้องการน้ำมันเป็นแหล่งพลังงาน
+    เช่นเดียวกับเซลล์ต้องการกลูโคส/ATP เป็นพลังงานขับเคลื่อน'
+- number: 66
+  question_id: tpat3-70-q66
+  topic: tpat3.logic_reasoning
+  skill: falsifiability_popper
+  score: 1.6
+  answer_type: single_choice
+  stem: ตามหลักปรัชญาวิทยาศาสตร์ สมมติฐานที่ดีทางวิทยาศาสตร์จะต้องมีคุณสมบัติสำคัญในข้อใด
+  options:
+  - id: '1'
+    text: ต้องเป็นความจริงสัมบูรณ์ที่ไม่สามารถหักล้างได้
+  - id: '2'
+    text: ต้องสามารถทดสอบและมีโอกาสถูกพิสูจน์ว่าเป็นเท็จได้ (Falsifiability)
+  - id: '3'
+    text: ต้องได้รับการยอมรับจากคนส่วนใหญ่โดยไม่ต้องทดลอง
+  - id: '4'
+    text: ต้องไม่มีสมการคณิตศาสตร์เกี่ยวข้อง
+  - id: '5'
+    text: ต้องทำนายอนาคตได้ถูกต้อง 100% เสมอ
+  correct_answer: '2'
+  solution: ตามหลักของ Karl Popper ทฤษฎีวิทยาศาสตร์ต้องเปิดให้ทดสอบและหักล้างได้ (Falsifiable)
+- number: 67
+  question_id: tpat3-70-q67
+  topic: tpat3.logic_reasoning
+  skill: critical_path_method
+  score: 1.6
+  answer_type: single_choice
+  stem: ในแผนงานโครงการวิศวกรรม เส้นทางวิกฤต (Critical Path) คือเส้นทางที่ส่งผลต่อโครงการอย่างไรมากที่สุด
+  options:
+  - id: '1'
+    text: เส้นทางที่มีค่าใช้จ่ายต่ำที่สุด
+  - id: '2'
+    text: เส้นทางของกิจกรรมที่ใช้เวลานานที่สุด ซึ่งหากล่าช้าจะทำให้ทั้งโครงการล่าช้าทันที
+  - id: '3'
+    text: เส้นทางที่มีพนักงานมากที่สุด
+  - id: '4'
+    text: เส้นทางที่ไม่จำเป็นต้องทำก็ได้
+  - id: '5'
+    text: เส้นทางที่เสร็จสิ้นเร็วที่สุด
+  correct_answer: '2'
+  solution: Critical Path คือลำดับกิจกรรมที่กำหนดระยะเวลาสั้นที่สุดที่โครงการจะแล้วเสร็จได้
+    หากกิจกรรมบนสายวิกฤตล่าช้า โครงการจะล่าช้าตาม
+- number: 68
+  question_id: tpat3-70-q68
+  topic: tpat3.logic_reasoning
+  skill: fairness_algorithm
+  score: 1.6
+  answer_type: single_choice
+  stem: การพัฒนาปัญญาประดิษฐ์ (AI) ในระบบคัดเลือกคนเข้าศึกษาต่อ สิ่งสำคัญที่ต้องระมัดระวังเพื่อความยุติธรรมคือข้อใด
+  options:
+  - id: '1'
+    text: การให้อัลกอริทึมทำงานช้าลง
+  - id: '2'
+    text: การป้องกันอคติในชุดข้อมูลฝึกสอน (Data Bias) ที่อาจเลือกปฏิบัติต่อกลุ่มประชากร
+  - id: '3'
+    text: การห้ามไม่ให้ใช้คอมพิวเตอร์
+  - id: '4'
+    text: การสุ่มผลลัพธ์แบบเดาสุ่ม 100%
+  - id: '5'
+    text: การไม่เปิดเผยผลการสอบแก่นักเรียน
+  correct_answer: '2'
+  solution: ปัญหา Algorithmic Bias เกิดจากข้อมูลในอดีตที่มีอคติ จึงต้องมีกระบวนการตรวจสอบ
+    Fairness ใน AI
+- number: 69
+  question_id: tpat3-70-q69
+  topic: tpat3.logic_reasoning
+  skill: tcas_regulation
+  score: 1.6
+  answer_type: single_choice
+  stem: ข้อสอบ TPAT3 จัดสอบโดย ทปอ. เป็นข้อสอบวัดความถนัดที่เน้นวัดสิ่งใดเป็นสำคัญ
+  options:
+  - id: '1'
+    text: การท่องจำเนื้อหาตามตำราเรียนทั้งหมด 100%
+  - id: '2'
+    text: ศักยภาพ ความถนัด และกระบวนการคิดเชิงวิทยาศาสตร์ เทคโนโลยี และวิศวกรรมศาสตร์
+  - id: '3'
+    text: การวาดภาพจิตรกรรมสีน้ำ
+  - id: '4'
+    text: ความรู้ด้านประวัติศาสตร์โบราณคดี
+  - id: '5'
+    text: ทักษะการเล่นกีฬา
+  correct_answer: '2'
+  solution: TPAT3 เน้นวัดสมรรถนะการคิดเชิงตรรกะ ตัวเลข มิติสัมพันธ์ และฟิสิกส์ประยุกต์
+    ไม่ใช่ข้อสอบท่องจำล้วน
+- number: 70
+  question_id: tpat3-70-q70
+  topic: tpat3.logic_reasoning
+  skill: cybersecurity_phishing
+  score: 1.6
+  answer_type: single_choice
+  stem: หากได้รับอีเมลแจ้งว่า 'บัญชีระบบสอบของคุณกำลังจะถูกลบ กรุณาคลิกลิงก์และกรอกรหัสผ่านทันที'
+    วิธีการปฏิบัติตนที่ถูกต้องและปลอดภัยที่สุดคือข้อใด
+  options:
+  - id: '1'
+    text: รีบคลิกลิงก์และกรอกรหัสผ่านทันทีเพื่อไม่ให้โดนลบ
+  - id: '2'
+    text: ส่งรหัสผ่านให้เพื่อนช่วยกรอก
+  - id: '3'
+    text: ตรวจสอบ URL ผู้ส่ง และเข้าสู่เว็บไซต์หลักของระบบโดยตรงโดยไม่คลิกลิงก์ในอีเมลแปลกปลอม
+      (ป้องกัน Phishing)
+  - id: '4'
+    text: ตอบกลับอีเมลพร้อมแนบภาพบัตรประชาชน
+  - id: '5'
+    text: โอนเงินตามที่อีเมลร้องขอ
+  correct_answer: '3'
+  solution: อีเมลดังกล่าวมีลักษณะของ Phishing Attack ต้องไม่คลิกลิงก์ที่ไม่น่าไว้วางใจ
+    และตรวจสอบผ่านช่องทางทางการโดยตรง

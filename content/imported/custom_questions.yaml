@@ -13,7 +13,7 @@
     primary: general_problem_solving
     secondary: []
   stem: วัตถุเคลื่อนที่ด้วยความเร็ว $10\text{ m/s}$ (อ้างอิงจากชีต IG)
-  image_url: /static/assets/pages/9cdc20c21fad_page_1.png
+  image_url: /static/assets/pages/9091660ab640_page_1.png
   answer:
     type: single_choice
     options:
@@ -25,6 +25,8 @@
       correct: false
     tolerance: 0.02
     require_unit: false
+  difficulty: 3
+  estimated_seconds: 180
   hints:
   - level: 1
     text: ทบทวนข้อมูลที่โจทย์กำหนดและสิ่งที่ต้องหา

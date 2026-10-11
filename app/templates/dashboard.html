@@ -37,6 +37,68 @@
   </div>
 </div>
 
+<!-- Core TCAS Prep Workflows -->
+<div class="grid-3" style="margin-bottom: 2rem;">
+  <a href="/planner" class="card" style="text-decoration: none; border-left: 4px solid var(--primary); transition: transform 0.2s, box-shadow 0.2s;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+      <span style="font-size: 1.6rem;">📅</span>
+      <div>
+        <h3 style="margin: 0; font-size: 1.05rem; color: var(--text-main);">ตารางติวรายวัน (Daily Planner)</h3>
+        <span class="badge badge-priority-normal" style="font-size: 0.72rem;">ภารกิจอัตโนมัติ</span>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+      ทบทวน Spaced Repetition ประจำวัน และเจาะลึกบทเรียน Focus Topics ตาม Roadmap
+    </p>
+  </a>
+
+  <a href="/mock-exam" class="card" style="text-decoration: none; border-left: 4px solid #f59e0b; transition: transform 0.2s, box-shadow 0.2s;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+      <span style="font-size: 1.6rem;">⏱️</span>
+      <div>
+        <h3 style="margin: 0; font-size: 1.05rem; color: var(--text-main);">จำลองสอบจริง (Mock Exam)</h3>
+        <span class="badge badge-tier-A" style="font-size: 0.72rem;">A-Level 30 ข้อ / TPAT3 70 ข้อ</span>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+      จับเวลาและ Pace ตามพิมพ์เขียวจริง ส่งข้อที่ตอบผิดเข้าคิว Spaced Repetition ทันที
+    </p>
+  </a>
+
+  <a href="/progress" class="card" style="text-decoration: none; border-left: 4px solid #10b981; transition: transform 0.2s, box-shadow 0.2s;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+      <span style="font-size: 1.6rem;">📊</span>
+      <div>
+        <h3 style="margin: 0; font-size: 1.05rem; color: var(--text-main);">ประเมินความพร้อมสอบ (Readiness)</h3>
+        <span class="badge badge-tier-B" style="font-size: 0.72rem;">วิเคราะห์ 4 มิติ</span>
+      </div>
+    </div>
+    <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">
+      ประเมินช่วงคะแนนสอบจริง ตรวจสอบหลักฐานความเข้าใจ และเจาะจุดอ่อนรายบท
+    </p>
+  </a>
+</div>
+
+{% if latest_mock %}
+<!-- Latest Mock Exam Status Banner -->
+<div style="background: #ffffff; border: 1px solid #cbd5e1; border-left: 4px solid #3b82f6; border-radius: var(--radius); padding: 0.85rem 1.25rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; box-shadow: var(--shadow);">
+  <div style="display: flex; align-items: center; gap: 0.75rem;">
+    <span style="font-size: 1.4rem;">🎯</span>
+    <div>
+      <span style="font-size: 0.85rem; color: var(--text-muted);">ผลจำลองสอบล่าสุด:</span>
+      <strong style="margin-left: 0.25rem; color: var(--text-main);">{{ latest_mock.title }}</strong>
+      <span style="margin-left: 0.5rem; font-weight: 700; color: {% if latest_mock.score_percent >= 60 %}var(--success){% else %}var(--warning){% endif %};">
+        {{ latest_mock.score_percent }}% ({{ latest_mock.total_score }}/{{ latest_mock.max_score }} คะแนน)
+      </span>
+      <span style="font-size: 0.8rem; color: var(--text-muted); margin-left: 0.5rem;">
+        ทำถูก {{ latest_mock.correct_count }}/{{ latest_mock.total_questions }} ข้อ ({{ latest_mock.time_spent_min }} นาที)
+      </span>
+    </div>
+  </div>
+  <a href="/mock-exam" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.35rem 0.8rem;">ดูประวัติการสอบ ➔</a>
+</div>
+{% endif %}
+
 <!-- Secondary Stats Strip (Drills & Bookmarks) -->
 <div style="background: white; border: 1px solid var(--border-color); border-radius: var(--radius); padding: 1rem 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; box-shadow: var(--shadow);">
   <div style="display: flex; align-items: center; gap: 0.75rem;">
@@ -132,6 +194,14 @@
           <div style="text-align: left; margin-left: 0.5rem;">
             <div>โหมดกรอกกระดาษคำตอบ (Answer Sheet Mode)</div>
             <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">ทำข้อสอบเก่าบนกระดาษ แล้วกรอกตรวจแยกบททันที</div>
+          </div>
+        </a>
+
+        <a href="/roadmap" class="btn btn-outline" style="justify-content: flex-start; padding: 1rem 1.25rem;">
+          <span style="font-size: 1.2rem;">🗺️</span>
+          <div style="text-align: left; margin-left: 0.5rem;">
+            <div>แผนที่ลำดับการเรียนรู้ (Curriculum Roadmap)</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: normal;">ปรับลำดับบทเรียน เช็ก Prerequisite และความพร้อมก่อนเริ่มบทใหม่</div>
           </div>
         </a>
       </div>

@@ -265,17 +265,32 @@ def reorder_topic_priority(topic_id: str, direction: str) -> None:
         curr_topic = topics[idx]
         target_topic = topics[swap_idx]
 
-        # Swap order_index
         curr_order = curr_topic["order_index"]
         target_order = target_topic["order_index"]
 
         with get_db() as conn:
             cursor = conn.cursor()
-            cursor.execute(
-                "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
-                (target_order, curr_topic["topic_id"]),
-            )
-            cursor.execute(
-                "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
-                (curr_order, target_topic["topic_id"]),
-            )
+            if curr_order == target_order:
+                # If order indices are tied, normalize sequential order first then swap
+                for i, t in enumerate(topics, 1):
+                    cursor.execute(
+                        "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
+                        (i, t["topic_id"]),
+                    )
+                cursor.execute(
+                    "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
+                    (swap_idx + 1, curr_topic["topic_id"]),
+                )
+                cursor.execute(
+                    "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
+                    (idx + 1, target_topic["topic_id"]),
+                )
+            else:
+                cursor.execute(
+                    "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
+                    (target_order, curr_topic["topic_id"]),
+                )
+                cursor.execute(
+                    "UPDATE topic_priorities SET order_index = ? WHERE topic_id = ?",
+                    (curr_order, target_topic["topic_id"]),
+                )

@@ -30,6 +30,7 @@ from app.routers.roadmap import router as roadmap_router
 from app.routers.stats import router as stats_router
 from app.routers.system import router as system_router
 from app.services.content_loader import content_loader
+from app.services.mock_exam import get_mock_exam_history
 from app.services.review_engine import get_due_reviews, get_learning_stats
 
 
@@ -165,6 +166,8 @@ async def dashboard(request: Request):
     total_questions = len(content_loader.get_all_questions())
     total_formulas = len(content_loader.get_all_formulas())
     total_papers = len(content_loader.get_all_past_papers())
+    mock_history = get_mock_exam_history()
+    latest_mock = mock_history[0] if mock_history else None
 
     return templates.TemplateResponse(
         request=request,
@@ -175,6 +178,8 @@ async def dashboard(request: Request):
             "total_questions": total_questions,
             "total_formulas": total_formulas,
             "total_papers": total_papers,
+            "latest_mock": latest_mock,
+            "recent_mocks": mock_history[:3],
         },
     )
 

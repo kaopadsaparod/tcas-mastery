@@ -4,15 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}TCAS Mastery Prep System{% endblock %}</title>
-  <!-- Google Fonts: Sarabun -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <!-- KaTeX for LaTeX Math (Bundled Local-First Offline) -->
   <link rel="stylesheet" href="/static/vendor/katex/katex.min.css">
   <script defer src="/static/vendor/katex/katex.min.js"></script>
   <script defer src="/static/vendor/katex/auto-render.min.js" onload="renderMathInDocument()"></script>
-  <!-- App Styles -->
+  <!-- App Styles (100% Local-First System Thai Fonts) -->
   <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
@@ -22,18 +18,45 @@
     </a>
     <ul class="nav-links">
       <li><a href="/">หน้าหลัก</a></li>
-      <li><a href="/planner">🎯 ตารางติวรายวัน</a></li>
-      <li><a href="/roadmap">แผนอ่าน & ลำดับบท</a></li>
-      <li><a href="/mock-exam">⏱️ จำลองสอบจริง</a></li>
-      <li><a href="/practice">คลังโจทย์หลัก</a></li>
-      <li><a href="/drills">ฝึกคำนวณไม่อั้น</a></li>
-      <li><a href="/formulas">บัตรสูตรฟิสิกส์</a></li>
-      <li><a href="/answer-sheet">กระดาษคำตอบ</a></li>
-      <li><a href="/import">นำเข้า PDF/รูปภาพ</a></li>
-      <li><a href="/stats">สถิติจุดอ่อน</a></li>
-      <li><a href="/progress">📈 ประเมินความพร้อมสอบ</a></li>
-      <li><a href="/audit/content">📊 ตรวจสอบคลังโจทย์</a></li>
-      <li><a href="/system">สำรองข้อมูล</a></li>
+      <li><a href="/planner">🎯 ตารางติว</a></li>
+      <li><a href="/mock-exam">⏱️ จำลองสอบ</a></li>
+
+      <!-- Dropdown: คลังโจทย์ & แบบฝึก -->
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-btn" type="button">
+          📚 ทำโจทย์ <span style="font-size: 0.75rem;">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="/practice">📖 คลังโจทย์หลัก</a>
+          <a href="/answer-sheet">📝 โหมดกระดาษคำตอบ</a>
+          <a href="/drills">🔢 ฝึกคิดเลขเร็วไม่อั้น</a>
+          <a href="/formulas">🧠 บัตรสูตรฟิสิกส์</a>
+        </div>
+      </li>
+
+      <!-- Dropdown: วิเคราะห์ & แผนอ่าน -->
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-btn" type="button">
+          📊 วิเคราะห์ผล <span style="font-size: 0.75rem;">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="/progress">📈 ประเมินความพร้อมสอบ</a>
+          <a href="/roadmap">🗺️ แผนอ่าน & ลำดับบท</a>
+          <a href="/stats">📉 สถิติจุดอ่อน & การเดา</a>
+          <a href="/audit/content">🔍 ตรวจสอบคุณภาพคลังโจทย์</a>
+        </div>
+      </li>
+
+      <!-- Dropdown: จัดการระบบ -->
+      <li class="nav-dropdown">
+        <button class="nav-dropdown-btn" type="button">
+          ⚙️ จัดการ <span style="font-size: 0.75rem;">▼</span>
+        </button>
+        <div class="nav-dropdown-menu">
+          <a href="/import">📥 นำเข้าข้อสอบ PDF/รูปภาพ</a>
+          <a href="/system">💾 ตรวจสอบ & สำรองข้อมูล</a>
+        </div>
+      </li>
     </ul>
   </nav>
 

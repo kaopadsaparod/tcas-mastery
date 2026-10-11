@@ -442,6 +442,30 @@ def submit_mock_exam(
             ),
         )
 
+    # Link mock exam attempts to learning history and spaced repetition queue
+    from app.services.review_engine import record_attempt
+
+    time_per_q = round((time_spent_min * 60.0) / total_q, 1) if total_q > 0 else 0.0
+    for res in detailed_results:
+        qid = res.get("question_id")
+        user_ans = res.get("user_answer")
+        if not qid or not user_ans:
+            continue
+        try:
+            record_attempt(
+                question_id=qid,
+                subject=blueprint.get("subject", "physics"),
+                topic=res.get("topic", "general"),
+                user_answer=user_ans,
+                is_correct=res.get("is_correct", False),
+                status="correct_first_try" if res.get("is_correct") else "wrong",
+                confidence="sure",
+                error_tag=res.get("error_tag"),
+                time_spent_sec=time_per_q,
+            )
+        except Exception:
+            pass
+
     return report
 
 

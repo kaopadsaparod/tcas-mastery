@@ -248,7 +248,7 @@ def evaluate_remediation_variant(
         user_answer=user_answer,
         is_correct=is_correct,
         status=status,
-        confidence="sure" if is_correct else "guessing",
+        confidence="sure" if is_correct else "guessed",
         hints_opened=0,
     )
 
