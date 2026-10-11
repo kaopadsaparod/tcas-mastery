@@ -163,8 +163,8 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
     grade_result.pace_target_sec = pace_info["pace_target_sec"]
     grade_result.pace_feedback = pace_info["pace_feedback"]
 
-    # Persist in SQLite
-    record_attempt(
+    # Persist in SQLite and update Spaced Repetition queue
+    queue_record = record_attempt(
         question_id=q.id,
         subject=q.subject,
         topic=q.topic,
@@ -180,11 +180,17 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
         review_time_sec=req.review_time_sec,
     )
 
+    # Synchronize actual spaced repetition interval from queue database
+    grade_result.next_review_interval_days = queue_record["interval_days"]
+
     # Generate AI copy prompt
     ai_prompt = generate_ai_tutor_prompt(
         question=q, user_answer=req.user_answer, error_tag=grade_result.error_tag
     )
 
     res_dict = grade_result.model_dump()
+    res_dict["next_review_interval_days"] = queue_record["interval_days"]
+    res_dict["next_review_at"] = queue_record["next_review_at"]
+    res_dict["queue_priority"] = queue_record["priority"]
     res_dict["ai_prompt"] = ai_prompt
     return JSONResponse(res_dict)

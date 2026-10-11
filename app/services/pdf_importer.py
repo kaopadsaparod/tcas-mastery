@@ -264,6 +264,7 @@ def save_custom_question(data: dict[str, Any]) -> Question:
                 if isinstance(loaded, list):
                     existing_items = loaded
 
+        existing_items = [it for it in existing_items if it.get("id") != qid]
         existing_items.append(q_dict)
 
         # Unique temp file to avoid Windows sharing collisions

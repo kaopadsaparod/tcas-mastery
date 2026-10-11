@@ -320,3 +320,113 @@ def test_lan_pin_protection(client, monkeypatch):
     assert res_with_pin.status_code == 200
     assert res_with_pin.json()["success"] is True
 
+
+def test_small_scientific_tolerance_rejection():
+    """
+    Bug 1 Verification:
+    abs < 1e-4 was overly permissive for small values like 2e-6 or 1.6e-19.
+    5e-5 or 0 must NOT be accepted for 2e-6.
+    """
+    # 5e-5 is off by ~2400% from 2e-6 -> must be rejected
+    is_ok, tag = grade_numeric_detailed("5e-5", "2e-6", tolerance=0.01)
+    assert is_ok is False
+    assert tag == "arithmetic_error"
+
+    # 0 must NOT be accepted for 2e-6
+    is_ok_zero, _ = grade_numeric_detailed("0", "2e-6", tolerance=0.01)
+    assert is_ok_zero is False
+
+    # Within 1% tolerance of 2e-6 -> accepted
+    is_ok_close, _ = grade_numeric_detailed("2.01e-6", "2e-6", tolerance=0.01)
+    assert is_ok_close is True
+
+    # 0 must NOT be accepted for 1.6e-19 (electron charge)
+    is_ok_elem_zero, _ = grade_numeric_detailed("0", "1.6e-19", tolerance=0.01)
+    assert is_ok_elem_zero is False
+
+    # Accurate scientific answer for 1.6e-19 -> accepted
+    is_ok_elem, _ = grade_numeric_detailed("1.605e-19", "1.6e-19", tolerance=0.01)
+    assert is_ok_elem is True
+
+
+def test_negative_exponent_unit_extraction():
+    """
+    Bug 4 Verification:
+    Unit regex must support negative exponents and SI notations like ms-1, m.s-1, m s^-1.
+    """
+    # 20 ms-1 should match m/s unit
+    is_ok_ms1, tag_ms1 = grade_numeric_detailed("20 ms-1", "20", expected_unit="m/s")
+    assert is_ok_ms1 is True
+    assert tag_ms1 is None
+
+    # 20 m.s-1 should match m/s unit
+    is_ok_dot, tag_dot = grade_numeric_detailed("20 m.s-1", "20", expected_unit="m/s")
+    assert is_ok_dot is True
+    assert tag_dot is None
+
+    # 20 m s^-1 should match m/s unit
+    is_ok_caret, tag_caret = grade_numeric_detailed("20 m s^-1", "20", expected_unit="m/s")
+    assert is_ok_caret is True
+    assert tag_caret is None
+
+
+def test_spaced_repetition_interval_synchronization(client):
+    """
+    Bug 2 Verification:
+    /api/submit-attempt must return the actual database queue interval (3 -> 7 -> 14 days)
+    rather than a static hardcoded interval from grader.
+    """
+    qid = "phy-kin-0001"
+    from app.database import get_db
+    with get_db() as conn:
+        conn.execute("DELETE FROM review_queue WHERE question_id = ?", (qid,))
+        conn.execute("DELETE FROM attempts WHERE question_id = ?", (qid,))
+
+    # Attempt 1: Correct first try -> rep 0 -> interval 3
+    res1 = client.post(
+        "/api/submit-attempt",
+        json={"question_id": qid, "user_answer": "o1", "confidence": "sure", "hints_opened": 0},
+    )
+    assert res1.status_code == 200
+    assert res1.json()["next_review_interval_days"] == 3
+
+    # Attempt 2: Correct again -> rep 1 -> interval 7
+    res2 = client.post(
+        "/api/submit-attempt",
+        json={"question_id": qid, "user_answer": "o1", "confidence": "sure", "hints_opened": 0},
+    )
+    assert res2.status_code == 200
+    assert res2.json()["next_review_interval_days"] == 7
+
+    # Attempt 3: Correct again -> rep 2 -> interval 14
+    res3 = client.post(
+        "/api/submit-attempt",
+        json={"question_id": qid, "user_answer": "o1", "confidence": "sure", "hints_opened": 0},
+    )
+    assert res3.status_code == 200
+    assert res3.json()["next_review_interval_days"] == 14
+
+
+def test_get_learning_stats_verified_only():
+    """
+    Bug 3 Verification:
+    get_learning_stats(verified_only=True) must filter out unverified (Tier D) questions.
+    """
+    # Record attempt on Tier D imported question (custom-ig-001)
+    record_attempt(
+        question_id="custom-ig-001",
+        subject="physics",
+        topic="physics.kinematics.1d",
+        user_answer="o1",
+        is_correct=True,
+        status="correct_first_try",
+        confidence="sure",
+    )
+
+    stats_all = get_learning_stats(verified_only=False)
+    stats_verified = get_learning_stats(verified_only=True)
+
+    # All stats includes the Tier D attempt, verified_only excludes it
+    assert stats_all["total_attempts"] > stats_verified["total_attempts"]
+
+

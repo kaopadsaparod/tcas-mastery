@@ -1,3 +1,4 @@
+import math
 import re
 
 from app.models.api_schema import SubmitAttemptResponse
@@ -28,12 +29,12 @@ ERROR_TAG_DESCRIPTIONS = {
 }
 
 UNIT_SYNONYMS: dict[str, set[str]] = {
-    "m/s": {"m/s", "ms-1", "m s-1", "เมตร/วินาที", "ม./วิ"},
+    "m/s": {"m/s", "ms-1", "m s-1", "m.s-1", "m s^-1", "m.s^-1", "เมตร/วินาที", "เมตรต่อวินาที", "ม./วิ"},
     "km/h": {"km/h", "km/hr", "kmh", "กิโลเมตร/ชั่วโมง", "กม./ชม."},
     "m": {"m", "meter", "meters", "เมตร"},
     "cm": {"cm", "centimeter", "เซนติเมตร", "ซม."},
     "s": {"s", "sec", "second", "seconds", "วินาที", "วิ"},
-    "m/s^2": {"m/s^2", "m/s2", "ms-2", "เมตร/วินาที^2", "เมตร/วินาที²"},
+    "m/s^2": {"m/s^2", "m/s2", "ms-2", "m s-2", "m.s-2", "m s^-2", "m.s^-2", "เมตร/วินาที^2", "เมตร/วินาที²", "เมตรต่อวินาที^2"},
     "n": {"n", "newton", "newtons", "นิวตัน"},
     "j": {"j", "joule", "joules", "จูล"},
     "w": {"w", "watt", "watts", "วัตต์"},
@@ -54,7 +55,14 @@ def clean_unit_str(u: str) -> str:
     """Cleans a unit string for canonical comparison."""
     u = u.strip().lower()
     u = re.sub(r"\\text\{([^}]+)\}", r"\1", u)
-    u = u.replace(" ", "").replace("²", "^2").replace("³", "^3")
+    u = (
+        u.replace(" ", "")
+        .replace("²", "2")
+        .replace("³", "3")
+        .replace("^", "")
+        .replace(".", "")
+        .replace("ต่อ", "/")
+    )
     return u
 
 
@@ -70,26 +78,28 @@ def units_match(u1: str, u2: str) -> bool:
     return False
 
 
+NUM_UNIT_PATTERN = re.compile(
+    r"^\s*([+-]?\d+(?:,\d+)*(?:\.\d+)?\s*/\s*[+-]?\d+(?:,\d+)*(?:\.\d+)?|[+-]?\d+(?:,\d+)*(?:\.\d+)?(?:[eE][+-]?\d+|[x\*×]10\^?[+-]?\d+)?)\s*(.*)$",
+    re.IGNORECASE,
+)
+
+
 def extract_number_and_unit(raw: str) -> tuple[str, str | None]:
     """
     Separates a raw answer string into (numeric_part, detected_unit).
-    Avoids erroneously matching scientific notation exponents like 'e3' or 'e-2' as units.
+    Deterministically extracts the numeric value first (including scientific notation and fractions),
+    leaving the remaining string as the physical unit (supporting ms-1, m.s-1, m s^-1, kg/m^3).
     """
     s = str(raw).strip()
-    s = s.replace("−", "-").replace("–", "-").replace(",", "")
+    s = s.replace("−", "-").replace("–", "-")
     thai_digits = str.maketrans("๑๒๓๔๕๖๗๘๙๐", "1234567890")
     s = s.translate(thai_digits)
 
-    # Avoid extracting 'e3' as unit in scientific notation
-    if not re.search(r"e[+-]?\d+$", s, re.IGNORECASE):
-        m = re.search(
-            r"^(.*?)(?:\s+|(?<=[0-9]))([a-zA-Z\u0e00-\u0e7f°%]+(?:/[a-zA-Z\u0e00-\u0e7f\^0-9]+)?)$",
-            s,
-        )
-        if m:
-            num_str, unit_str = m.group(1).strip(), m.group(2).strip()
-            if num_str:
-                return num_str, unit_str
+    m = NUM_UNIT_PATTERN.match(s)
+    if m:
+        num_str = m.group(1).strip()
+        unit_str = m.group(2).strip() or None
+        return num_str, unit_str
 
     return s, None
 
@@ -111,7 +121,7 @@ def normalize_numeric_string(raw: str) -> float | None:
         return None
 
     num_part, _ = extract_number_and_unit(s)
-    s = num_part.replace(" ", "")
+    s = num_part.replace(" ", "").replace(",", "")
 
     # Handle scientific notation variants like 2*10^3, 2x10^3, 2×10^3, 2*10**3
     sci_pattern = r"^([+-]?\d+(?:\.\d+)?)(?:[x\*×]10\^?([+-]?\d+)|e([+-]?\d+))$"
@@ -169,11 +179,13 @@ def grade_numeric_detailed(
         return False, None
 
     if e_val == 0:
-        is_ok = abs(u_val) < 1e-4
+        is_ok = abs(u_val) < 1e-9
         return is_ok, None if is_ok else "arithmetic_error"
 
-    rel_error = abs(u_val - e_val) / abs(e_val)
-    is_ok = rel_error <= tolerance or abs(u_val - e_val) < 1e-4
+    # Scale absolute tolerance proportionally so small scientific values (e.g. 2e-6, 1.6e-19)
+    # do not accept 0 or 5e-5 as correct
+    scaled_abs_tol = min(1e-12, tolerance * abs(e_val))
+    is_ok = math.isclose(u_val, e_val, rel_tol=tolerance, abs_tol=scaled_abs_tol)
     return is_ok, None if is_ok else "arithmetic_error"
 
 

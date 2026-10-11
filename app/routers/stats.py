@@ -10,16 +10,20 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "app" / "templates"))
 
 
 @router.get("/stats", response_class=HTMLResponse)
-async def stats_page(request: Request):
-    stats = get_learning_stats()
+async def stats_page(request: Request, verified_only: bool = False):
+    stats = get_learning_stats(verified_only=verified_only)
     due_reviews = get_due_reviews()
     return templates.TemplateResponse(
         request=request,
         name="stats.html",
-        context={"stats": stats, "due_reviews": due_reviews},
+        context={
+            "stats": stats,
+            "due_reviews": due_reviews,
+            "verified_only": verified_only,
+        },
     )
 
 
 @router.get("/api/stats")
-async def api_stats():
-    return JSONResponse(get_learning_stats())
+async def api_stats(verified_only: bool = False):
+    return JSONResponse(get_learning_stats(verified_only=verified_only))

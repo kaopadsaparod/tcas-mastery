@@ -211,69 +211,84 @@ def get_learning_stats(verified_only: bool = False) -> dict[str, Any]:
     with get_db() as conn:
         cursor = conn.cursor()
 
+        # Build dynamic where condition when filtering only verified questions (Tiers A-C)
+        if verified_only:
+            verified_questions = content_loader.get_all_questions(verified_only=True)
+            verified_qids = [q.id for q in verified_questions]
+            if verified_qids:
+                placeholders = ",".join("?" for _ in verified_qids)
+                where_base = f"question_id IN ({placeholders})"
+                base_params = tuple(verified_qids)
+            else:
+                where_base = "1=0"
+                base_params = ()
+        else:
+            where_base = ""
+            base_params = ()
+
+        def build_where(extra_cond: str = "") -> tuple[str, tuple]:
+            if where_base and extra_cond:
+                return f"WHERE {where_base} AND ({extra_cond})", base_params
+            elif where_base:
+                return f"WHERE {where_base}", base_params
+            elif extra_cond:
+                return f"WHERE {extra_cond}", ()
+            return "", ()
+
         # Overall counts
-        cursor.execute("SELECT COUNT(*) as total FROM attempts")
+        w, p = build_where()
+        cursor.execute(f"SELECT COUNT(*) as total FROM attempts {w}", p)
         total_attempts = cursor.fetchone()["total"]
 
         # Raw first-try count
-        cursor.execute(
-            "SELECT COUNT(*) as first_try FROM attempts WHERE status = 'correct_first_try'"
-        )
+        w, p = build_where("status = 'correct_first_try'")
+        cursor.execute(f"SELECT COUNT(*) as first_try FROM attempts {w}", p)
         first_try_raw = cursor.fetchone()["first_try"]
 
         # Honest Mastery: first_try and NOT guessed (requires genuine confidence 'sure' or 'unsure')
-        cursor.execute(
-            """
-            SELECT COUNT(*) as honest_mastery
-            FROM attempts
-            WHERE status = 'correct_first_try' AND confidence IN ('sure', 'unsure')
-        """
-        )
+        w, p = build_where("status = 'correct_first_try' AND confidence IN ('sure', 'unsure')")
+        cursor.execute(f"SELECT COUNT(*) as honest_mastery FROM attempts {w}", p)
         honest_mastery_count = cursor.fetchone()["honest_mastery"]
 
         # Lucky guesses: correct first try but student was just guessing
-        cursor.execute(
-            """
-            SELECT COUNT(*) as lucky_guesses
-            FROM attempts
-            WHERE status = 'correct_first_try' AND confidence = 'guessed'
-        """
-        )
+        w, p = build_where("status = 'correct_first_try' AND confidence = 'guessed'")
+        cursor.execute(f"SELECT COUNT(*) as lucky_guesses FROM attempts {w}", p)
         lucky_guesses = cursor.fetchone()["lucky_guesses"]
 
-        cursor.execute(
-            "SELECT COUNT(*) as assisted FROM attempts WHERE status = 'correct_assisted'"
-        )
+        w, p = build_where("status = 'correct_assisted'")
+        cursor.execute(f"SELECT COUNT(*) as assisted FROM attempts {w}", p)
         assisted_correct = cursor.fetchone()["assisted"]
 
-        cursor.execute("SELECT COUNT(*) as wrong FROM attempts WHERE is_correct = 0")
+        w, p = build_where("is_correct = 0")
+        cursor.execute(f"SELECT COUNT(*) as wrong FROM attempts {w}", p)
         wrong_count = cursor.fetchone()["wrong"]
 
         # Average thinking time and review time
+        w, p = build_where()
         cursor.execute(
-            "SELECT AVG(time_spent_sec) as avg_think, AVG(review_time_sec) as avg_review FROM attempts"
+            f"SELECT AVG(time_spent_sec) as avg_think, AVG(review_time_sec) as avg_review FROM attempts {w}",
+            p,
         )
         time_row = cursor.fetchone()
         avg_think = round(time_row["avg_think"] or 0, 1)
         avg_review = round(time_row["avg_review"] or 0, 1)
 
         # High priority misconceptions (sure but wrong)
-        cursor.execute(
-            "SELECT COUNT(*) as misconceptions FROM attempts WHERE is_correct = 0 AND confidence = 'sure'"
-        )
+        w, p = build_where("is_correct = 0 AND confidence = 'sure'")
+        cursor.execute(f"SELECT COUNT(*) as misconceptions FROM attempts {w}", p)
         misconceptions = cursor.fetchone()["misconceptions"]
 
         # Confidence Calibration Breakdown
         calibration: dict[str, dict[str, Any]] = {}
         for conf in ["sure", "unsure", "guessed"]:
+            w, p = build_where("confidence = ?")
             cursor.execute(
-                """
+                f"""
                 SELECT COUNT(*) as total,
                        SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as correct
-                FROM attempts
-                WHERE confidence = ?
+                FROM attempts {w}
             """,
-                (conf,),
+                base_params + (conf,),
             )
             c_row = cursor.fetchone()
             c_tot = c_row["total"] or 0
@@ -291,26 +306,27 @@ def get_learning_stats(verified_only: bool = False) -> dict[str, Any]:
         )
 
         # Top error tags
-        cursor.execute("""
+        w, p = build_where("error_tag IS NOT NULL AND error_tag != ''")
+        cursor.execute(f"""
             SELECT error_tag, COUNT(*) as count
-            FROM attempts
-            WHERE error_tag IS NOT NULL AND error_tag != ''
+            FROM attempts {w}
             GROUP BY error_tag
             ORDER BY count DESC
             LIMIT 5
-        """)
+        """, p)
         top_errors = [dict(r) for r in cursor.fetchall()]
 
         # Breakdown by topic
-        cursor.execute("""
+        w, p = build_where()
+        cursor.execute(f"""
             SELECT topic,
                    COUNT(*) as total,
                    SUM(CASE WHEN status = 'correct_first_try' AND confidence IN ('sure', 'unsure') THEN 1 ELSE 0 END) as honest_mastery,
                    SUM(CASE WHEN status = 'correct_first_try' THEN 1 ELSE 0 END) as first_try,
                    SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) as total_correct
-            FROM attempts
+            FROM attempts {w}
             GROUP BY topic
-        """)
+        """, p)
         topic_stats = [dict(r) for r in cursor.fetchall()]
 
         # Procedural drills statistics
