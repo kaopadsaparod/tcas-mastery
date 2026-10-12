@@ -12,10 +12,28 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "app" / "templates"))
 
 
 @router.get("/formulas", response_class=HTMLResponse)
-async def formulas_page(request: Request):
-    formulas = content_loader.get_all_formulas()
+async def formulas_page(request: Request, subject: str | None = None):
+    all_formulas = content_loader.get_all_formulas()
+    physics_count = sum(1 for f in all_formulas if f.subject == "physics")
+    math_count = sum(1 for f in all_formulas if f.subject == "math")
+
+    if subject in ["physics", "math"]:
+        filtered_formulas = [f for f in all_formulas if f.subject == subject]
+    else:
+        filtered_formulas = all_formulas
+        subject = "all"
+
     return templates.TemplateResponse(
-        request=request, name="formula_recall.html", context={"formulas": formulas}
+        request=request,
+        name="formula_recall.html",
+        context={
+            "formulas": filtered_formulas,
+            "all_formulas": all_formulas,
+            "selected_subject": subject,
+            "total_count": len(all_formulas),
+            "physics_count": physics_count,
+            "math_count": math_count,
+        },
     )
 
 

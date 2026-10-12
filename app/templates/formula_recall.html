@@ -1,47 +1,108 @@
 {% extends "base.html" %}
 
-{% block title %}บัตรเรียกคืนสูตร • TCAS Mastery{% endblock %}
+{% block title %}รวมสูตรที่ต้องรู้ (ฟิสิกส์ & คณิต) • TCAS Mastery{% endblock %}
 
 {% block content %}
 <div class="card">
-  <div class="card-header">
+  <!-- Top Navigation & Action Bar -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+    <div style="display: flex; align-items: center; gap: 0.5rem;">
+      <a href="/" class="btn btn-outline" style="padding: 0.4rem 0.85rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+        ◀ กลับหน้าหลัก
+      </a>
+      <a href="/practice" class="btn btn-outline" style="padding: 0.4rem 0.85rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+        📚 คลังโจทย์
+      </a>
+    </div>
+    <div style="font-size: 0.85rem; color: var(--text-muted);">
+      คลังสูตร High-Yield TCAS • รวม <strong>{{ total_count }}</strong> สูตร
+    </div>
+  </div>
+
+  <div class="card-header" style="border-bottom: 1.5px solid var(--border-color); padding-bottom: 1rem; margin-bottom: 1.5rem;">
     <div>
-      <h1 class="card-title">🧠 บัตรเรียกคืนสูตรฟิสิกส์ (Active Formula Recall)</h1>
-      <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">
-        แก้ปัญหา "จำสูตรไม่ได้" และ "ใช้สูตรผิดเงื่อนไข" ด้วยการทดสอบความเข้าใจเงื่อนไขและตัวแปร
+      <h1 class="card-title">📐 รวมสูตรที่ต้องรู้ (ฟิสิกส์ & คณิตศาสตร์)</h1>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.6;">
+        คลังสูตรหัวใจสำคัญที่ออกสอบบ่อยที่สุดใน TCAS (A-Level & TPAT3) พร้อม <strong>เงื่อนไขการใช้สูตร</strong>, <strong>ความหมายตัวแปร</strong>, <strong>จุดสังเกตเมื่อควรเลือกใช้</strong> และ <strong>แบบทดสอบ Active Recall</strong> ทบทวนดึงความจำทันที
       </p>
     </div>
   </div>
 
-  <div style="display: flex; flex-direction: column; gap: 2rem;">
+  <!-- Subject Filter Tabs & Real-time Search -->
+  <div style="background: #f8fafc; border: 1.5px solid var(--border-color); border-radius: 12px; padding: 1.25rem; margin-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <!-- Subject Tabs -->
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;" id="subjectFilterTabs">
+        <a href="/formulas" class="btn {% if selected_subject == 'all' %}btn-primary{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1rem; font-size: 0.9rem;" onclick="filterBySubject(event, 'all')">
+          🎯 ทั้งหมด ({{ total_count }})
+        </a>
+        <a href="/formulas?subject=physics" class="btn {% if selected_subject == 'physics' %}btn-primary{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1rem; font-size: 0.9rem;" onclick="filterBySubject(event, 'physics')">
+          ⚡ ฟิสิกส์ ({{ physics_count }})
+        </a>
+        <a href="/formulas?subject=math" class="btn {% if selected_subject == 'math' %}btn-primary{% else %}btn-outline{% endif %}" style="padding: 0.45rem 1rem; font-size: 0.9rem;" onclick="filterBySubject(event, 'math')">
+          📐 คณิตศาสตร์ ({{ math_count }})
+        </a>
+      </div>
+
+      <!-- Quick Mode Toggle -->
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button type="button" class="btn btn-outline" id="btnToggleAllQuiz" style="padding: 0.4rem 0.85rem; font-size: 0.82rem;" onclick="toggleAllQuizSections()">
+          👁️ ซ่อน/แสดง ข้อทดสอบทั้งหมด
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Search Input -->
+    <div style="margin-top: 1rem; position: relative;">
+      <input type="text" id="formulaSearchInput" class="option-item" style="width: 100%; padding: 0.65rem 1rem; font-size: 0.95rem; margin-bottom: 0;" placeholder="🔍 พิมพ์ค้นหาสูตร ตัวแปร บทเรียน หรือชื่อหัวข้อ (เช่น v = u + at, สมการกำลังสอง, ลำดับ, โมเมนตัม)..." oninput="applyFilters()">
+    </div>
+  </div>
+
+  <!-- Formula Cards List -->
+  <div id="formulaListContainer" style="display: flex; flex-direction: column; gap: 2rem;">
     {% for card in formulas %}
-      <div style="border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; background: white; box-shadow: var(--shadow);">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+      <div class="formula-card-item" data-subject="{{ card.subject }}" data-topic="{{ card.topic }}" data-title="{{ card.title }}" data-latex="{{ card.latex }}" style="border: 1.5px solid var(--border-color); border-radius: var(--radius); padding: 1.5rem; background: white; box-shadow: var(--shadow); transition: all 0.2s ease;">
+        
+        <!-- Header: Title, Subject Badge, Topic & LaTeX Formula -->
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
           <div>
-            <h2 style="font-size: 1.25rem; font-weight: 700; color: var(--primary);">{{ card.title }}</h2>
-            <span style="font-size: 0.85rem; color: var(--text-muted);">{{ card.topic }} • ID: {{ card.id }}</span>
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; flex-wrap: wrap;">
+              {% if card.subject == 'physics' %}
+                <span class="badge" style="background: #e0e7ff; color: #3730a3; font-weight: 700;">⚡ ฟิสิกส์</span>
+              {% else %}
+                <span class="badge" style="background: #dbeafe; color: #1e40af; font-weight: 700;">📐 คณิตศาสตร์</span>
+              {% endif %}
+              <span style="font-size: 0.85rem; color: var(--text-muted);">{{ card.topic }}</span>
+            </div>
+            <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--primary); margin: 0;">{{ card.title }}</h2>
           </div>
-          <div style="font-size: 1.4rem; background: #eef2ff; color: #4338ca; padding: 0.35rem 1rem; border-radius: 8px; font-weight: 700;">
-            ${{ card.latex }}$
+
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <div style="font-size: 1.35rem; background: #eef2ff; color: #312e81; padding: 0.4rem 1.1rem; border-radius: 8px; font-weight: 700; border: 1px solid #c7d2fe;">
+              ${{ card.latex }}$
+            </div>
+            <button type="button" class="btn btn-outline" style="padding: 0.35rem 0.65rem; font-size: 0.8rem;" title="คัดลอกสูตร LaTeX" onclick="copyFormulaLatex('{{ card.latex|escape }}')">
+              📋 คัดลอก
+            </button>
           </div>
         </div>
 
         <div class="grid-2" style="margin-bottom: 1.25rem;">
           <!-- Conditions & Cues -->
           <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
-            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-bottom: 0.4rem;">
-              ⚠️ เงื่อนไขการใช้สูตร:
+            <div style="font-weight: 700; font-size: 0.92rem; color: #1e293b; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.35rem;">
+              <span>⚠️</span> เงื่อนไขการใช้สูตร:
             </div>
-            <ul style="margin-left: 1.2rem; font-size: 0.9rem; color: #475569;">
+            <ul style="margin-left: 1.2rem; font-size: 0.88rem; color: #475569; line-height: 1.6;">
               {% for cond in card.conditions %}
                 <li>{{ cond }}</li>
               {% endfor %}
             </ul>
 
-            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-top: 0.75rem; margin-bottom: 0.4rem;">
-              🎯 สัญญาณเตือนในการเลือกสูตร:
+            <div style="font-weight: 700; font-size: 0.92rem; color: #1e293b; margin-top: 0.85rem; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.35rem;">
+              <span>🎯</span> สัญญาณเตือนในการเลือกสูตร:
             </div>
-            <ul style="margin-left: 1.2rem; font-size: 0.9rem; color: #475569;">
+            <ul style="margin-left: 1.2rem; font-size: 0.88rem; color: #475569; line-height: 1.6;">
               {% for cue in card.selection_cues %}
                 <li>{{ cue }}</li>
               {% endfor %}
@@ -50,10 +111,10 @@
 
           <!-- Variables -->
           <div style="background: #f8fafc; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem;">
-            <div style="font-weight: 700; font-size: 0.9rem; color: #1e293b; margin-bottom: 0.4rem;">
-              🏷️ ความหมายของตัวแปร & หน่วย SI:
+            <div style="font-weight: 700; font-size: 0.92rem; color: #1e293b; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.35rem;">
+              <span>🏷️</span> ความหมายของตัวแปร & หน่วย:
             </div>
-            <div style="display: flex; flex-direction: column; gap: 0.35rem; font-size: 0.9rem;">
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.88rem; line-height: 1.5;">
               {% for var_name, var_desc in card.variables.items() %}
                 <div>• <strong>${{ var_name }}$</strong> : {{ var_desc }}</div>
               {% endfor %}
@@ -62,20 +123,26 @@
         </div>
 
         <!-- Active Recall Quiz -->
-        <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 1.25rem;">
-          <div style="font-weight: 700; color: #92400e; font-size: 0.95rem; margin-bottom: 0.75rem;">
-            ⚡ แบบทดสอบดึงความจำ (Recall Challenge):
+        {% if card.recall_questions %}
+        <div class="formula-quiz-section" style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 8px; padding: 1.25rem;">
+          <div style="font-weight: 700; color: #92400e; font-size: 0.95rem; margin-bottom: 0.75rem; display: flex; justify-content: space-between; align-items: center;">
+            <span style="display: flex; align-items: center; gap: 0.35rem;">
+              <span>⚡</span> แบบทดสอบดึงความจำ (Recall Challenge):
+            </span>
+            <span style="font-size: 0.8rem; font-weight: normal; color: #b45309;">
+              {{ card.recall_questions|length }} ข้อ
+            </span>
           </div>
 
           {% for q in card.recall_questions %}
             {% set q_idx = loop.index0 %}
             <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px dashed #fcd34d;">
-              <div style="font-weight: 600; font-size: 0.95rem; color: #78350f; margin-bottom: 0.5rem;">
+              <div style="font-weight: 600; font-size: 0.93rem; color: #78350f; margin-bottom: 0.5rem; line-height: 1.5;">
                 {{ loop.index }}. {{ q.prompt }}
               </div>
               <div style="display: flex; flex-direction: column; gap: 0.35rem;">
                 {% for opt_key, opt_text in q.options.items() %}
-                  <label class="option-item" style="background: white; padding: 0.5rem 0.75rem; margin-bottom: 0.2rem;" id="formula-opt-{{ card.id }}-{{ q_idx }}-{{ opt_key }}">
+                  <label class="option-item" style="background: white; padding: 0.5rem 0.75rem; margin-bottom: 0.2rem; cursor: pointer;" id="formula-opt-{{ card.id }}-{{ q_idx }}-{{ opt_key }}">
                     <input type="radio" name="formula_q_{{ card.id }}_{{ q_idx }}" value="{{ opt_key }}" onchange="submitFormulaAnswer('{{ card.id }}', {{ q_idx }}, '{{ opt_key }}')">
                     <span><strong>({{ opt_key }})</strong> {{ opt_text }}</span>
                   </label>
@@ -85,14 +152,114 @@
             </div>
           {% endfor %}
         </div>
+        {% endif %}
+
       </div>
     {% endfor %}
   </div>
+
+  <!-- Empty state for search -->
+  <div id="noResultsAlert" style="display: none; text-align: center; padding: 3rem 1.5rem; background: #f8fafc; border: 1.5px dashed var(--border-color); border-radius: 12px; margin-top: 1rem;">
+    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+    <div style="font-size: 1.1rem; font-weight: 700; color: #475569;">ไม่พบสูตรที่ตรงกับคำค้นหา</div>
+    <div style="font-size: 0.9rem; color: var(--text-muted); margin-top: 0.25rem;">ลองค้นหาด้วยคำอื่น หรือกดสลับแท็บเพื่อดูสูตรทั้งหมด</div>
+  </div>
+
+  <!-- Bottom Action / Navigation Bar -->
+  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid var(--border-color); padding-top: 1.5rem; margin-top: 2.5rem; flex-wrap: wrap; gap: 1rem;">
+    <div style="display: flex; gap: 0.75rem;">
+      <a href="/" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+        ◀ กลับหน้าหลัก (Dashboard)
+      </a>
+      <a href="/practice" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+        📚 ไปคลังโจทย์หลัก (Practice)
+      </a>
+    </div>
+    <button type="button" class="btn btn-primary" style="padding: 0.6rem 1.25rem;" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+      🔝 กลับขึ้นด้านบน
+    </button>
+  </div>
+
 </div>
 {% endblock %}
 
 {% block scripts %}
 <script>
+let currentSubjectFilter = '{{ selected_subject }}' || 'all';
+let allQuizSectionsVisible = true;
+
+function filterBySubject(e, subject) {
+  if (e) e.preventDefault();
+  currentSubjectFilter = subject;
+
+  // Update tabs UI
+  const tabs = document.querySelectorAll('#subjectFilterTabs a');
+  tabs.forEach(tab => {
+    tab.className = 'btn btn-outline';
+    if (subject === 'all' && tab.textContent.includes('ทั้งหมด')) tab.className = 'btn btn-primary';
+    if (subject === 'physics' && tab.textContent.includes('ฟิสิกส์')) tab.className = 'btn btn-primary';
+    if (subject === 'math' && tab.textContent.includes('คณิตศาสตร์')) tab.className = 'btn btn-primary';
+  });
+
+  applyFilters();
+}
+
+function applyFilters() {
+  const searchTerm = (document.getElementById('formulaSearchInput').value || '').trim().toLowerCase();
+  const cards = document.querySelectorAll('.formula-card-item');
+  let visibleCount = 0;
+
+  cards.forEach(card => {
+    const cardSubject = card.getAttribute('data-subject') || '';
+    const cardTopic = (card.getAttribute('data-topic') || '').toLowerCase();
+    const cardTitle = (card.getAttribute('data-title') || '').toLowerCase();
+    const cardLatex = (card.getAttribute('data-latex') || '').toLowerCase();
+    const cardText = card.textContent.toLowerCase();
+
+    // Subject check
+    const matchesSubject = (currentSubjectFilter === 'all') || (cardSubject === currentSubjectFilter);
+
+    // Search term check
+    const matchesSearch = !searchTerm ||
+      cardTitle.includes(searchTerm) ||
+      cardTopic.includes(searchTerm) ||
+      cardLatex.includes(searchTerm) ||
+      cardText.includes(searchTerm);
+
+    if (matchesSubject && matchesSearch) {
+      card.style.display = 'block';
+      visibleCount++;
+    } else {
+      card.style.display = 'none';
+    }
+  });
+
+  const noRes = document.getElementById('noResultsAlert');
+  if (noRes) {
+    noRes.style.display = (visibleCount === 0) ? 'block' : 'none';
+  }
+}
+
+function toggleAllQuizSections() {
+  allQuizSectionsVisible = !allQuizSectionsVisible;
+  const sections = document.querySelectorAll('.formula-quiz-section');
+  sections.forEach(s => {
+    s.style.display = allQuizSectionsVisible ? 'block' : 'none';
+  });
+  const btn = document.getElementById('btnToggleAllQuiz');
+  if (btn) {
+    btn.textContent = allQuizSectionsVisible ? '👁️ ซ่อนข้อทดสอบทั้งหมด' : '⚡ แสดงข้อทดสอบทั้งหมด';
+  }
+}
+
+function copyFormulaLatex(latex) {
+  navigator.clipboard.writeText(latex).then(() => {
+    showToast('คัดลอกสูตร LaTeX เรียบร้อยแล้ว!');
+  }).catch(() => {
+    showToast('คัดลอกสูตร: $' + latex + '$');
+  });
+}
+
 async function submitFormulaAnswer(cardId, questionIndex, selectedOption) {
   const inputs = document.querySelectorAll(`input[name="formula_q_${cardId}_${questionIndex}"]`);
   inputs.forEach(inp => inp.disabled = true);
@@ -143,5 +310,11 @@ function resetFormulaQuestion(cardId, questionIndex) {
   const fb = document.getElementById(`formula-feedback-${cardId}-${questionIndex}`);
   if (fb) fb.style.display = 'none';
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof renderMathInDocument === 'function') {
+    renderMathInDocument();
+  }
+});
 </script>
 {% endblock %}

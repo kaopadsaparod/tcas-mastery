@@ -3,6 +3,21 @@
 {% block title %}แบบฝึกคำนวณไม่อั้น • TCAS Mastery{% endblock %}
 
 {% block content %}
+<!-- Top Quick-Back Navigation Bar -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <a href="/" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+      ◀ กลับหน้าหลัก
+    </a>
+    <a href="/practice" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.88rem;">
+      📚 คลังโจทย์
+    </a>
+    <a href="/formulas" class="btn btn-outline" style="padding: 0.35rem 0.85rem; font-size: 0.88rem;">
+      📐 รวมสูตร
+    </a>
+  </div>
+</div>
+
 <div class="card">
   <div class="card-header">
     <div>
@@ -61,6 +76,15 @@
           {{ drill.explanation }}
         </div>
       </div>
+  <!-- Bottom Actions -->
+  <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1.5px solid var(--border-color); padding-top: 1.25rem; margin-top: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+    <div style="display: flex; gap: 0.75rem;">
+      <a href="/" class="btn btn-outline" style="padding: 0.5rem 1.2rem;">
+        ◀ กลับหน้าหลัก (Dashboard)
+      </a>
+      <a href="/practice" class="btn btn-outline" style="padding: 0.5rem 1.2rem;">
+        📚 ไปคลังโจทย์หลัก (Practice)
+      </a>
     </div>
   </div>
 </div>

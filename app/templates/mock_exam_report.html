@@ -3,6 +3,26 @@
 {% block title %}รายงานผลการจำลองสอบ: {{ report.title }} • TCAS Mastery{% endblock %}
 
 {% block content %}
+<!-- Top Quick Navigation & Back Bar -->
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap; gap: 0.75rem;">
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <a href="/mock-exam" class="btn btn-outline" style="padding: 0.4rem 0.95rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+      ◀ กลับหน้ารวมข้อสอบจำลอง
+    </a>
+    <a href="/" class="btn btn-outline" style="padding: 0.4rem 0.95rem; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+      🏠 กลับหน้าหลัก (Dashboard)
+    </a>
+  </div>
+  <div style="display: flex; gap: 0.5rem; align-items: center;">
+    <a href="/progress" class="btn btn-outline" style="padding: 0.4rem 0.95rem; font-size: 0.88rem;">
+      📈 ดูคะแนนความพร้อม
+    </a>
+    <a href="/planner" class="btn btn-primary" style="padding: 0.4rem 0.95rem; font-size: 0.88rem;">
+      🎯 ปรับแผนติวใน Planner ➔
+    </a>
+  </div>
+</div>
+
 <div class="card" style="background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 100%); color: white; padding: 2rem; margin-bottom: 2rem;">
   <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
     <div>
@@ -88,6 +108,7 @@
           <th style="padding: 0.75rem;">คำตอบที่ถูกต้อง</th>
           <th style="padding: 0.75rem; text-align: center;">ผลการตรวจ</th>
           <th style="padding: 0.75rem; text-align: right;">คะแนน</th>
+          <th style="padding: 0.75rem; text-align: center;">ทบทวนเฉลย</th>
         </tr>
       </thead>
       <tbody>
@@ -108,6 +129,15 @@
           <td style="padding: 0.75rem; text-align: right; font-weight: 700;">
             {{ r.score_earned }} / {{ r.max_score }}
           </td>
+          <td style="padding: 0.75rem; text-align: center;">
+            {% if r.question_id %}
+              <a href="/practice/{{ r.question_id }}" class="btn btn-outline" style="padding: 0.25rem 0.65rem; font-size: 0.8rem; border-color: #cbd5e1;" title="คลิกเพื่อทบทวนเฉลยละเอียดและฝึกทำใหม่">
+                🔍 ทบทวน ➔
+              </a>
+            {% else %}
+              <span style="color: #94a3b8; font-size: 0.8rem;">—</span>
+            {% endif %}
+          </td>
         </tr>
         {% endfor %}
       </tbody>
@@ -116,11 +146,19 @@
 </div>
 
 <!-- Bottom Navigation Actions -->
-<div style="display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap;">
-  <a href="/mock-exam" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
-    ◀ กลับหน้ารวมข้อสอบจำลอง
-  </a>
-  <div style="display: flex; gap: 0.75rem;">
+<div style="display: flex; gap: 1rem; justify-content: space-between; flex-wrap: wrap; align-items: center; background: white; border: 1.5px solid var(--border-color); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 2rem;">
+  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <a href="/mock-exam" class="btn btn-outline" style="padding: 0.6rem 1.25rem; font-weight: 700;">
+      ◀ กลับหน้ารวมข้อสอบจำลอง
+    </a>
+    <a href="/" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+      🏠 กลับหน้าหลัก (Dashboard)
+    </a>
+  </div>
+  <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <a href="/progress" class="btn btn-outline" style="padding: 0.6rem 1.25rem;">
+      📈 ดูคะแนนความพร้อมสอบ
+    </a>
     <a href="/planner" class="btn btn-primary" style="padding: 0.6rem 1.25rem;">
       🎯 ปรับแผนติวใน Study Planner ➔
     </a>
