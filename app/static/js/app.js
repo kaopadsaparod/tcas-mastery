@@ -107,3 +107,42 @@ class PracticeTimer {
     this.displayEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   }
 }
+
+// 5. Dark Mode Logic
+function initThemeToggle() {
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  updateThemeButtonUI(currentTheme);
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const activeTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = activeTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('tcas_theme', newTheme);
+      updateThemeButtonUI(newTheme);
+      showToast(newTheme === 'dark' ? '🌙 เปลี่ยนเป็นโหมดมืด (Dark Mode) แล้ว' : '☀️ เปลี่ยนเป็นโหมดสว่าง (Light Mode) แล้ว');
+    });
+  }
+}
+
+function updateThemeButtonUI(theme) {
+  const toggleBtn = document.getElementById('themeToggleBtn');
+  if (!toggleBtn) return;
+  const icon = toggleBtn.querySelector('.theme-toggle-icon');
+  const label = toggleBtn.querySelector('.theme-toggle-label');
+  if (theme === 'dark') {
+    if (icon) icon.textContent = '☀️';
+    if (label) label.textContent = 'โหมดสว่าง';
+    toggleBtn.setAttribute('title', 'เปลี่ยนเป็นโหมดสว่าง (Light Mode)');
+  } else {
+    if (icon) icon.textContent = '🌙';
+    if (label) label.textContent = 'โหมดมืด';
+    toggleBtn.setAttribute('title', 'เปลี่ยนเป็นโหมดมืด (Dark Mode)');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
+});
+
