@@ -1,9 +1,9 @@
-# ชุดข้อสอบจำลอง A-Level ฟิสิกส์ ฉบับเต็มตามโครงสร้างทางการ MyTCAS (Official Blueprint 30 ข้อ)
-# โครงสร้าง: ปรนัย 5 ตัวเลือก 25 ข้อ (ข้อละ 3.2 คะแนน = 80 คะแนน) + อัตนัยระบายตัวเลข 5 ข้อ (ข้อละ 4.0 คะแนน = 20 คะแนน)
+# ชุดข้อสอบจำลอง A-Level ฟิสิกส์ ฉบับเต็มตามโครงสร้างทางการ MyTCAS (ข้อสอบจำลองตามโครงสร้าง MyTCAS 30 ข้อ)
+# โครงสร้าง: ปรนัย 5 ตัวเลือก 25 ข้อ (ข้อละ 3.0 คะแนน = 75 คะแนน) + อัตนัยระบายตัวเลข 5 ข้อ (ข้อละ 5.0 คะแนน = 25 คะแนน)
 # รวม 30 ข้อ 100 คะแนนเต็ม เวลา 90 นาที
 
 id: alevel-phy-blueprint-30
-title: "A-Level ฟิสิกส์ (Official Blueprint 30 ข้อ)"
+title: "A-Level ฟิสิกส์ (ข้อสอบจำลองตามโครงสร้าง MyTCAS 30 ข้อ)"
 subject: physics
 year: 2567
 time_limit_min: 90
@@ -19,7 +19,7 @@ questions:
     question_id: "bp30-q01"
     topic: "physics.kinematics.1d"
     skill: "choose_constant_accel_eq"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "รถยนต์คันหนึ่งเริ่มแล่นจากจุดหยุดนิ่งด้วยความเร่งคงตัว $2\\text{ m/s}^2$ เป็นเวลา $5\\text{ s}$ จากนั้นจึงเคลื่อนที่ด้วยความเร็วคงตัวเป็นเวลา $10\\text{ s}$ จงหาระยะทางรวมทั้งหมดที่รถแล่นได้"
     options:
@@ -40,7 +40,7 @@ questions:
     question_id: "bp30-q02"
     topic: "physics.kinematics.1d"
     skill: "vertical_free_fall"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "โยนก้อนหินขึ้นตรงๆ ในแนวดิ่งจากพื้นดินด้วยความเร็วต้น $20\\text{ m/s}$ (กำหนด $g = 10\\text{ m/s}^2$) ก้อนหินจะขึ้นไปถึงจุดสูงสุดในเวลากี่วินาที และขึ้นไปได้สูงที่สุดกี่เมตร"
     options:
@@ -61,7 +61,7 @@ questions:
     question_id: "bp30-q03"
     topic: "physics.kinematics.1d"
     skill: "vt_graph_interpretation"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "กราฟความเร็ว-เวลา ($v-t$) ของวัตถุเป็นเส้นตรงเริ่มจาก $(t=0, v=0)$ ไปยัง $(t=4\\text{ s}, v=12\\text{ m/s})$ พื้นที่ใต้กราฟและค่าความชันแทนปริมาณใดตามลำดับ"
     options:
@@ -82,7 +82,7 @@ questions:
     question_id: "bp30-q04"
     topic: "physics.forces_energy"
     skill: "free_body_diagram"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "วัตถุมวล $10\\text{ kg}$ วางบนพื้นเอียงลื่นทำมุม $30^\\circ$ กับแนวระดับ ปล่อยให้ไถลลงมาอย่างอิสระ จงหาขนาดความเร่งของวัตถุ (กำหนด $g = 10\\text{ m/s}^2$)"
     options:
@@ -103,7 +103,7 @@ questions:
     question_id: "bp30-q05"
     topic: "physics.forces_energy"
     skill: "frictional_force"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ออกแรงผลัก $F = 30\\text{ N}$ ในแนวระดับต่อกล่องมวล $5\\text{ kg}$ ที่วางบนพื้นราบ ถ้าสัมประสิทธิ์ความเสียดทานจลน์ $\\mu_k = 0.2$ จงหาความเร่งของกล่อง (กำหนด $g = 10\\text{ m/s}^2$)"
     options:
@@ -124,7 +124,7 @@ questions:
     question_id: "bp30-q06"
     topic: "physics.forces_energy"
     skill: "work_energy_theorem"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "แรงคงตัว $F = 16\\text{ N}$ ดึงวัตถุมวล $2\\text{ kg}$ จากหยุดนิ่งให้เคลื่อนที่เป็นระยะทาง $9\\text{ m}$ บนพื้นราบเกลี้ยง จงหาความเร็วของวัตถุหลังเคลื่อนที่ได้ระยะทางดังกล่าว"
     options:
@@ -145,7 +145,7 @@ questions:
     question_id: "bp30-q07"
     topic: "physics.forces_energy"
     skill: "conservation_of_energy"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ปล่อยก้อนหินมวล $1\\text{ kg}$ จากหยุดนิ่งที่ระดับความสูง $20\\text{ m}$ เหนือพื้นดิน จงหาความเร็วของก้อนหินขณะกระทบพื้น (ไม่คิดแรงต้านอากาศ, $g = 10\\text{ m/s}^2$)"
     options:
@@ -166,7 +166,7 @@ questions:
     question_id: "bp30-q08"
     topic: "physics.forces_energy"
     skill: "spring_potential_energy"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "สปริงมีค่านิจสปริง $k = 400\\text{ N/m}$ ถูกกดให้หดสั้นลงจากตำแหน่งสมดุลเป็นระยะ $0.1\\text{ m}$ พลังงานศักย์ยืดหยุ่นที่สะสมในสปริงมีค่าเท่าใด"
     options:
@@ -187,7 +187,7 @@ questions:
     question_id: "bp30-q09"
     topic: "physics.momentum"
     skill: "conservation_of_momentum"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "วัตถุ $A$ มวล $2\\text{ kg}$ เคลื่อนที่ด้วยความเร็ว $6\\text{ m/s}$ พุ่งชนวัตถุ $B$ มวล $4\\text{ kg}$ ซึ่งอยู่นิ่ง หลังชนวัตถุทั้งสองติดไปด้วยกัน จงหาความเร็วของวัตถุทั้งสองหลังชน"
     options:
@@ -208,7 +208,7 @@ questions:
     question_id: "bp30-q10"
     topic: "physics.momentum"
     skill: "impulse_momentum"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ลูกบอลมวล $0.5\\text{ kg}$ วิ่งเข้าชนกำแพงด้วยความเร็ว $10\\text{ m/s}$ ในแนวตั้งฉาก แล้วกระดอนกลับออกมาด้วยความเร็ว $8\\text{ m/s}$ ในทิศตรงข้าม จงหาขนาดของการดลที่กำแพงกระทำต่อลูกบอล"
     options:
@@ -229,7 +229,7 @@ questions:
     question_id: "bp30-q11"
     topic: "physics.circular_shm"
     skill: "centripetal_force"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "วัตถุมวล $1\\text{ kg}$ เคลื่อนที่เป็นวงกลมรัศมี $2\\text{ m}$ ด้วยอัตราเร็วคงตัว $4\\text{ m/s}$ บนพื้นราบเกลี้ยง จงหาขนาดของแรงสู่ศูนย์กลางที่กระทำต่อวัตถุ"
     options:
@@ -250,7 +250,7 @@ questions:
     question_id: "bp30-q12"
     topic: "physics.circular_shm"
     skill: "simple_harmonic_motion"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ลูกตุ้มนาฬิกาอย่างง่ายมีความยาวเชือก $L$ แกว่งด้วยคาบ $T = 2\\text{ s}$ ถ้าเปลี่ยนความยาวเชือกเป็น $4L$ คาบการแกว่งใหม่จะเป็นกี่วินาที"
     options:
@@ -271,7 +271,7 @@ questions:
     question_id: "bp30-q13"
     topic: "physics.waves"
     skill: "wave_speed_equation"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "คลื่นผิวน้ำขบวนหนึ่งมีความถี่ $50\\text{ Hz}$ เคลื่อนที่ด้วยอัตราเร็ว $10\\text{ m/s}$ จงหาระยะห่างระหว่างสันคลื่นที่อยู่ติดกัน (ความยาวคลื่น)"
     options:
@@ -292,7 +292,7 @@ questions:
     question_id: "bp30-q14"
     topic: "physics.waves"
     skill: "standing_wave_resonance"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ท่อปลายเปิดสองข้างมีความยาว $0.85\\text{ m}$ ความถี่มูลฐาน (fundamental frequency) ของเสียงในท่อนี้มีค่ากี่เฮิรตซ์ (กำหนดอัตราเร็วเสียงในอากาศ $v = 340\\text{ m/s}$)"
     options:
@@ -313,7 +313,7 @@ questions:
     question_id: "bp30-q15"
     topic: "physics.electricity"
     skill: "coulomb_law"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "จุดประจุสองจุดมีประจุเท่ากัน $q$ วางห่างกันเป็นระยะ $r$ เกิดแรงผลักขนาด $F$ ถ้าระยะห่างระหว่างประจุลดลงเหลือ $r/2$ แรงผลักระหว่างประจุจะกลายเป็นเท่าใด"
     options:
@@ -334,7 +334,7 @@ questions:
     question_id: "bp30-q16"
     topic: "physics.electricity"
     skill: "ohm_law_resistors"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ตัวต้านทานขนาด $6\\,\\Omega$ และ $3\\,\\Omega$ ต่อขนานกัน แล้วนำไปต่ออนุกรมกับตัวต้านทานขนาด $2\\,\\Omega$ ความต้านทานรวมของวงจรนี้มีค่ากี่โอห์ม"
     options:
@@ -355,7 +355,7 @@ questions:
     question_id: "bp30-q17"
     topic: "physics.electricity"
     skill: "electric_power"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "หลอดไฟระบุข้อกำหนด $220\\text{ V}, 100\\text{ W}$ เมื่อต่อใช้งานกับความต่างศักย์ $220\\text{ V}$ กระแสไฟฟ้าที่ไหลผ่านหลอดไฟและค่าความต้านทานของหลอดมีค่าเท่าใดตามลำดับ"
     options:
@@ -376,7 +376,7 @@ questions:
     question_id: "bp30-q18"
     topic: "physics.modern_physics"
     skill: "photoelectric_effect"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "ปรากฏการณ์โฟโตอิเล็กทริกเกิดขึ้นเมื่อฉายแสงที่มีความถี่ $f$ ตกกระทบผิวโลหะ ถ้าความถี่แสงต่ำกว่าความถี่ขีดเริ่ม (threshold frequency, $f_0$) ผลการทดลองจะเป็นอย่างไร"
     options:
@@ -397,7 +397,7 @@ questions:
     question_id: "bp30-q19"
     topic: "physics.optics"
     skill: "snell_law"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "แสงเดินทางจากอากาศ ($n_1 = 1.0$) เข้าสู่แก้ว ($n_2 = 1.5$) ด้วยมุมตกกระทบ $30^\\circ$ ค่าของ $\\sin$ ของมุมหักเหในแก้วมีค่าเท่าใด"
     options:
@@ -418,7 +418,7 @@ questions:
     question_id: "bp30-q20"
     topic: "physics.thermodynamics"
     skill: "ideal_gas_law"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "แก๊สอุดมคติปริมาณหนึ่งในภาชนะปิดมีปริมาตรคงที่ เมื่ออุณหภูมิสัมบูรณ์ของแก๊สเพิ่มขึ้นเป็น 2 เท่า ความดันของแก๊สจะเป็นกี่เท่าของความดันเดิม"
     options:
@@ -439,7 +439,7 @@ questions:
     question_id: "bp30-q21"
     topic: "physics.kinematics.1d"
     skill: "sign_convention"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "วัตถุเคลื่อนที่ในแนวแกน $x$ โดยมีความเร็วต้นในทิศ $+x$ และมีความเร่งในทิศ $-x$ สภาพการเคลื่อนที่ของวัตถุจะเป็นเช่นใด"
     options:
@@ -460,7 +460,7 @@ questions:
     question_id: "bp30-q22"
     topic: "physics.forces_energy"
     skill: "torque_equilibrium"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "คานเบาสม่ำเสมอยาว $4\\text{ m}$ มีจุดหมุนอยู่ที่กึ่งกลาง แขวนมวล $6\\text{ kg}$ ห่างจากจุดหมุนไปทางซ้าย $1\\text{ m}$ จะต้องแขวนมวล $2\\text{ kg}$ ห่างจากจุดหมุนไปทางขวาเป็นระยะกี่เมตรเพื่อให้คานสมดุลในแนวระดับ"
     options:
@@ -481,7 +481,7 @@ questions:
     question_id: "bp30-q23"
     topic: "physics.waves"
     skill: "doppler_effect"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "รถพยาบาลเปิดไซเรนความถี่ $600\\text{ Hz}$ วิ่งเข้าหาผู้สังเกตการณ์ที่ยืนนิ่งอยู่ริมถนน ความถี่เสียงที่ผู้สังเกตการณ์ได้ยินจะเป็นเช่นใด"
     options:
@@ -502,7 +502,7 @@ questions:
     question_id: "bp30-q24"
     topic: "physics.electricity"
     skill: "magnetic_force_lorentz"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "อิเล็กตรอนวิ่งด้วยความเร็ว $v$ เข้าไปในสนามแม่เหล็กสม่ำเสมอ $B$ ในทิศตั้งฉากกับสนาม แนวการเคลื่อนที่ของอิเล็กตรอนจะเป็นรูปใด"
     options:
@@ -523,7 +523,7 @@ questions:
     question_id: "bp30-q25"
     topic: "physics.modern_physics"
     skill: "half_life"
-    score: 3.2
+    score: 3.0
     answer_type: single_choice
     stem: "สารกัมมันตรังสีชนิดหนึ่งมีครึ่งชีวิต $10\\text{ วัน}$ ถ้าเริ่มต้นมีสารนี้อยู่ $80\\text{ g}$ เมื่อเวลาผ่านไป $30\\text{ วัน}$ จะเหลือสารนี้อยู่กี่กรัม"
     options:
@@ -547,7 +547,7 @@ questions:
     question_id: "bp30-q26"
     topic: "physics.kinematics.1d"
     skill: "numeric_calculation"
-    score: 4.0
+    score: 5.0
     answer_type: numeric
     tolerance: 0.01
     unit: "m"
@@ -560,7 +560,7 @@ questions:
     question_id: "bp30-q27"
     topic: "physics.forces_energy"
     skill: "numeric_calculation"
-    score: 4.0
+    score: 5.0
     answer_type: numeric
     tolerance: 0.01
     unit: "J"
@@ -573,7 +573,7 @@ questions:
     question_id: "bp30-q28"
     topic: "physics.momentum"
     skill: "numeric_calculation"
-    score: 4.0
+    score: 5.0
     answer_type: numeric
     tolerance: 0.01
     unit: "m/s"
@@ -586,7 +586,7 @@ questions:
     question_id: "bp30-q29"
     topic: "physics.electricity"
     skill: "numeric_calculation"
-    score: 4.0
+    score: 5.0
     answer_type: numeric
     tolerance: 0.01
     unit: "A"
@@ -599,7 +599,7 @@ questions:
     question_id: "bp30-q30"
     topic: "physics.modern_physics"
     skill: "numeric_calculation"
-    score: 4.0
+    score: 5.0
     answer_type: numeric
     tolerance: 0.01
     unit: "eV"

@@ -143,17 +143,32 @@ class ContentLoader:
                 require_unit=q.require_unit,
             )
 
+        # Solution steps & explanation
         sol_summary = q.solution or f"คำตอบที่ถูกต้องคือ {correct_ans_str}"
+        if q.solution_steps:
+            sol_steps = q.solution_steps
+        else:
+            raw_steps = [s.strip() for s in sol_summary.split("\n") if s.strip()]
+            if len(raw_steps) > 1:
+                sol_steps = [SolutionStep(id=f"s{idx+1}", text=s) for idx, s in enumerate(raw_steps)]
+            else:
+                sol_steps = [SolutionStep(id="s1", text=sol_summary)]
+
         full_sol = FullSolution(
-            steps=[SolutionStep(id="s1", text=sol_summary)],
+            steps=sol_steps,
             summary=sol_summary,
+            sanity_check=getattr(q, "sanity_check", None),
+            common_mistakes=getattr(q, "common_mistakes", None),
         )
 
-        # Inherit honest source and verification metadata from the past paper definition
+        # Inherit honest source and verification metadata from question override or paper definition
         source_type = getattr(paper, "source_type", None) or "simulated_blueprint"
-        tier = getattr(paper, "verification_tier", None) or "B"
-        status = getattr(paper, "verification_status", None) or "reviewed"
-        verified_by = getattr(paper, "verified_by", None) or "automated_assertion"
+        tier = getattr(q, "verification_tier", None) or getattr(paper, "verification_tier", None) or "B"
+        status = getattr(q, "verification_status", None) or getattr(paper, "verification_status", None) or "reviewed"
+        verified_by = getattr(q, "verified_by", None) or getattr(paper, "verified_by", None) or "automated_assertion"
+
+        # Tailored hints
+        hints = q.hints if q.hints else self._generate_tailored_hints(q)
 
         return Question(
             id=qid,
@@ -175,12 +190,98 @@ class ContentLoader:
             answer=ans_config,
             difficulty=3,
             estimated_seconds=180 if paper.subject in ["physics", "math"] else 150,
-            hints=[
-                Hint(level=1, text="ทบทวนข้อมูลที่โจทย์กำหนดและเป้าหมายที่ต้องการหา"),
-                Hint(level=2, text="เลือกกฎหรือสมการที่เหมาะสม และตรวจสอบความสอดคล้องของหน่วย"),
-            ],
+            hints=hints,
             solution=full_sol,
         )
+
+    def _generate_tailored_hints(self, q: Any) -> list[Hint]:
+        skill = getattr(q, "skill", "") or ""
+        topic = getattr(q, "topic", "") or ""
+
+        hint_map = {
+            "choose_constant_accel_eq": (
+                "ระบุตัวแปรการเคลื่อนที่ที่โจทย์กำหนด (u, v, a, t, s) และตัวแปรที่ต้องการหา",
+                "เลือก 1 ใน 5 สูตรการเคลื่อนที่แนวตรงที่ไม่มีตัวแปรส่วนเกินที่โจทย์ไม่ได้ระบุ",
+            ),
+            "vertical_free_fall": (
+                "การเคลื่อนที่ภายใต้แรงโน้มถ่วงมีความเร่ง g = 10 m/s² ทิศดิ่งลงสู่พื้นโลกเสมอ",
+                "ที่จุดสูงสุด ความเร็วแนวดิ่ง v = 0 และกำหนดทิศความเร็วต้น u เป็นเครื่องหมายบวก",
+            ),
+            "vt_graph_interpretation": (
+                "พื้นที่ใต้กราฟความเร็ว-เวลา (v-t) แสดงถึง การกระจัด (Displacement)",
+                "ความชันของกราฟความเร็ว-เวลา (v-t) แสดงถึง ความเร่ง (Acceleration)",
+            ),
+            "work_energy_theorem": (
+                "พิจารณางานของแรงภายนอก W = F·s และการเปลี่ยนแปลงพลังงานจลน์ ΔEk",
+                "ตั้งสมการงาน-พลังงาน: W = (1/2)m(v² - u²)",
+            ),
+            "frictional_force": (
+                "คำนวณแรงเสียดทานจลน์ fk = μk·N โดย N คือแรงกดตั้งฉากจากพื้นราบ",
+                "หาแรงลัพธ์ ΣF = F - fk แล้วใช้กฎข้อที่สองของนิวตัน ΣF = ma หาความเร่ง",
+            ),
+            "conservation_of_energy": (
+                "ไม่มีแรงภายนอกที่ไม่ใช่อนุรักษ์ทำงาน พลังงานกลรวมจึงคงที่ (E_initial = E_final)",
+                "พลังงานศักย์โน้มถ่วงที่จุดสูงสุดเปลี่ยนเป็นพลังงานจลน์ก่อนกระทบพื้น: mgh = (1/2)mv²",
+            ),
+            "geometric_series": (
+                "สังเกตสัดส่วนของปริมาณที่เหลือในแต่ละขั้นตอน: ถ้าตัดออก 1/3 จะเหลือ 2/3 ของความยาวก่อนหน้า",
+                "เมื่อตัดซ้ำ n ครั้ง ปริมาณที่เหลือจะเท่ากับ ความยาวเริ่มต้น × (2/3)ⁿ",
+            ),
+            "rotation_3d": (
+                "วิเคราะห์การหมุนทีละแกน: การหมุนขวา 90° รอบแกนดิ่ง ทำให้หน้าซ้ายย้ายมาอยู่หน้าตรงหน้า",
+                "การหมุนคว่ำลงข้างหน้า 90° รอบแกนนอน ทำให้หน้าที่อยู่ด้านหน้าพลิกคว่ำลงไปอยู่ด้านล่าง",
+            ),
+            "sequence_pattern": (
+                "หาผลต่างระหว่างพจน์ที่อยู่ติดกัน (First difference) หรือมองรูปแบบรูปทั่วไป n²",
+                "ตรวจสอบรูปแบบอนุกรมเพื่อทำนายพจน์ถัดไป",
+            ),
+            "flow_rate_pipe": (
+                "หาอัตราเร็วในการทำงานของแต่ละท่อต่อ 1 หน่วยเวลา (เช่น 1/3 ถัง/ชม. และ 1/6 ถัง/ชม.)",
+                "บวกอัตราเร็วรวมเข้าด้วยกัน: อัตราเร็วรวม = 1/A + 1/B แล้วกลับเศษเป็นส่วนเพื่อหาเวลา",
+            ),
+            "percentage_efficiency": (
+                "ประสิทธิภาพ (Efficiency) คืออัตราส่วนของพลังงานที่ได้งานจริงต่อพลังงานที่ป้อนเข้ามา",
+                "คำนวณจากสูตร: η = (W_out / Q_in) × 100%",
+            ),
+            "half_life": (
+                "หาจำนวนช่วงครึ่งชีวิต n = เวลาทั้งหมด / ครึ่งชีวิต (t / T_half)",
+                "ปริมาณสารที่เหลือ = ปริมาณเริ่มต้น / (2ⁿ)",
+            ),
+            "linear_equations": (
+                "ย้ายตัวแปรที่มีค่า x มารวมไว้ฝั่งเดียวกัน และย้ายตัวเลขคงที่ไปรวมอีกฝั่งหนึ่ง",
+                "รวมพจน์ที่คล้ายกัน แล้วหารสัมประสิทธิ์หน้า x เพื่อหาคำตอบ",
+            ),
+            "vector_addition": (
+                "สังเกตมุมระหว่างเวกเตอร์ทั้งสอง หากตั้งฉากกัน 90° สามารถใช้ทฤษฎีบทพีทาโกรัสได้ทันที",
+                "ขนาดเวกเตอร์ลัพธ์: R = √(F₁² + F₂²)",
+            ),
+            "vector_components": (
+                "แตกเวกเตอร์เข้าแกนมุมฉาก: ด้านประชิดมุมใช้ฟังก์ชัน cos และด้านตรงข้ามมุมใช้ฟังก์ชัน sin",
+                "แรงในแนวระดับ: F_x = F·cos(θ)",
+            ),
+        }
+
+        if skill in hint_map:
+            h1, h2 = hint_map[skill]
+            return [
+                Hint(level=1, text=h1),
+                Hint(level=2, text=h2),
+            ]
+        elif topic.startswith("physics"):
+            return [
+                Hint(level=1, text=f"ระบุตัวแปรที่โจทย์กำหนดและเป้าหมายในบท {topic}"),
+                Hint(level=2, text="เลือกกฎทางฟิสิกส์หรือสมการที่เหมาะสม และตรวจสอบความสอดคล้องของหน่วย"),
+            ]
+        elif topic.startswith("tpat3"):
+            return [
+                Hint(level=1, text=f"วิเคราะห์ข้อมูลและเงื่อนไขสำคัญของโจทย์ในหัวข้อ {topic}"),
+                Hint(level=2, text="ประยุกต์ใช้หลักการคำนวณหรือมโนทัศน์เชิงวิศวกรรมเพื่อสรุปคำตอบ"),
+            ]
+        else:
+            return [
+                Hint(level=1, text="ทบทวนข้อมูลที่โจทย์กำหนดและเป้าหมายที่ต้องการหา"),
+                Hint(level=2, text="เลือกสมการหรือความสัมพันธ์ที่สอดคล้องกับทักษะเพื่อหาคำตอบ"),
+            ]
 
     def get_all_questions(self, verified_only: bool = False) -> list[Question]:
         questions = list(self._questions.values())

@@ -1,5 +1,5 @@
 id: tpat3-blueprint-70
-title: TPAT3 Official Blueprint (70 ข้อ ฉบับสมบูรณ์)
+title: "TPAT3 (ข้อสอบจำลองตามโครงสร้าง MyTCAS 70 ข้อ)"
 subject: tpat3
 year: 2567
 time_limit_min: 180
@@ -12,7 +12,7 @@ questions:
   question_id: tpat3-70-q01
   topic: tpat3.quantitative
   skill: sequence_pattern
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: 'พิจารณาอนุกรมตัวเลข: $3, 8, 15, 24, 35, ?$ ตัวเลขถัดไปคือค่าใด'
   options:
@@ -33,7 +33,7 @@ questions:
   question_id: tpat3-70-q02
   topic: tpat3.quantitative
   skill: ratio_proportion
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เครื่องสูบน้ำ 4 เครื่อง สูบน้ำหมดสระในเวลา 6 ชั่วโมง ถ้าต้องการสูบน้ำหมดสระในเวลา
     4 ชั่วโมง จะต้องใช้เครื่องสูบน้ำทั้งหมดกี่เครื่อง
@@ -55,7 +55,7 @@ questions:
   question_id: tpat3-70-q03
   topic: tpat3.quantitative
   skill: flow_rate_pipe
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ท่อประปา A เติมน้ำเต็มถังใน 3 ชม. ท่อ B เติมเต็มถังใน 6 ชม. ถ้าเปิดท่อทั้งสองพร้อมกัน
     น้ำจะเต็มถังในเวลากี่ชั่วโมง
@@ -76,7 +76,7 @@ questions:
   question_id: tpat3-70-q04
   topic: tpat3.quantitative
   skill: linear_speed_gear
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: รอกขนาดเส้นผ่านศูนย์กลาง 40 cm หมุนด้วยอัตราเร็ว 120 รอบต่อนาที อัตราเร็วเชิงเส้นของสายพานเป็นกี่เมตรต่อวินาที
     (กำหนด π ≈ 3.14)
@@ -97,7 +97,7 @@ questions:
   question_id: tpat3-70-q05
   topic: tpat3.quantitative
   skill: percentage_efficiency
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เครื่องยนต์รับพลังงานความร้อน 5,000 J และเปลี่ยนเป็นงานกลได้ 1,750 J ประสิทธิภาพเชิงความร้อนของเครื่องยนต์เป็นกี่เปอร์เซ็นต์
   options:
@@ -117,7 +117,7 @@ questions:
   question_id: tpat3-70-q06
   topic: tpat3.quantitative
   skill: exponential_decay
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: สารกัมมันตรังสีชนิดหนึ่งมีครึ่งชีวิต 8 วัน ถ้าเริ่มต้นมีสาร 80 กรัม เมื่อเวลาผ่านไป
     24 วัน จะเหลือสารกี่กรัม
@@ -138,7 +138,7 @@ questions:
   question_id: tpat3-70-q07
   topic: tpat3.quantitative
   skill: scale_map
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: 'แผนที่มาตราส่วน 1 : 50,000 ถ้าระยะทางระหว่างสองเมืองบนแผนที่วัดได้ 12 cm
     ระยะทางจริงบนพื้นดินคือกี่กิโลเมตร'
@@ -159,7 +159,7 @@ questions:
   question_id: tpat3-70-q08
   topic: tpat3.quantitative
   skill: arithmetic_mean
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ค่าเฉลี่ยเลขคณิตของข้อมูล 5 จำนวนคือ 18 ถ้าเพิ่มข้อมูลอีกหนึ่งจำนวนเข้าไป
     ทำให้ค่าเฉลี่ยใหม่เป็น 20 ข้อมูลที่เพิ่มเข้ามามีค่าเท่าใด
@@ -181,7 +181,7 @@ questions:
   question_id: tpat3-70-q09
   topic: tpat3.quantitative
   skill: linear_interpolation
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เทอร์โมมิเตอร์แสดงค่า 0° เมื่ออุณหภูมิจริง -10°C และแสดงค่า 100° เมื่ออุณหภูมิจริง
     110°C ถ้าอ่านค่าได้ 50° อุณหภูมิจริงคือเท่าใด
@@ -203,7 +203,7 @@ questions:
   question_id: tpat3-70-q10
   topic: tpat3.quantitative
   skill: probability_dice
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ทอยลูกเต๋าเที่ยงตรง 2 ลูกพร้อมกัน ความน่าจะเป็นที่ผลรวมของแต้มเป็น 7 เท่ากับเท่าใด
   options:
@@ -224,7 +224,7 @@ questions:
   question_id: tpat3-70-q11
   topic: tpat3.quantitative
   skill: work_rate
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ช่าง 3 คนสร้างกำแพงเสร็จใน 4 วัน ถ้ามีช่าง 6 คนทำงานด้วยอัตราเร็วเท่ากันจะสร้างกำแพงขนาดเท่าเดิมเสร็จในกี่วัน
   options:
@@ -244,7 +244,7 @@ questions:
   question_id: tpat3-70-q12
   topic: tpat3.quantitative
   skill: density_mixture
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ผสมของเหลว A (ความหนาแน่น 800 kg/m³) 2 ลิตร กับของเหลว B (ความหนาแน่น 1100
     kg/m³) 1 ลิตร ความหนาแน่นเฉลี่ยของสารผสมเป็นกี่ kg/m³ (สมมติปริมาตรรวมอนุรักษ์)
@@ -266,7 +266,7 @@ questions:
   question_id: tpat3-70-q13
   topic: tpat3.quantitative
   skill: electrical_energy_cost
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: หลอดไฟขนาด 100 วัตต์ เปิดใช้งานวันละ 10 ชั่วโมง เป็นเวลา 30 วัน ใช้พลังงานไฟฟ้าไปกี่หน่วย
     (kWh)
@@ -287,7 +287,7 @@ questions:
   question_id: tpat3-70-q14
   topic: tpat3.quantitative
   skill: geometric_series
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ลวดเส้นหนึ่งถูกตัดออก 1/3 ของความยาวที่เหลือในแต่ละขั้นตอน ถ้าเริ่มต้นยาว
     81 cm หลังตัด 3 ครั้งจะเหลือความยาวกี่ cm
@@ -308,7 +308,7 @@ questions:
   question_id: tpat3-70-q15
   topic: tpat3.quantitative
   skill: thermal_expansion
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: รางรถไฟเหล็กยาว 20 m ที่ 20°C สัมประสิทธิ์การขยายตัวเชิงเส้น α = 1.2 × 10⁻⁵
     K⁻¹ เมื่ออุณหภูมิเพิ่มเป็น 50°C รางจะขยายตัวกี่มิลลิเมตร
@@ -329,7 +329,7 @@ questions:
   question_id: tpat3-70-q16
   topic: tpat3.spatial_relations
   skill: isometric_orthographic
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เมื่อมองวัตถุรูปตัว L คว่ำจาก 'ด้านบน (Top View)' ภาพที่ได้จะเป็นรูปทรงเรขาคณิตใด
   options:
@@ -349,7 +349,7 @@ questions:
   question_id: tpat3-70-q17
   topic: tpat3.spatial_relations
   skill: cube_net_folding
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ลูกเต๋ามาตรฐาน หน้าตรงข้ามกันมีแต้มรวมเท่ากับ 7 เสมอ หากคลี่ลูกเต๋าออก หน้ารูปแต้ม
     2 จะอยู่ตรงข้ามกับแต้มใด
@@ -370,7 +370,7 @@ questions:
   question_id: tpat3-70-q18
   topic: tpat3.spatial_relations
   skill: rotation_3d
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: หมุนลูกบาศก์ไปทางขวา 90 องศา แล้วหมุนคว่ำลงข้างหน้าอีก 90 องศา หน้าที่เดิมอยู่
     'ด้านซ้าย' จะย้ายไปอยู่ที่ตำแหน่งใด
@@ -391,7 +391,7 @@ questions:
   question_id: tpat3-70-q19
   topic: tpat3.spatial_relations
   skill: cross_section
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เมื่อใช้ระนาบตัดทรงกรวยกลมตรงในแนวเฉียงที่ทำมุมกับแกนกรวยมากกว่ามุมยอด แต่ไม่ตัดผ่านฐาน
     รอยตัดที่เกิดขึ้นจะเป็นภาคตัดกรวยชนิดใด
@@ -413,7 +413,7 @@ questions:
   question_id: tpat3-70-q20
   topic: tpat3.spatial_relations
   skill: hidden_lines
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ในแบบร่างทางวิศวกรรม (Engineering Drawing) เส้นประ (Hidden Line) ใช้เพื่อแสดงสิ่งใด
   options:
@@ -433,7 +433,7 @@ questions:
   question_id: tpat3-70-q21
   topic: tpat3.spatial_relations
   skill: symmetry_reflection
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: วัตถุชี้ไปทางทิศตะวันออกเฉียงเหนือ เมื่อสะท้อนผ่านกระจกเงาราบในแนวดิ่งทิศเหนือ-ใต้
     ภาพจะชี้ไปทางทิศใด
@@ -455,7 +455,7 @@ questions:
   question_id: tpat3-70-q22
   topic: tpat3.spatial_relations
   skill: gear_rotation_direction
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: เฟือง 3 ตัวเรียงขนานกันเป็นแถว เฟือง 1 ขบกับเฟือง 2 และเฟือง 2 ขบกับเฟือง
     3 ถ้าเฟือง 1 หมุนตามเข็มนาฬิกา เฟือง 3 จะหมุนอย่างไร
@@ -476,7 +476,7 @@ questions:
   question_id: tpat3-70-q23
   topic: tpat3.spatial_relations
   skill: block_counting
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: กองลูกบาศก์ขนาดเท่ากันวางซ้อนกัน 3 ชั้น โดยฐานชั้นล่างมี 4x4 ก้อน ชั้นสองมี
     3x3 ก้อน และชั้นบนสุดมี 2x2 ก้อน มีลูกบาศก์ทั้งหมดกี่ก้อน
@@ -497,7 +497,7 @@ questions:
   question_id: tpat3-70-q24
   topic: tpat3.spatial_relations
   skill: paper_folding_punch
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: พับกระดาษสี่เหลี่ยมจัตุรัสครึ่งหนึ่งจากล่างขึ้นบน แล้วพับครึ่งจากซ้ายไปขวา
     เจาะรูกลมตรงมุมพับกึ่งกลาง เมื่อคลี่ออกจะมีรูกี่รู
@@ -519,7 +519,7 @@ questions:
   question_id: tpat3-70-q25
   topic: tpat3.spatial_relations
   skill: orthographic_projection
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ภาพฉายมุมมองที่หนึ่ง (First Angle Projection) ภาพด้านข้างซ้าย (Left View)
     จะถูกวาดไว้ที่ตำแหน่งใดของภาพด้านหน้า (Front View)
@@ -540,7 +540,7 @@ questions:
   question_id: tpat3-70-q26
   topic: tpat3.spatial_relations
   skill: surface_development
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: การคลี่พื้นผิวข้างของทรงกระบอกกลมตรง (Cylinder) จะได้เป็นรูปเรขาคณิตสองมิติใด
   options:
@@ -561,7 +561,7 @@ questions:
   question_id: tpat3-70-q27
   topic: tpat3.spatial_relations
   skill: shadow_projection
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: วางวัตถุทรงกลมตันใต้แหล่งกำเนิดแสงแบบจุด (Point Source) เงาที่ตกทอดลงบนระนาบพื้นราบจะเป็นรูปทรงใด
   options:
@@ -582,7 +582,7 @@ questions:
   question_id: tpat3-70-q28
   topic: tpat3.spatial_relations
   skill: puzzle_assembly
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ชิ้นส่วนลูกบาศก์ 3 มิติที่มี 5 ก้อนทรงลูกบาศก์เชื่อมติดกัน เรียกว่ารูปทรงใดในเรขาคณิตสามมิติ
   options:
@@ -603,7 +603,7 @@ questions:
   question_id: tpat3-70-q29
   topic: tpat3.spatial_relations
   skill: sectional_view_hatching
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ในแบบวิศวกรรม เส้นลายตัด (Section Hatching Lines) มักเขียนทำมุมกี่องศากับแนวระดับ
   options:
@@ -623,7 +623,7 @@ questions:
   question_id: tpat3-70-q30
   topic: tpat3.spatial_relations
   skill: topological_connectedness
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: รูปทรงโดนัท (Torus) มีจำนวนรูทะลุ (Genus) เท่ากับกี่รู
   options:
@@ -643,7 +643,7 @@ questions:
   question_id: tpat3-70-q31
   topic: tpat3.engineering_mechanics
   skill: lever_mechanical_advantage
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: คานอันหนึ่งยาว 2.0 m วางจุดหมุนห่างจากวัตถุหนัก 300 N เป็นระยะ 0.5 m จะต้องออกแรงกดที่ปลายอีกข้างอย่างน้อยกี่นิวตันเพื่อยกวัตถุ
   options:
@@ -664,7 +664,7 @@ questions:
   question_id: tpat3-70-q32
   topic: tpat3.engineering_mechanics
   skill: pulley_system
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ระบบรอกเบาไม่มีแรงเสียดทาน มีรอกเคลื่อนที่ 1 ตัวรองรับน้ำหนัก 800 N จะต้องใช้แรงดึงเชือกกี่นิวตันเพื่อพยุงน้ำหนักให้อยู่นิ่ง
   options:
@@ -684,7 +684,7 @@ questions:
   question_id: tpat3-70-q33
   topic: tpat3.engineering_mechanics
   skill: inclined_plane
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ดันกล่องมวล 20 kg ขึ้นพื้นเอียงลื่นทำมุม 30° กับแนวระดับด้วยความเร็วคงที่
     ต้องออกแรงขนานกับพื้นเอียงกี่นิวตัน (กำหนด g = 10 m/s²)
@@ -705,7 +705,7 @@ questions:
   question_id: tpat3-70-q34
   topic: tpat3.engineering_mechanics
   skill: hydraulic_press
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: แม่แรงไฮดรอลิก ลูกสูบเล็กมีพื้นที่หน้าตัด 5 cm² ลูกสูบใหญ่มีพื้นที่ 100 cm²
     ถ้าออกแรงกดลูกสูบเล็ก 50 N ลูกสูบใหญ่จะยกน้ำหนักได้สูงสุดกี่นิวตัน
@@ -727,7 +727,7 @@ questions:
   question_id: tpat3-70-q35
   topic: tpat3.engineering_mechanics
   skill: friction_static
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: กล่องมวล 10 kg วางบนพื้นราบที่มีสัมประสิทธิ์แรงเสียดทานสถิต μs = 0.4 ถ้าออกแรงดึงในแนวราบ
     30 N แรงเสียดทานที่กระทำต่อกล่องมีขนาดกี่นิวตัน (g = 10 m/s²)
@@ -749,7 +749,7 @@ questions:
   question_id: tpat3-70-q36
   topic: tpat3.engineering_mechanics
   skill: kinetic_energy_work
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: วัตถุมวล 2 kg เคลื่อนที่ด้วยความเร็ว 10 m/s ถ้ามีแรงต้านกระทำจนกระทั่งความเร็วลดลงเหลือ
     6 m/s งานของแรงต้านมีขนาดกี่จูล
@@ -770,7 +770,7 @@ questions:
   question_id: tpat3-70-q37
   topic: tpat3.engineering_mechanics
   skill: power_pump
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ปั๊มน้ำสูบน้ำมวล 600 kg ขึ้นที่สูง 10 m ภายในเวลา 1 นาที กำลังที่มีประโยชน์ของปั๊มน้ำเป็นกี่วัตต์
     (g = 10 m/s²)
@@ -791,7 +791,7 @@ questions:
   question_id: tpat3-70-q38
   topic: tpat3.engineering_mechanics
   skill: spring_potential_energy
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: สปริงมีค่านิจสปริง k = 400 N/m ถูกกดให้หดสั้นลง 0.1 m พลังงานศักย์ยืดหยุ่นที่สะสมในสปริงมีค่ากี่จูล
   options:
@@ -811,7 +811,7 @@ questions:
   question_id: tpat3-70-q39
   topic: tpat3.engineering_mechanics
   skill: bernoulli_flow
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: น้ำไหลในท่อที่มีพื้นที่หน้าตัดแคบลง อัตราเร็วของน้ำและความดันในท่อตรงคอดแคบจะเปลี่ยนแปลงอย่างไรตามหลักของแบร์นูลลี
   options:
@@ -832,7 +832,7 @@ questions:
   question_id: tpat3-70-q40
   topic: tpat3.engineering_mechanics
   skill: stress_strain
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ลวดเหล็กมีความเค้นดึง (Tensile Stress) 2 × 10⁸ N/m² และมีค่ามอดุลัสของยังก์
     2 × 10¹¹ N/m² ความเครียด (Strain) ของลวดมีค่าเท่าใด
@@ -853,7 +853,7 @@ questions:
   question_id: tpat3-70-q41
   topic: tpat3.engineering_mechanics
   skill: torque_rotation
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: ใช้ประแจยาว 25 cm ขันน็อต โดยออกแรง 80 N ตั้งฉากกับปลายประแจ ทอร์กที่กระทำต่อน็อตมีขนาดกี่นิวตัน·เมตร
   options:
@@ -873,7 +873,7 @@ questions:
   question_id: tpat3-70-q42
   topic: tpat3.engineering_mechanics
   skill: buoyancy_archimedes
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: วัตถุปริมาตร 0.005 m³ จมมิดอยู่ใต้น้ำ แรงพยุงของน้ำที่กระทำต่อวัตถุมีขนาดกี่นิวตัน
     (ความหนาแน่นน้ำ 1000 kg/m³, g = 10 m/s²)
@@ -894,7 +894,7 @@ questions:
   question_id: tpat3-70-q43
   topic: tpat3.engineering_mechanics
   skill: heat_conduction
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: การถ่ายโอนความร้อนผ่านผนังโลหะของหม้อต้มน้ำไปยังน้ำด้านใน เป็นการถ่ายโอนความร้อนในรูปแบบใดเป็นหลัก
   options:
@@ -915,7 +915,7 @@ questions:
   question_id: tpat3-70-q44
   topic: tpat3.engineering_mechanics
   skill: circuit_ohm
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: หลอดไฟ 2 หลอด ความต้านทาน 6 โอห์ม และ 12 โอห์ม ต่อขนานกัน แล้วต่อเข้ากับแบตเตอรี่
     12 V กระแสไฟฟ้ารวมที่ออกจากแบตเตอรี่คือกี่แอมแปร์
@@ -937,7 +937,7 @@ questions:
   question_id: tpat3-70-q45
   topic: tpat3.engineering_mechanics
   skill: center_of_gravity
-  score: 1.4
+  score: 1.3333333333333333
   answer_type: single_choice
   stem: วัตถุจะทรงตัวได้อย่างมีเสถียรภาพสูงสุด (Most Stable Equilibrium) เมื่อมีลักษณะใด
   options:
@@ -958,7 +958,7 @@ questions:
   question_id: tpat3-70-q46
   topic: tpat3.science_technology
   skill: scientific_method
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: ขั้นตอนแรกสุดของกระบวนการสืบเสาะทางวิทยาศาสตร์และการออกแบบทางวิศวกรรมคือข้อใด
   options:
@@ -978,7 +978,7 @@ questions:
   question_id: tpat3-70-q47
   topic: tpat3.science_technology
   skill: sensor_technology
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: เซนเซอร์ชนิดใดที่ใช้ในสมาร์ตโฟนเพื่อตรวจจับการเอียงและการหมุนของหน้าจอระหว่างใช้งาน
   options:
@@ -998,7 +998,7 @@ questions:
   question_id: tpat3-70-q48
   topic: tpat3.science_technology
   skill: renewable_energy
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: เซลล์แสงอาทิตย์ (Solar Cell) ทำหน้าที่เปลี่ยนรูปพลังงานใดเป็นพลังงานใด
   options:
@@ -1018,7 +1018,7 @@ questions:
   question_id: tpat3-70-q49
   topic: tpat3.science_technology
   skill: semiconductor_material
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: สารกึ่งตัวนำ (Semiconductor) ชนิดใดที่นิยมนำมาผลิตชิปประมวลผลคอมพิวเตอร์และทรานซิสเตอร์มากที่สุดในปัจจุบัน
   options:
@@ -1038,7 +1038,7 @@ questions:
   question_id: tpat3-70-q50
   topic: tpat3.science_technology
   skill: data_binary_bytes
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: หน่วยความจำขนาด 1 Megabyte (MB) คิดเป็นกี่ Kilobytes (KB) ในระบบไบนารีฐานสองของคอมพิวเตอร์
   options:
@@ -1058,7 +1058,7 @@ questions:
   question_id: tpat3-70-q51
   topic: tpat3.science_technology
   skill: electric_vehicle_ev
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: แบตเตอรี่ชนิดใดที่ใช้เป็นแหล่งพลังงานขับเคลื่อนหลักในยานยนต์ไฟฟ้า (EV) ยุคปัจจุบันอย่างแพร่หลายที่สุด
   options:
@@ -1078,7 +1078,7 @@ questions:
   question_id: tpat3-70-q52
   topic: tpat3.science_technology
   skill: 3d_printing_fdm
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: เทคโนโลยีการพิมพ์ 3 มิติแบบ FDM (Fused Deposition Modeling) ใช้วิธีการใดในการขึ้นรูปชิ้นงาน
   options:
@@ -1098,7 +1098,7 @@ questions:
   question_id: tpat3-70-q53
   topic: tpat3.science_technology
   skill: greenhouse_gases
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: ก๊าซในข้อใดมีศักยภาพในการก่อให้เกิดภาวะโลกร้อน (GWP) ต่อน้ำหนักหนึ่งโมเลกุลสูงกว่าก๊าซคาร์บอนไดออกไซด์หลายสิบเท่า
   options:
@@ -1119,7 +1119,7 @@ questions:
   question_id: tpat3-70-q54
   topic: tpat3.science_technology
   skill: artificial_intelligence
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: การเรียนรู้ของเครื่องแบบใดที่ระบบเรียนรู้ผ่านการลองผิดลองถูกและได้รับรางวัล
     (Reward) หรือบทลงโทษ (Penalty)
@@ -1141,7 +1141,7 @@ questions:
   question_id: tpat3-70-q55
   topic: tpat3.science_technology
   skill: polymer_plastics
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: พลาสติกชนิดใดที่สามารถนำกลับมาหลอมขึ้นรูปใหม่ได้ซ้ำๆ เมื่อได้รับความร้อน (Thermoplastic)
   options:
@@ -1162,7 +1162,7 @@ questions:
   question_id: tpat3-70-q56
   topic: tpat3.science_technology
   skill: aerodynamics
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: ปีกเครื่องบินถูกออกแบบให้ด้านบนโค้งนูนมากกว่าด้านล่างเพื่อสร้างแรงยกตามหลักการใด
   options:
@@ -1183,7 +1183,7 @@ questions:
   question_id: tpat3-70-q57
   topic: tpat3.science_technology
   skill: materials_composite
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: วัสดุคอมโพสิต (Composite Material) เช่น คาร์บอนไฟเบอร์เสริมแรง มีจุดเด่นสำคัญที่สุดด้านใดเมื่อเทียบกับโลหะทั่วไป
   options:
@@ -1204,7 +1204,7 @@ questions:
   question_id: tpat3-70-q58
   topic: tpat3.science_technology
   skill: internet_of_things
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: ระบบ IoT (Internet of Things) ในโรงงานอัจฉริยะ (Industry 4.0) มีบทบาทหลักคือข้อใด
   options:
@@ -1224,7 +1224,7 @@ questions:
   question_id: tpat3-70-q59
   topic: tpat3.science_technology
   skill: refrigeration_cycle
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: ในวัฏจักรการทำความเย็นของตู้เย็น สารทำความเย็นดูดกลืนความร้อนจากภายในตู้เย็นที่อุปกรณ์ใด
   options:
@@ -1244,7 +1244,7 @@ questions:
   question_id: tpat3-70-q60
   topic: tpat3.science_technology
   skill: cryptography_blockchain
-  score: 1.4
+  score: 1.6
   answer_type: single_choice
   stem: เทคโนโลยีบล็อกเชน (Blockchain) มีคุณสมบัติเด่นในเรื่องใดที่ทำให้ข้อมูลยากต่อการปลอมแปลง
   options:

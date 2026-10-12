@@ -131,6 +131,13 @@ class PastPaperQuestion(BaseModel):
     options: list[ChoiceOption] | None = None
     question_id: str | None = None
     solution: str | None = None
+    hints: list[Hint] | None = None
+    solution_steps: list[SolutionStep] | None = None
+    sanity_check: str | None = None
+    common_mistakes: str | None = None
+    verification_tier: Literal["A", "B", "C", "D"] | None = None
+    verification_status: Literal["draft", "reviewed", "verified"] | None = None
+    verified_by: str | None = None
 
 
 class PastPaper(BaseModel):

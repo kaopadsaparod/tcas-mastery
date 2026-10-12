@@ -22,7 +22,7 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
     },
     "alevel_physics_mock_30": {
         "id": "alevel_physics_mock_30",
-        "title": "A-Level ฟิสิกส์ (Official Blueprint 30 ข้อ)",
+        "title": "A-Level ฟิสิกส์ (ข้อสอบจำลองตามโครงสร้าง MyTCAS 30 ข้อ)",
         "subject": "physics",
         "paper_id": "alevel-phy-blueprint-30",
         "time_limit_min": 90,
@@ -30,11 +30,11 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
         "pace_target_min": 3.0,
         "total_questions": 30,
         "is_official_blueprint": True,
-        "description": "จำลองสอบ A-Level ฟิสิกส์เต็มรูปแบบตามพิมพ์เขียว MyTCAS (ปรนัย 25 ข้อ ข้อละ 3.2 คะแนน + อัตนัยระบายตัวเลข 5 ข้อ ข้อละ 4.0 คะแนน = 100 คะแนนเต็ม 90 นาที)",
+        "description": "จำลองสอบ A-Level ฟิสิกส์ตามโครงสร้างพิมพ์เขียว MyTCAS (ปรนัย 25 ข้อ ข้อละ 3.0 คะแนน = 75 คะแนน + อัตนัยระบายตัวเลข 5 ข้อ ข้อละ 5.0 คะแนน = 25 คะแนน รวม 100 คะแนนเต็ม 90 นาที)",
     },
     "tpat3_practice_25": {
         "id": "tpat3_practice_25",
-        "title": "TPAT3 วิทยาศาสตร์และเทคโนโลยี (ชุดฝึกซ้อม 25 ข้อ)",
+        "title": "TPAT3 (ข้อสอบจำลองชุดฝึกซ้อม 25 ข้อ)",
         "subject": "tpat3",
         "paper_id": "tpat3-practice-25",
         "time_limit_min": 60,
@@ -46,7 +46,7 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
     },
     "tpat3_mock_70": {
         "id": "tpat3_mock_70",
-        "title": "TPAT3 Official Blueprint (70 ข้อ)",
+        "title": "TPAT3 (ข้อสอบจำลองตามโครงสร้าง MyTCAS 70 ข้อ)",
         "subject": "tpat3",
         "paper_id": "tpat3-blueprint-70",
         "time_limit_min": 180,
@@ -54,7 +54,7 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
         "pace_target_min": 2.5,
         "total_questions": 70,
         "is_official_blueprint": True,
-        "description": "จำลองสอบ TPAT3 เต็มรูปแบบ 70 ข้อ 180 นาที ครบ 5 ส่วนตามพิมพ์เขียวทางการ MyTCAS",
+        "description": "จำลองสอบ TPAT3 เต็มรูปแบบ 70 ข้อ 180 นาที ครบ 5 ส่วนตามพิมพ์เขียว MyTCAS (ส่วนที่ 1 ความถนัด 45 ข้อ 60 คะแนน + ส่วนที่ 2 ความคิดและความสนใจ 25 ข้อ 40 คะแนน = 100 คะแนนเต็ม)",
     },
 }
 
