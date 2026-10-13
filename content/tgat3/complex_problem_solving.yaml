@@ -1,0 +1,211 @@
+- id: tgat3-cps-drill-001
+  subject: tgat3
+  topic: tgat3.complex_problem_solving
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการแก้ไขปัญหาที่ซับซ้อน"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: root_cause_analysis
+    secondary:
+      - data_stratification
+      - defect_reduction
+  stem: "ในสายการผลิตชิ้นส่วนยานยนต์ พบว่าอัตราของเสีย (Defect Rate) พุ่งสูงขึ้นจาก 1% เป็น 8% ในช่วงสองสัปดาห์ที่ผ่านมา หากหัวหน้างานต้องการประยุกต์ใช้หลักการ 'Root Cause Analysis' ขั้นตอนแรกที่ควรดำเนินการคือข้อใด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "จัดเก็บข้อมูลสถิติจำแนกประเภทของเสีย กะเวลาทำงาน และเครื่องจักรที่พบของเสียเพื่อจำกัดขอบเขตของปัญหา"
+        correct: true
+        explanation: "การจำแนกข้อมูลตามข้อเท็จจริง (Stratification) ช่วยให้เห็นรูปแบบที่ชัดเจนก่อนสืบค้นหาสาเหตุ"
+      - id: "2"
+        text: "กล่าวโทษว่าพนักงานกะดึกขาดความใส่ใจและสั่งลงโทษตัดโบนัสทันที"
+        correct: false
+        error_tag: premature_blame_without_evidence
+        explanation: "ด่วนสรุปโดยไม่มีข้อมูลเชิงประจักษ์และไม่ช่วยแก้ไขสาเหตุที่แท้จริง"
+      - id: "3"
+        text: "สั่งหยุดการผลิตทั้งโรงงานเป็นเวลา 1 เดือนเพื่อล้างระบบใหม่ทั้งหมด"
+        correct: false
+        error_tag: lacks_feasibility
+        explanation: "ส่งผลกระทบต่อภาระการส่งมอบสินค้าและสร้างความเสียหายทางการเงินมหาศาลเกินความจำเป็น"
+      - id: "4"
+        text: "ทิ้งชิ้นส่วนที่เสียทั้งหมดโดยไม่ต้องบันทึกข้อมูลเพื่อไม่ให้ผู้บริหารระดับสูงทราบ"
+        correct: false
+        error_tag: ethical_violation
+        explanation: "ปกปิดข้อบกพร่องและขัดขวางกระบวนการปรับปรุงคุณภาพอย่างต่อเนื่อง"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "ขั้นตอนแรกของการแก้ปัญหาเชิงระบบคือการแยกแยะและรวบรวมข้อมูลอย่างเป็นรูปธรรม"
+  solution:
+    summary: "การหาสาเหตุรากเหง้าต้องเริ่มต้นด้วยการเก็บข้อมูลและจำแนกประเภทความผิดปกติ (Data Stratification) ตัวเลือก 1 นำไปสู่การระบุจุดที่เป็นปัญหาได้อย่างถูกต้อง"
+    steps:
+      - id: s1
+        text: "วิเคราะห์สถานการณ์: ของเสียเพิ่มขึ้นผิดปกติ เป็นสัญญาณเตือน (Symptom)"
+      - id: s2
+        text: "ใช้หลักคุณภาพ: จัดกลุ่มข้อมูลตามเวลา เครื่องจักร และประเภทข้อบกพร่อง (ตัวเลือก 1)"
+      - id: s3
+        text: "ตัวเลือก 2, 3, 4 ขาดหลักการทางสถิติและสร้างผลเสียต่อองค์กร"
+
+- id: tgat3-cps-drill-002
+  subject: tgat3
+  topic: tgat3.complex_problem_solving
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการแก้ไขปัญหาที่ซับซ้อน"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: systems_thinking
+    secondary:
+      - process_optimization
+      - bottleneck_resolution
+  stem: "บริษัทพัฒนาซอฟต์แวร์พบปัญหาการส่งมอบงานล่าช้ากว่ากำหนดเป็นประจำ เมื่อสอบสวนพบว่า 'นักพัฒนาเขียนโค้ดเสร็จทันเวลา แต่ติดปัญหาคอขวดที่ขั้นตอนการทดสอบความปลอดภัยและการติดตั้งระบบ (Deployment)' หากมองด้วย 'การคิดเชิงระบบ' (Systems Thinking) ควรแก้ปัญหาอย่างไร"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "ออกแบบกระบวนการทำงานร่วมกันแบบ CI/CD (Continuous Integration/Continuous Deployment) และนำการทดสอบความปลอดภัยมาทำควบคู่ตั้งแต่เนิ่นๆ (Shift-Left)"
+        correct: true
+        explanation: "ปรับเปลี่ยนการทำงานเชิงระบบเพื่อขจัดคอขวดระหว่างแผนกและลดเวลาการส่งมอบ"
+      - id: "2"
+        text: "สั่งให้นักพัฒนาซอฟต์แวร์หยุดเขียนโค้ดและมาช่วยทดสอบระบบทั้งหมดด้วยตนเองแบบแมนนวล"
+        correct: false
+        error_tag: symptomatic_treatment
+        explanation: "แก้ปัญหาเฉพาะหน้าแบบไม่ยั่งยืนและทำให้การพัฒนาฟีเจอร์ใหม่หยุดชะงัก"
+      - id: "3"
+        text: "ยกเลิกขั้นตอนการทดสอบความปลอดภัยทั้งหมดเพื่อส่งมอบงานให้เร็วที่สุด"
+        correct: false
+        error_tag: ethical_violation
+        explanation: "สร้างความเสี่ยงร้ายแรงต่อข้อมูลรั่วไหลและความมั่นคงปลอดภัยทางไซเบอร์"
+      - id: "4"
+        text: "จ้างพนักงานทดสอบระบบเพิ่มขึ้น 50 คนทันทีโดยไม่ปรับปรุงกระบวนการทำงาน"
+        correct: false
+        error_tag: resource_waste_without_diagnosis
+        explanation: "เพิ่มต้นทุนมหาศาลโดยไม่แก้ปัญหาที่ความไร้ประสิทธิภาพของกระบวนการ"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "มองการไหลของงานทั้งระบบตั้งแต่ต้นน้ำถึงปลายน้ำเพื่อหาจุดปรับปรุงกระบวนการ"
+  solution:
+    summary: "การคิดเชิงระบบมองภาพรวมของ Flow of Work การนำแนวคิด Shift-Left และ CI/CD มาใช้ตามตัวเลือก 1 ช่วยขจัดปัญหาคอขวดที่รอยต่อระหว่างทีมได้อย่างมีประสิทธิภาพ"
+    steps:
+      - id: s1
+        text: "ปัญหาคือคอขวดที่ขั้นตอนปลายน้ำ (Testing & Deployment)"
+      - id: s2
+        text: "ทางแก้เชิงระบบ: ปรับกระบวนการให้ผสานกันตั้งแต่เริ่มต้นผ่าน Automation (ตัวเลือก 1)"
+      - id: s3
+        text: "ตัวเลือกอื่นๆ ละเลยความปลอดภัยหรือสิ้นเปลืองทรัพยากรโดยไม่แก้ระบบ"
+
+- id: tgat3-cps-drill-003
+  subject: tgat3
+  topic: tgat3.complex_problem_solving
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการแก้ไขปัญหาที่ซับซ้อน"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: collaborative_problem_solving
+    secondary:
+      - stakeholder_engagement
+      - conflict_mitigation
+  stem: "ในการแก้ปัญหาข้อขัดแย้งเรื่องการจัดสรรพื้นที่ส่วนกลางในคอนโดมิเนียมระหว่างกลุ่มผู้เลี้ยงสัตว์เลี้ยงและกลุ่มผู้ไม่เลี้ยงสัตว์เลี้ยง นิติบุคคลควรใช้แนวทาง 'Collaborative Problem Solving' อย่างไร"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "จัดเวทีประชาคมเปิดโอกาสให้ทั้งสองกลุ่มสะท้อนความกังวล ร่วมกันกำหนดกติกาการใช้พื้นที่ โซนสัตว์เลี้ยง และมาตรการรักษาความสะอาดที่ยอมรับร่วมกันได้"
+        correct: true
+        explanation: "สร้างการมีส่วนร่วมและความเข้าใจระหว่างผู้มีส่วนได้ส่วนเสียเพื่อหาทางออกที่อยู่ร่วมกันได้อย่างสงบสุข"
+      - id: "2"
+        text: "ห้ามนำสัตว์เลี้ยงเข้ามาในโครงการทันทีโดยไม่ฟังเสียงของกลุ่มผู้เลี้ยงสัตว์"
+        correct: false
+        error_tag: unilateral_decision_making
+        explanation: "ตัดสินใจฝ่ายเดียว ละเลยสิทธิของลูกบ้าน และจุดชนวนความขัดแย้งให้รุนแรงขึ้น"
+      - id: "3"
+        text: "อนุญาตให้สัตว์เลี้ยงเดินได้อย่างอิสระทุกพื้นที่โดยไม่ต้องมีสายจูงหรือกฎระเบียบใดๆ"
+        correct: false
+        error_tag: ignores_systemic_ripple_effects
+        explanation: "ละเลยสุขอนามัยและความปลอดภัยของผู้พักอาศัยท่านอื่น"
+      - id: "4"
+        text: "ลาออกจากตำแหน่งนิติบุคคลเพื่อหลีกเลี่ยงการเผชิญหน้ากับความขัดแย้ง"
+        correct: false
+        error_tag: passive_resignation
+        explanation: "ละทิ้งหน้าที่และปล่อยให้ปัญหาบานปลายโดยไร้การจัดการ"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "การแก้ปัญหาร่วมกันต้องเปิดพื้นที่ให้ทุกฝ่ายได้สะท้อนความต้องการและร่วมสร้างกติกา"
+  solution:
+    summary: "Collaborative Problem Solving เน้นการสร้างพื้นที่ปลอดภัยให้ทุกฝ่ายแสดงความคิดเห็นและออกแบบกติกากลางร่วมกัน ตัวเลือก 1 เป็นแนวทางสมานฉันท์ที่ยั่งยืน"
+    steps:
+      - id: s1
+        text: "สองกลุ่มมีผลประโยชน์และความกังวลที่แตกต่างกัน"
+      - id: s2
+        text: "ตัวเลือก 1 ใช้กระบวนการเจรจาและการกำหนดกติกากลาง (Win-Win)"
+      - id: s3
+        text: "ตัวเลือก 2 และ 3 สุดโต่งไปด้านใดด้านหนึ่ง ส่วนตัวเลือก 4 ละทิ้งความรับผิดชอบ"
+
+- id: tgat3-cps-drill-004
+  subject: tgat3
+  topic: tgat3.complex_problem_solving
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการแก้ไขปัญหาที่ซับซ้อน"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: risk_management
+    secondary:
+      - trade_off_analysis
+      - long_term_value
+  stem: "ทีมงานกำลังตัดสินใจเลือกระหว่างโครงการ A ที่ให้ผลตอบแทนทางการเงินสูงมากในระยะสั้นแต่มีความเสี่ยงด้านกฎหมายคุ้มครองข้อมูลส่วนบุคคลสูง กับโครงการ B ที่ให้ผลตอบแทนปานกลางแต่สอดคล้องกับกฎหมายและความยั่งยืนในระยะยาว การตัดสินใจตามหลัก 'Risk-Adjusted Decision Making' คือข้อใด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "เลือกโครงการ B เนื่องจากผลตอบแทนสุทธิหลังปรับด้วยมูลค่าความเสียหายจากค่าปรับทางกฎหมายและชื่อเสียงของโครงการ A นั้นคุ้มค่ากว่าอย่างชัดเจน"
+        correct: true
+        explanation: "ประเมินผลตอบแทนโดยคำนึงถึงความเสี่ยงแฝงและผลกระทบระยะยาวอย่างรอบด้าน"
+      - id: "2"
+        text: "เลือกโครงการ A ทันทีเพราะกำไรก้อนโตในปัจจุบันสำคัญที่สุด ส่วนเรื่องกฎหมายค่อยไปเจรจาเมื่อโดนจับได้"
+        correct: false
+        error_tag: ethical_violation
+        explanation: "ยอมรับการกระทำผิดกฎหมายและเสี่ยงต่อการถูกดำเนินคดีจนธุรกิจล้มละลาย"
+      - id: "3"
+        text: "ปฏิเสธทั้งสองโครงการและยุติการลงทุนทั้งหมดของบริษัท"
+        correct: false
+        error_tag: pessimistic_resignation
+        explanation: "กลัวความเสี่ยงจนเกินเหตุและปิดกั้นโอกาสในการเติบโตของธุรกิจ"
+      - id: "4"
+        text: "เลือกโครงการ A แต่แอบโยนความผิดให้พนักงานระดับล่างหากถูกตรวจสอบ"
+        correct: false
+        error_tag: defensive_blame_shifting
+        explanation: "ขาดจริยธรรมในการบริหารและปัดความรับผิดชอบอย่างน่ารังเกียจ"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "คำนวณความเสี่ยงและผลกระทบทางกฎหมายร่วมกับผลตอบแทนทางการเงิน"
+  solution:
+    summary: "การตัดสินใจที่มีประสิทธิภาพต้องประเมินความเสี่ยง (Risk Assessment) ควบคู่กับผลตอบแทน โครงการ B ตามตัวเลือก 1 แม้กำไรปานกลางแต่ปลอดภัยและยั่งยืนกว่า"
+    steps:
+      - id: s1
+        text: "ชั่งน้ำหนักผลประโยชน์และความเสี่ยงแฝง (Legal & Reputational Risks)"
+      - id: s2
+        text: "โครงการ A มีความเสี่ยงที่จะถูกปรับและเสียชื่อเสียงมหาศาล โครงการ B จึงปลอดภัยและยั่งยืนกว่า (ตัวเลือก 1)"
+      - id: s3
+        text: "ตัวเลือก 2 ผิดกฎหมาย ตัวเลือก 3 ขาดวิสัยทัศน์ ตัวเลือก 4 ขาดจริยธรรม"

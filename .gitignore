@@ -37,5 +37,6 @@ data/assets/pages/*
 
 # OS generated files
 .DS_Store
-Thumbs.db
-desktop.ini
+# Agents teamwork scratch
+.agents/
+

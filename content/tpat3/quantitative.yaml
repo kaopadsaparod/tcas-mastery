@@ -1,75 +1,653 @@
-# คลังโจทย์ TPAT3: ความถนัดด้านวิทยาศาสตร์และวิศวกรรมศาสตร์ (Quantitative & Engineering Aptitude)
-# ได้รับการตรวจสอบระดับ Tier B (มี Python Assertion Test ยืนยันผลคำนวณ)
-
 - id: tpat3-quant-0001
   subject: tpat3
   topic: tpat3.quantitative
   source:
     type: official
-    label: "แนวข้อสอบ TPAT3 ความถนัดเชิงกลและวิศวกรรม"
+    label: แนวข้อสอบ TPAT3 ความถนัดเชิงกลและวิศวกรรม
     exam_year: 2566
   verification:
     tier: B
-    verified_by: "test_physics_answers.test_tpat3_quant_0001"
+    verified_by: test_physics_answers.test_tpat3_quant_0001
   skills:
     primary: gear_and_pulley_ratio
     secondary:
-      - fractions_ratio
-  stem: |
-    ชุดเฟืองส่งกำลังประกอบด้วยเฟือง A ที่มีจำนวนฟัน 20 ฟัน ขบอยู่กับเฟือง B ที่มีจำนวนฟัน 60 ฟัน และบนเพลาเดียวกับเฟือง B มีเฟือง C ขนาด 15 ฟันติดอยู่แน่น ซึ่งไปขบกับเฟือง D ที่มีจำนวนฟัน 45 ฟัน หากเฟืองขับ A หมุนด้วยอัตราเร็ว 360 รอบต่อนาที (rpm) จงหาอัตราเร็วรอบของเฟืองตาม D
+    - fractions_ratio
+  stem: 'ชุดเฟืองส่งกำลังประกอบด้วยเฟือง A ที่มีจำนวนฟัน 20 ฟัน ขบอยู่กับเฟือง B ที่มีจำนวนฟัน 60 ฟัน และบนเพลาเดียวกับเฟือง
+    B มีเฟือง C ขนาด 15 ฟันติดอยู่แน่น ซึ่งไปขบกับเฟือง D ที่มีจำนวนฟัน 45 ฟัน หากเฟืองขับ A หมุนด้วยอัตราเร็ว 360 รอบต่อนาที
+    (rpm) จงหาอัตราเร็วรอบของเฟืองตาม D
+
+    '
   plan_step:
-    prompt: 'อัตราส่วนการส่งกำลังของชุดเฟือง (Gear Ratio) มีความสัมพันธ์ระหว่างจำนวนฟัน ($N$) กับอัตราเร็วรอบ ($\omega$ หรือ $n$) อย่างไร?'
+    prompt: อัตราส่วนการส่งกำลังของชุดเฟือง (Gear Ratio) มีความสัมพันธ์ระหว่างจำนวนฟัน ($N$) กับอัตราเร็วรอบ ($\omega$ หรือ
+      $n$) อย่างไร?
     options:
-      a: "n_1 / n_2 = N_2 / N_1 (แปรผกผัน)"
-      b: "n_1 / n_2 = N_1 / N_2 (แปรผันตรง)"
-      c: "n_1 * N_1 = n_2 / N_2"
-    answer: "a"
-    explanation: "เฟืองฟันเยอะกว่าจะหมุนรอบช้ากว่า ดังนั้นอัตราเร็วรอบแปรผกผันกับจำนวนฟัน $n_A N_A = n_B N_B$"
+      a: n_1 / n_2 = N_2 / N_1 (แปรผกผัน)
+      b: n_1 / n_2 = N_1 / N_2 (แปรผันตรง)
+      c: n_1 * N_1 = n_2 / N_2
+    answer: a
+    explanation: เฟืองฟันเยอะกว่าจะหมุนรอบช้ากว่า ดังนั้นอัตราเร็วรอบแปรผกผันกับจำนวนฟัน $n_A N_A = n_B N_B$
   checkpoints:
-    - prompt: "เฟือง B หมุนด้วยอัตราเร็วรอบกี่ rpm?"
-      answer: 120
-      skill: gear_and_pulley_ratio
+  - prompt: เฟือง B หมุนด้วยอัตราเร็วรอบกี่ rpm?
+    answer: 120
+    skill: gear_and_pulley_ratio
   answer:
     type: single_choice
     options:
-      - id: o1
-        text: "40 rpm"
-        correct: true
-        explanation: "ถูกต้อง เฟือง A ขับ B: $n_B = 360 \\times (20/60) = 120\\text{ rpm}$ เพลาเดียวกันทำให้ $n_C = 120\\text{ rpm}$ จากนั้น C ขับ D: $n_D = 120 \\times (15/45) = 40\\text{ rpm}$"
-      - id: o2
-        text: "120 rpm"
-        correct: false
-        error_tag: intermediate_stage_only
-        explanation: "ตอบแค่อัตราเร็วของเฟือง B ลืมคิดการทดต่อของเฟือง C และ D"
-      - id: o3
-        text: "3240 rpm"
-        correct: false
-        error_tag: inverse_ratio_flipped
-        explanation: "คูณกลับเศษเป็นส่วน ทำให้คิดว่ารอบหมุนเร็วขึ้นมหาศาล ($360 \\times 3 \\times 3 = 3240$)"
-      - id: o4
-        text: "80 rpm"
-        correct: false
-        error_tag: arithmetic_error
-        explanation: "คิดเลขทดรอบผิดพลาด"
-      - id: o5
-        text: "36 rpm"
-        correct: false
-        error_tag: ratio_miscalculation
-        explanation: "คิดอัตราส่วนฟันผิดคู่"
+    - id: o1
+      text: 40 rpm
+      correct: true
+      explanation: 'ถูกต้อง เฟือง A ขับ B: $n_B = 360 \times (20/60) = 120\text{ rpm}$ เพลาเดียวกันทำให้ $n_C = 120\text{
+        rpm}$ จากนั้น C ขับ D: $n_D = 120 \times (15/45) = 40\text{ rpm}$'
+    - id: o2
+      text: 120 rpm
+      correct: false
+      error_tag: intermediate_stage_only
+      explanation: ตอบแค่อัตราเร็วของเฟือง B ลืมคิดการทดต่อของเฟือง C และ D
+    - id: o3
+      text: 3240 rpm
+      correct: false
+      error_tag: inverse_ratio_flipped
+      explanation: คูณกลับเศษเป็นส่วน ทำให้คิดว่ารอบหมุนเร็วขึ้นมหาศาล ($360 \times 3 \times 3 = 3240$)
+    - id: o4
+      text: 80 rpm
+      correct: false
+      error_tag: arithmetic_error
+      explanation: คิดเลขทดรอบผิดพลาด
+    - id: o5
+      text: 36 rpm
+      correct: false
+      error_tag: ratio_miscalculation
+      explanation: คิดอัตราส่วนฟันผิดคู่
   hints:
-    - level: 1
-      text: "แยกคิด 2 สเต็ป: สเต็ปแรกเฟือง A ขับเฟือง B, สเต็ปสองเฟือง C ขับเฟือง D (โดย B กับ C อยู่บนแกนเพลาเดียวกันจึงหมุนด้วยอัตราเร็วรอบเท่ากัน)"
-    - level: 2
-      text: "สำหรับคู่เฟือง A-B: $n_B = n_A \\times \\frac{N_A}{N_B} = 360 \\times \\frac{20}{60} = 120\\text{ rpm}$"
-    - level: 3
-      text: "สำหรับคู่เฟือง C-D: $n_D = n_C \\times \\frac{N_C}{N_D} = 120 \\times \\frac{15}{45} = 120 \\times \\frac{1}{3} = 40\\text{ rpm}$"
+  - level: 1
+    text: 'แยกคิด 2 สเต็ป: สเต็ปแรกเฟือง A ขับเฟือง B, สเต็ปสองเฟือง C ขับเฟือง D (โดย B กับ C อยู่บนแกนเพลาเดียวกันจึงหมุนด้วยอัตราเร็วรอบเท่ากัน)'
+  - level: 2
+    text: 'สำหรับคู่เฟือง A-B: $n_B = n_A \times \frac{N_A}{N_B} = 360 \times \frac{20}{60} = 120\text{ rpm}$'
+  - level: 3
+    text: 'สำหรับคู่เฟือง C-D: $n_D = n_C \times \frac{N_C}{N_D} = 120 \times \frac{15}{45} = 120 \times \frac{1}{3} = 40\text{
+      rpm}$'
   solution:
     steps:
-      - id: s1
-        text: "วิเคราะห์คู่ขับ A และ B: $n_A N_A = n_B N_B \\implies n_B = 360 \\times (20 / 60) = 120\\text{ rpm}$"
-      - id: s2
-        text: "เนื่องจากเฟือง B และ C ยึดติดบนเพลาเดียวกัน: $n_C = n_B = 120\\text{ rpm}$"
-      - id: s3
-        text: "วิเคราะห์คู่ขับ C และ D: $n_C N_C = n_D N_D \\implies n_D = 120 \\times (15 / 45) = 120 \\times \\frac{1}{3} = 40\\text{ rpm}$"
-    summary: "เฟือง D หมุนด้วยอัตราเร็ว 40 รอบต่อนาที"
-    common_mistakes: "ระวังอย่าจับฟันทั้งหมดมาบวกกัน ต้องคิดแบบ compound gear train อัตราทดรวมคือ (60/20) * (45/15) = 3 * 3 = 9 เท่า"
+    - id: s1
+      text: 'วิเคราะห์คู่ขับ A และ B: $n_A N_A = n_B N_B \implies n_B = 360 \times (20 / 60) = 120\text{ rpm}$'
+    - id: s2
+      text: 'เนื่องจากเฟือง B และ C ยึดติดบนเพลาเดียวกัน: $n_C = n_B = 120\text{ rpm}$'
+    - id: s3
+      text: 'วิเคราะห์คู่ขับ C และ D: $n_C N_C = n_D N_D \implies n_D = 120 \times (15 / 45) = 120 \times \frac{1}{3} = 40\text{
+        rpm}$'
+    summary: เฟือง D หมุนด้วยอัตราเร็ว 40 รอบต่อนาที
+    common_mistakes: ระวังอย่าจับฟันทั้งหมดมาบวกกัน ต้องคิดแบบ compound gear train อัตราทดรวมคือ (60/20) * (45/15) = 3 * 3
+      = 9 เท่า
+- id: tpat3-quant-0002
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงกลและฟิสิกส์ประยุกต์ TPAT3 (รอกและการผ่อนแรง)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: pulley_mechanical_advantage
+    secondary:
+    - forces_equilibrium
+    - tension_force
+  stem: ระบบรอกประกอบด้วยรอกเดี่ยวตายตัว 1 ตัว และรอกเดี่ยวเคลื่อนที่ 2 ตัว ใช้ยกวัตถุมวล 120 kg ขึ้นด้วยความเร็วคงที่ หากระบบรอกเบาและไม่มีแรงเสียดทาน
+    จะต้องออกแรงดึงเชือกกี่นิวตัน (กำหนด g = 10 m/s²)
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 150 N
+      correct: false
+      error_tag: overestimated_mechanical_advantage
+      explanation: คิดว่ารอกเคลื่อนที่ 2 ตัวทดแรง 8 เท่า (1200 / 8 = 150 N)
+    - id: o2
+      text: 300 N
+      correct: true
+      explanation: ถูกต้อง น้ำหนัก W = mg = 1200 N ระบบรอกเคลื่อนที่ 2 ตัวช่วยผ่อนแรง 2² = 4 เท่า ดังนั้นแรงดึง F = 1200 /
+        4 = 300 N
+    - id: o3
+      text: 600 N
+      correct: false
+      error_tag: single_movable_pulley_only
+      explanation: คิดการผ่อนแรงของรอกเคลื่อนที่เพียง 1 ตัว (1200 / 2 = 600 N)
+    - id: o4
+      text: 1200 N
+      correct: false
+      error_tag: fixed_pulley_no_advantage
+      explanation: คิดว่ารอกไม่ช่วยผ่อนแรงเลย (F = W = 1200 N)
+    - id: o5
+      text: 2400 N
+      correct: false
+      error_tag: inverted_pulley_ratio
+      explanation: นำน้ำหนักไปคูณ 2 แทนที่จะหาร
+  hints:
+  - level: 1
+    text: คำนวณน้ำหนักวัตถุในแนวดิ่ง W = mg
+  - level: 2
+    text: รอกเดี่ยวเคลื่อนที่แต่ละตัวช่วยแบ่งเบาแรงตึงเชือกครึ่งหนึ่ง (การได้เปรียบเชิงกล 2 เท่าต่อตัว)
+  - level: 3
+    text: เมื่อมีรอกเคลื่อนที่ 2 ตัวต่อร่วมกัน การได้เปรียบเชิงกลรวม MA = 2 × 2 = 4 เท่า ดังนั้น F = W / 4
+  solution:
+    summary: ต้องออกแรงดึงเชือก 300 นิวตัน
+    steps:
+    - id: s1
+      text: 'คำนวณน้ำหนักของวัตถุ: W = mg = 120 kg × 10 m/s² = 1,200 N'
+    - id: s2
+      text: 'วิเคราะห์การผ่อนแรง: รอกเดี่ยวตายตัวเปลี่ยนทิศทางแรงเท่านั้น ส่วนรอกเดี่ยวเคลื่อนที่ 2 ตัวช่วยผ่อนแรงตัวละ 2
+        เท่า รวมผ่อนแรง MA = 2² = 4 เท่า'
+    - id: s3
+      text: 'คำนวณแรงดึงเชือก: F = W / 4 = 1,200 N / 4 = 300 N'
+    common_mistakes: อย่าสับสนระหว่างรอกตายตัว (ไม่ผ่อนแรง) กับรอกเคลื่อนที่ (ผ่อนแรง 2 เท่า)
+- id: tpat3-quant-0003
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงกลและฟิสิกส์ประยุกต์ TPAT3 (แม่แรงไฮดรอลิก)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: hydraulic_press_pascal
+    secondary:
+    - area_ratio_square
+    - pressure_equilibrium
+  stem: เครื่องอัดไฮดรอลิกมีลูกสูบวงกลมสองอัน ลูกสูบเล็กมีรัศมี 4 cm ลูกสูบใหญ่มีรัศมี 20 cm หากต้องการยกวัตถุมวล 2,500 kg
+    ที่วางอยู่บนลูกสูบใหญ่ จะต้องออกแรงกดที่ลูกสูบเล็กอย่างน้อยกี่นิวตัน (กำหนด g = 10 m/s²)
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 500 N
+      correct: false
+      error_tag: radius_ratio_doubled
+      explanation: ใช้อัตราส่วนพื้นที่ 50 เท่า ทำให้แรงลดลงเหลือ 500 N
+    - id: o2
+      text: 1,000 N
+      correct: true
+      explanation: ถูกต้อง น้ำหนัก W = 2,500 × 10 = 25,000 N อัตราส่วนพื้นที่ A₂/A₁ = (r₂/r₁)² = (20/4)² = 5² = 25 เท่า แรงกดลูกสูบเล็ก
+        F₁ = 25,000 / 25 = 1,000 N
+    - id: o3
+      text: 5,000 N
+      correct: false
+      error_tag: used_linear_radius_ratio_without_squaring
+      explanation: ใช้อัตราส่วนรัศมีเชิงเส้นโดยตรง r₂/r₁ = 5 เท่า ลืมยกกำลังสองพื้นที่ (25,000 / 5 = 5,000 N)
+    - id: o4
+      text: 10,000 N
+      correct: false
+      error_tag: arithmetic_ratio_error
+      explanation: คำนวณอัตราส่วนพื้นที่คลาดเคลื่อน
+    - id: o5
+      text: 25,000 N
+      correct: false
+      error_tag: ignored_hydraulic_advantage
+      explanation: ตอบเท่าน้ำหนักวัตถุโดยไม่คิดการผ่อนแรงของระบบไฮดรอลิก
+  hints:
+  - level: 1
+    text: คำนวณน้ำหนักของวัตถุบนลูกสูบใหญ่ W = mg
+  - level: 2
+    text: 'พื้นที่หน้าตัดของลูกสูบวงกลม A = πr² ดังนั้นอัตราส่วนพื้นที่แปรผันตามรัศมียกกำลังสอง: A₂/A₁ = (r₂/r₁)²'
+  - level: 3
+    text: ตามกฎของปัสกาล F₁/A₁ = F₂/A₂ ดังนั้น F₁ = F₂ × (r₁/r₂)²
+  solution:
+    summary: ต้องออกแรงกดที่ลูกสูบเล็ก 1,000 นิวตัน
+    steps:
+    - id: s1
+      text: 'คำนวณน้ำหนักที่ลูกสูบใหญ่ต้องยก: F₂ = mg = 2,500 kg × 10 m/s² = 25,000 N'
+    - id: s2
+      text: 'หาอัตราส่วนพื้นที่หน้าตัดของลูกสูบ: A₂ / A₁ = π(20)² / π(4)² = (20/4)² = 5² = 25 เท่า'
+    - id: s3
+      text: 'คำนวณแรงกดที่ลูกสูบเล็ก: F₁ = F₂ / 25 = 25,000 N / 25 = 1,000 N'
+    common_mistakes: ระวังอย่านำอัตราส่วนรัศมี 20/4 = 5 ไปหารโดยตรง พื้นที่เป็นฟังก์ชันกำลังสองของรัศมี
+- id: tpat3-quant-0004
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงตัวเลขและฟิสิกส์ประยุกต์ TPAT3 (วงจรไฟฟ้าและกำลังงาน)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: circuit_resistor_network
+    secondary:
+    - electrical_power
+    - ohms_law
+  stem: ตัวต้านทานขนาด 10 Ω ต่ออนุกรมกับชุดตัวต้านทาน 20 Ω สองตัวที่ต่อขนานกัน จากนั้นนำไปต่อกับแหล่งจ่ายแรงดันไฟฟ้า 40 V
+    จงหากำลังไฟฟ้ารวมที่สูญเสียในวงจร
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 40 W
+      correct: false
+      error_tag: used_series_combination_for_parallel_pair
+      explanation: คิดว่าตัวต้านทาน 20 Ω สองตัวต่ออนุกรมกัน (R_total = 10 + 40 = 50 Ω, P = 1600/50 = 32 หรือคิดครึ่งหนึ่ง)
+    - id: o2
+      text: 80 W
+      correct: true
+      explanation: ถูกต้อง ตัวต้านทาน 20 Ω ต่อขนานกันได้ 10 Ω รวมอนุกรมกับ 10 Ω ได้ R_total = 20 Ω กำลังไฟฟ้ารวม P = V² /
+        R_total = 40² / 20 = 1,600 / 20 = 80 W
+    - id: o3
+      text: 120 W
+      correct: false
+      error_tag: arithmetic_power_error
+      explanation: คำนวณกำลังไฟฟ้าคลาดเคลื่อน
+    - id: o4
+      text: 160 W
+      correct: false
+      error_tag: used_parallel_equivalent_only
+      explanation: ใช้ความต้านทานเฉพาะชุดขนาน 10 Ω โดยลืมบวกตัวต้านทานอนุกรม (1,600 / 10 = 160 W)
+    - id: o5
+      text: 320 W
+      correct: false
+      error_tag: used_single_branch_resistance
+      explanation: ใช้ค่าความต้านทาน 5 Ω ในการคำนวณ
+  hints:
+  - level: 1
+    text: 'ยุบตัวต้านทานคู่ขนาน 20 Ω สองตัวก่อน: R_p = (20 × 20) / (20 + 20) = 10 Ω'
+  - level: 2
+    text: 'รวมความต้านทานทั้งหมดแบบอนุกรม: R_total = 10 + R_p = 10 + 10 = 20 Ω'
+  - level: 3
+    text: ใช้สูตรกำลังไฟฟ้ารวม P = V² / R_total
+  solution:
+    summary: กำลังไฟฟ้ารวมในวงจรเท่ากับ 80 วัตต์
+    steps:
+    - id: s1
+      text: 'คำนวณความต้านทานสมมูลของชุดขนาน: R_parallel = (20 × 20) / (20 + 20) = 400 / 40 = 10 Ω'
+    - id: s2
+      text: 'คำนวณความต้านทานรวมทั้งวงจร: R_total = 10 Ω + 10 Ω = 20 Ω'
+    - id: s3
+      text: 'คำนวณกำลังไฟฟ้ารวม: P = V² / R_total = (40)² / 20 = 1,600 / 20 = 80 W'
+    common_mistakes: ระวังอย่ายุบวงจรผิดลำดับ ต้องยุบชุดขนานก่อนนำมารวมอนุกรม
+- id: tpat3-quant-0005
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงกลและฟิสิกส์ประยุกต์ TPAT3 (การเบรกและงาน-พลังงาน)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: braking_stopping_distance
+    secondary:
+    - work_energy_theorem
+    - friction_deceleration
+    - unit_conversion_speed
+  stem: รถบรรทุกมวล 1,500 kg วิ่งด้วยความเร็ว 72 km/h บนถนนราบ คนขับเหยียบเบรกจนล้อล็อก ไถลไปบนถนนที่มีสัมประสิทธิ์แรงเสียดทานจลน์
+    μk = 0.5 รถคันนี้จะไถลเป็นระยะทางกี่เมตรก่อนหยุดนิ่ง (กำหนด g = 10 m/s²)
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 20 m
+      correct: false
+      error_tag: halved_stopping_distance
+      explanation: หารสองซ้ำซ้อนหรือใช้ความหน่วง 10 m/s²
+    - id: o2
+      text: 40 m
+      correct: true
+      explanation: ถูกต้อง แปลงความเร็ว 72 km/h = 20 m/s ความหน่วงจากแรงเสียดทาน a = μk g = 0.5 × 10 = 5 m/s² ระยะเบรก s =
+        u² / (2a) = 20² / (2 × 5) = 400 / 10 = 40 m
+    - id: o3
+      text: 80 m
+      correct: false
+      error_tag: forgot_factor_two_in_denominator
+      explanation: ลืมตัวคูณ 2 ในตัวหาร s = u² / a = 400 / 5 = 80 m
+    - id: o4
+      text: 144 m
+      correct: false
+      error_tag: omitted_kmh_to_ms_conversion
+      explanation: นำค่าความเร็ว 72 km/h ไปแทนโดยไม่แปลงหน่วยเป็น m/s
+    - id: o5
+      text: 200 m
+      correct: false
+      error_tag: kinetic_energy_divided_by_mass_only
+      explanation: คำนวณระยะทางจากสัดส่วนผิดพลาด
+  hints:
+  - level: 1
+    text: 'แปลงหน่วยความเร็วต้น: u = 72 × (5/18) = 20 m/s'
+  - level: 2
+    text: 'หาความหน่วงจากแรงเสียดทาน: a = μk × g = 0.5 × 10 = 5 m/s²'
+  - level: 3
+    text: ใช้สมการการเคลื่อนที่ v² = u² - 2as โดย v = 0 -> s = u² / (2a)
+  solution:
+    summary: รถจะไถลเป็นระยะทาง 40 เมตรก่อนหยุดนิ่ง
+    steps:
+    - id: s1
+      text: 'แปลงหน่วยความเร็วต้น: u = 72 km/h × (1,000 m / 3,600 s) = 20 m/s'
+    - id: s2
+      text: 'คำนวณความหน่วงจากแรงเสียดทานจลน์: a = f_k / m = (μ_k mg) / m = μ_k g = 0.5 × 10 m/s² = 5 m/s²'
+    - id: s3
+      text: 'คำนวณระยะทางหยุดจากทฤษฎีงาน-พลังงาน: (1/2)mu² = f_k × s -> s = u² / (2a) = (20)² / (2 × 5) = 400 / 10 = 40 m'
+    common_mistakes: ต้องแปลงความเร็ว 72 km/h เป็น 20 m/s ก่อนเสมอ ห้ามแทนเลข 72 ลงในสมการตรงๆ
+- id: tpat3-quant-0006
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงตัวเลขและฟิสิกส์ประยุกต์ TPAT3 (สมดุลความร้อน)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: calorimetry_thermal_equilibrium
+    secondary:
+    - heat_capacity
+    - conservation_of_energy
+  stem: นำก้อนโลหะมวล 200 g อุณหภูมิ 100°C หย่อนลงในน้ำมวล 300 g อุณหภูมิ 20°C ภายในภาชนะฉนวนความร้อน หากความร้อนจำเพาะของน้ำคือ
+    1.0 cal/g·°C และของโลหะคือ 0.1 cal/g·°C อุณหภูมิผสมสุดท้ายของระบบคือกี่องศาเซลเซียส
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 22°C
+      correct: false
+      error_tag: underestimated_heat_capacity
+      explanation: คำนวณความจุความร้อนโลหะต่ำเกินไป
+    - id: o2
+      text: 25°C
+      correct: true
+      explanation: ถูกต้อง Q_สูญเสีย = Q_ได้รับ -> 200(0.1)(100 - T) = 300(1.0)(T - 20) -> 20(100 - T) = 300(T - 20) -> 2000
+        - 20T = 300T - 6000 -> 320T = 8000 -> T = 25°C
+    - id: o3
+      text: 30°C
+      correct: false
+      error_tag: arithmetic_calorimetry_error
+      explanation: คำนวณสมดุลความร้อนผิดพลาดเป็น 30°C
+    - id: o4
+      text: 60°C
+      correct: false
+      error_tag: simple_arithmetic_mean_temperature
+      explanation: นำอุณหภูมิมาหาค่าเฉลี่ยตรงๆ (100 + 20)/2 = 60°C โดยไม่คำนึงถึงความจุความร้อน
+    - id: o5
+      text: 80°C
+      correct: false
+      error_tag: inverted_heat_capacities
+      explanation: สลับความจุความร้อนระหว่างน้ำกับโลหะ
+  hints:
+  - level: 1
+    text: 'ตั้งสมการอนุรักษ์พลังงานความร้อน: Q_ลด = Q_เพิ่ม'
+  - level: 2
+    text: 'คำนวณความจุความร้อน: C_โลหะ = 200 × 0.1 = 20 cal/°C, C_น้ำ = 300 × 1.0 = 300 cal/°C'
+  - level: 3
+    text: 20 × (100 - T) = 300 × (T - 20) แล้วแก้สมการหาค่า T
+  solution:
+    summary: อุณหภูมิผสมสุดท้ายเท่ากับ 25 องศาเซลเซียส
+    steps:
+    - id: s1
+      text: 'ความร้อนที่โลหะคายออก: Q_ลด = m₁ c₁ (T₁ - T) = 200 × 0.1 × (100 - T) = 20(100 - T) cal'
+    - id: s2
+      text: 'ความร้อนที่น้ำดูดกลืน: Q_เพิ่ม = m₂ c₂ (T - T₂) = 300 × 1.0 × (T - 20) = 300(T - 20) cal'
+    - id: s3
+      text: 'แก้สมการสมดุลความร้อน: 2,000 - 20T = 300T - 6,000 -> 320T = 8,000 -> T = 8,000 / 320 = 25°C'
+    common_mistakes: น้ำมีความจุความร้อนสูงกว่าโลหะมาก อุณหภูมิผสมจึงขยับขึ้นจาก 20°C เพียงเล็กน้อย
+- id: tpat3-quant-0007
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงกลและฟิสิกส์ประยุกต์ TPAT3 (สมดุลโมเมนต์ของคาน)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: beam_torque_equilibrium
+    secondary:
+    - center_of_gravity
+    - rotational_equilibrium
+  stem: คานสม่ำเสมอมวล 10 kg ยาว 4 m มีจุดหมุนอยู่ที่ระยะ 1 m จากปลายด้านซ้าย หากต้องการให้คานวางตัวในแนวระดับพอดี จะต้องแขวนวัตถุมวลกี่กิโลกรัมที่ปลายด้านซ้าย
+    (กำหนด g = 10 m/s²)
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 5 kg
+      correct: false
+      error_tag: halved_mass_calculation
+      explanation: คิดว่าน้ำหนักคานกระทำที่ระยะ 0.5 m
+    - id: o2
+      text: 10 kg
+      correct: true
+      explanation: 'ถูกต้อง จุดศูนย์ถ่วงของคานอยู่ที่กึ่งกลาง (2 m จากปลายซ้าย) ซึ่งห่างจากจุดหมุน 1 m โมเมนต์ตามเข็ม = 10
+        kg × 10 m/s² × 1 m = 100 N·m ต้องแขวนมวล m ที่ปลายซ้าย (ห่างจุดหมุน 1 m): m × 10 × 1 = 100 -> m = 10 kg'
+    - id: o3
+      text: 15 kg
+      correct: false
+      error_tag: arithmetic_moment_error
+      explanation: คำนวณแขนของแรงคลาดเคลื่อน
+    - id: o4
+      text: 20 kg
+      correct: false
+      error_tag: used_full_half_length_arm
+      explanation: ใช้ระยะแขนของคาน 2 m เต็มโดยไม่หักลบระยะจุดหมุน (10 × 2 = 20 kg)
+    - id: o5
+      text: 30 kg
+      correct: false
+      error_tag: used_three_meter_remaining_arm
+      explanation: นำความยาวคานส่วนที่เหลือ 3 m มาคูณ
+  hints:
+  - level: 1
+    text: คานสม่ำเสมอน้ำหนักจะตกลงที่กึ่งกลางคาน คือระยะ 2 m จากปลายซ้าย
+  - level: 2
+    text: 'วัดระยะจากจุดหมุน (ที่ 1 m จากปลายซ้าย) ไปยังจุดศูนย์ถ่วงของคาน: d_cg = 2 - 1 = 1 m'
+  - level: 3
+    text: 'ตั้งสมการโมเมนต์รอบจุดหมุน: m × g × 1 m = m_คาน × g × 1 m'
+  solution:
+    summary: จะต้องแขวนวัตถุมวล 10 kg ที่ปลายด้านซ้าย
+    steps:
+    - id: s1
+      text: 'ระบุจุดศูนย์ถ่วง (CG) ของคาน: คานสม่ำเสมอยาว 4 m จุด CG อยู่ที่กึ่งกลาง คือระยะ 2 m จากปลายซ้าย'
+    - id: s2
+      text: 'คำนวณระยะแขนของโมเมนต์เทียบกับจุดหมุน: จุดหมุนอยู่ที่ระยะ 1 m จากปลายซ้าย ดังนั้นระยะจากจุดหมุนไป CG ของคานคือ
+        2 - 1 = 1 m และระยะจากจุดหมุนไปปลายซ้ายคือ 1 m'
+    - id: s3
+      text: 'สมดุลโมเมนต์รอบจุดหมุน: โมเมนต์ทวน (มวล m) = โมเมนต์ตาม (น้ำหนักคาน) -> (mg) × 1 m = (10 × g) × 1 m -> m = 10
+        kg'
+    common_mistakes: อย่าลืมคิดน้ำหนักของตัวคานเอง โดยน้ำหนักคานจะกระทำผ่านจุดศูนย์ถ่วงที่กึ่งกลางคาน
+- id: tpat3-quant-0008
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงตัวเลขและวิศวกรรม TPAT3 (อัตราการไหลท่อน้ำเข้า-ออก)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: flow_rate_net_filling
+    secondary:
+    - fractions_work_rate
+    - rate_addition
+  stem: ถังน้ำมีท่อน้ำเข้า 2 ท่อ และท่อระบายน้ำออก 1 ท่อ ท่อเข้า A เติมเต็มถังใน 4 ชม. ท่อเข้า B เติมเต็มถังใน 6 ชม. ส่วนท่อระบาย
+    C ปล่อยน้ำหมดถังใน 12 ชม. หากเปิดทั้ง 3 ท่อพร้อมกันตั้งแต่ถังเปล่า น้ำจะเต็มถังในเวลากี่ชั่วโมง
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 2.0 ชม.
+      correct: false
+      error_tag: ignored_drain_pipe
+      explanation: ลืมคิดท่อระบาย C (1/4 + 1/6 = 5/12 -> 12/5 = 2.4 ชม.)
+    - id: o2
+      text: 3.0 ชม.
+      correct: true
+      explanation: ถูกต้อง อัตราการไหลสุทธิ = 1/4 + 1/6 - 1/12 = 3/12 + 2/12 - 1/12 = 4/12 = 1/3 ถังต่อชั่วโมง ดังนั้นเวลาที่ใช้เติมจนเต็มคือ
+        1 / (1/3) = 3.0 ชั่วโมง
+    - id: o3
+      text: 4.0 ชม.
+      correct: false
+      error_tag: arithmetic_rate_subtraction_error
+      explanation: คำนวณผลลัพธ์เศษส่วนผิดพลาดเป็น 1/4
+    - id: o4
+      text: 5.5 ชม.
+      correct: false
+      error_tag: added_drain_time_directly
+      explanation: นำเวลามาบวกและลบกันตรงๆ โดยไม่คิดอัตราการไหล
+    - id: o5
+      text: 6.0 ชม.
+      correct: false
+      error_tag: rate_halved_error
+      explanation: คิดว่าอัตราการไหลสุทธิเท่ากับ 1/6
+  hints:
+  - level: 1
+    text: 'หาอัตราการไหลต่อชั่วโมง: ท่อเข้าเป็นบวก (+), ท่อระบายเป็นลบ (-)'
+  - level: 2
+    text: อัตราการไหลสุทธิ = 1/4 + 1/6 - 1/12 ถังต่อชั่วโมง
+  - level: 3
+    text: หา ครน. ของ 4, 6, 12 คือ 12 จะได้ (3 + 2 - 1)/12 = 4/12 = 1/3 แล้วกลับเศษเป็นส่วน
+  solution:
+    summary: น้ำจะเต็มถังในเวลา 3.0 ชั่วโมง
+    steps:
+    - id: s1
+      text: 'อัตราการไหลของแต่ละท่อ: ท่อ A = +1/4 ถัง/ชม., ท่อ B = +1/6 ถัง/ชม., ท่อ C = -1/12 ถัง/ชม.'
+    - id: s2
+      text: 'คำนวณอัตราการไหลสุทธิ: Rate_net = 1/4 + 1/6 - 1/12 = 3/12 + 2/12 - 1/12 = 4/12 = 1/3 ถัง/ชม.'
+    - id: s3
+      text: 'คำนวณเวลาที่ใช้จนเต็มถัง: Time = 1 / Rate_net = 1 / (1/3) = 3.0 ชั่วโมง'
+    common_mistakes: ท่อระบายน้ำต้องนำอัตราเร็วมา 'ลบ' ออกจากท่อเติมน้ำ ไม่ใช่บวกเข้าไป
+- id: tpat3-quant-0009
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงตัวเลขและวิศวกรรมสิ่งแวดล้อม TPAT3 (การบำบัดน้ำหลายขั้นตอน)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: multistage_filtration_decay
+    secondary:
+    - exponential_fraction
+    - environmental_engineering
+  stem: ระบบกรองน้ำเสียแบบ 3 ขั้นตอน แต่ละขั้นตอนสามารถกำจัดสารปนเปื้อนได้ 60% ของสารที่ไหลเข้ามา หากน้ำเสียเริ่มต้นมีสารปนเปื้อน
+    500 ppm หลังผ่านกระบวนการกรองครบทั้ง 3 ขั้นตอน น้ำจะมีสารปนเปื้อนเหลือกี่ ppm
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 16 ppm
+      correct: false
+      error_tag: applied_four_stages_decay
+      explanation: 'คิดการกรอง 4 ขั้นตอน: 500 × (0.4)⁴ = 12.8 หรือหารสองผิดพลาด'
+    - id: o2
+      text: 32 ppm
+      correct: true
+      explanation: ถูกต้อง แต่ละขั้นตอนกำจัด 60% จะเหลือสารปนเปื้อน 40% (0.4) ของขั้นตอนก่อนหน้า หลังผ่าน 3 ขั้นตอน ปริมาณที่เหลือ
+        = 500 × (0.4)³ = 500 × 0.064 = 32 ppm
+    - id: o3
+      text: 64 ppm
+      correct: false
+      error_tag: stopped_at_two_stages
+      explanation: 'คิดการกรองเพียง 2 ขั้นตอน: 500 × (0.4)² = 500 × 0.16 = 80 ppm หรือคำนวณ 0.064 × 1000'
+    - id: o4
+      text: 100 ppm
+      correct: false
+      error_tag: linear_percentage_subtraction
+      explanation: นำ 60% × 3 = 180% ซึ่งเป็นไปไม่ได้ แล้วเดาตัวเลข 100 ppm
+    - id: o5
+      text: 128 ppm
+      correct: false
+      error_tag: used_0_6_factor_instead_of_0_4
+      explanation: นำสัดส่วนที่ถูกกำจัด (0.6) ไปคิดซ้ำซ้อน
+  hints:
+  - level: 1
+    text: ถ้ากำจัดได้ 60% แสดงว่าในแต่ละขั้นตอนจะเหลือสารปนเปื้อน 100% - 60% = 40% (0.4)
+  - level: 2
+    text: ผ่าน 3 ขั้นตอน สัดส่วนที่เหลือคือ (0.4) × (0.4) × (0.4) = (0.4)³
+  - level: 3
+    text: 'คำนวณ: 500 ppm × 0.064 = 32 ppm'
+  solution:
+    summary: น้ำจะมีสารปนเปื้อนเหลือ 32 ppm
+    steps:
+    - id: s1
+      text: 'คำนวณสัดส่วนสารที่รอดผ่านในแต่ละขั้นตอน: รอดผ่าน = 1 - 0.60 = 0.40 (40%)'
+    - id: s2
+      text: 'คำนวณสัดส่วนสะสมเมื่อผ่าน 3 ขั้นตอน: สัดส่วนเหลือรวม = (0.40)³ = 0.064'
+    - id: s3
+      text: 'คำนวณปริมาณสารปนเปื้อนสุดท้าย: ความเข้มข้น = 500 ppm × 0.064 = 32 ppm'
+    common_mistakes: ระวังอย่านำ 60% มาบวกกันเป็น 180% การกรองหลายขั้นตอนเป็นการลดทอนแบบเลขชี้กำลัง (Exponential)
+- id: tpat3-quant-0010
+  subject: tpat3
+  topic: tpat3.quantitative
+  source:
+    type: authored_drill
+    label: โจทย์ฝึกความถนัดเชิงตัวเลขและมิติสัมพันธ์ TPAT3 (สัดส่วนปริมาตรกรวย)
+    exam_year: 2567
+  verification:
+    tier: B
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: geometric_volume_scaling
+    secondary:
+    - conical_similarity
+    - percentage_proportion
+  stem: ถังน้ำทรงกรวยหงายมีความสูง 120 cm จุน้ำเต็มถัง หากปล่อยน้ำออกจนระดับความสูงของน้ำลดลงเหลือ 60 cm ปริมาตรน้ำที่เหลืออยู่ในถังคิดเป็นกี่เปอร์เซ็นต์ของปริมาตรถังเต็ม
+  answer:
+    type: single_choice
+    options:
+    - id: o1
+      text: 12.5%
+      correct: true
+      explanation: ถูกต้อง รูปทรงกรวยเรขาคณิตคล้ายกัน ปริมาตรแปรผันตามกำลังสามของความสูง (V ∝ h³) อัตราส่วนความสูงคือ 60/120
+        = 1/2 ดังนั้น ปริมาตรที่เหลือ = (1/2)³ = 1/8 = 0.125 หรือคิดเป็น 12.5%
+    - id: o2
+      text: 25.0%
+      correct: false
+      error_tag: squared_ratio_area_only
+      explanation: ใช้อัตราส่วนพื้นที่หน้าตัดยกกำลังสอง (1/2)² = 1/4 = 25% แทนที่จะเป็นปริมาตรยกกำลังสาม
+    - id: o3
+      text: 33.3%
+      correct: false
+      error_tag: confused_with_cone_volume_factor_one_third
+      explanation: สับสนกับตัวคูณ 1/3 ในสูตรปริมาตรกรวย V = (1/3)πr²h
+    - id: o4
+      text: 50.0%
+      correct: false
+      error_tag: linear_height_ratio_fallacy
+      explanation: เข้าใจผิดว่าปริมาตรแปรผันตรงเชิงเส้นกับความสูง (60/120 = 50%)
+    - id: o5
+      text: 75.0%
+      correct: false
+      error_tag: inverted_remaining_fraction
+      explanation: คำนวณส่วนที่หายไปของพื้นที่แทนส่วนที่เหลือ
+  hints:
+  - level: 1
+    text: กรวยน้ำที่เหลือมีรูปทรงคล้ายกับกรวยเดิม (Similar Geometric Solids)
+  - level: 2
+    text: อัตราส่วนความสูง = 60 / 120 = 1/2
+  - level: 3
+    text: 'สำหรับรูปทรงสามมิติที่คล้ายกัน ปริมาตรแปรผันตามกำลังสามของมิติเชิงเส้น: V_เหลือ / V_เต็ม = (h_เหลือ / h_เต็ม)³
+      = (1/2)³ = 1/8 = 12.5%'
+  solution:
+    summary: ปริมาตรน้ำที่เหลือคิดเป็น 12.5% ของปริมาตรถังเต็ม
+    steps:
+    - id: s1
+      text: 'วิเคราะห์ความคล้ายกันของเรขาคณิต: กรวยน้ำระดับ 60 cm เป็นรูปทรงเรขาคณิตคล้ายกับกรวยถัง 120 cm ดังนั้นรัศมีผิวน้ำจะลดลงเป็นสัดส่วนเดียวกับความสูง
+        (r_เหลือ / r_เต็ม = 60 / 120 = 1/2)'
+    - id: s2
+      text: 'คำนวณอัตราส่วนปริมาตร: V = (1/3)πr²h ดังนั้น V_เหลือ / V_เต็ม = (r_เหลือ/r_เต็ม)² × (h_เหลือ/h_เต็ม) = (1/2)²
+        × (1/2) = (1/2)³ = 1/8'
+    - id: s3
+      text: 'แปลงเป็นเปอร์เซ็นต์: (1/8) × 100% = 12.5%'
+    common_mistakes: ปริมาตรแปรผันตามมิติเชิงเส้นยกกำลังสาม (h³) ไม่ใช่แปรผันตรงตามความสูง h (ไม่ใช่ 50%)

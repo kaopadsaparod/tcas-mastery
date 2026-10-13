@@ -163,6 +163,8 @@ def get_content_audit_report() -> dict[str, Any]:
             is_blueprint_valid = True
         elif "blueprint-70" in p.id and q_count == 70:
             is_blueprint_valid = True
+        elif "blueprint-60" in p.id and q_count == 60 and round(total_pts, 1) == 100.0:
+            is_blueprint_valid = True
         elif "mock" in p.id or "practice" in p.id:
             is_blueprint_valid = True
 

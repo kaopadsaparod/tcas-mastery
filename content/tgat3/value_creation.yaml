@@ -1,0 +1,211 @@
+- id: tgat3-val-drill-001
+  subject: tgat3
+  topic: tgat3.value_creation
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการสร้างคุณค่าและนวัตกรรม"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: customer_centricity
+    secondary:
+      - customer_journey_mapping
+      - friction_reduction
+  stem: "ธุรกิจร้านอาหารเพื่อสุขภาพพบว่ากลุ่มลูกค้าคนทำงานในเมืองมีเวลาพักเที่ยงจำกัดมากและไม่ชอบรอคิว หากทีมงานต้องการใช้หลักการ 'Customer Journey Mapping' เพื่อสร้างคุณค่าและประสบการณ์ใหม่ ควรให้ความสำคัญกับขั้นตอนใดมากที่สุด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "ออกแบบระบบสั่งอาหารล่วงหน้าผ่านแอปพลิเคชันและจัดตู้รับอาหารอุ่นร้อนแบบไร้สัมผัส (Grab & Go) เพื่อตัดขั้นตอนการรอคิว"
+        correct: true
+        explanation: "แก้ไขปัญหา Pain Point สำคัญที่สุดใน Journey ของลูกค้าที่มีเวลาจำกัดได้อย่างตรงจุด"
+      - id: "2"
+        text: "เพิ่มเมนูอาหารใหม่อีก 50 รายการเพื่อให้ลูกค้ามีตัวเลือกหลากหลายขึ้น"
+        correct: false
+        error_tag: superficial_innovation
+        explanation: "การเพิ่มเมนูไม่ได้แก้ปัญหาเรื่องเวลาจำกัด และอาจยิ่งทำให้ลูกค้าใช้เวลาตัดสินใจนานขึ้น"
+      - id: "3"
+        text: "ติดตั้งจอโทรทัศน์ขนาดใหญ่ในร้านเพื่อให้ลูกค้าดูแก้เบื่อระหว่างรอคิว"
+        correct: false
+        error_tag: symptomatic_treatment
+        explanation: "เป็นการบรรเทาความเบื่อหน่ายที่ปลายเหตุ แต่ระยะเวลาการรอคอยจริงไม่ได้ลดลง"
+      - id: "4"
+        text: "บังคับให้ลูกค้าทุกคนต้องชำระค่าอาหารเป็นเงินสดเท่านั้น"
+        correct: false
+        error_tag: ignores_user_pain_points
+        explanation: "สร้างความยุ่งยากและเสียเวลาเพิ่มขึ้น สวนทางกับพฤติกรรมสังคมไร้เงินสด"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "พิจารณาจุดที่เป็นคอขวด (Friction Point) ในการใช้บริการของลูกค้าที่มีเวลาจำกัด"
+  solution:
+    summary: "การทำ Customer Journey Mapping ช่วยให้มองเห็นจุดติดขัด (Pain Point) ในแต่ละขั้นตอน การลดเวลารอคิวด้วยระบบ Grab & Go สั่งล่วงหน้าจึงเป็นการสร้างคุณค่าที่ตรงใจลูกค้าที่สุด"
+    steps:
+      - id: s1
+        text: "วิเคราะห์โจทย์: ลูกค้ามีเวลาจำกัด ปัญหาหลักคือการรอคิว"
+      - id: s2
+        text: "ประเมินตัวเลือก: ตัวเลือก 1 ตัดเวลารอคิวที่เคาน์เตอร์ได้อย่างมีประสิทธิภาพ"
+      - id: s3
+        text: "ปฏิเสธตัวเลือก 2, 3, 4 เนื่องจากไม่แก้ปัญหาเรื่องเวลา หรือยิ่งเพิ่มความยุ่งยาก"
+
+- id: tgat3-val-drill-002
+  subject: tgat3
+  topic: tgat3.value_creation
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการสร้างคุณค่าและนวัตกรรม"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: creative_ideation
+    secondary:
+      - scamper_technique
+      - cultural_heritage_adaptation
+  stem: "กลุ่มวิสาหกิจชุมชนทอผ้าพื้นเมืองต้องการยกระดับสินค้าสู่ตลาดสากล หากต้องการประยุกต์ใช้เทคนิค 'SCAMPER' ในส่วน 'Adapt' (การปรับเปลี่ยนให้เข้ากับบริบทใหม่) ข้อใดคือตัวอย่างที่เหมาะสมที่สุด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "นำลวดลายผ้าทอโบราณมาปรับย่อขนาดและโทนสีให้มินิมอลเพื่อใช้ตัดเย็บเป็นเคสแท็บเล็ตและกระเป๋าโน้ตบุ๊กสำหรับคนรุ่นใหม่"
+        correct: true
+        explanation: "เป็นการ Adapt อัตลักษณ์ดั้งเดิมเข้ากับบริบทการใช้งานในชีวิตประจำวันยุคดิจิทัลอย่างลงตัว"
+      - id: "2"
+        text: "เลิกทอผ้าด้วยมือทั้งหมดแล้วสั่งซื้อผ้าสังเคราะห์สำเร็จรูปราคาถูกจากโรงงานต่างประเทศมาขายแทน"
+        correct: false
+        error_tag: copies_without_differentiation
+        explanation: "สูญเสียอัตลักษณ์และภูมิปัญญาดั้งเดิมของชุมชน ทำลายความสามารถในการแข่งขันระยะยาว"
+      - id: "3"
+        text: "ผลิตผ้าถุงลายเดิมขนาดเดิมต่อไปโดยไม่ปรับเปลี่ยนอะไรเลย"
+        correct: false
+        error_tag: resists_constructive_feedback
+        explanation: "ยึดติดกับกรอบเดิม ขาดความพยายามในการปรับตัวเข้าสู่ตลาดสากล"
+      - id: "4"
+        text: "ขึ้นราคาสินค้าเดิมเป็น 5 เท่าทันทีโดยไม่พัฒนาคุณภาพหรือดีไซน์"
+        correct: false
+        error_tag: short_term_bias
+        explanation: "ขาดความสมเหตุสมผลทางการตลาดและอาจทำให้สินค้าขายไม่ออก"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "SCAMPER: Adapt คือการนำสิ่งเดิมมาปรับเปลี่ยนให้สอดรับกับฟังก์ชันหรือกลุ่มเป้าหมายใหม่"
+  solution:
+    summary: "การ Adapt ตามเทคนิค SCAMPER คือการปรับประยุกต์อัตลักษณ์ดั้งเดิมให้ตอบสนองบริบทใหม่ ตัวเลือก 1 ผสมผสานลวดลายท้องถิ่นเข้ากับสินค้าไลฟ์สไตล์ดิจิทัลได้อย่างชาญฉลาด"
+    steps:
+      - id: s1
+        text: "เข้าใจหลักการ SCAMPER (A = Adapt คือการปรับให้เข้ากับสิ่งใหม่)"
+      - id: s2
+        text: "ตัวเลือก 1 ปรับลายและรูปทรงให้เข้ากับอุปกรณ์ดิจิทัลยุคใหม่"
+      - id: s3
+        text: "ตัวเลือก 2, 3, 4 ขาดความคิดสร้างสรรค์หรือทำลายคุณค่าดั้งเดิม"
+
+- id: tgat3-val-drill-003
+  subject: tgat3
+  topic: tgat3.value_creation
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการสร้างคุณค่าและนวัตกรรม"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: prototyping_and_testing
+    secondary:
+      - lean_startup
+      - mvp_validation
+  stem: "สตาร์ทอัพด้านแอปพลิเคชันตรวจสุขภาพสัตว์เลี้ยงต้องการทดสอบว่า 'บริการสัตวแพทย์ปรึกษาทางวิดีโอคอล' มีความต้องการจริงหรือไม่ แนวทางการสร้างต้นแบบแบบ MVP (Minimum Viable Product) ที่คุ้มค่าและรวดเร็วที่สุดคือข้อใด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "เปิดหน้าเพจทดลองพร้อมระบบนัดหมายออนไลน์ง่ายๆ และใช้วิดีโอคอลทั่วไปทดลองให้บริการจริงกับกลุ่มผู้ใช้กลุ่มแรก (Early Adopters)"
+        correct: true
+        explanation: "เป็น MVP แบบ Wizard of Oz / Concierge ที่ทดสอบความต้องการจริงได้ทันทีด้วยต้นทุนต่ำสุด"
+      - id: "2"
+        text: "สั่งซื้ออุปกรณ์การแพทย์ขั้นสูงและสร้างคลินิกขนาดใหญ่ก่อนเปิดตัวแอปพลิเคชัน"
+        correct: false
+        error_tag: premature_scaling
+        explanation: "ใช้เงินลงทุนมหาศาลโดยยังไม่ได้ทดสอบสมมติฐานความต้องการออนไลน์"
+      - id: "3"
+        text: "แจกแบบสอบถามกระดาษ 10,000 ชุดตามห้างสรรพสินค้าโดยไม่มีบริการให้ทดลองจริง"
+        correct: false
+        error_tag: lacks_feasibility
+        explanation: "สิ่งที่คนตอบในแบบสอบถามมักไม่ตรงกับพฤติกรรมการจ่ายเงินใช้งานจริง"
+      - id: "4"
+        text: "รอจนกว่าจะมีเงินระดมทุน 100 ล้านบาทจึงค่อยเริ่มดำเนินการ"
+        correct: false
+        error_tag: passive_resignation
+        explanation: "ชักช้าและพลาดโอกาสในการเรียนรู้ความต้องการของตลาด"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "MVP คือการทดสอบสมมติฐานด้วยทรัพยากรน้อยที่สุดแต่ได้เรียนรู้พฤติกรรมจริง"
+  solution:
+    summary: "การทำ MVP ต้องทดสอบพฤติกรรมการใช้งานจริงด้วยต้นทุนต่ำและเร็วที่สุด การใช้เครื่องมือที่มีอยู่แล้วตามตัวเลือก 1 ช่วยพิสูจน์ Product-Market Fit ได้อย่างแม่นยำ"
+    steps:
+      - id: s1
+        text: "กำหนดสมมติฐาน: เจ้าของสัตว์เลี้ยงต้องการปรึกษาสัตวแพทย์ทางวิดีโอคอลจริงหรือไม่"
+      - id: s2
+        text: "เลือกวิธีทดสอบที่เร็วและประหยัด: ใช้แพลตฟอร์มสำเร็จรูปทดสอบกับ Early Adopters (ตัวเลือก 1)"
+      - id: s3
+        text: "ตัวเลือกอื่นๆ สิ้นเปลืองงบประมาณหรือไม่ได้ทดสอบพฤติกรรมจริง"
+
+- id: tgat3-val-drill-004
+  subject: tgat3
+  topic: tgat3.value_creation
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการสร้างคุณค่าและนวัตกรรม"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: value_proposition
+    secondary:
+      - non_price_competition
+      - service_differentiation
+  stem: "บริษัทจัดจำหน่ายสินค้าอุปโภคบริโภคพบว่าคู่แข่งรายใหม่นำเสนอสินค้าชนิดเดียวกันในราคาที่ถูกกว่า 15% หากบริษัทต้องการรักษาความสามารถในการแข่งขันโดยไม่ตัดราคา (Price War) ควรสร้างคุณค่าเพิ่ม (Value-added) ในด้านใด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "พัฒนาระบบสมาชิกสะสมแต้ม การรับประกันเปลี่ยนสินค้าทันทีภายใน 24 ชั่วโมง และบริการให้คำแนะนำหลังการขายเฉพาะบุคคล"
+        correct: true
+        explanation: "สร้างความแตกต่างด้วยประสบการณ์การบริการที่เหนือกว่าและความผูกพันของลูกค้า"
+      - id: "2"
+        text: "ลดต้นทุนด้วยการลดมาตรฐานความปลอดภัยของสินค้าลงให้ถูกกว่าคู่แข่ง"
+        correct: false
+        error_tag: ethical_violation
+        explanation: "ละเมิดความปลอดภัยของผู้บริโภคและทำลายความน่าเชื่อถือของแบรนด์ในระยะยาว"
+      - id: "3"
+        text: "โฆษณาโจมตีคู่แข่งในสื่อสาธารณะว่าสินค้าของคู่แข่งไม่มีคุณภาพโดยไม่มีหลักฐาน"
+        correct: false
+        error_tag: emotional_reactivity
+        explanation: "ผิดกฎหมายและจรรยาบรรณทางการค้า และส่งผลเสียต่อภาพลักษณ์องค์กร"
+      - id: "4"
+        text: "ลดเงินเดือนพนักงานทุกคนลง 20% เพื่อลดต้นทุนการดำเนินงาน"
+        correct: false
+        error_tag: short_term_bias
+        explanation: "ทำลายขวัญกำลังใจของบุคลากรและนำไปสู่อัตราการลาออกที่สูงขึ้น"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "การแข่งขันที่ไม่พึ่งพาสงครามราคาต้องมุ่งเน้นการยกระดับบริการและความไว้วางใจ"
+  solution:
+    summary: "การหลีกเลี่ยงสงครามราคา (Price War) ทำได้ด้วยการยกระดับ Value Proposition ด้านบริการ ความรวดเร็ว และความสัมพันธ์ระยะยาว ตัวเลือก 1 สร้างความภักดีของลูกค้าอย่างยั่งยืน"
+    steps:
+      - id: s1
+        text: "วิเคราะห์บริบท: การตัดราคาแข่งกันรังแต่จะทำลายกำไรของทั้งอุตสาหกรรม"
+      - id: s2
+        text: "ตัวเลือก 1 สร้างจุดขายด้านบริการและการรับประกันที่คู่แข่งเลียนแบบได้ยาก"
+      - id: s3
+        text: "ตัวเลือก 2, 3, 4 ล้วนเป็นการกระทำที่ผิดจริยธรรมหรือสร้างผลเสียร้ายแรง"

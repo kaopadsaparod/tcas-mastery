@@ -9,7 +9,7 @@ def test_questions_schema_valid():
     for q in questions:
         assert q.id, "Question must have an ID"
         assert q.stem.strip(), f"Question {q.id} stem is empty"
-        assert q.subject in ["physics", "math", "tpat3", "tgat2"]
+        assert q.subject in ["physics", "math", "tpat3", "tgat1", "tgat2", "tgat3"]
         assert q.verification.tier in ["A", "B", "C", "D", "E"]
 
         if q.answer.type == "single_choice":
@@ -45,5 +45,6 @@ def test_past_papers_schema_valid():
 
     for p in papers:
         assert p.id
+        assert p.subject in ["physics", "math", "tpat3", "tgat1", "tgat2", "tgat3"]
         assert len(p.questions) >= 10
         assert p.time_limit_min > 0

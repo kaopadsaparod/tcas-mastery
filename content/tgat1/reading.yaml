@@ -1,0 +1,585 @@
+# TGAT1 English Communication: Reading Skill Standalone Drills
+# Verified according to MyTCAS TGAT1 Blueprint 91
+
+- id: tgat1-read-drill-001
+  subject: tgat1
+  topic: tgat1.reading.text_completion
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Relative Pronouns & Clauses"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: grammar_relative_clauses
+    secondary:
+      - text_completion
+      - syntax_cohesion
+  stem: |
+    Read the official university research notice below and choose the word that best completes the sentence:
+
+    "Greenwood University has inaugurated a new innovation laboratory dedicated to renewable energy technologies, ________ main objective is to reduce industrial carbon emissions across Southeast Asia by 2030."
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "The blank indicates a relationship of possession between the innovation laboratory and its main objective."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "whose"
+        correct: true
+        explanation: "'Whose' correctly functions as a relative pronoun of possession modifying inanimate nouns (the laboratory's main objective)."
+      - id: "2"
+        text: "which"
+        correct: false
+        error_tag: pronoun_case_error
+        explanation: "'Which' cannot directly show possession before a noun ('main objective') without a preposition like 'of which'."
+      - id: "3"
+        text: "where"
+        correct: false
+        error_tag: adverbial_for_location_error
+        explanation: "'Where' indicates physical or abstract location and cannot modify the noun phrase 'main objective' possessively."
+      - id: "4"
+        text: "whom"
+        correct: false
+        error_tag: objective_pronoun_error
+        explanation: "'Whom' is an objective pronoun used exclusively for persons, not inanimate organizations or objectives."
+  solution:
+    summary: "ตัวเลือกที่ 1 ถูกต้อง โดยใช้ 'whose' เพื่อแสดงความเป็นเจ้าของ (Possessive Relative Pronoun) ขยายคำนาม innovation laboratory (whose main objective = the laboratory's main objective)"
+    steps:
+      - id: s1
+        text: "วิเคราะห์โครงสร้างประโยค: ...innovation laboratory... [________ main objective is...]"
+      - id: s2
+        text: "คำนามด้านหลังคือ 'main objective' (วัตถุประสงค์หลัก) ต้องการ Relative Pronoun ที่แสดงความเป็นเจ้าของของห้องปฏิบัติการดังกล่าว"
+      - id: s3
+        text: "ในภาษาอังกฤษมาตรฐาน whose สามารถใช้แสดงความเป็นเจ้าของกับทั้งบุคคลและสิ่งของ/สถานที่ได้"
+      - id: s4
+        text: "which ต้องใช้ 'of which the main objective', where บอกสถานที่, whom ใช้กับคนในรูปกรรม ทั้งหมดจึงผิดไวยากรณ์"
+
+- id: tgat1-read-drill-002
+  subject: tgat1
+  topic: tgat1.reading.text_completion
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Contextual Collocation & Phrasal Verbs"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: vocabulary_in_context
+    secondary:
+      - phrasal_verbs
+      - corporate_communication
+  stem: |
+    Read the excerpt from an internal corporate sustainability report and select the best option:
+
+    "To align with national zero-waste directives, the executive board decided to ________ single-use plastic containers from all company cafeterias starting next quarter."
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Choose the phrasal verb that means to gradually eliminate or discontinue something over a scheduled timeline."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "phase out"
+        correct: true
+        explanation: "'Phase out' means to discontinue or withdraw something gradually in planned stages, which perfectly fits corporate sustainability policy."
+      - id: "2"
+        text: "look into"
+        correct: false
+        error_tag: wrong_phrasal_meaning
+        explanation: "'Look into' means to investigate or examine, which does not fit taking decisive action to eliminate plastics."
+      - id: "3"
+        text: "carry on"
+        correct: false
+        error_tag: opposite_action_meaning
+        explanation: "'Carry on' means to continue, which directly contradicts the zero-waste directive."
+      - id: "4"
+        text: "bring about"
+        correct: false
+        error_tag: faulty_object_collocation
+        explanation: "'Bring about' means to cause something to happen, and does not collocate with removing an object."
+  solution:
+    summary: "ตัวเลือกที่ 1 'phase out' ถูกต้องที่สุด มีความหมายว่าค่อยๆ ทยอยยกเลิกการใช้งานเป็นขั้นตอน ซึ่งตรงกับนโยบาย zero-waste ของบริษัท"
+    steps:
+      - id: s1
+        text: "วิเคราะห์บริบท: คณะกรรมการบริหารตัดสินใจเกี่ยวกับกล่องพลาสติกแบบใช้ครั้งเดียว เพื่อให้สอดคล้องกับนโยบายขยะเหลือศูนย์"
+      - id: s2
+        text: "ความหมายของกริยาวลี: phase out = ทยอยยกเลิกการใช้, look into = ตรวจสอบสืบสวน, carry on = ดำเนินต่อไป, bring about = ก่อให้เกิด"
+      - id: s3
+        text: "การขจัดพลาสติกให้หมดไปต้องใช้ 'phase out' จึงให้ความหมายที่ถูกต้องและเป็นมืออาชีพที่สุด"
+
+- id: tgat1-read-drill-003
+  subject: tgat1
+  topic: tgat1.reading.text_completion
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Participle Clauses & Active Voice"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: grammar_participle_clauses
+    secondary:
+      - sentence_reduction
+      - active_participle
+  stem: |
+    Select the option that correctly completes the sentence according to standard English grammar:
+
+    "________ severe flooding in low-lying coastal districts, the municipal disaster management agency dispatched emergency relief convoys equipped with water purification units."
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "The agency is the subject actively anticipating the floods before dispatching convoys."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Anticipating"
+        correct: true
+        explanation: "Present participle ('Anticipating') correctly forms an active reduced clause sharing the subject 'the municipal disaster management agency'."
+      - id: "2"
+        text: "Anticipated"
+        correct: false
+        error_tag: passive_participle_misuse
+        explanation: "Past participle implies passive meaning (that the agency itself was anticipated), which is semantically incorrect."
+      - id: "3"
+        text: "To be anticipated"
+        correct: false
+        error_tag: passive_infinitive_distortion
+        explanation: "Passive infinitive distorts the meaning and fails to establish the cause of dispatching relief units."
+      - id: "4"
+        text: "Having anticipated by"
+        correct: false
+        error_tag: ungrammatical_preposition_attachment
+        explanation: "'Having anticipated by' is ungrammatical because the active participle cannot be followed by the passive agent preposition 'by'."
+  solution:
+    summary: "ตัวเลือกที่ 1 'Anticipating' เป็นรูป Present Participle ทำหน้าที่เป็นประธานร่วมที่กระทำกริยาเอง (Active Voice) โดยหน่วยงานบรรเทาสาธารณภัยเป็นผู้คาดการณ์ล่วงหน้าถึงอุทกภัย"
+    steps:
+      - id: s1
+        text: "วิเคราะห์โครงสร้างประโยค: [________ severe flooding...], the municipal disaster management agency dispatched..."
+      - id: s2
+        text: "ประธานของประโยคหลักคือ the municipal disaster management agency ซึ่งเป็นผู้กระทำกริยา anticipate (คาดการณ์) ด้วยตนเอง"
+      - id: s3
+        text: "การลดรูปประโยคที่เป็นผู้กระทำ (Active) ต้องใช้ V.ing คือ 'Anticipating' (ย่อมาจาก As the agency anticipated...)"
+      - id: s4
+        text: "ตัวเลือก 2 เป็น Passive (ถูกคาดการณ์) จึงผิดความหมายอย่างสิ้นเชิง"
+
+- id: tgat1-read-drill-004
+  subject: tgat1
+  topic: tgat1.reading.text_completion
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Discourse Markers & Transitions"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: transitional_words
+    secondary:
+      - cohesion_and_coherence
+      - contrast_relationships
+  stem: |
+    Read the scientific paragraph and choose the transition word that fits logically:
+
+    "Epidemiological studies consistently demonstrate that adequate sleep boosts immune cell proliferation. ________, chronically sleep-deprived individuals exhibit heightened susceptibility to infectious pathogens and slower wound healing."
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "The second sentence presents the opposite situation (sleep-deprived individuals) to show a direct contrast with the first sentence."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Conversely"
+        correct: true
+        explanation: "'Conversely' introduces an opposite situation or condition that contrasts directly with the preceding positive fact."
+      - id: "2"
+        text: "Furthermore"
+        correct: false
+        error_tag: additive_marker_error
+        explanation: "'Furthermore' introduces additional supporting evidence of the same polarity, whereas the second sentence presents the contrasting inverse condition."
+      - id: "3"
+        text: "Consequently"
+        correct: false
+        error_tag: cause_and_effect_misalignment
+        explanation: "'Consequently' indicates a result of the preceding statement; chronic deprivation is not caused by the fact that adequate sleep boosts immunity."
+      - id: "4"
+        text: "For instance"
+        correct: false
+        error_tag: exemplification_error
+        explanation: "'For instance' introduces an example of the first statement, not its contrasting counterpart."
+  solution:
+    summary: "ตัวเลือกที่ 1 'Conversely' (ในทางกลับกัน) เป็นคำเชื่อมแสดงการเปรียบเทียบในมุมตรงกันข้าม โดยประโยคแรกกล่าวถึงประโยชน์ของการนอนหลับเพียงพอ ขณะที่ประโยคหลังกล่าวถึงผลเสียของการอดนอน"
+    steps:
+      - id: s1
+        text: "ประโยคแรก: การนอนหลับเพียงพอช่วยเสริมสร้างภูมิคุ้มกัน (แง่บวก)"
+      - id: s2
+        text: "ประโยคสอง: ผู้ที่อดนอนเรื้อรังจะติดเชื้อได้ง่ายขึ้น (แง่ลบและเป็นสถานการณ์ตรงกันข้าม)"
+      - id: s3
+        text: "คำเชื่อมที่แสดงความสัมพันธ์แบบตรงกันข้าม (Direct contrast/inversion) คือ Conversely"
+      - id: s4
+        text: "Furthermore บอกข้อมูลเสริม, Consequently บอกผลลัพธ์, For instance ยกตัวอย่าง ทั้งหมดไม่ตรงกับความสัมพันธ์เชิงตรรกะ"
+
+- id: tgat1-read-drill-005
+  subject: tgat1
+  topic: tgat1.reading.text_completion
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Subjunctive & Modals in Formal Guidelines"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: grammar_subjunctive_mood
+    secondary:
+      - formal_regulations
+      - verb_patterns
+  stem: |
+    Choose the grammatically correct verb form to complete the scholarship committee's regulation:
+
+    "The scholarship review board mandates that every candidate ________ an official transcript and two confidential recommendation letters prior to the interview date."
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "The verb 'mandates that' triggers the present subjunctive mood (bare infinitive form of the verb)."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "submit"
+        correct: true
+        explanation: "The verb 'mandate' requires the subjunctive mood in the that-clause, which takes the base form (bare infinitive) 'submit' regardless of the third-person subject."
+      - id: "2"
+        text: "submits"
+        correct: false
+        error_tag: indicative_third_person_error
+        explanation: "Using the indicative 'submits' violates the formal mandative subjunctive rule triggered by 'mandates that'."
+      - id: "3"
+        text: "submitted"
+        correct: false
+        error_tag: incorrect_past_tense
+        explanation: "Past tense 'submitted' contradicts the future requirement before the upcoming interview date."
+      - id: "4"
+        text: "will submit"
+        correct: false
+        error_tag: modal_will_in_subjunctive_clause
+        explanation: "Modal 'will submit' is not used in formal mandative that-clauses after verbs of demand/requirement."
+  solution:
+    summary: "ตัวเลือกที่ 1 'submit' ถูกต้องตามหลัก Mandative Subjunctive ในภาษาอังกฤษแบบทางการ โดยกริยาแสดงคำสั่งหรือข้อบังคับ เช่น mandate that, require that, insist that ต้องตามด้วยรูปกริยาฐาน (Bare Infinitive)"
+    steps:
+      - id: s1
+        text: "วิเคราะห์โครงสร้าง: The board mandates that every candidate [________]..."
+      - id: s2
+        text: "กฎ Mandative Subjunctive: เมื่อมีกริยาแสดงคำสั่ง/ความจำเป็น (demand, mandate, require, suggest) ในอนุประโยค that-clause กริยาต้องอยู่ในรูป base form (V.1 ไม่ผัน ไม่เติม s/es)"
+      - id: s3
+        text: "แม้ประธานจะเป็น every candidate (เอกพจน์) แต่กริยาต้องคงรูป 'submit' เสมอ"
+
+- id: tgat1-read-drill-006
+  subject: tgat1
+  topic: tgat1.reading.reading_comprehension
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Data & Chart Comprehension"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: chart_and_data_interpretation
+    secondary:
+      - percentage_comparison
+      - factual_retrieval
+  stem: |
+    Study the summary table below of the 2024 Metro Commuter Survey (Sample size: 5,000 residents):
+
+    | Transit Mode | Punctuality Rate | User Satisfaction (%) | Average Daily Cost (THB) |
+    | :--- | :--- | :--- | :--- |
+    | Electric Train (SkyTrain/Metro) | 94% | 88% | 90 |
+    | Dedicated Bus Rapid Transit (BRT) | 81% | 72% | 45 |
+    | Regular Municipal Bus | 58% | 41% | 20 |
+    | Shared Ride-Hail Cars | 86% | 79% | 180 |
+
+    Based on the survey data, which statement is completely TRUE?
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "Compare punctuality, satisfaction, and cost across all four transit modes systematically."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "The electric train achieves both the highest punctuality rate and the highest user satisfaction among all surveyed modes."
+        correct: true
+        explanation: "Electric Train has 94% punctuality (highest) and 88% satisfaction (highest), which matches the data exactly."
+      - id: "2"
+        text: "Shared ride-hail cars are cheaper per day than the dedicated BRT system."
+        correct: false
+        error_tag: contradicts_data_table
+        explanation: "Ride-hail cars cost 180 THB per day while BRT costs 45 THB, making ride-hail substantially more expensive."
+      - id: "3"
+        text: "Regular municipal buses have a punctuality rate higher than 70%."
+        correct: false
+        error_tag: numerical_misinterpretation
+        explanation: "Regular municipal buses have a punctuality rate of only 58%, which is below 70%."
+      - id: "4"
+        text: "User satisfaction for BRT is lower than that of regular municipal buses."
+        correct: false
+        error_tag: inverted_comparison
+        explanation: "BRT satisfaction is 72%, whereas regular municipal bus satisfaction is only 41%."
+  solution:
+    summary: "ตัวเลือกที่ 1 ถูกต้องตามตาราง รถไฟฟ้า (Electric Train) มีทั้งอัตราความตรงต่อเวลาสูงสุด (94%) และความพึงพอใจของผู้ใช้สูงสุด (88%) เมื่อเทียบกับทุกระบบขนส่ง"
+    steps:
+      - id: s1
+        text: "ตรวจเช็กตัวเลือก 1: Electric Train มี Punctuality 94% (สูงสุด) และ Satisfaction 88% (สูงสุด) -> ตรงกับข้อมูลในตาราง 100%"
+      - id: s2
+        text: "ตรวจเช็กตัวเลือก 2: Ride-Hail ค่าใช้จ่าย 180 บาท ซึ่งแพงกว่า BRT (45 บาท) -> ผิด"
+      - id: s3
+        text: "ตรวจเช็กตัวเลือก 3: Regular Bus ตรงต่อเวลา 58% ซึ่งน้อยกว่า 70% -> ผิด"
+      - id: s4
+        text: "ตรวจเช็กตัวเลือก 4: BRT ความพึงพอใจ 72% สูงกว่า Regular Bus (41%) -> ผิด"
+
+- id: tgat1-read-drill-007
+  subject: tgat1
+  topic: tgat1.reading.reading_comprehension
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Main Idea & Central Theme"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: identifying_main_idea
+    secondary:
+      - passage_synthesis
+      - skimming_and_scanning
+  stem: |
+    Read the passage below:
+
+    "Coral reefs support more than 25 percent of all marine species despite covering less than 0.1 percent of the ocean floor. However, escalating ocean temperatures induced by global climate change trigger widespread coral bleaching, a phenomenon where corals expel their symbiotic zooxanthellae algae, depriving them of essential nutrients and color. While severe bleaching events have quadrupled in frequency since 1980, innovative conservation efforts—such as breeding heat-resilient coral larvae in specialized nurseries and 3D-printing micro-textured artificial substrate—demonstrate promising survival rates upon reef restoration. Safeguarding these vital marine nurseries demands both immediate local reef rehabilitation and decisive global greenhouse gas reductions."
+
+    What is the primary message of this passage?
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Notice that the passage pairs the grave threat of coral bleaching with active innovative solutions and global action needed."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Coral reefs face existential climate threats from bleaching, but emerging scientific interventions combined with emissions cuts offer a pathway for their preservation."
+        correct: true
+        explanation: "Accurately captures both aspects of the passage: the severe threat of bleaching and the two-pronged solution (innovative restoration + emissions cuts)."
+      - id: "2"
+        text: "3D printing has completely eliminated the danger of coral bleaching across all oceans."
+        correct: false
+        error_tag: overstatement_of_solution
+        explanation: "Overstates 3D printing as having 'completely eliminated' the danger, which contradicts the text."
+      - id: "3"
+        text: "Coral reefs cover most of the world's ocean floor and need no human intervention."
+        correct: false
+        error_tag: directly_contradicts_passage
+        explanation: "Contradicts the text, which states reefs cover less than 0.1 percent of the ocean floor."
+      - id: "4"
+        text: "Marine animals do not actually depend on coral reefs for survival."
+        correct: false
+        error_tag: factual_inversion
+        explanation: "Directly inverts the opening statement that reefs support over 25 percent of marine species."
+  solution:
+    summary: "ตัวเลือกที่ 1 สรุปใจความสำคัญของบทความได้อย่างครอบคลุมและสมดุล ทั้งประเด็นภัยคุกคามจากการฟอกขาว และแนวทางแก้ไขผ่านนวัตกรรมทางวิทยาศาสตร์ร่วมกับการลดก๊าซเรือนกระจก"
+    steps:
+      - id: s1
+        text: "ใจความหลัก (Main Idea) ต้องครอบคลุมทั้ง 2 ส่วนของบทความ: ปัญหา (วิกฤตปะการังฟอกขาว) และทางออก (นวัตกรรมการฟื้นฟู + การลดมลพิษระดับโลก)"
+      - id: s2
+        text: "ตัวเลือก 1 สรุปได้อย่างถูกต้องและสะท้อนเจตนารมณ์ของผู้เขียน"
+      - id: s3
+        text: "ตัวเลือก 2 กล่าวเกินจริง (exaggeration), ตัวเลือก 3 และ 4 ขัดแย้งกับข้อมูลในบทความอย่างชัดเจน"
+
+- id: tgat1-read-drill-008
+  subject: tgat1
+  topic: tgat1.reading.reading_comprehension
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Author's Tone & Attitude"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: analyzing_tone_and_attitude
+    secondary:
+      - critical_reading
+      - inference
+  stem: |
+    Read the commentary on digital nomadism:
+
+    "The narrative of working on a laptop from a tropical beachfront is frequently marketed as the pinnacle of professional liberation. Yet beneath the curated Instagram snapshots lies a precarious reality: erratic income stability, complex international tax liabilities, social isolation from long-term community roots, and the subtle erosion of local housing affordability in popular host towns. Digital nomadism certainly offers flexibility, but romanticizing it without acknowledging its substantial personal and socio-economic trade-offs is remarkably short-sighted."
+
+    Which word best describes the author's tone toward digital nomadism?
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "The author acknowledges benefits ('offers flexibility') but highlights neglected drawbacks and warns against romanticizing the lifestyle."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Pragmatic and critical"
+        correct: true
+        explanation: "The author evaluates the lifestyle realistically ('pragmatic') while critiquing romanticized narratives ('critical')."
+      - id: "2"
+        text: "Unconditionally enthusiastic"
+        correct: false
+        error_tag: opposite_tone_misreading
+        explanation: "Directly contradicts the author's serious caveats about taxes, isolation, and housing displacement."
+      - id: "3"
+        text: "Deeply indifferent"
+        correct: false
+        error_tag: misjudged_emotional_engagement
+        explanation: "The author expresses engaged concern about socio-economic impacts, not indifference."
+      - id: "4"
+        text: "Hopelessly pessimistic"
+        correct: false
+        error_tag: overly_negative_characterization
+        explanation: "The author acknowledges that the lifestyle 'certainly offers flexibility', making 'hopelessly pessimistic' an inaccurate exaggeration."
+  solution:
+    summary: "ตัวเลือกที่ 1 'Pragmatic and critical' (มองตามความเป็นจริงและวิพากษ์วิจารณ์อย่างสร้างสรรค์) สะท้อนน้ำเสียงของผู้เขียนที่ชี้ให้เห็นถึงข้อจำกัดและผลกระทบที่ซ่อนอยู่เบื้องหลังภาพฝันอันสวยหรู"
+    steps:
+      - id: s1
+        text: "วิเคราะห์น้ำเสียง (Tone): ผู้เขียนชี้ให้เห็นทั้งข้อดี (ความยืดหยุ่น) แต่เน้นย้ำถึงความเป็นจริงที่ยากลำบาก เช่น ปัญหาภาษี ความโดดเดี่ยว และค่าครองชีพท้องถิ่นที่พุ่งสูง"
+      - id: s2
+        text: "ผู้เขียนเตือนว่า 'romanticizing it... is remarkably short-sighted' แสดงถึงการมองโลกตามความเป็นจริง (pragmatic) และมีการวิพากษ์ (critical)"
+      - id: s3
+        text: "ผู้เขียนไม่ได้กระตือรือร้นไร้เงื่อนไข (ตัวเลือก 2), ไม่ได้เฉยเมย (ตัวเลือก 3), และไม่ได้สิ้นหวังสุดโต่ง (ตัวเลือก 4)"
+
+- id: tgat1-read-drill-009
+  subject: tgat1
+  topic: tgat1.reading.reading_comprehension
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: In-depth Inferencing"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: making_inferences
+    secondary:
+      - logical_deduction
+      - implicit_meaning
+  stem: |
+    Read the passage on neuroscience:
+
+    "For decades, the adult brain was presumed to be biologically immutable after adolescence. However, neuroplasticity research over the past two decades has shattered this dogma. Neuroscientists have observed that adults who engage in demanding cognitive pursuits—such as mastering a musical instrument or acquiring a complex foreign language—exhibit measurable increases in gray matter density and synaptic connectivity in targeted cortical regions. Even in geriatric populations, structured cognitive stimulation demonstrates significant protective buffers against neurodegenerative decline."
+
+    What can be logically INFERRED from the passage?
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Look for a conclusion that is directly supported by the text's findings about neuroplasticity in adulthood and aging."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Mental activities and continuous learning can actively modify physical brain structure even in later stages of life."
+        correct: true
+        explanation: "Supported directly by the finding that demanding cognitive pursuits increase gray matter density and synaptic connectivity even in geriatric adults."
+      - id: "2"
+        text: "After adolescence, humans permanently lose the biological capacity to form any new synapses."
+        correct: false
+        error_tag: directly_refuted_myth
+        explanation: "This was the discarded dogma that the passage explicitly states has been shattered."
+      - id: "3"
+        text: "Playing musical instruments is the only known activity that affects human brain plasticity."
+        correct: false
+        error_tag: unwarranted_exclusivity
+        explanation: "Musical instruments are cited merely as one example alongside acquiring foreign languages and structured cognitive stimulation."
+      - id: "4"
+        text: "Physical exercise has zero influence on cognitive development."
+        correct: false
+        error_tag: unmentioned_topic
+        explanation: "Physical exercise is neither discussed nor evaluated in the passage."
+  solution:
+    summary: "ตัวเลือกที่ 1 สามารถอนุมานได้อย่างสมเหตุสมผล การเรียนรู้สิ่งใหม่ๆ อย่างต่อเนื่องสามารถปรับเปลี่ยนโครงสร้างทางกายภาพของสมอง (เพิ่มความหนาแน่นของเนื้อสมองและจุดเชื่อมต่อไซแนปส์) ได้แม้ในวัยชรา"
+    steps:
+      - id: s1
+        text: "ข้อเท็จจริงในบทความ: สมองผู้ใหญ่มีความยืดหยุ่น (Neuroplasticity) โดยการฝึกทักษะทางปัญญาช่วยเพิ่ม gray matter density และ synaptic connectivity แม้ในผู้สูงอายุ"
+      - id: s2
+        text: "การอนุมาน (Inference): การเรียนรู้อย่างต่อเนื่องส่งผลต่อการเปลี่ยนแปลงทางกายภาพของสมองในทุกช่วงวัยอย่างแท้จริง"
+      - id: s3
+        text: "ตัวเลือก 2 เป็นความเชื่อเดิมที่ถูกหักล้างไปแล้ว, ตัวเลือก 3 จำกัดเฉพาะเครื่องดนตรีเกินไป (only), ตัวเลือก 4 พูดถึงการออกกำลังกายที่บทความไม่ได้กล่าวถึง"
+
+- id: tgat1-read-drill-010
+  subject: tgat1
+  topic: tgat1.reading.reading_comprehension
+  source:
+    type: authored_drill
+    label: "TGAT1 Reading Practice: Pronoun Reference & Meaning"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: pronoun_reference
+    secondary:
+      - discourse_cohesion
+      - contextual_meaning
+  stem: |
+    Read the passage below:
+
+    "Autonomous electric vehicles (EVs) rely heavily on lithium-ion batteries. While these batteries deliver substantial energy density for extended driving ranges, their recycling infrastructure remains underdeveloped in most developing nations. If governments and automotive manufacturers fail to invest in scalable recycling facilities, **they** risk transforming a clean transportation revolution into a staggering toxic waste liability."
+
+    In the context of the sentence, the bold pronoun "**they**" refers to which of the following?
+  difficulty: 2
+  estimated_seconds: 45
+  hints:
+    - level: 1
+      text: "Look at the subject in the conditional clause that has the responsibility to invest in recycling facilities."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Governments and automotive manufacturers"
+        correct: true
+        explanation: "'They' refers back to the compound subject 'governments and automotive manufacturers' who must invest or bear the risk."
+      - id: "2"
+        text: "Autonomous electric vehicles"
+        correct: false
+        error_tag: antecedent_subject_confusion
+        explanation: "Vehicles cannot invest in recycling facilities; they are inanimate technology."
+      - id: "3"
+        text: "Lithium-ion batteries"
+        correct: false
+        error_tag: intermediate_noun_phrase_confusion
+        explanation: "Batteries are the objects requiring recycling, not the decision-making entities capable of investing."
+      - id: "4"
+        text: "Developing nations"
+        correct: false
+        error_tag: distant_noun_misattribution
+        explanation: "Developing nations appeared earlier as an adverbial phrase, not the immediate conditional subject."
+  solution:
+    summary: "ตัวเลือกที่ 1 ถูกต้อง สรรพนาม 'they' ในประโยคหลักอ้างอิงถึงประธานใน if-clause คือ 'governments and automotive manufacturers' (รัฐบาลและผู้ผลิตยานยนต์) ที่ต้องรับความเสี่ยงหากไม่ลงทุนในระบบรีไซเคิล"
+    steps:
+      - id: s1
+        text: "วิเคราะห์ประโยค: If [governments and automotive manufacturers] fail to invest..., [they] risk transforming..."
+      - id: s2
+        text: "สรรพนาม they ทำหน้าที่เป็นประธานของอนุประโยคหลัก ซึ่งมีความสัมพันธ์เชิงตรรกะและการกระทำตรงกับ governments and automotive manufacturers"
+      - id: s3
+        text: "ตัวเลือก 1 จึงเป็นการอ้างอิงสรรพนามที่ถูกต้องตามหลักไวยากรณ์และความหมาย"

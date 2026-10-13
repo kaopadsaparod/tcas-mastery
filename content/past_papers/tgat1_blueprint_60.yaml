@@ -1,0 +1,2978 @@
+id: tgat1-blueprint-60
+title: TGAT1 การสื่อสารภาษาอังกฤษ (English Communication) Blueprint Mock 60 ข้อ
+subject: tgat1
+year: 2567
+time_limit_min: 60
+source_type: simulated_blueprint
+verification_tier: A
+verification_status: verified
+verified_by: academic_lead
+questions:
+- number: 1
+  question_id: tgat1-60-q01
+  topic: tgat1.speaking.question_response
+  skill: polite_workplace_refusal
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Your supervisor asks: ''Could you stay an extra two hours tonight to finalize the quarterly audit report?'' You have
+    a non-negotiable family emergency. What is the most appropriate professional response?'
+  options:
+  - id: '1'
+    text: I sincerely apologize, but I have an urgent family matter tonight that I cannot reschedule. May I come in an hour
+      early tomorrow morning to complete it?
+    correct: true
+    error_tag: null
+    explanation: Apologizes courteously, provides a clear valid reason without oversharing, and proactively offers an early
+      morning solution.
+  - id: '2'
+    text: No, my working hours ended fifteen minutes ago and I need to go home.
+    correct: false
+    error_tag: blunt_and_confrontational
+    explanation: Unprofessionally blunt and lacks diplomatic courtesy required in workplace communication.
+  - id: '3'
+    text: Why does the audit report always have to be done at the very last minute?
+    correct: false
+    error_tag: accusatory_complaint
+    explanation: Complains and questions supervisor's management instead of directly addressing the overtime request.
+  - id: '4'
+    text: I will stay, but only if you promise to give me a promotion next month.
+    correct: false
+    error_tag: inappropriate_quid_pro_quo
+    explanation: Unprofessional bargaining that violates organizational ethics.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 เหมาะสมที่สุดในการปฏิเสธงานล่วงเวลาอย่างมืออาชีพ โดยขออภัย แจ้งเหตุจำเป็นของครอบครัวอย่างสุภาพ
+    และเสนอทางออกด้วยการมาทำงานเช้าตรู่วันรุ่งขึ้น
+
+    ตัวเลือก 2 ห้วนกระด้างเกินไป, ตัวเลือก 3 บ่นตัดพ้อ, ตัวเลือก 4 ต่อรองผลประโยชน์อย่างไม่เหมาะสม'
+- number: 2
+  question_id: tgat1-60-q02
+  topic: tgat1.speaking.question_response
+  skill: academic_collaboration_sharing_notes
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'A classmate who was absent due to illness asks: ''Would you mind sharing your chemistry lecture notes from yesterday?''
+    How do you respond positively and helpfully?'
+  options:
+  - id: '1'
+    text: Yes, I would mind because taking notes requires a lot of effort.
+    correct: false
+    error_tag: misunderstood_would_you_mind
+    explanation: Misunderstands the idiom 'Would you mind' which requires 'Not at all' or 'Of course not' to express willingness.
+  - id: '2'
+    text: Not at all! I have already digitized them into a PDF. Let me send the link to your email.
+    correct: true
+    error_tag: null
+    explanation: Correctly answers 'Not at all' to indicate willingness, followed by immediate helpful action.
+  - id: '3'
+    text: You should pay me 100 Baht for the time I spent writing them.
+    correct: false
+    error_tag: transactional_greed
+    explanation: Unfriendly and contrary to peer cooperative learning culture.
+  - id: '4'
+    text: Why did you skip chemistry class in the first place?
+    correct: false
+    error_tag: unwarranted_interrogation
+    explanation: Interrogates the classmate aggressively despite their valid illness.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้องตามสำนวนภาษาอังกฤษ ''Would you mind...?'' หากยินดีช่วยเหลือต้องตอบปฏิเสธความรังเกียจ เช่น
+    ''Not at all'' (ไม่รังเกียจเลย/ยินดีอย่างยิ่ง) พร้อมส่งไฟล์ให้
+
+    ตัวเลือก 1 ตีความสำนวนผิด, ตัวเลือก 3 และ 4 แสดงความไม่เป็นมิตรและซักไซ้เพื่อนที่ป่วย'
+- number: 3
+  question_id: tgat1-60-q03
+  topic: tgat1.speaking.question_response
+  skill: asking_for_software_assistance
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: You are struggling to create a dynamic pivot table in a new data spreadsheet at your internship. How should you ask
+    a senior colleague for guidance politely?
+  options:
+  - id: '1'
+    text: Excuse me, David. When you have a brief moment, could you show me how to configure this pivot table? I am having
+      trouble with the data range.
+    correct: true
+    error_tag: null
+    explanation: Respectfully asks for a brief moment, identifies the specific issue, and maintains polite deference to senior's
+      time.
+  - id: '2'
+    text: Do this pivot table for me right now because I have never used this software before.
+    correct: false
+    error_tag: demanding_command
+    explanation: Demands the colleague do the work instead of asking for guidance.
+  - id: '3'
+    text: This software program is completely terrible and useless.
+    correct: false
+    error_tag: venting_frustration
+    explanation: Vents unconstructive frustration without asking for assistance.
+  - id: '4'
+    text: Hey David, are you busy playing games or can you work?
+    correct: false
+    error_tag: unprofessional_sarcasm
+    explanation: Sarcastic and disrespectful to a senior colleague.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้องตามมารยาทการขอความช่วยเหลือในที่ทำงาน (Asking for assistance) โดยขอเวลาสั้นๆ เมื่อพี่ว่าง
+    และระบุจุดที่ติดขัดอย่างชัดเจน
+
+    ตัวเลือก 2 สั่งให้ทำให้, ตัวเลือก 3 โทษโปรแกรม, ตัวเลือก 4 พูดจาเสียดสีรุ่นพี่'
+- number: 4
+  question_id: tgat1-60-q04
+  topic: tgat1.speaking.question_response
+  skill: expressing_condolences_and_sympathy
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: A close colleague has just returned to work after losing her grandmother. What is the most empathetic and supportive
+    remark to make?
+  options:
+  - id: '1'
+    text: Cheer up! Everyone has to pass away eventually, so don't be sad.
+    correct: false
+    error_tag: dismissive_of_grief
+    explanation: Minimizes grief with toxic positivity and insensitive clichés.
+  - id: '2'
+    text: Did your grandmother leave you any valuable inheritance?
+    correct: false
+    error_tag: deeply_inappropriate_curiosity
+    explanation: Inappropriate inquiry about financial inheritance during bereavement.
+  - id: '3'
+    text: I was so deeply sorry to hear about your loss. Please know that we are all thinking of you, and let me know if you
+      need any support with your workload.
+    correct: true
+    error_tag: null
+    explanation: Expresses sincere sympathy, solidarity, and offers practical workplace support during bereavement.
+  - id: '4'
+    text: You missed three critical client presentations while you were absent.
+    correct: false
+    error_tag: callous_reproach
+    explanation: Callously reproaches the colleague about work duties during a period of mourning.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 เป็นการแสดงความเสียใจอย่างจริงใจ (Expressing condolences) แสดงความห่วงใย และเสนอช่วยเหลืองานเพื่อแบ่งเบาภาระ
+
+    ตัวเลือก 1 ปลอบใจแบบไม่ใส่ใจความรู้สึก, ตัวเลือก 2 ถามเรื่องมรดกซึ่งเสียมารยาทอย่างยิ่ง, ตัวเลือก 4 ตำหนิเรื่องงานอย่างไร้ความเห็นอกเห็นใจ'
+- number: 5
+  question_id: tgat1-60-q05
+  topic: tgat1.speaking.question_response
+  skill: asking_for_directions_politely
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: You are lost in an unfamiliar shopping district and need to find the nearest MRT subway station. How do you approach
+    a pedestrian politely?
+  options:
+  - id: '1'
+    text: Pardon me, could you please tell me which direction leads to the nearest MRT station?
+    correct: true
+    error_tag: null
+    explanation: Polite opening ('Pardon me') and clear indirect question asking for directions.
+  - id: '2'
+    text: MRT station! Where is it? Answer me quickly!
+    correct: false
+    error_tag: aggressive_interrogation
+    explanation: Aggressive, fragmented, and demanding tone.
+  - id: '3'
+    text: You must walk with me until we find the subway station.
+    correct: false
+    error_tag: unreasonable_imposition
+    explanation: Unreasonable demand on a stranger's time and personal space.
+  - id: '4'
+    text: Why are there no signposts anywhere in this city?
+    correct: false
+    error_tag: rhetorical_complaint
+    explanation: Complains rhetorically to a stranger rather than asking for directions.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้องตามการถามทาง (Asking for directions) เริ่มต้นด้วย Pardon me และใช้โครงสร้างคำถามที่สุภาพนุ่มนวล (could
+    you please tell me...)
+
+    ตัวเลือก 2 ตะคอกถาม, ตัวเลือก 3 บังคับให้เดินไปด้วย, ตัวเลือก 4 บ่นเรื่องป้ายบอกทาง'
+- number: 6
+  question_id: tgat1-60-q06
+  topic: tgat1.speaking.question_response
+  skill: responding_to_compliments
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'After delivering a group presentation, your instructor says: ''Your explanation of the economic models was exceptionally
+    clear and articulate!'' How should you reply graciously?'
+  options:
+  - id: '1'
+    text: I know, I am clearly the smartest presenter in this entire class.
+    correct: false
+    error_tag: arrogant_boasting
+    explanation: Boastful and condescending to peers.
+  - id: '2'
+    text: Thank you very much, Professor. Our whole group spent a lot of time refining the explanations, so I truly appreciate
+      your feedback.
+    correct: true
+    error_tag: null
+    explanation: Graciously thanks the instructor, shares credit with the presentation team, and values the academic feedback.
+  - id: '3'
+    text: Actually, my presentation was mediocre and full of embarrassing errors.
+    correct: false
+    error_tag: excessive_self_deprecation
+    explanation: Excessive self-deprecation that rejects sincere academic praise uncomfortably.
+  - id: '4'
+    text: Does this compliment mean I am guaranteed an A grade for the course?
+    correct: false
+    error_tag: presumptuous_grade_bargaining
+    explanation: Inappropriately bargains for grades upon receiving qualitative praise.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 เป็นการรับคำชมอย่างถ่อมตนและเป็นมืออาชีพ (Accepting compliments graciously) โดยขอบคุณอาจารย์และแบ่งปันความดีความชอบให้เพื่อนร่วมกลุ่ม
+
+    ตัวเลือก 1 หยิ่งยะโส, ตัวเลือก 3 ถ่อมตัวเกินเหตุจนดูปฏิเสธคำชม, ตัวเลือก 4 ทวงเกรด A ทันที'
+- number: 7
+  question_id: tgat1-60-q07
+  topic: tgat1.speaking.question_response
+  skill: academic_office_hours_inquiry
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: You need to discuss your graduation thesis proposal with your faculty advisor. What is the most appropriate way to
+    request an appointment via email or conversation?
+  options:
+  - id: '1'
+    text: Dear Dr. Bennett, would you have 20 minutes available during your office hours this Thursday to discuss my thesis
+      proposal?
+    correct: true
+    error_tag: null
+    explanation: Formal academic address, specifies duration and preferred time slot, and clarifies the academic purpose.
+  - id: '2'
+    text: Wait in your office on Thursday because I will come by whenever I finish lunch.
+    correct: false
+    error_tag: presumptuous_command
+    explanation: Disrespectful command that assumes the advisor must wait on the student's schedule.
+  - id: '3'
+    text: I need to talk to you right now, stop whatever research you are doing.
+    correct: false
+    error_tag: disrespectful_urgency
+    explanation: Blatantly disrespectful of a faculty member's time.
+  - id: '4'
+    text: Let's meet up at a bar tonight to talk about my thesis.
+    correct: false
+    error_tag: inappropriate_informality
+    explanation: Inappropriate social setting and informal boundary violation for faculty consultation.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 เหมาะสมที่สุดในการนัดหมายอาจารย์ที่ปรึกษา (Requesting an academic appointment) ใช้คำขึ้นต้นทางการ
+    ระบุเวลาที่ต้องการ และแจ้งหัวข้อปรึกษาชัดเจน
+
+    ตัวเลือก 2 สั่งให้อาจารย์รอ, ตัวเลือก 3 รบกวนเวลาอย่างก้าวร้าว, ตัวเลือก 4 ชวนไปร้านเหล้าซึ่งผิดกาลเทศะ'
+- number: 8
+  question_id: tgat1-60-q08
+  topic: tgat1.speaking.question_response
+  skill: apologizing_for_email_delay
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: You were away on field research without internet access for three days and need to respond to an important client
+    inquiry. How should you open your email?
+  options:
+  - id: '1'
+    text: Better late than never! Here are the answers you wanted.
+    correct: false
+    error_tag: flippant_cliche
+    explanation: Uses a flippant cliché unsuited for professional client correspondence.
+  - id: '2'
+    text: Why were you sending emails while I was out of the office?
+    correct: false
+    error_tag: defensive_blame
+    explanation: Defensively faults the client for sending legitimate business inquiries.
+  - id: '3'
+    text: Please accept my apologies for the delayed response. I was conducting remote field research with limited connectivity,
+      but I am pleased to address your questions below.
+    correct: true
+    error_tag: null
+    explanation: Sincere apology, concise factual reason, and immediate transition to addressing client needs.
+  - id: '4'
+    text: I saw your message three days ago but didn't feel like replying until today.
+    correct: false
+    error_tag: admitting_unprofessional_neglect
+    explanation: Unprofessional and damages client trust by claiming indifference.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้องตามหลักการสื่อสารธุรกิจ (Business email etiquette) เมื่อตอบอีเมลล่าช้า ต้องขออภัย ชี้แจงเหตุผลทางเทคนิค/การทำงานสั้นๆ
+    และตอบคำถามของลูกค้าทันที
+
+    ตัวเลือก 1 ใช้สำนวนเล่นลิ้น, ตัวเลือก 2 โทษลูกค้า, ตัวเลือก 4 พูดจาไม่ใส่ใจลูกค้า'
+- number: 9
+  question_id: tgat1-60-q09
+  topic: tgat1.speaking.question_response
+  skill: declining_retail_sales_politely
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: While browsing in an electronics boutique, an aggressive sales associate repeatedly urges you to purchase an extended
+    warranty you do not want. How do you decline firmly yet politely?
+  options:
+  - id: '1'
+    text: Get away from me before I call the security guards!
+    correct: false
+    error_tag: overreacting_hostility
+    explanation: Disproportionate hostility toward a standard retail interaction.
+  - id: '2'
+    text: Thank you for the explanation, but I am confident with the standard manufacturer warranty and will decline the extended
+      coverage today.
+    correct: true
+    error_tag: null
+    explanation: Acknowledges the pitch politely ('Thank you'), states firm decision objectively, and closes the discussion
+      without conflict.
+  - id: '3'
+    text: Warranties are complete scams designed to steal money from foolish shoppers.
+    correct: false
+    error_tag: accusatory_insult
+    explanation: Insults the business and employees needlessly.
+  - id: '4'
+    text: Maybe I will buy five warranties tomorrow if I win the national lottery.
+    correct: false
+    error_tag: mocking_sarcasm
+    explanation: Sarcastic and unconstructive.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 เป็นการปฏิเสธข้อเสนอทางการค้าอย่างสุภาพแต่มั่นคง (Declining a sales offer firmly and politely)
+    ขอบคุณข้อมูล ยืนยันว่าพอใจกับการรับประกันปกติ และปฏิเสธอย่างชัดเจน
+
+    ตัวเลือก 1 ขู่รปภ.เกินเหตุ, ตัวเลือก 3 กล่าวหาว่าเป็นมิจฉาชีพ, ตัวเลือก 4 ประชดประชัน'
+- number: 10
+  question_id: tgat1-60-q10
+  topic: tgat1.speaking.question_response
+  skill: diplomatic_meeting_rescheduling
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: A group project meeting was scheduled for Tuesday at 4 PM, but your biology laboratory exam was moved to that exact
+    hour. How do you notify your group mates?
+  options:
+  - id: '1'
+    text: Hi team, my biology lab exam was just rescheduled to Tuesday at 4 PM. Could we move our meeting to 6 PM that evening
+      or Wednesday afternoon instead? I apologize for the inconvenience.
+    correct: true
+    error_tag: null
+    explanation: Promptly informs the team with the specific academic conflict, apologizes, and proposes concrete alternative
+      times.
+  - id: '2'
+    text: I am not coming on Tuesday because my biology exam is way more important than this silly group project.
+    correct: false
+    error_tag: belittling_group_work
+    explanation: Belittles the team effort and exhibits uncooperative arrogance.
+  - id: '3'
+    text: Cancel the entire presentation since I won't be available at 4 PM.
+    correct: false
+    error_tag: destructive_ultimatum
+    explanation: Issues a destructive ultimatum rather than collaborating to find a solution.
+  - id: '4'
+    text: Whatever you guys decide without me is fine, but don't blame me if we fail.
+    correct: false
+    error_tag: passive_aggressive_disengagement
+    explanation: Passive-aggressively disengages from team responsibility.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 เหมาะสมที่สุดในการแจ้งเลื่อนการนัดหมายกลุ่ม (Rescheduling a group meeting) โดยระบุเหตุผลสอบชน ขออภัยในความไม่สะดวก
+    และเสนอช่วงเวลาใหม่ให้เพื่อนเลือกทันที
+
+    ตัวเลือก 2 ดูถูกโครงงานกลุ่ม, ตัวเลือก 3 สั่งยกเลิกงาน, ตัวเลือก 4 ปัดความรับผิดชอบล่วงหน้า'
+- number: 11
+  question_id: tgat1-60-q11
+  topic: tgat1.speaking.short_conversations
+  skill: cafe_customization_order
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Barista: "Welcome to Roast & Bloom. What can I get started for you today?"
+
+    Customer: "I''d like an iced oat milk latte, please."
+
+    Barista: "Certainly. ________________________"
+
+    Customer: "Medium size, and just light sweetness with 25% syrup, please."
+
+    Which question best completes the Barista''s turn?'
+  options:
+  - id: '1'
+    text: What size would you prefer, and do you have any sweetness preference?
+    correct: true
+    error_tag: null
+    explanation: Directly prompts for the size and sweetness level that the customer answers in the next turn.
+  - id: '2'
+    text: Why do you always order oat milk instead of whole dairy milk?
+    correct: false
+    error_tag: inappropriate_customer_inquiry
+    explanation: Intrusive inquiry questioning customer dietary choice.
+  - id: '3'
+    text: Can you pay me cash because our credit card machine is broken?
+    correct: false
+    error_tag: payment_timing_mismatch
+    explanation: Payment inquiry comes after finalizing order details, not during beverage specification.
+  - id: '4'
+    text: Would you like a hot croissant or a blueberry muffin today?
+    correct: false
+    error_tag: irrelevant_food_upsell
+    explanation: Customer's answer specifies size and sweetness, not pastry selections.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้องที่สุด ลูกค้าตอบว่า ''Medium size, and just light sweetness...'' แสดงว่าคำถามของบาริสต้าต้องถามเกี่ยวกับขนาดแก้วและระดับความหวาน
+    (size and sweetness preference)
+
+    ตัวเลือก 2 ซักไซ้เรื่องนม, ตัวเลือก 3 ถามเรื่องเงินสดก่อนสั่งเสร็จ, ตัวเลือก 4 เสนอขายขนม'
+- number: 12
+  question_id: tgat1-60-q12
+  topic: tgat1.speaking.short_conversations
+  skill: hotel_reservation_checkin
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Front Desk Agent: "Good afternoon, sir. Welcome to the Grand Meridian Hotel."
+
+    Guest: "Hello, I have a reservation under the name Julian Vance for two nights."
+
+    Front Desk Agent: "Yes, Mr. Vance, I see your booking for a Deluxe King Room. ________________________"
+
+    Guest: "A high floor with a city view away from the elevator would be fantastic."
+
+    Which phrase best fits the blank?'
+  options:
+  - id: '1'
+    text: Did you bring enough cash to pay for your room right now?
+    correct: false
+    error_tag: impolite_payment_assumption
+    explanation: Impolite hospitality phrasing that ignores standard credit card holds.
+  - id: '2'
+    text: Do you have any specific room location preferences before I assign your key?
+    correct: true
+    error_tag: null
+    explanation: Matches the guest's response specifying a high floor with a city view away from the elevator.
+  - id: '3'
+    text: Our hotel pool is currently closed for annual maintenance.
+    correct: false
+    error_tag: unprompted_facility_notice
+    explanation: Facility notice does not elicit the guest's room preference response.
+  - id: '4'
+    text: Would you like to cancel your reservation and find another hotel?
+    correct: false
+    error_tag: absurd_service_inversion
+    explanation: Absurdly hostile and contrary to hospitality standards.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง แขกตอบว่า ''A high floor with a city view...'' แสดงว่าพนักงานต้อนรับสอบถามเกี่ยวกับความต้องการพิเศษเรื่องตำแหน่งห้องพัก
+    (room location preferences)
+
+    ตัวเลือกอื่นถามเรื่องเงินสด แจ้งสระว่ายน้ำปิด หรือเสนอให้ยกเลิกห้องพัก ซึ่งไม่เข้ากับบทสนทนา'
+- number: 13
+  question_id: tgat1-60-q13
+  topic: tgat1.speaking.short_conversations
+  skill: library_reserved_book_inquiry
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Student: "Hi, I received an automated email notification stating that my book hold is ready for pickup."
+
+    Librarian: "Sure, let me check the reserve shelf. May I have your student identification card?"
+
+    Student: "Here it is."
+
+    Librarian: "________________________"
+
+    Student: "Thank you so much! I will make sure to return it before next Friday."
+
+    Which response best completes the dialogue?'
+  options:
+  - id: '1'
+    text: You have an overdue fine of 5,000 Baht and cannot enter the building.
+    correct: false
+    error_tag: contradicts_successful_hold
+    explanation: Contradicts the student's gratitude and loan commitment.
+  - id: '2'
+    text: We lost your book, so you will have to buy your own copy online.
+    correct: false
+    error_tag: contradicts_pickup_notification
+    explanation: Contradicts the premise that the hold was confirmed ready.
+  - id: '3'
+    text: Here is your copy of 'Advanced Macroeconomics'. The loan period is 14 days, due on October 24th.
+    correct: true
+    error_tag: null
+    explanation: Retrieves the book, specifies the loan duration, and directly aligns with the student's promise to return
+      it.
+  - id: '4'
+    text: Please be quiet because students are trying to sleep in the library.
+    correct: false
+    error_tag: impolite_reprimand
+    explanation: Irrelevant and patronizing reprimand.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง บรรณารักษ์ยื่นหนังสือที่จองไว้ให้ พร้อมระบุกำหนดส่งคืน 14 วัน ซึ่งสอดคล้องกับที่นักศึกษาตอบขอบคุณและสัญญาว่าจะคืนก่อนวันศุกร์หน้า
+
+    ตัวเลือกอื่นขัดแย้งกับสถานการณ์ที่หนังสือพร้อมให้ยืม'
+- number: 14
+  question_id: tgat1-60-q14
+  topic: tgat1.speaking.short_conversations
+  skill: restaurant_bill_and_payment_split
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Diner: "Excuse me, waiter. Could we please have the bill whenever you have a chance?"
+
+    Server: "Right away, ma''am. Here is your bill. Total is 840 Baht."
+
+    Diner: "________________________"
+
+    Server: "Certainly! We accept contactless mobile QR payments or split credit cards without any extra fee."
+
+    What did the diner say in the blank?'
+  options:
+  - id: '1'
+    text: Can we split the bill between two credit cards, or do you accept mobile QR transfer?
+    correct: true
+    error_tag: null
+    explanation: Matches the server's answer specifying acceptance of both mobile QR and split cards.
+  - id: '2'
+    text: This food tasted terrible and we refuse to pay a single penny.
+    correct: false
+    error_tag: refusal_to_pay
+    explanation: Contradicts the server's pleasant explanation of payment options.
+  - id: '3'
+    text: Can you wrap all our leftover napkins in a plastic bag?
+    correct: false
+    error_tag: bizarre_request
+    explanation: Absurd request unrelated to payment methods.
+  - id: '4'
+    text: We would like to order three more main courses and dessert.
+    correct: false
+    error_tag: inconsistent_with_requesting_bill
+    explanation: Contradicts requesting the bill to conclude the meal.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง บริกรตอบว่า ''Certainly! We accept contactless mobile QR payments or split credit cards...''
+    แสดงว่าลูกค้าถามเรื่องการแยกจ่ายบัตรเครดิตหรือโอนจ่ายผ่าน QR Code
+
+    ตัวเลือกอื่นปฏิเสธการจ่ายเงิน ขอห่อกระดาษเช็ดปาก หรือสั่งอาหารเพิ่ม ซึ่งขัดแย้งกับบริบท'
+- number: 15
+  question_id: tgat1-60-q15
+  topic: tgat1.speaking.short_conversations
+  skill: tech_support_password_reset
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'IT Helpdesk: "IT Support Helpdesk, this is Kevin speaking. How may I assist you today?"
+
+    Staff Member: "Good morning, Kevin. I have been locked out of my university email portal after changing my password yesterday."
+
+    IT Helpdesk: "________________________"
+
+    Staff Member: "My staff ID is E-40892, and the registered recovery email is m.ross@university.ac.th."
+
+    Which response fits the blank?'
+  options:
+  - id: '1'
+    text: You should have written your password on a sticky note on your monitor.
+    correct: false
+    error_tag: violation_of_cybersecurity_rules
+    explanation: Violates basic IT security protocol.
+  - id: '2'
+    text: No problem, I can unlock the account and issue a temporary reset link. Could you verify your staff ID and recovery
+      email?
+    correct: true
+    error_tag: null
+    explanation: Offers immediate solution and requests the exact verification details the staff member provides in the next
+      turn.
+  - id: '3'
+    text: I cannot help you today because I am playing online video games.
+    correct: false
+    error_tag: blatant_dereliction_of_duty
+    explanation: Unprofessional confession of neglecting work duties.
+  - id: '4'
+    text: Buy a brand new laptop because locked email accounts can never be recovered.
+    correct: false
+    error_tag: factually_absurd_advice
+    explanation: Nonsensical advice for a standard password lockout.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง เจ้าหน้าที่ IT เสนอปลดล็อกและส่งลิงก์รีเซ็ตรหัสผ่าน โดยขอให้ยืนยันรหัสพนักงานและอีเมลสำรอง
+    ซึ่งตรงกับคำตอบที่ผู้ใช้บริการให้ข้อมูลในประโยคถัดไปทันที
+
+    ตัวเลือกอื่นผิดกฎความปลอดภัย ปฏิเสธงาน หรือให้คำแนะนำไร้สาระ'
+- number: 16
+  question_id: tgat1-60-q16
+  topic: tgat1.speaking.short_conversations
+  skill: medical_clinic_consultation
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Receptionist: "Healthway Clinic, how can I help you today?"
+
+    Patient: "I have had a high fever and a persistent dry cough for the past three days, and I would like to see a physician."
+
+    Receptionist: "I am sorry to hear that. ________________________"
+
+    Patient: "The 2:30 PM appointment with Dr. Adams would be ideal. I will be there on time."
+
+    Which option best fills the blank?'
+  options:
+  - id: '1'
+    text: Dr. Adams has an opening at 2:30 PM this afternoon, or Dr. Lee has one at 4:00 PM. Which works better for you?
+    correct: true
+    error_tag: null
+    explanation: Offers available physician time slots directly matching the patient's choice of Dr. Adams at 2:30 PM.
+  - id: '2'
+    text: You probably don't need a doctor; just drink hot tea and take a nap.
+    correct: false
+    error_tag: unqualified_medical_dismissal
+    explanation: Dismissive and dangerous medical advice from a clinic receptionist.
+  - id: '3'
+    text: Our clinic does not treat sick people, only athletes.
+    correct: false
+    error_tag: absurd_clinic_restriction
+    explanation: Nonsensical restriction for a general health clinic.
+  - id: '4'
+    text: Can you run 10 kilometers before your appointment today?
+    correct: false
+    error_tag: irrelevant_bizarre_demand
+    explanation: Bizarre and harmful demand for a feverish patient.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง คนไข้ตอบว่า ''The 2:30 PM appointment with Dr. Adams would be ideal'' แสดงว่าเจ้าหน้าที่เสนอตัวเลือกเวลาตรวจของแพทย์รอบ
+    14:30 น. และ 16:00 น.
+
+    ตัวเลือก 2 ปัดให้ไปดื่มชา, ตัวเลือก 3 บอกรับเฉพาะนักกีฬา, ตัวเลือก 4 ให้วิ่ง 10 กม. ซึ่งผิดหมด'
+- number: 17
+  question_id: tgat1-60-q17
+  topic: tgat1.speaking.short_conversations
+  skill: transit_ticket_purchase
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Passenger: "Hello, I need an Airport Rail Link ticket to Suvarnabhumi Airport, please."
+
+    Ticket Agent: "Certainly. Are you traveling one-way or do you require a return journey?"
+
+    Passenger: "One-way, please. How long does the trip usually take from this station?"
+
+    Ticket Agent: "________________________"
+
+    Which is the most helpful and accurate response?'
+  options:
+  - id: '1'
+    text: You will have to walk along the tracks if the train breaks down.
+    correct: false
+    error_tag: alarming_unprofessional_remark
+    explanation: Alarming and unhelpful remark.
+  - id: '2'
+    text: It costs 45 Baht, cash only.
+    correct: false
+    error_tag: answers_price_instead_of_duration
+    explanation: Answers price rather than the passenger's question about trip duration.
+  - id: '3'
+    text: The express journey takes approximately 28 minutes, and trains depart every 10 minutes.
+    correct: true
+    error_tag: null
+    explanation: Directly answers how long the journey takes (28 minutes) and adds useful frequency information.
+  - id: '4'
+    text: I have never ridden the train, so I have no idea.
+    correct: false
+    error_tag: uninformed_staff_response
+    explanation: Unprofessional ignorance from a ticketing officer.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง ผู้โดยสารถามว่า ''How long does the trip usually take...?'' (ใช้เวลาเดินทางนานเท่าใด) เจ้าหน้าที่จึงต้องตอบระยะเวลาเดินทาง
+    (approximately 28 minutes)
+
+    ตัวเลือก 1 พูดให้ตกใจ, ตัวเลือก 2 ตอบราคาแทนเวลา, ตัวเลือก 4 บอกไม่รู้'
+- number: 18
+  question_id: tgat1-60-q18
+  topic: tgat1.speaking.short_conversations
+  skill: study_group_division_of_work
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Liam: "We have four extensive textbook chapters to summarize before our final exam study session tomorrow."
+
+    Sophia: "Trying to read all four individually will take too long. ________________________"
+
+    Liam: "That''s a smart plan! I''ll take chapters 7 and 8, and you can cover chapters 9 and 10. We can exchange summary
+    sheets tonight."
+
+    What did Sophia suggest in the blank?'
+  options:
+  - id: '1'
+    text: Why don't we split the chapters between us and create bulleted summaries to share?
+    correct: true
+    error_tag: null
+    explanation: Directly matches Liam's agreement to take chapters 7-8 while Sophia takes 9-10 and exchange sheets.
+  - id: '2'
+    text: Let's give up studying completely and watch movies all night.
+    correct: false
+    error_tag: encouraging_academic_failure
+    explanation: Contradicts study goals.
+  - id: '3'
+    text: You should do all four chapters while I take a nap.
+    correct: false
+    error_tag: unfair_exploitation
+    explanation: Unfairly dumps all academic work on Liam.
+  - id: '4'
+    text: We should tear out the pages of the textbook and burn them.
+    correct: false
+    error_tag: absurd_destructive_action
+    explanation: Absurd vandalism.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง เลียมตอบรับว่า ''That''s a smart plan! I''ll take chapters 7 and 8, and you can cover chapters
+    9 and 10'' แสดงว่าโซเฟียเสนอให้แบ่งบทกันทำสรุปแล้วนำมาแลกเปลี่ยนกัน
+
+    ตัวเลือกอื่นชวนดูหนัง เอาเปรียบเพื่อน หรือเผาหนังสือ ซึ่งไร้สาระ'
+- number: 19
+  question_id: tgat1-60-q19
+  topic: tgat1.speaking.short_conversations
+  skill: fitness_trainer_inquiry
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Gym Member: "Hi, I am interested in improving my core strength and rehabilitation after a knee injury. Do you offer
+    personal training packages?"
+
+    Fitness Consultant: "Yes, we have certified rehabilitation trainers on staff. ________________________"
+
+    Gym Member: "An initial diagnostic assessment sounds like a great starting point. When is the trainer available?"
+
+    Which phrase completes the Fitness Consultant''s turn?'
+  options:
+  - id: '1'
+    text: You cannot use our gym if you have ever had any injury.
+    correct: false
+    error_tag: discriminatory_exclusion
+    explanation: Discriminatory exclusion that contradicts health club fitness programs.
+  - id: '2'
+    text: We offer a complimentary 45-minute physical assessment where a trainer evaluates your knee mobility and designs
+      a tailored routine.
+    correct: true
+    error_tag: null
+    explanation: Matches the member's response eagerly accepting an initial diagnostic assessment.
+  - id: '3'
+    text: Our trainers only train professional heavyweight boxers.
+    correct: false
+    error_tag: inaccurate_restriction
+    explanation: Nonsensical restriction for a commercial gym.
+  - id: '4'
+    text: You must pay 50,000 Baht right now before we can speak to you.
+    correct: false
+    error_tag: aggressive_hard_selling
+    explanation: Extortionate and hostile sales tactic.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง สมาชิกตอบว่า ''An initial diagnostic assessment sounds like a great starting point'' แสดงว่าผู้ให้คำปรึกษาเสนอการประเมินสภาพร่างกายเบื้องต้น
+    (45-minute physical assessment) โดยเทรนเนอร์
+
+    ตัวเลือกอื่นปฏิเสธคนบาดเจ็บ จำกัดเฉพาะนักมวย หรือบังคับจ่ายเงินก้อนโต'
+- number: 20
+  question_id: tgat1-60-q20
+  topic: tgat1.speaking.short_conversations
+  skill: apartment_rental_utilities
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Prospective Tenant: "The studio apartment looks very bright and spacious. Does the monthly rent of 12,000 Baht include
+    utility charges?"
+
+    Leasing Agent: "________________________"
+
+    Prospective Tenant: "That is very reasonable. High-speed fiber Wi-Fi is essential since I work remotely."
+
+    Which answer best completes the agent''s turn?'
+  options:
+  - id: '1'
+    text: The rent covers high-speed fiber internet and building maintenance, while water and electricity are billed monthly
+      based on individual meters.
+    correct: true
+    error_tag: null
+    explanation: Clarifies that internet is included (matching the tenant's reply) while metered utilities are billed separately.
+  - id: '2'
+    text: No, we turn off the electricity at 8 PM every night.
+    correct: false
+    error_tag: unrealistic_living_condition
+    explanation: Absurd restriction for a rental apartment.
+  - id: '3'
+    text: Tenants are not permitted to use any internet or electronic devices.
+    correct: false
+    error_tag: absurd_digital_ban
+    explanation: Contradicts standard modern living needs.
+  - id: '4'
+    text: You must pay an extra 20,000 Baht per month just to breathe the hallway air.
+    correct: false
+    error_tag: bizarre_predatory_claim
+    explanation: Absurd predatory claim.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ผู้เช่าตอบว่า ''High-speed fiber Wi-Fi is essential since I work remotely'' แสดงว่าตัวแทนแจ้งว่าค่าเช่ารวมค่าอินเทอร์เน็ตความเร็วสูงแล้ว
+    ส่วนค่าน้ำค่าไฟคิดตามมิเตอร์จริง
+
+    ตัวเลือกอื่นตัดไฟตอน 2 ทุ่ม ห้ามใช้อินเทอร์เน็ต หรือคิดค่าอากาศหายใจ ซึ่งเป็นไปไม่ได้'
+- number: 21
+  question_id: tgat1-60-q21
+  topic: tgat1.speaking.long_conversations
+  skill: contingency_planning
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the dialogue below between Chloe and Alex, two university student council representatives, and answer
+    questions 21-25.
+
+
+    Chloe: "Alex, we have only four weeks remaining before the campus Green Festival, and several logistical details are still
+    unresolved."
+
+    Alex: "I know, Chloe. The biggest hurdle right now is finalizing the venue. The Dean''s office approved the Central Lawn,
+    but the weather forecast suggests frequent afternoon thunderstorms in late November. (21) ________________________"
+
+    Chloe: "I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our backup venue will protect the electronic
+    exhibits and sound equipment. However, the reservation fee is 5,000 Baht, and our operational budget is already stretched
+    thin. (22) ________________________"
+
+    Alex: "That sounds workable! We can allocate 3,000 Baht from the unspent student club mixer fund and seek a minor sponsorship
+    from the campus eco-store. By the way, have we confirmed our keynote speaker on renewable energy innovations?"
+
+    Chloe: "Dr. Somchai from the Institute of Technology agreed to speak, but he requested that we send his formal invitation
+    letter and itinerary by this Friday. (23) ________________________"
+
+    Alex: "I will draft the formal invitation and coordinate with his administrative assistant this afternoon. What about
+    student volunteers? We need at least thirty students to supervise the waste sorting stations and registration booths."
+
+    Chloe: "We have twenty-two sign-ups so far. (24) ________________________"
+
+    Alex: "Excellent idea. Offering certificate recognition and complimentary festival t-shirts will definitely attract the
+    remaining eight volunteers before Wednesday. Let''s get to work!"
+
+
+    Which sentence best fits blank (21) regarding the venue contingency plan?'
+  options:
+  - id: '1'
+    text: Should we just cancel the festival entirely and stay home?
+    correct: false
+    error_tag: premature_defeatism
+    explanation: Prematurely gives up instead of finding a realistic backup venue.
+  - id: '2'
+    text: Should we submit an emergency backup request for the Multi-Purpose Indoor Auditorium just in case?
+    correct: true
+    error_tag: null
+    explanation: Directly sets up Chloe's response agreeing to reserve the Multi-Purpose Indoor Auditorium as backup.
+  - id: '3'
+    text: Let's force all attendees to stand outside in heavy rain without umbrellas.
+    correct: false
+    error_tag: unreasonable_disregard_for_safety
+    explanation: Irrational and ignores student safety.
+  - id: '4'
+    text: Can we relocate the festival to another province 300 kilometers away?
+    correct: false
+    error_tag: logistically_absurd_relocation
+    explanation: Absurd relocation for a campus festival.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง โคลอี้ตอบว่า ''I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our
+    backup venue...'' แสดงว่าอเล็กซ์ต้องเสนอให้ขอใช้อาคารอเนกประสงค์ในร่มเป็นแผนสำรองเผื่อฝนตก
+
+    ตัวเลือก 1 ยอมแพ้ยกเลิกงาน, ตัวเลือก 3 ให้ยืนตากฝน, ตัวเลือก 4 ย้ายงานไปต่างจังหวัด'
+- number: 22
+  question_id: tgat1-60-q22
+  topic: tgat1.speaking.long_conversations
+  skill: budget_problem_solving
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the dialogue below between Chloe and Alex, two university student council representatives, and answer
+    questions 21-25.
+
+
+    Chloe: "Alex, we have only four weeks remaining before the campus Green Festival, and several logistical details are still
+    unresolved."
+
+    Alex: "I know, Chloe. The biggest hurdle right now is finalizing the venue. The Dean''s office approved the Central Lawn,
+    but the weather forecast suggests frequent afternoon thunderstorms in late November. (21) ________________________"
+
+    Chloe: "I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our backup venue will protect the electronic
+    exhibits and sound equipment. However, the reservation fee is 5,000 Baht, and our operational budget is already stretched
+    thin. (22) ________________________"
+
+    Alex: "That sounds workable! We can allocate 3,000 Baht from the unspent student club mixer fund and seek a minor sponsorship
+    from the campus eco-store. By the way, have we confirmed our keynote speaker on renewable energy innovations?"
+
+    Chloe: "Dr. Somchai from the Institute of Technology agreed to speak, but he requested that we send his formal invitation
+    letter and itinerary by this Friday. (23) ________________________"
+
+    Alex: "I will draft the formal invitation and coordinate with his administrative assistant this afternoon. What about
+    student volunteers? We need at least thirty students to supervise the waste sorting stations and registration booths."
+
+    Chloe: "We have twenty-two sign-ups so far. (24) ________________________"
+
+    Alex: "Excellent idea. Offering certificate recognition and complimentary festival t-shirts will definitely attract the
+    remaining eight volunteers before Wednesday. Let''s get to work!"
+
+
+    Which option best completes blank (22) regarding budget reallocation?'
+  options:
+  - id: '1'
+    text: Could we reallocate surplus funds from previous club events and approach local eco-friendly sponsors?
+    correct: true
+    error_tag: null
+    explanation: Matches Alex's agreement to reallocate 3,000 Baht from unspent funds and approach the eco-store.
+  - id: '2'
+    text: Why don't we rob the university treasury at midnight?
+    correct: false
+    error_tag: illegal_absurd_action
+    explanation: Proposes illegal and absurd actions.
+  - id: '3'
+    text: We should charge every university student an admission fee of 2,000 Baht.
+    correct: false
+    error_tag: unreasonable_student_fee
+    explanation: Unrealistic fee for an open campus student festival.
+  - id: '4'
+    text: Let's forget about money and hope the auditorium staff won't notice.
+    correct: false
+    error_tag: irresponsible_neglect
+    explanation: Unprofessional and ignores formal university administrative rules.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง อเล็กซ์ตอบว่า ''That sounds workable! We can allocate 3,000 Baht from the unspent student
+    club mixer fund and seek a minor sponsorship...'' แสดงว่าโคลอี้เสนอให้โยกงบที่เหลือจากกิจกรรมก่อนหน้าและหาสปอนเซอร์ร้านค้าสีเขียว
+
+    ตัวเลือกอื่นเสนอเรื่องผิดกฎหมาย เก็บเงินเพื่อนเกินเหตุ หรือแอบเนียนใช้สถานที่'
+- number: 23
+  question_id: tgat1-60-q23
+  topic: tgat1.speaking.long_conversations
+  skill: task_delegation
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the dialogue below between Chloe and Alex, two university student council representatives, and answer
+    questions 21-25.
+
+
+    Chloe: "Alex, we have only four weeks remaining before the campus Green Festival, and several logistical details are still
+    unresolved."
+
+    Alex: "I know, Chloe. The biggest hurdle right now is finalizing the venue. The Dean''s office approved the Central Lawn,
+    but the weather forecast suggests frequent afternoon thunderstorms in late November. (21) ________________________"
+
+    Chloe: "I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our backup venue will protect the electronic
+    exhibits and sound equipment. However, the reservation fee is 5,000 Baht, and our operational budget is already stretched
+    thin. (22) ________________________"
+
+    Alex: "That sounds workable! We can allocate 3,000 Baht from the unspent student club mixer fund and seek a minor sponsorship
+    from the campus eco-store. By the way, have we confirmed our keynote speaker on renewable energy innovations?"
+
+    Chloe: "Dr. Somchai from the Institute of Technology agreed to speak, but he requested that we send his formal invitation
+    letter and itinerary by this Friday. (23) ________________________"
+
+    Alex: "I will draft the formal invitation and coordinate with his administrative assistant this afternoon. What about
+    student volunteers? We need at least thirty students to supervise the waste sorting stations and registration booths."
+
+    Chloe: "We have twenty-two sign-ups so far. (24) ________________________"
+
+    Alex: "Excellent idea. Offering certificate recognition and complimentary festival t-shirts will definitely attract the
+    remaining eight volunteers before Wednesday. Let''s get to work!"
+
+
+    Which sentence best fills blank (23) regarding the keynote speaker invitation?'
+  options:
+  - id: '1'
+    text: Can you tell him that keynote speeches are boring and unnecessary?
+    correct: false
+    error_tag: insulting_to_guest_speaker
+    explanation: Grossly disrespectful to the invited keynote scholar.
+  - id: '2'
+    text: Why don't we invite a Hollywood celebrity instead of a scientist?
+    correct: false
+    error_tag: off_topic_celebrity_distraction
+    explanation: Irrelevant to a renewable energy academic festival.
+  - id: '3'
+    text: Could you finalize the official invitation letter and confirm his presentation equipment needs?
+    correct: true
+    error_tag: null
+    explanation: 'Matches Alex''s immediate reply: ''I will draft the formal invitation and coordinate with his administrative
+      assistant this afternoon.'''
+  - id: '4'
+    text: Let's send the invitation next month after the festival is already over.
+    correct: false
+    error_tag: illogical_timeline
+    explanation: Illogical timeline after the event.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง อเล็กซ์ตอบรับทันทีว่า ''I will draft the formal invitation and coordinate with his administrative
+    assistant this afternoon'' แสดงว่าโคลอี้ขอให้อเล็กซ์ช่วยร่างจดหมายเชิญทางการและประสานงานเรื่องอุปกรณ์
+
+    ตัวเลือกอื่นดูถูกวิทยากร เสนอเชิญดาราฮอลลีวูด หรือส่งจดหมายหลังงานเลิก'
+- number: 24
+  question_id: tgat1-60-q24
+  topic: tgat1.speaking.long_conversations
+  skill: volunteer_recruitment_strategy
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the dialogue below between Chloe and Alex, two university student council representatives, and answer
+    questions 21-25.
+
+
+    Chloe: "Alex, we have only four weeks remaining before the campus Green Festival, and several logistical details are still
+    unresolved."
+
+    Alex: "I know, Chloe. The biggest hurdle right now is finalizing the venue. The Dean''s office approved the Central Lawn,
+    but the weather forecast suggests frequent afternoon thunderstorms in late November. (21) ________________________"
+
+    Chloe: "I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our backup venue will protect the electronic
+    exhibits and sound equipment. However, the reservation fee is 5,000 Baht, and our operational budget is already stretched
+    thin. (22) ________________________"
+
+    Alex: "That sounds workable! We can allocate 3,000 Baht from the unspent student club mixer fund and seek a minor sponsorship
+    from the campus eco-store. By the way, have we confirmed our keynote speaker on renewable energy innovations?"
+
+    Chloe: "Dr. Somchai from the Institute of Technology agreed to speak, but he requested that we send his formal invitation
+    letter and itinerary by this Friday. (23) ________________________"
+
+    Alex: "I will draft the formal invitation and coordinate with his administrative assistant this afternoon. What about
+    student volunteers? We need at least thirty students to supervise the waste sorting stations and registration booths."
+
+    Chloe: "We have twenty-two sign-ups so far. (24) ________________________"
+
+    Alex: "Excellent idea. Offering certificate recognition and complimentary festival t-shirts will definitely attract the
+    remaining eight volunteers before Wednesday. Let''s get to work!"
+
+
+    Which proposal best completes blank (24) to recruit the remaining volunteers?'
+  options:
+  - id: '1'
+    text: Why don't we post a call on the student union portal highlighting volunteer certificates and event merchandise?
+    correct: true
+    error_tag: null
+    explanation: Directly matches Alex's enthusiastic reply about certificate recognition and festival t-shirts attracting
+      the remaining 8 volunteers.
+  - id: '2'
+    text: We should threaten to fail any student in their academic classes if they refuse to volunteer.
+    correct: false
+    error_tag: abusive_coercion
+    explanation: Unlawful academic coercion outside student council authority.
+  - id: '3'
+    text: Let's cancel all waste sorting and dump the trash behind the library.
+    correct: false
+    error_tag: contradicts_green_festival_values
+    explanation: Contradicts the core environmental mission of the Green Festival.
+  - id: '4'
+    text: Twenty-two volunteers are too many, let's fire twenty of them right now.
+    correct: false
+    error_tag: illogical_reduction
+    explanation: Contradicts the stated need for at least 30 volunteers.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง อเล็กซ์เห็นด้วยว่า ''Offering certificate recognition and complimentary festival t-shirts
+    will definitely attract the remaining eight volunteers'' แสดงว่าโคลอี้เสนอให้ประกาศรับสมัครเพิ่มโดยเน้นเกียรติบัตรและของที่ระลึก
+
+    ตัวเลือก 2 ข่มขู่ตัดเกรด, ตัวเลือก 3 แอบทิ้งขยะ, ตัวเลือก 4 ปลดอาสาสมัครทิ้ง'
+- number: 25
+  question_id: tgat1-60-q25
+  topic: tgat1.speaking.long_conversations
+  skill: dialogue_comprehension_inference
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the dialogue below between Chloe and Alex, two university student council representatives, and answer
+    questions 21-25.
+
+
+    Chloe: "Alex, we have only four weeks remaining before the campus Green Festival, and several logistical details are still
+    unresolved."
+
+    Alex: "I know, Chloe. The biggest hurdle right now is finalizing the venue. The Dean''s office approved the Central Lawn,
+    but the weather forecast suggests frequent afternoon thunderstorms in late November. (21) ________________________"
+
+    Chloe: "I completely agree. Reserving the Multi-Purpose Indoor Auditorium as our backup venue will protect the electronic
+    exhibits and sound equipment. However, the reservation fee is 5,000 Baht, and our operational budget is already stretched
+    thin. (22) ________________________"
+
+    Alex: "That sounds workable! We can allocate 3,000 Baht from the unspent student club mixer fund and seek a minor sponsorship
+    from the campus eco-store. By the way, have we confirmed our keynote speaker on renewable energy innovations?"
+
+    Chloe: "Dr. Somchai from the Institute of Technology agreed to speak, but he requested that we send his formal invitation
+    letter and itinerary by this Friday. (23) ________________________"
+
+    Alex: "I will draft the formal invitation and coordinate with his administrative assistant this afternoon. What about
+    student volunteers? We need at least thirty students to supervise the waste sorting stations and registration booths."
+
+    Chloe: "We have twenty-two sign-ups so far. (24) ________________________"
+
+    Alex: "Excellent idea. Offering certificate recognition and complimentary festival t-shirts will definitely attract the
+    remaining eight volunteers before Wednesday. Let''s get to work!"
+
+
+    Based on the entire conversation, which action will Alex take IMMEDIATELY this afternoon?'
+  options:
+  - id: '1'
+    text: Deliver the keynote speech himself on the Central Lawn.
+    correct: false
+    error_tag: contradicts_dialogue_assignment
+    explanation: Contradicts the fact that Dr. Somchai is the confirmed keynote speaker.
+  - id: '2'
+    text: Draft the formal invitation letter for Dr. Somchai and contact his assistant.
+    correct: true
+    error_tag: null
+    explanation: 'Directly stated in Alex''s turn: ''I will draft the formal invitation and coordinate with his administrative
+      assistant this afternoon.'''
+  - id: '3'
+    text: Print thirty t-shirts at home using his personal printer.
+    correct: false
+    error_tag: unsupported_detail
+    explanation: Unsupported and unmentioned in text.
+  - id: '4'
+    text: Cancel the Multi-Purpose Indoor Auditorium reservation.
+    correct: false
+    error_tag: opposite_of_agreed_plan
+    explanation: Opposite of the agreed plan to reserve the auditorium.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง บทสนทนาระบุคำพูดของอเล็กซ์ไว้อย่างชัดเจนว่า ''I will draft the formal invitation and coordinate
+    with his administrative assistant this afternoon'' (จะร่างจดหมายเชิญอย่างเป็นทางการและประสานกับผู้ช่วยของดร.สมชายบ่ายนี้)
+
+    ตัวเลือกอื่นขัดแย้งกับข้อเท็จจริงในบทสนทนา'
+- number: 26
+  question_id: tgat1-60-q26
+  topic: tgat1.speaking.long_conversations
+  skill: workplace_inquiry_performance_review
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the workplace conversation below between Rachel (Senior Marketing Director) and Daniel (Associate
+    Product Marketer) and answer questions 26-30.
+
+
+    Rachel: "Good morning, Daniel. Thank you for preparing the performance review dossier for Quarter 3. Overall, your campaign
+    metrics demonstrate impressive traction. (26) ________________________"
+
+    Daniel: "Thank you, Rachel. The initial engagement on our eco-friendly refillable bottle campaign exceeded projections
+    by 25%. However, our post-launch consumer feedback survey revealed an unexpected issue. (27) ________________________"
+
+    Rachel: "That is a critical insight. If customers find the silicone sealing lid difficult to clean, it could undermine
+    long-term retention despite strong eco-credentials. Have you consulted the product engineering team?"
+
+    Daniel: "Yes, I met with Marcus from Engineering yesterday. They can modify the mold to make the gasket detachable, but
+    retooling will delay our retail shelf rollout by approximately two weeks. (28) ________________________"
+
+    Rachel: "I agree with your recommendation. Delaying shipment by two weeks to ensure premium product usability is far wiser
+    than rushing a flawed design to market and facing mass returns. Let''s adjust the retail launch calendar accordingly.
+    Now, shifting to your professional growth goals: (29) ________________________"
+
+    Daniel: "I would love to attend the Advanced Digital Analytics Certification workshop next month. Mastering predictive
+    attribution models will help me optimize our multichannel ad spending."
+
+    Rachel: "Approved. The department will sponsor your registration. Keep up the thorough analytical work, Daniel."
+
+
+    Which sentence best completes Rachel''s opening review question in blank (26)?'
+  options:
+  - id: '1'
+    text: How would you assess the initial market response to the new sustainable product line?
+    correct: true
+    error_tag: null
+    explanation: Directly invites Daniel's assessment of the eco-friendly refillable bottle campaign response.
+  - id: '2'
+    text: Why did you waste company funds on useless marketing materials?
+    correct: false
+    error_tag: accusatory_contradiction
+    explanation: Directly contradicts Rachel's positive statement that campaign metrics demonstrated impressive traction.
+  - id: '3'
+    text: Do you know that the company is shutting down operations tomorrow?
+    correct: false
+    error_tag: alarming_untrue_premise
+    explanation: Absurdly contradicts quarterly review context.
+  - id: '4'
+    text: Can you make coffee for the entire executive floor right now?
+    correct: false
+    error_tag: inappropriate_subservient_task
+    explanation: Demeaning and unrelated to professional performance review.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ราเชลเปิดประเด็นชื่นชมตัวเลขแคมเปญ จากนั้นจึงถามความเห็นของแดเนียลเกี่ยวกับการตอบรับของตลาดต่อไลน์สินค้าเพื่อความยั่งยืนตัวใหม่
+    (sustainable product line) ซึ่งแดเนียลตอบขยายความเรื่องขวดน้ำรักษ์โลกในประโยคถัดไป
+
+    ตัวเลือก 2 ขัดแย้งกับคำชม, ตัวเลือก 3-4 ไม่ตรงกับบริบทการประเมินผลงาน'
+- number: 27
+  question_id: tgat1-60-q27
+  topic: tgat1.speaking.long_conversations
+  skill: identifying_customer_pain_point
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the workplace conversation below between Rachel (Senior Marketing Director) and Daniel (Associate
+    Product Marketer) and answer questions 26-30.
+
+
+    Rachel: "Good morning, Daniel. Thank you for preparing the performance review dossier for Quarter 3. Overall, your campaign
+    metrics demonstrate impressive traction. (26) ________________________"
+
+    Daniel: "Thank you, Rachel. The initial engagement on our eco-friendly refillable bottle campaign exceeded projections
+    by 25%. However, our post-launch consumer feedback survey revealed an unexpected issue. (27) ________________________"
+
+    Rachel: "That is a critical insight. If customers find the silicone sealing lid difficult to clean, it could undermine
+    long-term retention despite strong eco-credentials. Have you consulted the product engineering team?"
+
+    Daniel: "Yes, I met with Marcus from Engineering yesterday. They can modify the mold to make the gasket detachable, but
+    retooling will delay our retail shelf rollout by approximately two weeks. (28) ________________________"
+
+    Rachel: "I agree with your recommendation. Delaying shipment by two weeks to ensure premium product usability is far wiser
+    than rushing a flawed design to market and facing mass returns. Let''s adjust the retail launch calendar accordingly.
+    Now, shifting to your professional growth goals: (29) ________________________"
+
+    Daniel: "I would love to attend the Advanced Digital Analytics Certification workshop next month. Mastering predictive
+    attribution models will help me optimize our multichannel ad spending."
+
+    Rachel: "Approved. The department will sponsor your registration. Keep up the thorough analytical work, Daniel."
+
+
+    Which option best fills blank (27) describing the customer feedback issue?'
+  options:
+  - id: '1'
+    text: Customers reported that the bottle turns into gold when filled with water.
+    correct: false
+    error_tag: absurd_fantasy
+    explanation: Absurd fantasy claim.
+  - id: '2'
+    text: A noticeable percentage of users noted that the silicone sealing lid is tricky to dismantle and clean thoroughly.
+    correct: true
+    error_tag: null
+    explanation: 'Matches Rachel''s immediate confirmation: ''If customers find the silicone sealing lid difficult to clean,
+      it could undermine long-term retention...'''
+  - id: '3'
+    text: Every single buyer demanded an immediate 100% refund because they hate recycling.
+    correct: false
+    error_tag: contradicts_25_pct_growth
+    explanation: Directly contradicts the 25% above-projection engagement traction.
+  - id: '4'
+    text: Our bottles were stolen by alien spacecraft during shipping.
+    correct: false
+    error_tag: absurd_nonsense
+    explanation: Absurd and nonsensical.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง ราเชลตอบรับทันทีว่า ''If customers find the silicone sealing lid difficult to clean...''
+    แสดงว่าแดเนียลรายงานผลสำรวจว่าผู้บริโภคบ่นเรื่องฝาซิลิโคนถอดล้างทำความสะอาดยาก
+
+    ตัวเลือกอื่นเป็นเรื่องเพ้อฝัน ขัดแย้งกับยอดขาย หรือไร้สาระ'
+- number: 28
+  question_id: tgat1-60-q28
+  topic: tgat1.speaking.long_conversations
+  skill: business_recommendation_and_tradeoff
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the workplace conversation below between Rachel (Senior Marketing Director) and Daniel (Associate
+    Product Marketer) and answer questions 26-30.
+
+
+    Rachel: "Good morning, Daniel. Thank you for preparing the performance review dossier for Quarter 3. Overall, your campaign
+    metrics demonstrate impressive traction. (26) ________________________"
+
+    Daniel: "Thank you, Rachel. The initial engagement on our eco-friendly refillable bottle campaign exceeded projections
+    by 25%. However, our post-launch consumer feedback survey revealed an unexpected issue. (27) ________________________"
+
+    Rachel: "That is a critical insight. If customers find the silicone sealing lid difficult to clean, it could undermine
+    long-term retention despite strong eco-credentials. Have you consulted the product engineering team?"
+
+    Daniel: "Yes, I met with Marcus from Engineering yesterday. They can modify the mold to make the gasket detachable, but
+    retooling will delay our retail shelf rollout by approximately two weeks. (28) ________________________"
+
+    Rachel: "I agree with your recommendation. Delaying shipment by two weeks to ensure premium product usability is far wiser
+    than rushing a flawed design to market and facing mass returns. Let''s adjust the retail launch calendar accordingly.
+    Now, shifting to your professional growth goals: (29) ________________________"
+
+    Daniel: "I would love to attend the Advanced Digital Analytics Certification workshop next month. Mastering predictive
+    attribution models will help me optimize our multichannel ad spending."
+
+    Rachel: "Approved. The department will sponsor your registration. Keep up the thorough analytical work, Daniel."
+
+
+    Which recommendation best completes Daniel''s proposal in blank (28)?'
+  options:
+  - id: '1'
+    text: I believe we should postpone the retail rollout by two weeks to perfect the lid rather than release an inconvenient
+      product.
+    correct: true
+    error_tag: null
+    explanation: 'Directly aligns with Rachel''s enthusiastic agreement: ''I agree with your recommendation. Delaying shipment
+      by two weeks to ensure premium product usability is far wiser...'''
+  - id: '2'
+    text: Let's ignore the customer complaints and pretend the silicone lid is flawless.
+    correct: false
+    error_tag: unethical_quality_neglect
+    explanation: Unethical neglect of known product flaws.
+  - id: '3'
+    text: We should fire Marcus and the entire engineering department immediately.
+    correct: false
+    error_tag: destructive_scapegoating
+    explanation: Destructive scapegoating of collaborating colleagues.
+  - id: '4'
+    text: Let's increase the price by 500% so customers cannot afford to buy it.
+    correct: false
+    error_tag: irrational_commercial_suicide
+    explanation: Commercial suicide unrelated to fixing the design flaw.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ราเชลกล่าวว่า ''I agree with your recommendation. Delaying shipment by two weeks to ensure
+    premium product usability is far wiser...'' แสดงว่าแดเนียลเสนอให้เลื่อนการวางจำหน่าย 2 สัปดาห์เพื่อแก้ไขปัญหาฝาขวดให้สมบูรณ์ก่อนส่งมอบ
+
+    ตัวเลือก 2 เพิกเฉยต่อปัญหา, ตัวเลือก 3 ไล่วิศวกรออก, ตัวเลือก 4 ขึ้นราคา 500%'
+- number: 29
+  question_id: tgat1-60-q29
+  topic: tgat1.speaking.long_conversations
+  skill: career_development_inquiry
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the workplace conversation below between Rachel (Senior Marketing Director) and Daniel (Associate
+    Product Marketer) and answer questions 26-30.
+
+
+    Rachel: "Good morning, Daniel. Thank you for preparing the performance review dossier for Quarter 3. Overall, your campaign
+    metrics demonstrate impressive traction. (26) ________________________"
+
+    Daniel: "Thank you, Rachel. The initial engagement on our eco-friendly refillable bottle campaign exceeded projections
+    by 25%. However, our post-launch consumer feedback survey revealed an unexpected issue. (27) ________________________"
+
+    Rachel: "That is a critical insight. If customers find the silicone sealing lid difficult to clean, it could undermine
+    long-term retention despite strong eco-credentials. Have you consulted the product engineering team?"
+
+    Daniel: "Yes, I met with Marcus from Engineering yesterday. They can modify the mold to make the gasket detachable, but
+    retooling will delay our retail shelf rollout by approximately two weeks. (28) ________________________"
+
+    Rachel: "I agree with your recommendation. Delaying shipment by two weeks to ensure premium product usability is far wiser
+    than rushing a flawed design to market and facing mass returns. Let''s adjust the retail launch calendar accordingly.
+    Now, shifting to your professional growth goals: (29) ________________________"
+
+    Daniel: "I would love to attend the Advanced Digital Analytics Certification workshop next month. Mastering predictive
+    attribution models will help me optimize our multichannel ad spending."
+
+    Rachel: "Approved. The department will sponsor your registration. Keep up the thorough analytical work, Daniel."
+
+
+    Which question best completes Rachel''s professional development inquiry in blank (29)?'
+  options:
+  - id: '1'
+    text: Are you planning to resign from your job at the end of this month?
+    correct: false
+    error_tag: unprompted_resignation_inquiry
+    explanation: Unprompted assumption contrary to positive performance review.
+  - id: '2'
+    text: Why haven't you memorized the entire corporate handbook by heart?
+    correct: false
+    error_tag: petty_academic_harassment
+    explanation: Petty harassment unrelated to professional growth.
+  - id: '3'
+    text: What specialized competencies or training programs would you like to pursue this coming quarter?
+    correct: true
+    error_tag: null
+    explanation: Directly prompts Daniel's response requesting the Advanced Digital Analytics Certification workshop.
+  - id: '4'
+    text: Can you work without receiving any salary for the next six months?
+    correct: false
+    error_tag: labor_law_violation
+    explanation: Illegal wage withholding.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง แดเนียลตอบว่า ''I would love to attend the Advanced Digital Analytics Certification workshop
+    next month'' แสดงว่าราเชลถามถึงทักษะหรือคอร์สอบรมที่แดเนียลสนใจพัฒนาในไตรมาสหน้า
+
+    ตัวเลือก 1 ถามเรื่องลาออก, ตัวเลือก 2 สั่งท่องคู่มือ, ตัวเลือก 4 ขอไม่จ่ายเงินเดือน'
+- number: 30
+  question_id: tgat1-60-q30
+  topic: tgat1.speaking.long_conversations
+  skill: evaluating_overall_performance
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the workplace conversation below between Rachel (Senior Marketing Director) and Daniel (Associate
+    Product Marketer) and answer questions 26-30.
+
+
+    Rachel: "Good morning, Daniel. Thank you for preparing the performance review dossier for Quarter 3. Overall, your campaign
+    metrics demonstrate impressive traction. (26) ________________________"
+
+    Daniel: "Thank you, Rachel. The initial engagement on our eco-friendly refillable bottle campaign exceeded projections
+    by 25%. However, our post-launch consumer feedback survey revealed an unexpected issue. (27) ________________________"
+
+    Rachel: "That is a critical insight. If customers find the silicone sealing lid difficult to clean, it could undermine
+    long-term retention despite strong eco-credentials. Have you consulted the product engineering team?"
+
+    Daniel: "Yes, I met with Marcus from Engineering yesterday. They can modify the mold to make the gasket detachable, but
+    retooling will delay our retail shelf rollout by approximately two weeks. (28) ________________________"
+
+    Rachel: "I agree with your recommendation. Delaying shipment by two weeks to ensure premium product usability is far wiser
+    than rushing a flawed design to market and facing mass returns. Let''s adjust the retail launch calendar accordingly.
+    Now, shifting to your professional growth goals: (29) ________________________"
+
+    Daniel: "I would love to attend the Advanced Digital Analytics Certification workshop next month. Mastering predictive
+    attribution models will help me optimize our multichannel ad spending."
+
+    Rachel: "Approved. The department will sponsor your registration. Keep up the thorough analytical work, Daniel."
+
+
+    What is Rachel''s overall evaluation of Daniel''s professional performance and approach?'
+  options:
+  - id: '1'
+    text: She considers him incompetent and plans to terminate his contract.
+    correct: false
+    error_tag: direct_contradiction
+    explanation: Directly contradicted by approving training sponsorship and praising his thorough analytical work.
+  - id: '2'
+    text: She values his proactive analytical mindset, customer-centric problem solving, and strategic alignment with brand
+      quality.
+    correct: true
+    error_tag: null
+    explanation: Supported by her agreement with his delay recommendation, department sponsorship of his training, and concluding
+      praise.
+  - id: '3'
+    text: She believes he spends too much time listening to engineering opinions.
+    correct: false
+    error_tag: unsupported_criticism
+    explanation: She praised his consultation with engineering as critical insight.
+  - id: '4'
+    text: She is indifferent to product quality as long as quarterly sales quotas are met.
+    correct: false
+    error_tag: contradicts_quality_stance
+    explanation: Contradicted by her explicit preference for quality over hasty rollout.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง ราเชลประเมินผลงานของแดเนียลในเชิงบวกอย่างมาก ชื่นชมการวิเคราะห์ข้อมูลอย่างรอบคอบ การแก้ปัญหาโดยยึดผู้บริโภคเป็นศูนย์กลาง
+    และอนุมัติทุนอบรมสัมมนาให้
+
+    ตัวเลือก 1 ขัดแย้งกับบทสนทนา, ตัวเลือก 3-4 บิดเบือนมุมมองของราเชล'
+- number: 31
+  question_id: tgat1-60-q31
+  topic: tgat1.reading.text_completion
+  skill: modal_passive_verb_choice
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the public health advisory on cardiovascular wellness below and choose the best answer for questions
+    31-35.
+
+
+    Contemporary epidemiological data reveals that sedentary behavior constitutes a major contributing factor to early cardiovascular
+    morbidity worldwide. Health authorities emphasize that individuals who engage in desk-bound occupations (31) ________
+    adopting structured physical routines into their daily regimens. Even modest lifestyle modifications, such as brisk walking
+    for thirty minutes each morning, (32) ________ demonstrated to yield substantial reductions in hypertension risk.
+
+
+    Furthermore, nutritional scientists underscore the protective role of whole dietary fiber, (33) ________ biochemical properties
+    facilitate the clearance of low-density lipoprotein cholesterol from arterial walls. (34) ________, the widespread consumption
+    of ultra-processed snacks often counteracts these cardiovascular advantages by inundating the bloodstream with trans fats
+    and excessive sodium. Consequently, healthcare practitioners urge that patients (35) ________ certified nutritionists
+    when designing long-term lifestyle interventions.
+
+
+    Choose the best option for blank (31):'
+  options:
+  - id: '1'
+    text: are strongly encouraged to consider
+    correct: true
+    error_tag: null
+    explanation: Passive construction ('are encouraged to consider') correctly indicates healthcare authorities recommending
+      action to individuals.
+  - id: '2'
+    text: have encouraged strongly to consider
+    correct: false
+    error_tag: active_voice_mismatch
+    explanation: Active voice implies the individuals are encouraging others, which reverses the medical recommendation relationship.
+  - id: '3'
+    text: to be strongly encouraging for
+    correct: false
+    error_tag: infinitive_fragment
+    explanation: Infinitive fragment creates an incomplete predicate without a finite main verb.
+  - id: '4'
+    text: will have strongly encouraged by
+    correct: false
+    error_tag: ungrammatical_aspect_preposition
+    explanation: Ungrammatical combination of future perfect with an unmotivated trailing preposition 'by'.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้องตามโครงสร้าง Passive Voice: individuals [are strongly encouraged to consider] (ได้รับการกระตุ้น/แนะนำอย่างยิ่งให้พิจารณา)
+    โดยผู้เชี่ยวชาญด้านสุขภาพ
+
+    ตัวเลือก 2 เป็น Active Voice ซึ่งผิดความหมาย, ตัวเลือก 3 ขาดกริยาแท้, ตัวเลือก 4 โครงสร้างไวยากรณ์ผิดเพี้ยน'
+- number: 32
+  question_id: tgat1-60-q32
+  topic: tgat1.reading.text_completion
+  skill: subject_verb_agreement_tense
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the public health advisory on cardiovascular wellness below and choose the best answer for questions
+    31-35.
+
+
+    Contemporary epidemiological data reveals that sedentary behavior constitutes a major contributing factor to early cardiovascular
+    morbidity worldwide. Health authorities emphasize that individuals who engage in desk-bound occupations (31) ________
+    adopting structured physical routines into their daily regimens. Even modest lifestyle modifications, such as brisk walking
+    for thirty minutes each morning, (32) ________ demonstrated to yield substantial reductions in hypertension risk.
+
+
+    Furthermore, nutritional scientists underscore the protective role of whole dietary fiber, (33) ________ biochemical properties
+    facilitate the clearance of low-density lipoprotein cholesterol from arterial walls. (34) ________, the widespread consumption
+    of ultra-processed snacks often counteracts these cardiovascular advantages by inundating the bloodstream with trans fats
+    and excessive sodium. Consequently, healthcare practitioners urge that patients (35) ________ certified nutritionists
+    when designing long-term lifestyle interventions.
+
+
+    Choose the best option for blank (32):'
+  options:
+  - id: '1'
+    text: has been
+    correct: false
+    error_tag: plural_subject_agreement_error
+    explanation: Subject 'lifestyle modifications' is plural and cannot agree with singular verb 'has been'.
+  - id: '2'
+    text: have been
+    correct: true
+    error_tag: null
+    explanation: Plural present perfect passive ('have been demonstrated') agrees with the plural head noun 'modifications'.
+  - id: '3'
+    text: is being
+    correct: false
+    error_tag: singular_continuous_error
+    explanation: Singular continuous form fails subject-verb agreement with plural 'modifications'.
+  - id: '4'
+    text: having been
+    correct: false
+    error_tag: non_finite_participle_error
+    explanation: Non-finite participle cannot serve as the finite predicate of the independent clause.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง ประธานของประโยคคือ ''modifications'' (พหูพจน์) ในวลี ''modest lifestyle modifications''
+    ดังนั้นกริยาช่วยจึงต้องเป็น ''have been'' เพื่อสอดคล้องกับประธานพหูพจน์ (Subject-Verb Agreement)
+
+    ตัวเลือก 1 และ 3 ใช้กริยาเอกพจน์ (has/is) จึงผิดไวยากรณ์, ตัวเลือก 4 เป็น participle ไม่ใช่กริยาแท้'
+- number: 33
+  question_id: tgat1-60-q33
+  topic: tgat1.reading.text_completion
+  skill: possessive_relative_pronoun
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the public health advisory on cardiovascular wellness below and choose the best answer for questions
+    31-35.
+
+
+    Contemporary epidemiological data reveals that sedentary behavior constitutes a major contributing factor to early cardiovascular
+    morbidity worldwide. Health authorities emphasize that individuals who engage in desk-bound occupations (31) ________
+    adopting structured physical routines into their daily regimens. Even modest lifestyle modifications, such as brisk walking
+    for thirty minutes each morning, (32) ________ demonstrated to yield substantial reductions in hypertension risk.
+
+
+    Furthermore, nutritional scientists underscore the protective role of whole dietary fiber, (33) ________ biochemical properties
+    facilitate the clearance of low-density lipoprotein cholesterol from arterial walls. (34) ________, the widespread consumption
+    of ultra-processed snacks often counteracts these cardiovascular advantages by inundating the bloodstream with trans fats
+    and excessive sodium. Consequently, healthcare practitioners urge that patients (35) ________ certified nutritionists
+    when designing long-term lifestyle interventions.
+
+
+    Choose the best option for blank (33):'
+  options:
+  - id: '1'
+    text: whose
+    correct: true
+    error_tag: null
+    explanation: Relative possessive pronoun 'whose' correctly modifies 'biochemical properties' belonging to whole dietary
+      fiber.
+  - id: '2'
+    text: which
+    correct: false
+    error_tag: pronoun_case_error
+    explanation: '''Which'' cannot directly precede the possessed noun ''biochemical properties'' without a preposition (''the
+      properties of which'').'
+  - id: '3'
+    text: where
+    correct: false
+    error_tag: adverbial_locative_error
+    explanation: '''Where'' designates geographic or spatial locations, not possessive biological properties.'
+  - id: '4'
+    text: that
+    correct: false
+    error_tag: restrictive_relative_in_non_restrictive_clause
+    explanation: '''That'' cannot be used in non-restrictive relative clauses preceded by a comma, nor can it indicate possession.'
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ''whose'' เป็น Relative Pronoun แสดงความเป็นเจ้าของ (Possessive) ทำหน้าที่ขยาย ''whole
+    dietary fiber'' (whose biochemical properties = คุณสมบัติทางชีวเคมีของกากใยอาหาร)
+
+    ตัวเลือก 2 ต้องใช้ of which, ตัวเลือก 3 บอกสถานที่, ตัวเลือก 4 that ห้ามใช้หลังเครื่องหมายจุลภาค (comma) ใน Non-defining
+    relative clause'
+- number: 34
+  question_id: tgat1-60-q34
+  topic: tgat1.reading.text_completion
+  skill: contrast_discourse_marker
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the public health advisory on cardiovascular wellness below and choose the best answer for questions
+    31-35.
+
+
+    Contemporary epidemiological data reveals that sedentary behavior constitutes a major contributing factor to early cardiovascular
+    morbidity worldwide. Health authorities emphasize that individuals who engage in desk-bound occupations (31) ________
+    adopting structured physical routines into their daily regimens. Even modest lifestyle modifications, such as brisk walking
+    for thirty minutes each morning, (32) ________ demonstrated to yield substantial reductions in hypertension risk.
+
+
+    Furthermore, nutritional scientists underscore the protective role of whole dietary fiber, (33) ________ biochemical properties
+    facilitate the clearance of low-density lipoprotein cholesterol from arterial walls. (34) ________, the widespread consumption
+    of ultra-processed snacks often counteracts these cardiovascular advantages by inundating the bloodstream with trans fats
+    and excessive sodium. Consequently, healthcare practitioners urge that patients (35) ________ certified nutritionists
+    when designing long-term lifestyle interventions.
+
+
+    Choose the best option for blank (34):'
+  options:
+  - id: '1'
+    text: Similarly
+    correct: false
+    error_tag: additive_similarity_error
+    explanation: Falsely indicates similarity when the following clause presents the opposite harmful impact of ultra-processed
+      snacks.
+  - id: '2'
+    text: Therefore
+    correct: false
+    error_tag: cause_and_effect_misalignment
+    explanation: Ultra-processed food consumption is not caused by the health benefits of dietary fiber.
+  - id: '3'
+    text: However
+    correct: true
+    error_tag: null
+    explanation: '''However'' correctly introduces the sharp contrast between dietary fiber benefits and the detrimental effects
+      of ultra-processed snacks.'
+  - id: '4'
+    text: In summary
+    correct: false
+    error_tag: premature_conclusion_marker
+    explanation: Prematurely indicates a conclusion rather than a contrasting dietary risk factor.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ''However'' (อย่างไรก็ตาม) ถูกต้องที่สุด เพราะประโยคก่อนหน้าพูดถึงประโยชน์ของกากใยอาหาร ส่วนประโยคนี้พูดถึงโทษของขนมขบเคี้ยวแปรรูปสูงที่เข้ามาทำลายสุขภาพ
+    จึงเป็นความสัมพันธ์แบบขัดแย้ง (Contrast)
+
+    ตัวเลือก 1 บอกความเหมือน, ตัวเลือก 2 บอกผลลัพธ์, ตัวเลือก 4 สรุปความ'
+- number: 35
+  question_id: tgat1-60-q35
+  topic: tgat1.reading.text_completion
+  skill: subjunctive_mood_after_urge
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the public health advisory on cardiovascular wellness below and choose the best answer for questions
+    31-35.
+
+
+    Contemporary epidemiological data reveals that sedentary behavior constitutes a major contributing factor to early cardiovascular
+    morbidity worldwide. Health authorities emphasize that individuals who engage in desk-bound occupations (31) ________
+    adopting structured physical routines into their daily regimens. Even modest lifestyle modifications, such as brisk walking
+    for thirty minutes each morning, (32) ________ demonstrated to yield substantial reductions in hypertension risk.
+
+
+    Furthermore, nutritional scientists underscore the protective role of whole dietary fiber, (33) ________ biochemical properties
+    facilitate the clearance of low-density lipoprotein cholesterol from arterial walls. (34) ________, the widespread consumption
+    of ultra-processed snacks often counteracts these cardiovascular advantages by inundating the bloodstream with trans fats
+    and excessive sodium. Consequently, healthcare practitioners urge that patients (35) ________ certified nutritionists
+    when designing long-term lifestyle interventions.
+
+
+    Choose the best option for blank (35):'
+  options:
+  - id: '1'
+    text: consult
+    correct: true
+    error_tag: null
+    explanation: The mandative subjunctive triggered by 'urge that patients...' requires the bare infinitive 'consult'.
+  - id: '2'
+    text: consults
+    correct: false
+    error_tag: indicative_verb_error
+    explanation: Third-person singular indicative form violates the subjunctive requirement after 'urge that'.
+  - id: '3'
+    text: consulted
+    correct: false
+    error_tag: past_indicative_error
+    explanation: Past tense indicates past completed action, contradicting a forward-looking clinical recommendation.
+  - id: '4'
+    text: will consult
+    correct: false
+    error_tag: modal_future_intrusion
+    explanation: Modal 'will' is ungrammatical inside formal mandative subjunctive clauses.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ''consult'' ถูกต้องตามกฎ Mandative Subjunctive หลังกริยาแสดงการแนะนำอย่างจริงจัง ''urge that [subject]
+    + [V.inf/bare infinitive]'' (consult ไม่ผันรูป)
+
+    ตัวเลือก 2 เติม s, ตัวเลือก 3 เป็นอดีต, ตัวเลือก 4 ใช้ will consult ทั้งหมดผิดกฎ Subjunctive'
+- number: 36
+  question_id: tgat1-60-q36
+  topic: tgat1.reading.text_completion
+  skill: conditional_clause_conjunction
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the announcement from the Greenwood International Academic Office and choose the best answer for
+    questions 36-40.
+
+
+    The Office of International Academic Affairs is pleased to unveil the 2025 Global Sustainability Exchange Grant. (36)
+    ________ full-time undergraduate students maintain a cumulative GPA of 3.25 or above, they are entitled to submit project
+    proposals for overseas institutional exchanges. Selected recipients will receive a substantial merit-based (37) ________
+    covering round-trip airfare, living accommodations, and tuition waivers at partner universities.
+
+
+    Candidates must ensure that all application portfolios strictly (38) ________ institutional guidelines. Required documentation
+    includes a statement of purpose, two faculty recommendation endorsements, and proof of advanced English proficiency. (39)
+    ________, incomplete submissions or those uploaded after the October 31st deadline will be disqualified without administrative
+    review. The committee seeks scholars of proven academic (40) ________ who demonstrate genuine civic leadership potential.
+
+
+    Choose the best option for blank (36):'
+  options:
+  - id: '1'
+    text: Unless
+    correct: false
+    error_tag: negative_conditional_reversal
+    explanation: '''Unless'' means ''if not'', which would nonsensically disqualify students with high GPAs from applying.'
+  - id: '2'
+    text: Provided that
+    correct: true
+    error_tag: null
+    explanation: '''Provided that'' functions as a formal conditional conjunction meaning ''on the condition that / if'',
+      matching the GPA prerequisite.'
+  - id: '3'
+    text: Although
+    correct: false
+    error_tag: concessive_connector_error
+    explanation: '''Although'' introduces a concession rather than a necessary eligibility condition.'
+  - id: '4'
+    text: In spite of
+    correct: false
+    error_tag: prepositional_concession_error
+    explanation: '''In spite of'' is a preposition requiring a noun phrase, not a full independent clause with subject and
+      verb.'
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ''Provided that'' (ตราบใดที่/ภายใต้เงื่อนไขว่า) เป็นคำเชื่อมเงื่อนไขในภาษาทางการที่มีความหมายเหมือน
+    If ซึ่งตรงกับเกณฑ์การรับสมัครว่า ''หากนักศึกษามีเกรดเฉลี่ยสะสม 3.25 ขึ้นไป''
+
+    ตัวเลือก 1 Unless แปลว่า ถ้าไม่ (ความหมายกลับด้าน), ตัวเลือก 3 Although แสดงความขัดแย้ง, ตัวเลือก 4 In spite of ต้องตามด้วยคำนาม'
+- number: 37
+  question_id: tgat1-60-q37
+  topic: tgat1.reading.text_completion
+  skill: contextual_vocabulary_academic_finance
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the announcement from the Greenwood International Academic Office and choose the best answer for
+    questions 36-40.
+
+
+    The Office of International Academic Affairs is pleased to unveil the 2025 Global Sustainability Exchange Grant. (36)
+    ________ full-time undergraduate students maintain a cumulative GPA of 3.25 or above, they are entitled to submit project
+    proposals for overseas institutional exchanges. Selected recipients will receive a substantial merit-based (37) ________
+    covering round-trip airfare, living accommodations, and tuition waivers at partner universities.
+
+
+    Candidates must ensure that all application portfolios strictly (38) ________ institutional guidelines. Required documentation
+    includes a statement of purpose, two faculty recommendation endorsements, and proof of advanced English proficiency. (39)
+    ________, incomplete submissions or those uploaded after the October 31st deadline will be disqualified without administrative
+    review. The committee seeks scholars of proven academic (40) ________ who demonstrate genuine civic leadership potential.
+
+
+    Choose the best option for blank (37):'
+  options:
+  - id: '1'
+    text: stipend
+    correct: true
+    error_tag: null
+    explanation: '''Stipend'' denotes a fixed grant or allowance awarded for academic or fellowship support, fitting the coverage
+      of airfare and living costs.'
+  - id: '2'
+    text: penalty
+    correct: false
+    error_tag: punitive_word_mismatch
+    explanation: '''Penalty'' means a financial punishment or fine, completely contradictory to a grant award.'
+  - id: '3'
+    text: collateral
+    correct: false
+    error_tag: banking_security_mismatch
+    explanation: '''Collateral'' refers to an asset pledged as security for loan repayment, unsuited for an academic scholarship.'
+  - id: '4'
+    text: tariff
+    correct: false
+    error_tag: customs_duty_mismatch
+    explanation: '''Tariff'' refers to a tax imposed on imported goods, unrelated to student exchange allowances.'
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ''stipend'' (เงินสนับสนุน/เบี้ยเลี้ยงทุนการศึกษา) ถูกต้องตามบริบททุนแลกเปลี่ยนนักศึกษาที่ครอบคลุมค่าเดินทางและค่าครองชีพ
+
+    ตัวเลือก 2 penalty = ค่าปรับ, ตัวเลือก 3 collateral = หลักทรัพย์ค้ำประกัน, ตัวเลือก 4 tariff = ภาษีศุลกากร'
+- number: 38
+  question_id: tgat1-60-q38
+  topic: tgat1.reading.text_completion
+  skill: phrasal_collocation_comply_with
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the announcement from the Greenwood International Academic Office and choose the best answer for
+    questions 36-40.
+
+
+    The Office of International Academic Affairs is pleased to unveil the 2025 Global Sustainability Exchange Grant. (36)
+    ________ full-time undergraduate students maintain a cumulative GPA of 3.25 or above, they are entitled to submit project
+    proposals for overseas institutional exchanges. Selected recipients will receive a substantial merit-based (37) ________
+    covering round-trip airfare, living accommodations, and tuition waivers at partner universities.
+
+
+    Candidates must ensure that all application portfolios strictly (38) ________ institutional guidelines. Required documentation
+    includes a statement of purpose, two faculty recommendation endorsements, and proof of advanced English proficiency. (39)
+    ________, incomplete submissions or those uploaded after the October 31st deadline will be disqualified without administrative
+    review. The committee seeks scholars of proven academic (40) ________ who demonstrate genuine civic leadership potential.
+
+
+    Choose the best option for blank (38):'
+  options:
+  - id: '1'
+    text: object to
+    correct: false
+    error_tag: antagonistic_meaning
+    explanation: '''Object to'' means to oppose or express disapproval of the guidelines, which is contrary to application
+      instructions.'
+  - id: '2'
+    text: depart from
+    correct: false
+    error_tag: divergence_meaning
+    explanation: '''Depart from'' means to deviate from standard rules, violating institutional procedures.'
+  - id: '3'
+    text: comply with
+    correct: true
+    error_tag: null
+    explanation: '''Comply with'' means to act in accordance with rules or regulations, forming the standard institutional
+      collocation.'
+  - id: '4'
+    text: dispense with
+    correct: false
+    error_tag: discarding_meaning
+    explanation: '''Dispense with'' means to manage without or discard rules, which leads to immediate disqualification.'
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ''comply with'' (ปฏิบัติตามกฎเกณฑ์) เป็นกริยาวลีที่ใช้คู่กับ institutional guidelines อย่างถูกต้องตามมาตรฐานภาษาอังกฤษทางวิชาการ
+
+    ตัวเลือก 1 คัดค้าน, ตัวเลือก 2 เบี่ยงเบนออกไป, ตัวเลือก 4 ทิ้ง/ยกเลิกกฎ'
+- number: 39
+  question_id: tgat1-60-q39
+  topic: tgat1.reading.text_completion
+  skill: adversative_warning_transition
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the announcement from the Greenwood International Academic Office and choose the best answer for
+    questions 36-40.
+
+
+    The Office of International Academic Affairs is pleased to unveil the 2025 Global Sustainability Exchange Grant. (36)
+    ________ full-time undergraduate students maintain a cumulative GPA of 3.25 or above, they are entitled to submit project
+    proposals for overseas institutional exchanges. Selected recipients will receive a substantial merit-based (37) ________
+    covering round-trip airfare, living accommodations, and tuition waivers at partner universities.
+
+
+    Candidates must ensure that all application portfolios strictly (38) ________ institutional guidelines. Required documentation
+    includes a statement of purpose, two faculty recommendation endorsements, and proof of advanced English proficiency. (39)
+    ________, incomplete submissions or those uploaded after the October 31st deadline will be disqualified without administrative
+    review. The committee seeks scholars of proven academic (40) ________ who demonstrate genuine civic leadership potential.
+
+
+    Choose the best option for blank (39):'
+  options:
+  - id: '1'
+    text: Specifically
+    correct: false
+    error_tag: exemplification_marker_error
+    explanation: '''Specifically'' is used to provide narrow details of a previous statement, not to introduce a severe administrative
+      warning.'
+  - id: '2'
+    text: Nevertheless
+    correct: false
+    error_tag: concessive_transition_error
+    explanation: '''Nevertheless'' indicates a surprise in spite of previous facts, rather than an explicit administrative
+      condition/warning.'
+  - id: '3'
+    text: Importantly
+    correct: true
+    error_tag: null
+    explanation: '''Importantly'' draws critical emphasis to the strict administrative deadline warning regarding disqualification.'
+  - id: '4'
+    text: For example
+    correct: false
+    error_tag: exemplification_mismatch
+    explanation: The sentence issues a binding disqualification rule rather than an illustrative example.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ''Importantly'' (ข้อสำคัญที่ต้องตระหนัก) ทำหน้าที่เป็นคำเชื่อมดึงความสนใจไปยังข้อกำหนดที่สำคัญมาก
+    นั่นคือการตัดสิทธิ์ใบสมัครที่ไม่สมบูรณ์หรือส่งล่าช้า
+
+    ตัวเลือกอื่นบอกการระบุเจาะจง ความขัดแย้ง หรือยกตัวอย่าง ซึ่งไม่เข้ากับน้ำเสียงเตือนกฎระเบียบ'
+- number: 40
+  question_id: tgat1-60-q40
+  topic: tgat1.reading.text_completion
+  skill: collocation_academic_excellence
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the announcement from the Greenwood International Academic Office and choose the best answer for
+    questions 36-40.
+
+
+    The Office of International Academic Affairs is pleased to unveil the 2025 Global Sustainability Exchange Grant. (36)
+    ________ full-time undergraduate students maintain a cumulative GPA of 3.25 or above, they are entitled to submit project
+    proposals for overseas institutional exchanges. Selected recipients will receive a substantial merit-based (37) ________
+    covering round-trip airfare, living accommodations, and tuition waivers at partner universities.
+
+
+    Candidates must ensure that all application portfolios strictly (38) ________ institutional guidelines. Required documentation
+    includes a statement of purpose, two faculty recommendation endorsements, and proof of advanced English proficiency. (39)
+    ________, incomplete submissions or those uploaded after the October 31st deadline will be disqualified without administrative
+    review. The committee seeks scholars of proven academic (40) ________ who demonstrate genuine civic leadership potential.
+
+
+    Choose the best option for blank (40):'
+  options:
+  - id: '1'
+    text: stagnation
+    correct: false
+    error_tag: negative_concept
+    explanation: '''Stagnation'' means lack of progress or decline, contradictory to scholarship candidate selection.'
+  - id: '2'
+    text: excellence
+    correct: true
+    error_tag: null
+    explanation: '''Academic excellence'' is the standard formal collocation denoting exceptional scholarly achievement.'
+  - id: '3'
+    text: mediocrity
+    correct: false
+    error_tag: substandard_quality
+    explanation: '''Mediocrity'' denotes average or substandard performance, unfit for competitive grant recipients.'
+  - id: '4'
+    text: negligence
+    correct: false
+    error_tag: careless_dereliction
+    explanation: '''Negligence'' means carelessness or failure to exercise proper care, completely antithetical to selection
+      criteria.'
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ''excellence'' ถูกต้อง เข้าคู่เป็นสำนวน ''academic excellence'' (ความเป็นเลิศทางวิชาการ) ซึ่งเป็นคุณสมบัติหลักของนักศึกษาที่คณะกรรมการคัดเลือก
+
+    ตัวเลือก 1 ความหยุดนิ่ง, ตัวเลือก 3 ความธรรมดา/ดาดๆ, ตัวเลือก 4 ความประมาทเลินเล่อ'
+- number: 41
+  question_id: tgat1-60-q41
+  topic: tgat1.reading.text_completion
+  skill: gerund_as_subject
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the technological article on urban electrical infrastructure and choose the best answer for questions
+    41-45.
+
+
+    Modern metropolitan areas face mounting electrical stress due to rapid urbanization and the proliferation of electric
+    vehicle charging networks. (41) ________ intermittent solar and wind energy into aging legacy distribution grids presents
+    profound engineering difficulties. Fluctuations in renewable generation can destabilize voltage frequencies, (42) ________
+    causing sudden blackouts across critical industrial sectors.
+
+
+    To combat these vulnerabilities, electrical engineering consortia are deploying decentralized smart grid architectures.
+    These responsive networks utilize artificial intelligence algorithms (43) ________ predict localized load spikes hours
+    in advance. (44) ________, utility operators can dynamically dispatch battery storage reserves to buffer peak consumption
+    intervals. Municipal planners assert that widespread smart grid adoption (45) ________ urban carbon footprints while enhancing
+    civic disaster resilience.
+
+
+    Choose the best option for blank (41):'
+  options:
+  - id: '1'
+    text: Integrating
+    correct: true
+    error_tag: null
+    explanation: The gerund 'Integrating' functions correctly as the head of the subject noun phrase governing the singular
+      predicate 'presents'.
+  - id: '2'
+    text: Integrated
+    correct: false
+    error_tag: past_participle_subject_error
+    explanation: Past participle cannot stand as the subject of the finite verb 'presents' in active voice.
+  - id: '3'
+    text: Having been integrated
+    correct: false
+    error_tag: passive_perfect_participle_error
+    explanation: Passive perfect participle cannot act as an active gerundial subject.
+  - id: '4'
+    text: To be integrating
+    correct: false
+    error_tag: progressive_infinitive_awkwardness
+    explanation: Progressive infinitive is ungrammatical and awkward as a general conceptual subject.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ''Integrating'' เป็นรูป Gerund (กริยานาม V.ing) ทำหน้าที่เป็นประธานของประโยค [Integrating intermittent
+    solar and wind energy...] กริยาแท้คือ ''presents'' (เอกพจน์)
+
+    ตัวเลือก 2 เป็นรูป V.3, ตัวเลือก 3 เป็นรูป Passive Perfect, ตัวเลือก 4 โครงสร้างไม่เป็นธรรมชาติและผิดหลักไวยากรณ์'
+- number: 42
+  question_id: tgat1-60-q42
+  topic: tgat1.reading.text_completion
+  skill: adverbial_cause_effect_linking
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the technological article on urban electrical infrastructure and choose the best answer for questions
+    41-45.
+
+
+    Modern metropolitan areas face mounting electrical stress due to rapid urbanization and the proliferation of electric
+    vehicle charging networks. (41) ________ intermittent solar and wind energy into aging legacy distribution grids presents
+    profound engineering difficulties. Fluctuations in renewable generation can destabilize voltage frequencies, (42) ________
+    causing sudden blackouts across critical industrial sectors.
+
+
+    To combat these vulnerabilities, electrical engineering consortia are deploying decentralized smart grid architectures.
+    These responsive networks utilize artificial intelligence algorithms (43) ________ predict localized load spikes hours
+    in advance. (44) ________, utility operators can dynamically dispatch battery storage reserves to buffer peak consumption
+    intervals. Municipal planners assert that widespread smart grid adoption (45) ________ urban carbon footprints while enhancing
+    civic disaster resilience.
+
+
+    Choose the best option for blank (42):'
+  options:
+  - id: '1'
+    text: hopelessly
+    correct: false
+    error_tag: emotive_bias
+    explanation: '''Hopelessly'' introduces an unscientific emotive bias unsuited for an engineering report.'
+  - id: '2'
+    text: thereby
+    correct: true
+    error_tag: null
+    explanation: '''Thereby'' means ''by that means / as a result of that'', linking the destabilization of voltage to the
+      resulting blackouts with a present participle (''causing'').'
+  - id: '3'
+    text: whereas
+    correct: false
+    error_tag: subordinating_conjunction_error
+    explanation: '''Whereas'' introduces a contrasting dependent clause with subject and finite verb, not a participial result
+      phrase.'
+  - id: '4'
+    text: meanwhile
+    correct: false
+    error_tag: temporal_simultaneity_mismatch
+    explanation: '''Meanwhile'' indicates simultaneous separate action rather than direct causality.'
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ''thereby'' (ด้วยเหตุนั้น/ส่งผลให้) ถูกต้อง เป็นกริยาวิเศษณ์เชื่อมโยงผลลัพธ์ นำหน้า V.ing [thereby
+    causing sudden blackouts] แสดงผลที่ตามมาจากการที่แรงดันไฟฟ้าไร้เสถียรภาพ
+
+    ตัวเลือก 1 ใส่อารมณ์สิ้นหวัง, ตัวเลือก 3 แสดงการเปรียบเทียบขัดแย้ง, ตัวเลือก 4 บอกเวลาที่เกิดขึ้นพร้อมกันแต่ไม่เป็นเหตุเป็นผล'
+- number: 43
+  question_id: tgat1-60-q43
+  topic: tgat1.reading.text_completion
+  skill: infinitive_of_purpose
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the technological article on urban electrical infrastructure and choose the best answer for questions
+    41-45.
+
+
+    Modern metropolitan areas face mounting electrical stress due to rapid urbanization and the proliferation of electric
+    vehicle charging networks. (41) ________ intermittent solar and wind energy into aging legacy distribution grids presents
+    profound engineering difficulties. Fluctuations in renewable generation can destabilize voltage frequencies, (42) ________
+    causing sudden blackouts across critical industrial sectors.
+
+
+    To combat these vulnerabilities, electrical engineering consortia are deploying decentralized smart grid architectures.
+    These responsive networks utilize artificial intelligence algorithms (43) ________ predict localized load spikes hours
+    in advance. (44) ________, utility operators can dynamically dispatch battery storage reserves to buffer peak consumption
+    intervals. Municipal planners assert that widespread smart grid adoption (45) ________ urban carbon footprints while enhancing
+    civic disaster resilience.
+
+
+    Choose the best option for blank (43):'
+  options:
+  - id: '1'
+    text: to
+    correct: true
+    error_tag: null
+    explanation: The infinitive marker 'to' expresses purpose ('to predict localized load spikes') modifying the use of AI
+      algorithms.
+  - id: '2'
+    text: for
+    correct: false
+    error_tag: preposition_before_base_verb_error
+    explanation: '''For'' requires a gerund (''for predicting''), not the base form verb ''predict''.'
+  - id: '3'
+    text: so that
+    correct: false
+    error_tag: clause_connector_missing_subject
+    explanation: '''So that'' must be followed by a full clause with a subject and modal verb (''so that they can predict'').'
+  - id: '4'
+    text: in case
+    correct: false
+    error_tag: precautionary_connector_error
+    explanation: '''In case'' indicates a precautionary contingency and requires a full finite clause.'
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ''to'' ถูกต้องตามโครงสร้าง Infinitive of Purpose (to + V.inf) แสดงวัตถุประสงค์ของการใช้อัลกอริทึม
+    AI เพื่อทำนายการพุ่งขึ้นของการใช้ไฟฟ้า (to predict...)
+
+    ตัวเลือก 2 for ต้องตามด้วย V.ing, ตัวเลือก 3 so that ต้องตามด้วยประธานและกริยา, ตัวเลือก 4 in case เผื่อว่า'
+- number: 44
+  question_id: tgat1-60-q44
+  topic: tgat1.reading.text_completion
+  skill: resultant_logical_transition
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the technological article on urban electrical infrastructure and choose the best answer for questions
+    41-45.
+
+
+    Modern metropolitan areas face mounting electrical stress due to rapid urbanization and the proliferation of electric
+    vehicle charging networks. (41) ________ intermittent solar and wind energy into aging legacy distribution grids presents
+    profound engineering difficulties. Fluctuations in renewable generation can destabilize voltage frequencies, (42) ________
+    causing sudden blackouts across critical industrial sectors.
+
+
+    To combat these vulnerabilities, electrical engineering consortia are deploying decentralized smart grid architectures.
+    These responsive networks utilize artificial intelligence algorithms (43) ________ predict localized load spikes hours
+    in advance. (44) ________, utility operators can dynamically dispatch battery storage reserves to buffer peak consumption
+    intervals. Municipal planners assert that widespread smart grid adoption (45) ________ urban carbon footprints while enhancing
+    civic disaster resilience.
+
+
+    Choose the best option for blank (44):'
+  options:
+  - id: '1'
+    text: In spite of this
+    correct: false
+    error_tag: concessive_misalignment
+    explanation: The sentence describes positive implementation enabled by AI predictions, not a concession contrary to them.
+  - id: '2'
+    text: Otherwise
+    correct: false
+    error_tag: negative_conditional_marker
+    explanation: '''Otherwise'' warns of negative consequences if a condition is not met, which does not fit this operational
+      step.'
+  - id: '3'
+    text: As a result
+    correct: true
+    error_tag: null
+    explanation: '''As a result'' shows that utility operators can dispatch battery reserves because AI predicts load spikes
+      in advance.'
+  - id: '4'
+    text: On the contrary
+    correct: false
+    error_tag: contradictory_negation_marker
+    explanation: '''On the contrary'' denies a preceding assumption, which is irrelevant to predictive grid dispatching.'
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ''As a result'' (ด้วยเหตุนี้/ผลลัพธ์คือ) ถูกต้อง เพราะประโยคก่อนหน้าบอกว่า AI ทำนายการใช้ไฟล่วงหน้าได้หลายชั่วโมง
+    ผลที่ตามมาคือผู้ควบคุมระบบสามารถสั่งจ่ายไฟจากแบตเตอรี่สำรองได้ทันท่วงที
+
+    ตัวเลือกอื่นบอกความขัดแย้ง การเตือน หรือการปฏิเสธสิ่งที่กล่าวมา'
+- number: 45
+  question_id: tgat1-60-q45
+  topic: tgat1.reading.text_completion
+  skill: modal_verb_future_capability
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the technological article on urban electrical infrastructure and choose the best answer for questions
+    41-45.
+
+
+    Modern metropolitan areas face mounting electrical stress due to rapid urbanization and the proliferation of electric
+    vehicle charging networks. (41) ________ intermittent solar and wind energy into aging legacy distribution grids presents
+    profound engineering difficulties. Fluctuations in renewable generation can destabilize voltage frequencies, (42) ________
+    causing sudden blackouts across critical industrial sectors.
+
+
+    To combat these vulnerabilities, electrical engineering consortia are deploying decentralized smart grid architectures.
+    These responsive networks utilize artificial intelligence algorithms (43) ________ predict localized load spikes hours
+    in advance. (44) ________, utility operators can dynamically dispatch battery storage reserves to buffer peak consumption
+    intervals. Municipal planners assert that widespread smart grid adoption (45) ________ urban carbon footprints while enhancing
+    civic disaster resilience.
+
+
+    Choose the best option for blank (45):'
+  options:
+  - id: '1'
+    text: had reduced
+    correct: false
+    error_tag: past_perfect_mismatch
+    explanation: Past perfect falsely asserts completed reduction in the past, contradicting forward-looking planning assertions.
+  - id: '2'
+    text: will significantly curtail
+    correct: true
+    error_tag: null
+    explanation: Future modal 'will significantly curtail' correctly conveys projected future reduction of carbon emissions.
+  - id: '3'
+    text: would have curtailed
+    correct: false
+    error_tag: past_counterfactual_error
+    explanation: Past counterfactual implies failure to curtail, contradicting the optimistic municipal forecast.
+  - id: '4'
+    text: curtailing
+    correct: false
+    error_tag: missing_finite_verb
+    explanation: Bare participle 'curtailing' leaves the noun clause without a finite predicate verb.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ''will significantly curtail'' (จะช่วยลดทอนลงได้อย่างมีนัยสำคัญ) ถูกต้อง เป็นการคาดการณ์ผลสัมฤทธิ์ในอนาคตของผังเมืองว่าการนำสมาร์ตกริดมาใช้จะช่วยลดการปล่อยคาร์บอน
+
+    ตัวเลือก 1 และ 3 เป็นโครงสร้างอดีต/สมมุติในอดีตที่ไม่ได้เกิดขึ้น, ตัวเลือก 4 ขาดกริยาแท้'
+- number: 46
+  question_id: tgat1-60-q46
+  topic: tgat1.reading.reading_comprehension
+  skill: data_retrieval_lowest_cost
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Study the technical report table below on Global Coastal Desalination Capacity (2020-2025) and answer
+    questions 46-50.
+
+
+    TABLE: Summary of Regional Seawater Desalination Operations (2024 Audit)
+
+    | Regional Sector | Daily Desalinated Output (Million m³) | Powered by Renewable Energy (%) | Average Production Cost
+    (USD / m³) | Projected 5-Year Output Growth (%) |
+
+    | :--- | :--- | :--- | :--- | :--- |
+
+    | Middle East & North Africa (MENA) | 48.5 | 18% | $0.62 | 24% |
+
+    | Southern Mediterranean (Europe) | 12.4 | 42% | $0.85 | 15% |
+
+    | Southeast Asia (ASEAN) | 6.8 | 35% | $0.94 | 48% |
+
+    | Pacific Latin America | 4.2 | 56% | $0.78 | 32% |
+
+
+    Notes: Desalination costs encompass energy intake, membrane filtration replacement, and environmental brine management.
+    Data compiled by the International Desalination Consortium.
+
+
+    According to the table, which regional sector boasts the LOWEST average production cost per cubic meter of desalinated
+    water?'
+  options:
+  - id: '1'
+    text: Middle East & North Africa (MENA)
+    correct: true
+    error_tag: null
+    explanation: MENA has a production cost of $0.62 per m³, which is lower than all other listed regions ($0.78, $0.85, $0.94).
+  - id: '2'
+    text: Southern Mediterranean (Europe)
+    correct: false
+    error_tag: incorrect_cost_reading
+    explanation: Southern Mediterranean costs $0.85 per m³, higher than MENA's $0.62.
+  - id: '3'
+    text: Southeast Asia (ASEAN)
+    correct: false
+    error_tag: highest_cost_misidentification
+    explanation: Southeast Asia actually has the highest production cost at $0.94 per m³.
+  - id: '4'
+    text: Pacific Latin America
+    correct: false
+    error_tag: intermediate_cost_reading
+    explanation: Pacific Latin America costs $0.78 per m³, which is higher than MENA.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง จากตาราง คอลัมน์ Average Production Cost (USD / m³) ภูมิภาค Middle East & North Africa
+    (MENA) มีต้นทุนต่ำที่สุดคือ $0.62 ต่อลูกบาศก์เมตร (เทียบกับ $0.85, $0.94, $0.78)
+
+    ตัวเลือกอื่นมีต้นทุนสูงกว่า'
+- number: 47
+  question_id: tgat1-60-q47
+  topic: tgat1.reading.reading_comprehension
+  skill: comparative_percentage_analysis
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Study the technical report table below on Global Coastal Desalination Capacity (2020-2025) and answer
+    questions 46-50.
+
+
+    TABLE: Summary of Regional Seawater Desalination Operations (2024 Audit)
+
+    | Regional Sector | Daily Desalinated Output (Million m³) | Powered by Renewable Energy (%) | Average Production Cost
+    (USD / m³) | Projected 5-Year Output Growth (%) |
+
+    | :--- | :--- | :--- | :--- | :--- |
+
+    | Middle East & North Africa (MENA) | 48.5 | 18% | $0.62 | 24% |
+
+    | Southern Mediterranean (Europe) | 12.4 | 42% | $0.85 | 15% |
+
+    | Southeast Asia (ASEAN) | 6.8 | 35% | $0.94 | 48% |
+
+    | Pacific Latin America | 4.2 | 56% | $0.78 | 32% |
+
+
+    Notes: Desalination costs encompass energy intake, membrane filtration replacement, and environmental brine management.
+    Data compiled by the International Desalination Consortium.
+
+
+    Which statement accurately compares Southeast Asia (ASEAN) and the Southern Mediterranean based on the data?'
+  options:
+  - id: '1'
+    text: Southeast Asia produces more than double the daily volume of the Southern Mediterranean.
+    correct: false
+    error_tag: contradicts_volume_data
+    explanation: Southeast Asia produces 6.8 million m³, whereas Southern Mediterranean produces 12.4 million m³.
+  - id: '2'
+    text: Southeast Asia has a higher projected 5-year growth rate than the Southern Mediterranean, despite a higher current
+      production cost.
+    correct: true
+    error_tag: null
+    explanation: ASEAN projected growth is 48% (vs 15% in Southern Mediterranean) and its cost is $0.94 (vs $0.85).
+  - id: '3'
+    text: Both regions derive more than 50% of their operational desalination power from renewable sources.
+    correct: false
+    error_tag: contradicts_renewable_data
+    explanation: Neither region exceeds 50% (ASEAN is 35%, Southern Mediterranean is 42%).
+  - id: '4'
+    text: The Southern Mediterranean has the slowest growth rate and the lowest renewable energy share.
+    correct: false
+    error_tag: factually_inaccurate_comparison
+    explanation: MENA has the lowest renewable share (18%), not Southern Mediterranean.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง เอเชียตะวันออกเฉียงใต้ (ASEAN) มีอัตราการเติบโตคาดการณ์ใน 5 ปีสูงถึง 48% (เทียบกับยุโรปใต้ที่
+    15%) แม้จะมีต้นทุนการผลิตในปัจจุบันสูงกว่า ($0.94 เทียบกับ $0.85)
+
+    ตัวเลือกอื่นขัดแย้งกับตัวเลขในตาราง'
+- number: 48
+  question_id: tgat1-60-q48
+  topic: tgat1.reading.reading_comprehension
+  skill: renewable_energy_identification
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Study the technical report table below on Global Coastal Desalination Capacity (2020-2025) and answer
+    questions 46-50.
+
+
+    TABLE: Summary of Regional Seawater Desalination Operations (2024 Audit)
+
+    | Regional Sector | Daily Desalinated Output (Million m³) | Powered by Renewable Energy (%) | Average Production Cost
+    (USD / m³) | Projected 5-Year Output Growth (%) |
+
+    | :--- | :--- | :--- | :--- | :--- |
+
+    | Middle East & North Africa (MENA) | 48.5 | 18% | $0.62 | 24% |
+
+    | Southern Mediterranean (Europe) | 12.4 | 42% | $0.85 | 15% |
+
+    | Southeast Asia (ASEAN) | 6.8 | 35% | $0.94 | 48% |
+
+    | Pacific Latin America | 4.2 | 56% | $0.78 | 32% |
+
+
+    Notes: Desalination costs encompass energy intake, membrane filtration replacement, and environmental brine management.
+    Data compiled by the International Desalination Consortium.
+
+
+    Which regional sector achieves the HIGHEST percentage of desalination operations powered by renewable energy?'
+  options:
+  - id: '1'
+    text: Middle East & North Africa (MENA)
+    correct: false
+    error_tag: lowest_renewable_reading
+    explanation: MENA has the lowest renewable share at 18%.
+  - id: '2'
+    text: Southeast Asia (ASEAN)
+    correct: false
+    error_tag: intermediate_renewable_reading
+    explanation: Southeast Asia is at 35%.
+  - id: '3'
+    text: Southern Mediterranean (Europe)
+    correct: false
+    error_tag: second_highest_reading
+    explanation: Southern Mediterranean is at 42%.
+  - id: '4'
+    text: Pacific Latin America
+    correct: true
+    error_tag: null
+    explanation: Pacific Latin America leads with 56% of operations powered by renewable energy.
+  correct_answer: '4'
+  solution: 'ตัวเลือกที่ 4 ถูกต้อง Pacific Latin America มีสัดส่วนพลังงานหมุนเวียนในการผลิตน้ำจืดสูงสุดที่ 56% (คอลัมน์ Powered
+    by Renewable Energy)
+
+    ตัวเลือก 1 ต่ำสุดที่ 18%, ตัวเลือก 2 อยู่ที่ 35%, ตัวเลือก 3 อยู่ที่ 42%'
+- number: 49
+  question_id: tgat1-60-q49
+  topic: tgat1.reading.reading_comprehension
+  skill: factual_truth_evaluation
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Study the technical report table below on Global Coastal Desalination Capacity (2020-2025) and answer
+    questions 46-50.
+
+
+    TABLE: Summary of Regional Seawater Desalination Operations (2024 Audit)
+
+    | Regional Sector | Daily Desalinated Output (Million m³) | Powered by Renewable Energy (%) | Average Production Cost
+    (USD / m³) | Projected 5-Year Output Growth (%) |
+
+    | :--- | :--- | :--- | :--- | :--- |
+
+    | Middle East & North Africa (MENA) | 48.5 | 18% | $0.62 | 24% |
+
+    | Southern Mediterranean (Europe) | 12.4 | 42% | $0.85 | 15% |
+
+    | Southeast Asia (ASEAN) | 6.8 | 35% | $0.94 | 48% |
+
+    | Pacific Latin America | 4.2 | 56% | $0.78 | 32% |
+
+
+    Notes: Desalination costs encompass energy intake, membrane filtration replacement, and environmental brine management.
+    Data compiled by the International Desalination Consortium.
+
+
+    Based on the table, which of the following statements is completely TRUE?'
+  options:
+  - id: '1'
+    text: MENA accounts for more daily desalinated water output than the other three listed regions combined.
+    correct: true
+    error_tag: null
+    explanation: MENA produces 48.5 million m³, while the sum of the other three is 12.4 + 6.8 + 4.2 = 23.4 million m³, so
+      MENA exceeds their sum.
+  - id: '2'
+    text: Production cost is directly proportional to daily output volume across all four regions.
+    correct: false
+    error_tag: contradicts_economy_of_scale
+    explanation: MENA has the highest volume (48.5) but the lowest cost ($0.62), disproving direct proportionality.
+  - id: '3'
+    text: Pacific Latin America produces the highest daily water volume among all sectors.
+    correct: false
+    error_tag: lowest_volume_misreading
+    explanation: Pacific Latin America produces the lowest daily volume at 4.2 million m³.
+  - id: '4'
+    text: Southeast Asia utilizes zero renewable power in its desalination facilities.
+    correct: false
+    error_tag: contradicts_35_percent_stat
+    explanation: ASEAN uses 35% renewable power, not zero.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง เมื่อคำนวณผลผลิตรวมของ 3 ภูมิภาคที่เหลือ (12.4 + 6.8 + 4.2 = 23.4 ล้าน ลบ.ม.) จะพบว่า MENA
+    ผลิตได้ 48.5 ล้าน ลบ.ม. ซึ่งมากกว่าผลผลิตของทั้งสามภาครวมกันเกินสองเท่า
+
+    ตัวเลือกอื่นขัดแย้งกับตัวเลขเชิงประจักษ์ในตาราง'
+- number: 50
+  question_id: tgat1-60-q50
+  topic: tgat1.reading.reading_comprehension
+  skill: identifying_primary_purpose
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Study the technical report table below on Global Coastal Desalination Capacity (2020-2025) and answer
+    questions 46-50.
+
+
+    TABLE: Summary of Regional Seawater Desalination Operations (2024 Audit)
+
+    | Regional Sector | Daily Desalinated Output (Million m³) | Powered by Renewable Energy (%) | Average Production Cost
+    (USD / m³) | Projected 5-Year Output Growth (%) |
+
+    | :--- | :--- | :--- | :--- | :--- |
+
+    | Middle East & North Africa (MENA) | 48.5 | 18% | $0.62 | 24% |
+
+    | Southern Mediterranean (Europe) | 12.4 | 42% | $0.85 | 15% |
+
+    | Southeast Asia (ASEAN) | 6.8 | 35% | $0.94 | 48% |
+
+    | Pacific Latin America | 4.2 | 56% | $0.78 | 32% |
+
+
+    Notes: Desalination costs encompass energy intake, membrane filtration replacement, and environmental brine management.
+    Data compiled by the International Desalination Consortium.
+
+
+    What is the primary objective of this technical summary report?'
+  options:
+  - id: '1'
+    text: To argue that desalination causes irreversible environmental destruction across all oceans.
+    correct: false
+    error_tag: unsupported_negative_agenda
+    explanation: The report does not argue for environmental destruction; it presents comparative capacity metrics.
+  - id: '2'
+    text: To promote the privatization of household water utilities in Southeast Asia.
+    correct: false
+    error_tag: unmentioned_privatization
+    explanation: Privatization is neither mentioned nor implied in the table.
+  - id: '3'
+    text: To benchmark regional desalination output, renewable integration, operational costs, and near-term expansion trends.
+    correct: true
+    error_tag: null
+    explanation: Accurately synthesizes the four core data dimensions evaluated in the table.
+  - id: '4'
+    text: To demand the immediate worldwide prohibition of membrane filtration technology.
+    correct: false
+    error_tag: absurd_prohibition_claim
+    explanation: Absurd claim contrary to engineering data tracking.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง วัตถุประสงค์หลักของรายงานคือการเปรียบเทียบข้อมูลเชิงสมรรถนะ (Benchmark) ของการผลิตน้ำจืดจากน้ำทะเลในแต่ละภูมิภาค
+    ทั้งในแง่ปริมาณผลผลิต การใช้พลังงานสะอาด ต้นทุนต่อหน่วย และแนวโน้มการเติบโตในอนาคต
+
+    ตัวเลือกอื่นบิดเบือนเจตนารมณ์ของข้อมูล'
+- number: 51
+  question_id: tgat1-60-q51
+  topic: tgat1.reading.reading_comprehension
+  skill: identifying_main_idea
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the ecological article below on forest networks and answer questions 51-55.
+
+
+    Beneath the tranquil forest floor lies a sprawling, subterranean web of microscopic fungal filaments known as mycorrhizae.
+    Rather than existing as isolated entities engaged in ruthless Darwinian competition, forest trees maintain intricate,
+    mutually beneficial relationships mediated by these fungal networks, colloquially termed the ''Wood Wide Web''. The fungi
+    lack chlorophyll and cannot perform photosynthesis; consequently, they rely on host trees to supply carbon-rich sugars.
+    In return, the expansive fungal mycelium, possessing an enormous surface-area-to-volume ratio, mines distant soil micro-pores
+    for vital phosphorus, nitrogen, and moisture, funneling these nutrients back into tree root systems.
+
+
+    Strikingly, empirical research led by forest ecologists demonstrates that mature canopy trees utilize these subterranean
+    pathways to transfer surplus glucose to shaded understory saplings, dramatically increasing juvenile survival rates. Furthermore,
+    when an herbivorous beetle infests a mature Douglas fir, the attacked tree transmits biochemical warning signals through
+    the fungal network to neighboring conspecifics. Upon receiving **these chemical cues**, uninfested trees proactively upregulate
+    the synthesis of unpalatable tannins and defensive enzymes before the pests arrive. This cooperative underground architecture
+    suggests that forest resilience depends profoundly on collective networked reciprocity rather than solitary survival.
+
+
+    What is the main idea of this passage?'
+  options:
+  - id: '1'
+    text: Underground fungi act as lethal parasites that inevitably destroy forest ecosystems.
+    correct: false
+    error_tag: opposite_of_symbiosis
+    explanation: Fungi are depicted as symbiotic partners exchanging nutrients, not lethal parasites.
+  - id: '2'
+    text: Forest trees and mycorrhizal fungi form an interconnected subterranean network that shares resources and distributes
+      defense signals, enhancing collective ecosystem resilience.
+    correct: true
+    error_tag: null
+    explanation: Captures both mutualistic nutrient exchange and biochemical alarm signaling that build collective forest
+      resilience.
+  - id: '3'
+    text: Mature canopy trees consume all available soil nitrogen to starve younger saplings.
+    correct: false
+    error_tag: contradicts_nutrient_sharing
+    explanation: Text explicitly states mature trees transfer surplus glucose to shaded saplings.
+  - id: '4'
+    text: Beetles utilize fungal networks to travel underground between distant trees.
+    correct: false
+    error_tag: misunderstood_insect_role
+    explanation: Beetles attack trees above ground; they do not travel through the fungal network.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 สรุปใจความสำคัญของบทความได้อย่างสมบูรณ์ ต้นไม้และเชื้อราไมคอร์ไรซาสร้างเครือข่ายใต้ดินที่พึ่งพาอาศัยกัน
+    ช่วยแบ่งปันสารอาหารและส่งสัญญาณเตือนภัยศัตรูพืช เสริมสร้างความทนทานของระบบนิเวศป่าไม้ร่วมกัน
+
+    ตัวเลือกอื่นขัดแย้งกับข้อเท็จจริงในเนื้อเรื่อง'
+- number: 52
+  question_id: tgat1-60-q52
+  topic: tgat1.reading.reading_comprehension
+  skill: pronoun_reference_cohesion
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the ecological article below on forest networks and answer questions 51-55.
+
+
+    Beneath the tranquil forest floor lies a sprawling, subterranean web of microscopic fungal filaments known as mycorrhizae.
+    Rather than existing as isolated entities engaged in ruthless Darwinian competition, forest trees maintain intricate,
+    mutually beneficial relationships mediated by these fungal networks, colloquially termed the ''Wood Wide Web''. The fungi
+    lack chlorophyll and cannot perform photosynthesis; consequently, they rely on host trees to supply carbon-rich sugars.
+    In return, the expansive fungal mycelium, possessing an enormous surface-area-to-volume ratio, mines distant soil micro-pores
+    for vital phosphorus, nitrogen, and moisture, funneling these nutrients back into tree root systems.
+
+
+    Strikingly, empirical research led by forest ecologists demonstrates that mature canopy trees utilize these subterranean
+    pathways to transfer surplus glucose to shaded understory saplings, dramatically increasing juvenile survival rates. Furthermore,
+    when an herbivorous beetle infests a mature Douglas fir, the attacked tree transmits biochemical warning signals through
+    the fungal network to neighboring conspecifics. Upon receiving **these chemical cues**, uninfested trees proactively upregulate
+    the synthesis of unpalatable tannins and defensive enzymes before the pests arrive. This cooperative underground architecture
+    suggests that forest resilience depends profoundly on collective networked reciprocity rather than solitary survival.
+
+
+    In the second paragraph, the bold phrase "**these chemical cues**" refers to which of the following?'
+  options:
+  - id: '1'
+    text: Biochemical warning signals transmitted through the fungal network by infested trees
+    correct: true
+    error_tag: null
+    explanation: 'Refers directly to the preceding sentence: ''the attacked tree transmits biochemical warning signals through
+      the fungal network''.'
+  - id: '2'
+    text: Toxic pesticides sprayed by agricultural airplanes
+    correct: false
+    error_tag: unmentioned_artificial_chemicals
+    explanation: Pesticides and airplanes are never mentioned in the text.
+  - id: '3'
+    text: Carbon-rich sugars manufactured by fungal spores
+    correct: false
+    error_tag: factually_inaccurate_source
+    explanation: Sugars are produced by tree photosynthesis, not by fungi, and are nutrients rather than defense cues.
+  - id: '4'
+    text: Sunlight penetrating through the forest canopy
+    correct: false
+    error_tag: irrelevant_physical_phenomenon
+    explanation: Sunlight is solar radiation, not a chemical cue transmitted underground.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง วลี ''these chemical cues'' ในย่อหน้าที่สองอ้างอิงถึงประโยคก่อนหน้าอย่างชัดเจน นั่นคือ
+    ''biochemical warning signals'' (สัญญาณเตือนภัยทางชีวเคมี) ที่ต้นไม้ซึ่งถูกแมลงปีกแข็งรุกรานส่งผ่านเครือข่ายเชื้อราไปยังต้นข้างเคียง
+
+    ตัวเลือกอื่นไม่ได้กล่าวถึงหรือระบุความหมายผิด'
+- number: 53
+  question_id: tgat1-60-q53
+  topic: tgat1.reading.reading_comprehension
+  skill: specific_supporting_detail_nutrient_exchange
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the ecological article below on forest networks and answer questions 51-55.
+
+
+    Beneath the tranquil forest floor lies a sprawling, subterranean web of microscopic fungal filaments known as mycorrhizae.
+    Rather than existing as isolated entities engaged in ruthless Darwinian competition, forest trees maintain intricate,
+    mutually beneficial relationships mediated by these fungal networks, colloquially termed the ''Wood Wide Web''. The fungi
+    lack chlorophyll and cannot perform photosynthesis; consequently, they rely on host trees to supply carbon-rich sugars.
+    In return, the expansive fungal mycelium, possessing an enormous surface-area-to-volume ratio, mines distant soil micro-pores
+    for vital phosphorus, nitrogen, and moisture, funneling these nutrients back into tree root systems.
+
+
+    Strikingly, empirical research led by forest ecologists demonstrates that mature canopy trees utilize these subterranean
+    pathways to transfer surplus glucose to shaded understory saplings, dramatically increasing juvenile survival rates. Furthermore,
+    when an herbivorous beetle infests a mature Douglas fir, the attacked tree transmits biochemical warning signals through
+    the fungal network to neighboring conspecifics. Upon receiving **these chemical cues**, uninfested trees proactively upregulate
+    the synthesis of unpalatable tannins and defensive enzymes before the pests arrive. This cooperative underground architecture
+    suggests that forest resilience depends profoundly on collective networked reciprocity rather than solitary survival.
+
+
+    According to the first paragraph, what do the mycorrhizal fungi provide to host trees in exchange for carbon-rich sugars?'
+  options:
+  - id: '1'
+    text: Chlorophyll molecules and oxygen gas
+    correct: false
+    error_tag: factually_inaccurate_biology
+    explanation: Text states fungi lack chlorophyll and cannot photosynthesize.
+  - id: '2'
+    text: Protection from lightning strikes and wildfire heat
+    correct: false
+    error_tag: unmentioned_exaggerated_protection
+    explanation: Unsubstantiated physical protection not mentioned in the text.
+  - id: '3'
+    text: Essential minerals such as phosphorus, nitrogen, and extracted soil moisture
+    correct: true
+    error_tag: null
+    explanation: 'Explicitly stated: ''mines distant soil micro-pores for vital phosphorus, nitrogen, and moisture, funneling
+      these nutrients back into tree root systems.'''
+  - id: '4'
+    text: Seeds and pollen grains for tree reproduction
+    correct: false
+    error_tag: botanical_inaccuracy
+    explanation: Fungi produce fungal spores, not tree seeds or pollen.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง บทความระบุในย่อหน้าแรกอย่างชัดเจนว่า เชื้อราช่วยดูดซึมฟอสฟอรัส ไนโตรเจน และความชื้นจากรูพรุนของดิน
+    ส่งกลับคืนสู่ระบบรากของต้นไม้เพื่อแลกกับน้ำตาลคาร์บอน
+
+    ตัวเลือกอื่นระบุสารชีวโมเลกุลหรือคุณสมบัติที่เชื้อราไม่ได้สร้าง'
+- number: 54
+  question_id: tgat1-60-q54
+  topic: tgat1.reading.reading_comprehension
+  skill: contextual_vocabulary_unpalatable
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the ecological article below on forest networks and answer questions 51-55.
+
+
+    Beneath the tranquil forest floor lies a sprawling, subterranean web of microscopic fungal filaments known as mycorrhizae.
+    Rather than existing as isolated entities engaged in ruthless Darwinian competition, forest trees maintain intricate,
+    mutually beneficial relationships mediated by these fungal networks, colloquially termed the ''Wood Wide Web''. The fungi
+    lack chlorophyll and cannot perform photosynthesis; consequently, they rely on host trees to supply carbon-rich sugars.
+    In return, the expansive fungal mycelium, possessing an enormous surface-area-to-volume ratio, mines distant soil micro-pores
+    for vital phosphorus, nitrogen, and moisture, funneling these nutrients back into tree root systems.
+
+
+    Strikingly, empirical research led by forest ecologists demonstrates that mature canopy trees utilize these subterranean
+    pathways to transfer surplus glucose to shaded understory saplings, dramatically increasing juvenile survival rates. Furthermore,
+    when an herbivorous beetle infests a mature Douglas fir, the attacked tree transmits biochemical warning signals through
+    the fungal network to neighboring conspecifics. Upon receiving **these chemical cues**, uninfested trees proactively upregulate
+    the synthesis of unpalatable tannins and defensive enzymes before the pests arrive. This cooperative underground architecture
+    suggests that forest resilience depends profoundly on collective networked reciprocity rather than solitary survival.
+
+
+    In the context of the second paragraph, the word "unpalatable" is closest in meaning to which term?'
+  options:
+  - id: '1'
+    text: delicious and appetizing
+    correct: false
+    error_tag: antonym_meaning
+    explanation: Antonym; unpalatable means distasteful to prevent pests from eating.
+  - id: '2'
+    text: distasteful and disagreeable to eat
+    correct: true
+    error_tag: null
+    explanation: '''Unpalatable'' means unpleasant to taste, discouraging insect consumption.'
+  - id: '3'
+    text: invisible to the naked eye
+    correct: false
+    error_tag: optical_property_error
+    explanation: Relates to visual detection, not taste or consumption.
+  - id: '4'
+    text: sweet and nutritious
+    correct: false
+    error_tag: opposite_effect
+    explanation: Opposite; sweet substances attract pests rather than deter them.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ''distasteful and disagreeable to eat'' (รสชาติแย่/ไม่อร่อยจนกินไม่ลง) ถูกต้อง คำว่า ''unpalatable''
+    หมายถึงไม่อร่อยหรือไม่น่ากิน เพื่อป้องกันไม่ให้แมลงศัตรูพืชมากัดกินใบไม้
+
+    ตัวเลือก 1 และ 4 ตรงกันข้าม (อร่อย/หวาน), ตัวเลือก 3 ล่องหน'
+- number: 55
+  question_id: tgat1-60-q55
+  topic: tgat1.reading.reading_comprehension
+  skill: author_attitude_and_perspective
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the ecological article below on forest networks and answer questions 51-55.
+
+
+    Beneath the tranquil forest floor lies a sprawling, subterranean web of microscopic fungal filaments known as mycorrhizae.
+    Rather than existing as isolated entities engaged in ruthless Darwinian competition, forest trees maintain intricate,
+    mutually beneficial relationships mediated by these fungal networks, colloquially termed the ''Wood Wide Web''. The fungi
+    lack chlorophyll and cannot perform photosynthesis; consequently, they rely on host trees to supply carbon-rich sugars.
+    In return, the expansive fungal mycelium, possessing an enormous surface-area-to-volume ratio, mines distant soil micro-pores
+    for vital phosphorus, nitrogen, and moisture, funneling these nutrients back into tree root systems.
+
+
+    Strikingly, empirical research led by forest ecologists demonstrates that mature canopy trees utilize these subterranean
+    pathways to transfer surplus glucose to shaded understory saplings, dramatically increasing juvenile survival rates. Furthermore,
+    when an herbivorous beetle infests a mature Douglas fir, the attacked tree transmits biochemical warning signals through
+    the fungal network to neighboring conspecifics. Upon receiving **these chemical cues**, uninfested trees proactively upregulate
+    the synthesis of unpalatable tannins and defensive enzymes before the pests arrive. This cooperative underground architecture
+    suggests that forest resilience depends profoundly on collective networked reciprocity rather than solitary survival.
+
+
+    Which statement best captures the author''s philosophical perspective on forest ecology?'
+  options:
+  - id: '1'
+    text: Forest health is governed by cooperative interdependence and community-level networking rather than solitary individual
+      rivalry.
+    correct: true
+    error_tag: null
+    explanation: 'Supported by the concluding sentence: ''resilience depends profoundly on collective networked reciprocity
+      rather than solitary survival.'''
+  - id: '2'
+    text: Trees should be harvested continuously because fungal networks will instantly replace them.
+    correct: false
+    error_tag: unwarranted_logging_justification
+    explanation: Advocates harmful logging, completely contrary to the text's ecological reverence.
+  - id: '3'
+    text: Herbivorous insects should be completely eradicated from planet Earth using synthetic poisons.
+    correct: false
+    error_tag: extreme_ecological_imbalance
+    explanation: Extreme ecological claim absent from the passage.
+  - id: '4'
+    text: Understory saplings provide zero ecological value and should be removed.
+    correct: false
+    error_tag: contrary_to_sapling_nurturing
+    explanation: Directly contradicts the passage's admiration of mature trees nurturing saplings.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ผู้เขียนสรุปไว้อย่างชัดเจนในประโยคสุดท้ายว่า สุขภาพและความยั่งยืนของป่าไม้ขึ้นอยู่กับการเกื้อกูลพึ่งพาอาศัยกันและการเชื่อมโยงเป็นเครือข่ายของสิ่งมีชีวิต
+    (cooperative interdependence) มากกว่าการแก่งแย่งแข่งขันเพื่อเอาชีวิตรอดโดยลำพัง
+
+    ตัวเลือกอื่นสนับสนุนการตัดไม้ หรือทำลายระบบนิเวศ'
+- number: 56
+  question_id: tgat1-60-q56
+  topic: tgat1.reading.reading_comprehension
+  skill: identifying_primary_thesis
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the contemporary analysis on technology and ethics below and answer questions 56-60.
+
+
+    The explosive proliferation of generative artificial intelligence across visual art, literature, and commercial design
+    has ignited an intense global debate concerning intellectual provenance and creative labor. Proponents champion these
+    generative models as transformative equalizers that democratize creative ideation, allowing amateur creators with limited
+    technical draftsmanship to manifest intricate visual compositions from simple natural-language prompts. From concept architecture
+    to cinematic storyboarding, generative tools accelerate iterative prototyping at unprecedented velocity.
+
+
+    Conversely, working artists and legal scholars contend that the foundational training paradigms of large multi-modal models
+    constitute systematic intellectual property appropriation. Millions of copyrighted illustrations, digital paintings, and
+    literary works were ingested from public web archives without the explicit consent, attribution, or financial compensation
+    of their original creators. When an AI system can generate high-resolution illustrations in the idiosyncratic style of
+    a living artist within seconds, it directly threatens the economic livelihood of the very individuals whose creative lifework
+    enabled the algorithm''s capability. Ultimately, establishing equitable creative ecosystems will require transparent data
+    auditing mechanisms, legally enforceable compensation frameworks, and recognition that machine synthesis, however sophisticated,
+    reflects an algorithmic remix rather than autonomous human consciousness.
+
+
+    What is the primary thesis of this passage?'
+  options:
+  - id: '1'
+    text: Generative AI has failed commercially because human beings refuse to adopt algorithmic tools.
+    correct: false
+    error_tag: directly_contradicted
+    explanation: Directly contradicted by the opening statement noting explosive proliferation and adoption.
+  - id: '2'
+    text: Computer algorithms have developed genuine human consciousness and emotions.
+    correct: false
+    error_tag: explicitly_refuted
+    explanation: 'Refuted in the final sentence: machine synthesis reflects algorithmic remix, not human consciousness.'
+  - id: '3'
+    text: While generative AI provides powerful creative prototyping capabilities, its reliance on uncompensated training
+      data creates urgent ethical, legal, and economic challenges for human creators.
+    correct: true
+    error_tag: null
+    explanation: 'Accurately synthesizes both perspectives: the acknowledged utility and the serious ethical/copyright problems
+      requiring frameworks.'
+  - id: '4'
+    text: All visual artists should immediately cease creating art to protest technology.
+    correct: false
+    error_tag: extreme_unsupported_proposal
+    explanation: Extreme proposal not found in the passage.
+  correct_answer: '3'
+  solution: 'ตัวเลือกที่ 3 ถูกต้อง เป็นข้อสรุปใจความหลัก (Primary thesis) ของบทความ ซึ่งชี้ให้เห็นทั้งสองด้าน คือ แม้ AI จะช่วยสร้างผลงานต้นแบบได้อย่างรวดเร็วและเปิดกว้าง
+    แต่การนำผลงานที่มีลิขสิทธิ์มาเทรนโมเดลโดยไม่ได้รับอนุญาตและไม่จ่ายค่าตอบแทน ก่อให้เกิดปัญหาทางกฎหมาย จริยธรรม และวิกฤตรายได้ของศิลปิน
+
+    ตัวเลือกอื่นปฏิเสธความจริงหรือกล่าวอ้างเกินจริง'
+- number: 57
+  question_id: tgat1-60-q57
+  topic: tgat1.reading.reading_comprehension
+  skill: analyzing_creator_concerns
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the contemporary analysis on technology and ethics below and answer questions 56-60.
+
+
+    The explosive proliferation of generative artificial intelligence across visual art, literature, and commercial design
+    has ignited an intense global debate concerning intellectual provenance and creative labor. Proponents champion these
+    generative models as transformative equalizers that democratize creative ideation, allowing amateur creators with limited
+    technical draftsmanship to manifest intricate visual compositions from simple natural-language prompts. From concept architecture
+    to cinematic storyboarding, generative tools accelerate iterative prototyping at unprecedented velocity.
+
+
+    Conversely, working artists and legal scholars contend that the foundational training paradigms of large multi-modal models
+    constitute systematic intellectual property appropriation. Millions of copyrighted illustrations, digital paintings, and
+    literary works were ingested from public web archives without the explicit consent, attribution, or financial compensation
+    of their original creators. When an AI system can generate high-resolution illustrations in the idiosyncratic style of
+    a living artist within seconds, it directly threatens the economic livelihood of the very individuals whose creative lifework
+    enabled the algorithm''s capability. Ultimately, establishing equitable creative ecosystems will require transparent data
+    auditing mechanisms, legally enforceable compensation frameworks, and recognition that machine synthesis, however sophisticated,
+    reflects an algorithmic remix rather than autonomous human consciousness.
+
+
+    According to the second paragraph, why do working artists object to current generative AI training paradigms?'
+  options:
+  - id: '1'
+    text: Their copyrighted works were scraped without consent or compensation to build tools that replicate their styles
+      and undermine their livelihood.
+    correct: true
+    error_tag: null
+    explanation: 'Supported directly: ''ingested from public web archives without explicit consent, attribution, or financial
+      compensation... directly threatens the economic livelihood of the very individuals whose creative lifework enabled the
+      algorithm.'''
+  - id: '2'
+    text: AI models refuse to paint in color and only render black-and-white sketches.
+    correct: false
+    error_tag: fictitious_technical_limitation
+    explanation: Fictitious technical limitation unmentioned in the text.
+  - id: '3'
+    text: Governments have banned human artists from using computers or tablets.
+    correct: false
+    error_tag: absurd_legal_distortion
+    explanation: Absurd distortion not found in the passage.
+  - id: '4'
+    text: Artists dislike how inexpensive computer monitors have become.
+    correct: false
+    error_tag: trivial_hardware_complaint
+    explanation: Trivial and irrelevant complaint.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ถูกต้อง ศิลปินคัดค้านเนื่องจากผลงานที่มีลิขสิทธิ์ของตนถูกกวาดข้อมูล (scraped) ไปฝึกฝนระบบโดยไม่ขอความยินยอม
+    ไม่ให้เครดิต และไม่มีค่าตอบแทน และระบบดังกล่าวยังสามารถเลียนแบบลายเส้นมาแย่งงานสร้างรายได้ของพวกเขาโดยตรง
+
+    ตัวเลือกอื่นเป็นข้ออ้างไร้สาระ'
+- number: 58
+  question_id: tgat1-60-q58
+  topic: tgat1.reading.reading_comprehension
+  skill: inference_ai_democratization
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the contemporary analysis on technology and ethics below and answer questions 56-60.
+
+
+    The explosive proliferation of generative artificial intelligence across visual art, literature, and commercial design
+    has ignited an intense global debate concerning intellectual provenance and creative labor. Proponents champion these
+    generative models as transformative equalizers that democratize creative ideation, allowing amateur creators with limited
+    technical draftsmanship to manifest intricate visual compositions from simple natural-language prompts. From concept architecture
+    to cinematic storyboarding, generative tools accelerate iterative prototyping at unprecedented velocity.
+
+
+    Conversely, working artists and legal scholars contend that the foundational training paradigms of large multi-modal models
+    constitute systematic intellectual property appropriation. Millions of copyrighted illustrations, digital paintings, and
+    literary works were ingested from public web archives without the explicit consent, attribution, or financial compensation
+    of their original creators. When an AI system can generate high-resolution illustrations in the idiosyncratic style of
+    a living artist within seconds, it directly threatens the economic livelihood of the very individuals whose creative lifework
+    enabled the algorithm''s capability. Ultimately, establishing equitable creative ecosystems will require transparent data
+    auditing mechanisms, legally enforceable compensation frameworks, and recognition that machine synthesis, however sophisticated,
+    reflects an algorithmic remix rather than autonomous human consciousness.
+
+
+    What can be inferred from the first paragraph regarding why proponents view generative AI as a "transformative equalizer"?'
+  options:
+  - id: '1'
+    text: It requires ten years of classical drawing training before anyone can type a text prompt.
+    correct: false
+    error_tag: opposite_of_accessibility
+    explanation: Opposite of the text; tools allow people with limited technical draftsmanship to create.
+  - id: '2'
+    text: It lowers technical entry barriers, enabling individuals without formal artistic draftsmanship to realize visual
+      concepts quickly.
+    correct: true
+    error_tag: null
+    explanation: 'Directly inferred from: ''democratize creative ideation, allowing amateur creators with limited technical
+      draftsmanship to manifest intricate visual compositions from simple natural-language prompts.'''
+  - id: '3'
+    text: It distributes free computers and graphic tablets to every household worldwide.
+    correct: false
+    error_tag: unsupported_hardware_distribution
+    explanation: Hardware distribution is neither mentioned nor implied.
+  - id: '4'
+    text: It forces professional design firms to shut down permanently.
+    correct: false
+    error_tag: negative_impact_mischaracterization
+    explanation: Proponents celebrate creative ideation, not the destruction of design firms.
+  correct_answer: '2'
+  solution: 'ตัวเลือกที่ 2 ถูกต้อง ผู้สนับสนุนมองว่า AI เป็นเครื่องมือสร้างความเท่าเทียม (transformative equalizer) เพราะช่วยลดอุปสรรคด้านทักษะทางเทคนิค
+    ทำให้ผู้ที่ไม่ได้เรียนวาดภาพมาโดยตรงสามารถสร้างสรรค์ผลงานภาพที่ซับซ้อนได้เพียงแค่ป้อนคำสั่งข้อความ (prompts)
+
+    ตัวเลือกอื่นบิดเบือนความหมาย'
+- number: 59
+  question_id: tgat1-60-q59
+  topic: tgat1.reading.reading_comprehension
+  skill: contextual_meaning_intellectual_provenance
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the contemporary analysis on technology and ethics below and answer questions 56-60.
+
+
+    The explosive proliferation of generative artificial intelligence across visual art, literature, and commercial design
+    has ignited an intense global debate concerning intellectual provenance and creative labor. Proponents champion these
+    generative models as transformative equalizers that democratize creative ideation, allowing amateur creators with limited
+    technical draftsmanship to manifest intricate visual compositions from simple natural-language prompts. From concept architecture
+    to cinematic storyboarding, generative tools accelerate iterative prototyping at unprecedented velocity.
+
+
+    Conversely, working artists and legal scholars contend that the foundational training paradigms of large multi-modal models
+    constitute systematic intellectual property appropriation. Millions of copyrighted illustrations, digital paintings, and
+    literary works were ingested from public web archives without the explicit consent, attribution, or financial compensation
+    of their original creators. When an AI system can generate high-resolution illustrations in the idiosyncratic style of
+    a living artist within seconds, it directly threatens the economic livelihood of the very individuals whose creative lifework
+    enabled the algorithm''s capability. Ultimately, establishing equitable creative ecosystems will require transparent data
+    auditing mechanisms, legally enforceable compensation frameworks, and recognition that machine synthesis, however sophisticated,
+    reflects an algorithmic remix rather than autonomous human consciousness.
+
+
+    In the first paragraph, the phrase "intellectual provenance" most closely refers to:'
+  options:
+  - id: '1'
+    text: The true origin, authorship, and ownership history of creative ideas and source materials
+    correct: true
+    error_tag: null
+    explanation: '''Provenance'' means the place of origin or earliest history of an item, so intellectual provenance refers
+      to the origin and authorship of creative ideas.'
+  - id: '2'
+    text: The electrical energy consumption required to operate supercomputers
+    correct: false
+    error_tag: technical_hardware_mismatch
+    explanation: Refers to compute power, not creative authorship.
+  - id: '3'
+    text: The speed at which an internet connection downloads digital images
+    correct: false
+    error_tag: bandwidth_mismatch
+    explanation: Refers to network speed, not intellectual property.
+  - id: '4'
+    text: The retail price of paint brushes in an art supply store
+    correct: false
+    error_tag: physical_goods_mismatch
+    explanation: Refers to art supplies, completely off-topic.
+  correct_answer: '1'
+  solution: 'ตัวเลือกที่ 1 ''intellectual provenance'' (ที่มาและแหล่งกำเนิดทางปัญญา) หมายถึง ประวัติแหล่งที่มา ความเป็นเจ้าของผลงาน
+    และผู้ประพันธ์ผลงานสร้างสรรค์ต้นฉบับ
+
+    ตัวเลือกอื่นพูดถึงพลังงานไฟฟ้า ความเร็วอินเทอร์เน็ต หรือราคาพู่กัน'
+- number: 60
+  question_id: tgat1-60-q60
+  topic: tgat1.reading.reading_comprehension
+  skill: author_conclusion_and_solution
+  score: 1.6666666666666667
+  answer_type: single_choice
+  stem: 'Directions: Read the contemporary analysis on technology and ethics below and answer questions 56-60.
+
+
+    The explosive proliferation of generative artificial intelligence across visual art, literature, and commercial design
+    has ignited an intense global debate concerning intellectual provenance and creative labor. Proponents champion these
+    generative models as transformative equalizers that democratize creative ideation, allowing amateur creators with limited
+    technical draftsmanship to manifest intricate visual compositions from simple natural-language prompts. From concept architecture
+    to cinematic storyboarding, generative tools accelerate iterative prototyping at unprecedented velocity.
+
+
+    Conversely, working artists and legal scholars contend that the foundational training paradigms of large multi-modal models
+    constitute systematic intellectual property appropriation. Millions of copyrighted illustrations, digital paintings, and
+    literary works were ingested from public web archives without the explicit consent, attribution, or financial compensation
+    of their original creators. When an AI system can generate high-resolution illustrations in the idiosyncratic style of
+    a living artist within seconds, it directly threatens the economic livelihood of the very individuals whose creative lifework
+    enabled the algorithm''s capability. Ultimately, establishing equitable creative ecosystems will require transparent data
+    auditing mechanisms, legally enforceable compensation frameworks, and recognition that machine synthesis, however sophisticated,
+    reflects an algorithmic remix rather than autonomous human consciousness.
+
+
+    According to the author''s final remarks, what is necessary to foster an equitable creative ecosystem in the age of generative
+    AI?'
+  options:
+  - id: '1'
+    text: Completely shutting down the internet and reverting to pre-industrial printing presses.
+    correct: false
+    error_tag: reactionary_luddite_extreme
+    explanation: Absurd reactionary solution contrary to constructive technology governance.
+  - id: '2'
+    text: Allowing tech corporations to train algorithms without any regulation or public accountability.
+    correct: false
+    error_tag: unfettered_exploitation
+    explanation: Advocates the very exploitation the author criticizes.
+  - id: '3'
+    text: Declaring that artificial intelligence models are fully conscious living organisms with human rights.
+    correct: false
+    error_tag: pseudoscientific_absurdity
+    explanation: Explicitly refuted by the author's statement that machine synthesis is algorithmic remix, not human consciousness.
+  - id: '4'
+    text: Implementing transparent training data audits, legally enforceable creator compensation, and recognition of the
+      limits of algorithmic synthesis.
+    correct: true
+    error_tag: null
+    explanation: 'Directly mirrors the concluding recommendations: ''transparent data auditing mechanisms, legally enforceable
+      compensation frameworks, and recognition that machine synthesis... reflects an algorithmic remix.'''
+  correct_answer: '4'
+  solution: 'ตัวเลือกที่ 4 ถูกต้อง ในประโยคปิดท้าย ผู้เขียนเสนอทางออกสู่ระบบนิเวศที่เป็นธรรมอย่างชัดเจน ได้แก่ การตรวจสอบความโปร่งใสของข้อมูลที่ใช้ฝึกฝน
+    (transparent data auditing), กรอบการจ่ายผลตอบแทนที่มีผลบังคับใช้ตามกฎหมาย (legally enforceable compensation), และการยอมรับว่า
+    AI เป็นเพียงการประมวลผลเชิงขั้นตอนวิธี (algorithmic remix) ไม่ใช่จิตสำนึกมนุษย์
+
+    ตัวเลือกอื่นเป็นข้อเสนอสุดโต่งหรือขัดแย้งกับหลักการ'

@@ -1,0 +1,211 @@
+- id: tgat3-emg-drill-001
+  subject: tgat3
+  topic: tgat3.emotional_governance
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการบริหารจัดการอารมณ์"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: self_regulation
+    secondary:
+      - emotional_awareness
+      - impulse_control
+  stem: "คุณเพิ่งทราบว่างานนำเสนอที่คุณเตรียมตัวมาอย่างหนักถูกยกเลิกกะทันหันก่อนเริ่มการประชุมเพียง 5 นาที เนื่องจากผู้บริหารมีวาระด่วนอื่น คุณเริ่มรู้สึกผิดหวังและโกรธ การกำกับดูแลอารมณ์ตนเอง (Self-Regulation) ในสถานการณ์นี้ควรเป็นอย่างไร"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "ตระหนักรู้ว่าความผิดหวังเป็นเรื่องธรรมชาติ สูดหายใจลึกๆ เพื่อผ่อนคลายความตึงเครียด เก็บเอกสารอย่างเรียบร้อย และสอบถามกำหนดการนัดหมายใหม่ในโอกาสต่อไป"
+        correct: true
+        explanation: "ยอมรับอารมณ์ตนเองอย่างมีสติ ไม่แสดงพฤติกรรมทำลายล้าง และมุ่งเน้นการวางแผนล่วงหน้า"
+      - id: "2"
+        text: "ตะโกนด่าทอเจ้าหน้าที่หน้าห้องประชุมเพื่อระบายความคับข้องใจ"
+        correct: false
+        error_tag: emotional_reactivity
+        explanation: "ขาดการควบคุมอารมณ์และสร้างความเสียหายต่อภาพลักษณ์ความเป็นมืออาชีพ"
+      - id: "3"
+        text: "ฉีกเอกสารนำเสนอทิ้งลงถังขยะและสาบานว่าจะไม่ทำงานร่วมกับผู้บริหารท่านนี้อีก"
+        correct: false
+        error_tag: pessimistic_resignation
+        explanation: "ทำลายโอกาสของตนเองด้วยอารมณ์ประชดประชันชั่ววูบ"
+      - id: "4"
+        text: "แอบส่งข้อความต่อว่าผู้บริหารผ่านช่องทางส่วนตัวทันที"
+        correct: false
+        error_tag: aggressive_imposition
+        explanation: "ล่วงเกินผู้บังคับบัญชาด้วยอารมณ์ขาดสติและเสี่ยงต่อการถูกลงโทษทางวินัย"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "ให้เวลาตนเองสงบสติอารมณ์ แยกแยะเหตุสุดวิสัยออกจากเจตนาส่วนบุคคล"
+  solution:
+    summary: "การกำกับดูแลอารมณ์ (Self-Regulation) ช่วยให้เรารู้เท่าทันความรู้สึกผิดหวังและระงับการตอบสนองเชิงลบได้ทันท่วงที ตัวเลือก 1 จัดการอารมณ์และสถานการณ์ได้อย่างเหมาะสมที่สุด"
+    steps:
+      - id: s1
+        text: "สถานการณ์เป็นเหตุสุดวิสัยภายนอกที่ควบคุมไม่ได้"
+      - id: s2
+        text: "การตอบสนองอย่างมี EQ: รับรู้อารมณ์ ผ่อนคลายร่างกาย และวางแผนนัดหมายใหม่ (ตัวเลือก 1)"
+      - id: s3
+        text: "ตัวเลือก 2, 3, 4 เป็นปฏิกิริยาทางอารมณ์ชั่ววูบที่ทำลายชื่อเสียงและความสัมพันธ์"
+
+- id: tgat3-emg-drill-002
+  subject: tgat3
+  topic: tgat3.emotional_governance
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการบริหารจัดการอารมณ์"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: assertive_communication
+    secondary:
+      - constructive_feedback
+      - psychological_safety
+  stem: "สมาชิกในทีมคนหนึ่งมักพูดแทรกและวิจารณ์ความคิดเห็นของผู้อื่นในที่ประชุมด้วยน้ำเสียงดูแคลน ทำให้เพื่อนร่วมงานคนอื่นไม่กล้าเสนอไอเดีย การสื่อสารแบบ 'Assertive Communication' เพื่อจัดการพฤติกรรมนี้ควรทำอย่างไร"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "พูดคุยกับเขาเป็นการส่วนตัวอย่างสุภาพ: 'เราสังเกตว่าในที่ประชุมเมื่อกี้ คุณพูดแทรกตอนที่คนอื่นยังพูดไม่จบ ซึ่งทำให้บรรยากาศตึงเครียดและคนอื่นไม่กล้าแชร์ เราอยากขอความร่วมมือให้ฟังจนจบก่อนค่อยเสนอแนะนะ'"
+        correct: true
+        explanation: "ชี้แจงพฤติกรรมเฉพาะเจาะจงอย่างตรงไปตรงมาโดยไม่ใช้อารมณ์โจมตีตัวบุคคล และระบุความคาดหวังที่ชัดเจน"
+      - id: "2"
+        text: "พูดแทรกเขาคืนทุกครั้งที่เขาเริ่มพูด พร้อมหัวเราะเยาะเพื่อเอาคืน"
+        correct: false
+        error_tag: emotional_reactivity
+        explanation: "ยิ่งสร้างบรรยากาศเป็นพิษในการทำงานและไม่ช่วยปรับปรุงพฤติกรรม"
+      - id: "3"
+        text: "เงียบเฉยและปล่อยให้เขาทำพฤติกรรมเช่นนั้นต่อไปเพราะกลัวเกิดความขัดแย้ง"
+        correct: false
+        error_tag: passive_aggressive_avoidance
+        explanation: "ยอมจำนนและปล่อยให้บรรยากาศการทำงานถูกทำลาย"
+      - id: "4"
+        text: "ลุกขึ้นด่าประจานเขากลางที่ประชุมว่าไม่มีมารยาทและสั่งให้หุบปาก"
+        correct: false
+        error_tag: aggressive_imposition
+        explanation: "ตอบโต้ด้วยความก้าวร้าวและละเมิดมารยาทในที่ประชุมเช่นเดียวกัน"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "การสื่อสารแบบ Assertive ต้องมุ่งเน้นที่พฤติกรรม (Action) ไม่ใช่ตัวบุคคล (Person) และบอกผลกระทบอย่างตรงไปตรงมา"
+  solution:
+    summary: "Assertive Communication คือการพูดอย่างจริงใจ ตรงประเด็น และให้เกียรติ ตัวเลือก 1 แยกแยะพฤติกรรมและสื่อสารอย่างเป็นส่วนตัวเพื่อสร้างบรรยากาศที่ปลอดภัย"
+    steps:
+      - id: s1
+        text: "เป้าหมายคือการปรับพฤติกรรมการพูดแทรกโดยไม่ทำลายความสัมพันธ์"
+      - id: s2
+        text: "ตัวเลือก 1 ใช้เทคนิค I-Message / Observation-Impact-Request ได้อย่างสมบูรณ์แบบ"
+      - id: s3
+        text: "ตัวเลือกอื่นๆ ก้าวร้าวหรือยอมจำนนจนแก้ปัญหาไม่ได้"
+
+- id: tgat3-emg-drill-003
+  subject: tgat3
+  topic: tgat3.emotional_governance
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการบริหารจัดการอารมณ์"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: active_listening
+    secondary:
+      - empathy_expression
+      - emotional_support
+  stem: "เมื่อเพื่อนสนิทในที่ทำงานเข้ามาบ่นเรื่องความเครียดจากงานด้วยความอัดอั้นตันใจ ทักษะการฟังอย่างใส่ใจ (Active Listening) ที่ถูกต้องที่สุดคือข้อใด"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "วางโทรศัพท์มือถือ สบตา พยักหน้ารับรู้ จับความรู้สึกที่ซ่อนอยู่ และสะท้อนความรู้สึกกลับ เช่น 'ฟังดูแล้วช่วงนี้งานคงหนักและกดดันคุณมากจริงๆ ใช่ไหม'"
+        correct: true
+        explanation: "แสดงความพร้อมในการรับฟัง ให้ความสนใจเต็มที่ และสะท้อนความรู้สึกโดยไม่รีบตัดสิน"
+      - id: "2"
+        text: "รีบพูดแทรกและให้คำแนะนำแก้ปัญหาทันทีตั้งแต่เพื่อนพูดได้เพียง 2 ประโยค"
+        correct: false
+        error_tag: invalidating_others_feelings
+        explanation: "รีบด่วนสรุปและปิดกั้นโอกาสที่ผู้พูดจะได้ระบายความรู้สึกที่แท้จริง"
+      - id: "3"
+        text: "ก้มหน้าเล่นโทรศัพท์มือถือไปพลางๆ พร้อมพูดว่า 'เล่าไปเลย ฟังอยู่'"
+        correct: false
+        error_tag: invalidating_others_feelings
+        explanation: "แสดงท่าทีไม่ใส่ใจและทำให้ผู้พูดรู้สึกว่าตนเองไม่มีความสำคัญ"
+      - id: "4"
+        text: "บอกให้เพื่อนหยุดบ่นและหันไปมองคนที่ลำบากกว่าเพื่อจะได้ไม่ทำตัวอ่อนแอ"
+        correct: false
+        error_tag: invalidating_others_feelings
+        explanation: "ด้อยค่าความรู้สึกและสร้างความรู้สึกผิดแก่ผู้พูด"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Active Listening มุ่งเน้นการเข้าใจความรู้สึกและเป็นกระจกสะท้อน ไม่ใช่การรีบสั่งสอนหรือแก้ปัญหา"
+  solution:
+    summary: "การฟังอย่างเข้าอกเข้าใจ (Active Listening) ต้องแสดงความใส่ใจทั้งภาษากายและคำพูด และช่วยสะท้อนความรู้สึกเพื่อสร้างความไว้วางใจ ตัวเลือก 1 แสดงถึง EQ ขั้นสูง"
+    steps:
+      - id: s1
+        text: "ผู้พูดต้องการพื้นที่ปลอดภัยในการระบายและรับรู้ว่ามีคนเข้าใจ"
+      - id: s2
+        text: "ตัวเลือก 1 ให้ความสนใจ 100% และสะท้อนอารมณ์ (Reflect Feelings) อย่างอ่อนโยน"
+      - id: s3
+        text: "ตัวเลือก 2, 3, 4 ทำลายความรู้สึกและปิดกั้นการสื่อสาร"
+
+- id: tgat3-emg-drill-004
+  subject: tgat3
+  topic: tgat3.emotional_governance
+  source:
+    type: authored_drill
+    label: "TGAT3 ชุดฝึกทักษะการบริหารจัดการอารมณ์"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: resilience
+    secondary:
+      - reframing
+      - growth_mindset
+  stem: "โครงการเพื่อสังคมที่คุณทุ่มเทแรงกายแรงใจมานานล้มเหลวเนื่องจากการเปลี่ยนแปลงนโยบายที่ไม่คาดคิด คุณรู้สึกหมดหวัง การฟื้นฟูจิตใจตามหลัก 'Resilience' ควรทำอย่างไร"
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "อนุญาตให้ตนเองได้หยุดพัก ทบทวนสิ่งที่ได้เรียนรู้และทักษะที่เติบโตขึ้นจากกระบวนการทำงาน แล้วมองหาโอกาสและความเป็นไปได้ใหม่ๆ ในอนาคต"
+        correct: true
+        explanation: "ยอมรับความจริงโดยไม่จมปลัก ดึงบทเรียนเชิงบวก และปรับตัวเดินหน้าต่อด้วยพลังใจใหม่"
+      - id: "2"
+        text: "ตัดสินใจว่าจะไม่ทำงานเพื่อสังคมอีกต่อไปเพราะมองว่าสังคมไม่เห็นคุณค่า"
+        correct: false
+        error_tag: pessimistic_resignation
+        explanation: "ยอมแพ้และมองโลกในแง่ร้ายเกินจริงจากเหตุการณ์เพียงครั้งเดียว"
+      - id: "3"
+        text: "เก็บตัวเงียบ ไม่ยอมพูดคุยกับใคร และโทษตนเองว่าเป็นคนไร้ความสามารถ"
+        correct: false
+        error_tag: defensive_blame_shifting
+        explanation: "จมดิ่งสู่ความซึมเศร้าและขาดการดูแลสุขภาวะทางใจ"
+      - id: "4"
+        text: "โพสต์ด่าทอผู้กำหนดนโยบายในสื่อสาธารณะด้วยถ้อยคำหยาบคายเพื่อระบายแค้น"
+        correct: false
+        error_tag: emotional_reactivity
+        explanation: "ใช้อารมณ์ตอบโต้และไม่ช่วยให้เกิดการฟื้นฟูจิตใจหรือแก้ไขสิ่งใด"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Resilience คือความสามารถในการลุกขึ้นใหม่หลังล้มลง ด้วยการมองเห็นการเติบโตในทุกอุปสรรค"
+  solution:
+    summary: "ความยืดหยุ่นทางจิตใจ (Resilience) ช่วยให้มองเห็นคุณค่าของการเรียนรู้แม้ผลลัพธ์จะไม่เป็นไปตามหวัง ตัวเลือก 1 สะท้อน Growth Mindset และการฟื้นคืนพลังใจอย่างแท้จริง"
+    steps:
+      - id: s1
+        text: "ความล้มเหลวจากปัจจัยภายนอกเป็นเรื่องที่เกิดขึ้นได้"
+      - id: s2
+        text: "ตัวเลือก 1 เปิดรับอารมณ์ สรุปบทเรียน และมองไปข้างหน้าอย่างมีความหวัง"
+      - id: s3
+        text: "ตัวเลือกอื่นๆ สะท้อนการยอมจำนนหรือการตอบโต้ด้วยอารมณ์ทำลายล้าง"

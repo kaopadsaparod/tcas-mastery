@@ -1,0 +1,548 @@
+# TGAT1 English Communication: Speaking Skill Standalone Drills
+# Verified according to MyTCAS TGAT1 Blueprint 91
+
+- id: tgat1-spk-drill-001
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Workplace Requests"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: workplace_communication
+    secondary:
+      - polite_refusal
+      - professional_tone
+  stem: "A project manager asks you: 'Can you take over the financial summary report for this Friday?' You already have two urgent project deliverables due on Thursday and Friday. What is the most appropriate and professional response?"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Look for an answer that remains polite and cooperative while clearly explaining your current workload constraints."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "I would be happy to help, but I have two urgent client deliverables due this Friday. Could we delegate it or adjust the timeline?"
+        correct: true
+        explanation: "Maintains professional courtesy, gives an objective reason for declining, and constructively suggests alternatives."
+      - id: "2"
+        text: "No way, that is completely unreasonable when I am already drowning in work."
+        correct: false
+        error_tag: tone_too_aggressive
+        explanation: "Unprofessional and confrontational tone inappropriate for workplace communication."
+      - id: "3"
+        text: "Sure, financial reports are always my favorite task to do every week."
+        correct: false
+        error_tag: sarcastic_tone
+        explanation: "Sarcastic responses are unprofessional and create misunderstandings in collaborative environments."
+      - id: "4"
+        text: "Why don't you do it yourself since you are the project manager?"
+        correct: false
+        error_tag: insubordinate_attitude
+        explanation: "Hostile and disrespectful response that violates workplace professional etiquette."
+  solution:
+    summary: "ตัวเลือกที่ 1 เป็นคำตอบที่เหมาะสมที่สุดในการปฏิเสธงานอย่างมืออาชีพ โดยแสดงความเต็มใจแต่ระบุข้อจำกัดของภาระงานอย่างชัดเจนและเสนอทางออกร่วมกัน"
+    steps:
+      - id: s1
+        text: "วิเคราะห์สถานการณ์: หัวหน้าโครงการของานด่วนวันศุกร์ แต่ผู้พูดมีงานสำคัญส่งวันพฤหัสและศุกร์อยู่แล้ว"
+      - id: s2
+        text: "หลักการสื่อสารในที่ทำงาน (Professional Communication): ต้องรักษาน้ำใจ แสดงเหตุผลตามความเป็นจริง ไม่ใช้อารมณ์ และเสนอทางออก เช่น ปรับเวลาหรือแบ่งงาน"
+      - id: s3
+        text: "ตัวเลือก 2 ก้าวร้าวเกินไป, ตัวเลือก 3 ประชดประชัน, ตัวเลือก 4 ขาดความเคารพต่อหัวหน้างาน จึงตัดทิ้ง"
+
+- id: tgat1-spk-drill-002
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Academic Extension Request"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: academic_communication
+    secondary:
+      - formal_request
+      - student_professor_dialogue
+  stem: "You were hospitalized with acute food poisoning over the weekend and missed the deadline for your term paper. How should you address your professor when requesting an extension?"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Choose a formal, respectful tone that provides valid medical documentation."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "I am really sorry for missing the deadline, Professor. I was hospitalized over the weekend and have a medical certificate. Would it be possible to submit it by Wednesday?"
+        correct: true
+        explanation: "Apologizes sincerely, presents formal verification (medical certificate), and proposes a specific reasonable extension date."
+      - id: "2"
+        text: "I was sick so I couldn't write the paper. You have to understand and give me more time."
+        correct: false
+        error_tag: demanding_tone
+        explanation: "Uses an entitled and demanding tone ('you have to') rather than a respectful academic request."
+      - id: "3"
+        text: "Forget the deadline, I will just hand it in whenever I feel completely better."
+        correct: false
+        error_tag: disregard_for_academic_rules
+        explanation: "Dismisses academic rules and shows lack of accountability."
+      - id: "4"
+        text: "My stomach hurt so badly, it was truly awful! Did anyone else get an extension?"
+        correct: false
+        error_tag: irrelevant_complaint
+        explanation: "Focuses on complaining and comparing with peers instead of formally requesting an extension with evidence."
+  solution:
+    summary: "ตัวเลือกที่ 1 เหมาะสมที่สุด เพราะแสดงความสุภาพตามมารยาทวิชาการ อ้างอิงใบรับรองแพทย์อย่างเป็นทางการ และระบุกำหนดส่งใหม่อย่างชัดเจน"
+    steps:
+      - id: s1
+        text: "วิเคราะห์บริบท: นักศึกษาป่วยเข้าโรงพยาบาลและพลาดกำหนดส่งรายงาน ต้องขอผ่อนผันจากอาจารย์ผู้สอน"
+      - id: s2
+        text: "มารยาททางวิชาการ (Academic Etiquette): ต้องขอโทษอย่างจริงใจ ชี้แจงเหตุผลพร้อมหลักฐานทางการแพทย์ และเสนอวันส่งใหม่อย่างสุภาพ"
+      - id: s3
+        text: "ตัวเลือก 1 ใช้โครงสร้าง Would it be possible to... ซึ่งสุภาพและเหมาะสมที่สุดในการคุยกับอาจารย์"
+
+- id: tgat1-spk-drill-003
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Social Etiquette & Accidents"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: social_interaction
+    secondary:
+      - gracious_acceptance_of_apology
+  stem: "While studying in the library, a student accidentally bumps your desk and spills some water on your notebook. The student immediately says: 'Oh, I am so terribly sorry! Let me wipe that off right now!' How should you reply graciously?"
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "Identify the expression that de-escalates the minor accident and reassures the other person."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Don't worry about it, it was just a few drops and none of my notes are damaged. Thank you for helping."
+        correct: true
+        explanation: "Reassures the student graciously while acknowledging their quick offer to help."
+      - id: "2"
+        text: "You should watch where you are going next time you walk around people."
+        correct: false
+        error_tag: unnecessarily_critical
+        explanation: "Harsh and patronizing response to an honest, accidental mistake where an apology was already offered."
+      - id: "3"
+        text: "It is fine, but you must buy me a brand new notebook right away."
+        correct: false
+        error_tag: unreasonable_demand
+        explanation: "Disproportionate demand for a minor spill that caused no real damage."
+      - id: "4"
+        text: "Never say sorry to me unless you really mean it."
+        correct: false
+        error_tag: passive_aggressive
+        explanation: "Passive-aggressive and hostile response that escalates social tension."
+  solution:
+    summary: "ตัวเลือกที่ 1 เป็นการตอบรับคำขอโทษอย่างมีมารยาท (Gracious acceptance) ช่วยคลายความกังวลของอีกฝ่ายและขอบคุณที่ช่วยเช็ด"
+    steps:
+      - id: s1
+        text: "บริบท: อุบัติเหตุน้ำหกเล็กน้อย อีกฝ่ายขอโทษทันทีและรีบช่วยเช็ด"
+      - id: s2
+        text: "สำนวนตอบรับคำขอโทษที่สุภาพในภาษาอังกฤษ: Don't worry about it / It's really no problem เพื่อแสดงความเข้าอกเข้าใจ"
+      - id: s3
+        text: "ตัวเลือกอื่นแสดงอารมณ์ฉุนเฉียว เรียกร้องเกินเหตุ หรือประชดประชัน จึงไม่ถูกต้อง"
+
+- id: tgat1-spk-drill-004
+  subject: tgat1
+  topic: tgat1.speaking.short_conversations
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Service & Dietary Needs"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: dining_and_hospitality
+    secondary:
+      - polite_clarification
+      - dietary_inquiry
+  stem: |
+    Customer: "Excuse me, server. I specifically mentioned when ordering that I have a severe peanut allergy, but this salad appears to have crushed peanuts on top."
+    Server: "________________________"
+    Customer: "Thank you. I appreciate your quick attention to this."
+    Which sentence best fills the blank?
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "The server must immediately acknowledge the critical safety issue, apologize, and offer a safe solution."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "I am so sorry about that oversight! I will take this back immediately and have the kitchen prepare a fresh dish with clean utensils."
+        correct: true
+        explanation: "Appropriate hospitality service response taking food allergies seriously and guaranteeing a safe remade dish."
+      - id: "2"
+        text: "Can't you just scrape the peanuts off with your fork?"
+        correct: false
+        error_tag: dangerous_disregard_for_allergy
+        explanation: "Dangerous and unprofessional; cross-contamination can cause severe anaphylaxis."
+      - id: "3"
+        text: "Our menu clearly states that all dishes may contain traces of nuts."
+        correct: false
+        error_tag: defensive_attitude
+        explanation: "Defensive response that avoids responsibility after a specific customer request was accepted."
+      - id: "4"
+        text: "Well, you should have double-checked with the kitchen yourself."
+        correct: false
+        error_tag: shifting_blame_to_customer
+        explanation: "Shifts blame onto the customer, violating basic hospitality service standards."
+  solution:
+    summary: "ตัวเลือกที่ 1 ถูกต้องที่สุด พนักงานต้องขอโทษในความผิดพลาด นำอาหารกลับไปทำใหม่โดยระวังการปนเปื้อนเพื่อความปลอดภัยของลูกค้าที่มีอาการแพ้"
+    steps:
+      - id: s1
+        text: "วิเคราะห์บทสนทนา: ลูกค้าแจ้งเตือนเรื่องการแพ้ถั่วลิสงอย่างรุนแรง แต่อาหารที่เสิร์ฟมีถั่วโรยอยู่"
+      - id: s2
+        text: "การบริการในร้านอาหาร (Service Recovery): ต้องขออภัยทันที และนำกลับไปทำจานใหม่ด้วยอุปกรณ์สะอาด"
+      - id: s3
+        text: "ตัวเลือก 2 มีอันตรายต่อชีวิต (Cross-contamination), ตัวเลือก 3 และ 4 ปัดความรับผิดชอบ"
+
+- id: tgat1-spk-drill-005
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Transit & Directions"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: public_transportation
+    secondary:
+      - asking_for_directions
+      - clarity_in_inquiry
+  stem: "You are at a busy international airport and need to transfer to Terminal 3 for your connecting flight departing in 45 minutes. What is the most effective and polite way to ask an airport information officer for help?"
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "Express urgency politely and ask for the quickest route to the specific terminal."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Pardon me, could you tell me the fastest way to get to Terminal 3? My connecting flight boards in 45 minutes."
+        correct: true
+        explanation: "Polite opening, clear question about the fastest route, and mentions the time constraint to receive urgent guidance."
+      - id: "2"
+        text: "Why is this airport so huge and confusing? Where is Terminal 3?"
+        correct: false
+        error_tag: venting_frustration
+        explanation: "Vents personal frustration rather than asking a clear, constructive question."
+      - id: "3"
+        text: "Take me to Terminal 3 right now, or I will miss my plane!"
+        correct: false
+        error_tag: inappropriate_command
+        explanation: "Issues an inappropriate demand/command to an information desk staff member."
+      - id: "4"
+        text: "Do you like working here at the airport information desk?"
+        correct: false
+        error_tag: completely_off_topic
+        explanation: "Irrelevant small talk that wastes precious transfer time."
+  solution:
+    summary: "ตัวเลือกที่ 1 เหมาะสมที่สุด เพราะเริ่มต้นอย่างสุภาพ (Pardon me) สอบถามเส้นทางที่เร็วที่สุด และระบุข้อจำกัดเวลาได้อย่างกระชับ"
+    steps:
+      - id: s1
+        text: "สถานการณ์: อยู่ในสนามบิน มีเวลาต่อเครื่องเพียง 45 นาที ต้องการคำแนะนำเส้นทางไปยัง Terminal 3 อย่างรวดเร็ว"
+      - id: s2
+        text: "การสอบถามข้อมูลเร่งด่วน: ควรใช้คำถามที่ชัดเจน เช่น could you tell me the fastest way to... พร้อมบอกเวลาที่เหลือ"
+      - id: s3
+        text: "ตัวเลือก 1 ให้ข้อมูลครบถ้วนและสุภาพที่สุด ตัวเลือกอื่นบ่น สั่งการ หรือพูดนอกเรื่อง"
+
+- id: tgat1-spk-drill-006
+  subject: tgat1
+  topic: tgat1.speaking.short_conversations
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Social Expenses & Splitting Bills"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: casual_conversation
+    secondary:
+      - bill_splitting
+      - social_tact
+  stem: |
+    Lucas: "That was a wonderful dinner together! The bill came out to 1,200 Baht in total."
+    Emily: "________________________"
+    Lucas: "Sounds fair to me! That makes it 600 Baht each. I can transfer my share to you."
+    Which sentence best fits Emily's turn?
+  difficulty: 2
+  estimated_seconds: 45
+  hints:
+    - level: 1
+      text: "Lucas agrees to 600 Baht each, meaning Emily suggested splitting the bill equally in half."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Let's just split it fifty-fifty since we shared everything."
+        correct: true
+        explanation: "Directly matches Lucas's calculation of 600 Baht each (half of 1,200 Baht)."
+      - id: "2"
+        text: "You should cover the entire bill because you picked the restaurant."
+        correct: false
+        error_tag: impolite_assumption
+        explanation: "Inconsiderate assumption that contradicts Lucas's amicable agreement to share 50-50."
+      - id: "3"
+        text: "I forgot my wallet, so dinner is on you tonight."
+        correct: false
+        error_tag: shifting_expense_unexpectedly
+        explanation: "Unfairly shifts the financial burden onto the dining companion."
+      - id: "4"
+        text: "We should complain to the manager that the food was too expensive."
+        correct: false
+        error_tag: contradicts_previous_compliment
+        explanation: "Directly contradicts the premise that it was a wonderful dinner."
+  solution:
+    summary: "ตัวเลือกที่ 1 สอดคล้องกับบริบทที่สุด Lucas ตอบว่า 'That makes it 600 Baht each' แสดงว่า Emily เสนอให้หารครึ่ง (split it fifty-fifty)"
+    steps:
+      - id: s1
+        text: "วิเคราะห์บริบท: ยอดรวม 1,200 บาท Lucas สรุปว่าคนละ 600 บาท แฟร์ดี แสดงว่าประโยคก่อนหน้าต้องเป็นการเสนอหารสองเท่ากัน"
+      - id: s2
+        text: "สำนวน: split it fifty-fifty หรือ go Dutch แปลว่าหารคนละครึ่ง"
+      - id: s3
+        text: "ตัวเลือก 1 จึงถูกต้องและตรงกับยอดเงิน 600 บาทพอดี"
+
+- id: tgat1-spk-drill-007
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Meeting Facilitation"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: meeting_facilitation
+    secondary:
+      - polite_interruption
+      - time_management
+  stem: "You are chairing a project committee meeting with 10 minutes remaining on the schedule. One member begins discussing an unrelated personal topic. How do you redirect the conversation back to the meeting agenda politely?"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Acknowledge the speaker diplomatically while referencing the agenda and remaining time."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Thank you for sharing that, Mark, but with only ten minutes left, let's refocus on finalizing the budget items on our agenda."
+        correct: true
+        explanation: "Diplomatically acknowledges the speaker, highlights the time constraint, and redirects focus back to the agenda."
+      - id: "2"
+        text: "Mark, please be quiet. Nobody in this room cares about your personal life."
+        correct: false
+        error_tag: excessively_rude_interruption
+        explanation: "Rude and insulting interruption that damages professional working relationships."
+      - id: "3"
+        text: "I suppose we can cancel the rest of the meeting and just listen to your stories."
+        correct: false
+        error_tag: passive_aggressive_chairmanship
+        explanation: "Passive-aggressive and fails to fulfill the chairperson's responsibility to manage time."
+      - id: "4"
+        text: "I am leaving the meeting early because this is completely unproductive."
+        correct: false
+        error_tag: abandonment_of_chair_duties
+        explanation: "Abandoning the meeting rather than facilitating and managing it properly."
+  solution:
+    summary: "ตัวเลือกที่ 1 เป็นการดึงการประชุมกลับเข้าสู่วาระอย่างมีชั้นเชิง (Meeting facilitation) โดยขอบคุณสั้นๆ เตือนเรื่องเวลาที่เหลือ และนำเข้าสู่วาระสำคัญ"
+    steps:
+      - id: s1
+        text: "บทบาท: เป็นประธานการประชุม เหลือเวลา 10 นาที แต่มีสมาชิกเริ่มพูดนอกเรื่อง"
+      - id: s2
+        text: "ทักษะการเป็นประธาน (Chairing Skills): ต้องควบคุมเวลาอย่างสุภาพและเด็ดขาด โดยใช้เทคนิค 'Acknowledge and Pivot' เช่น Thank you..., but let's refocus on..."
+      - id: s3
+        text: "ตัวเลือก 1 สุภาพและมีประสิทธิภาพที่สุดในการบริหารการประชุม"
+
+- id: tgat1-spk-drill-008
+  subject: tgat1
+  topic: tgat1.speaking.short_conversations
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Telephone Etiquette"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: telephoning
+    secondary:
+      - message_taking
+      - formal_inquiry
+  stem: |
+    Assistant: "Good afternoon, Apex Solutions. How may I direct your call?"
+    Caller: "Hello, may I speak with Ms. Jennifer Davies from Marketing, please?"
+    Assistant: "I am afraid she is in a client presentation until 3 PM. ________________________"
+    Caller: "Yes, please. Could you ask her to call Robert Chen from Zenith Media back regarding the contract draft?"
+    Which phrase best completes the Assistant's response?
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "The caller responds by giving their name, company, and message, meaning the assistant offered to take a message."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "Would you like to leave a message, or should I have her return your call later?"
+        correct: true
+        explanation: "Standard professional telephone inquiry offering to take a message or arrange a callback."
+      - id: "2"
+        text: "Why don't you try calling her personal mobile phone instead?"
+        correct: false
+        error_tag: breaching_privacy_protocol
+        explanation: "Violates professional privacy boundaries by suggesting unsanctioned mobile contact."
+      - id: "3"
+        text: "You can just call back next week when she might be less busy."
+        correct: false
+        error_tag: unhelpful_dismissal
+        explanation: "Dismissive and unhelpful to a business client."
+      - id: "4"
+        text: "I don't know who you are, so I cannot help you."
+        correct: false
+        error_tag: blunt_and_unprofessional
+        explanation: "Blunt, suspicious, and contrary to proper reception etiquette."
+  solution:
+    summary: "ตัวเลือกที่ 1 ถูกต้องตามแบบแผนการรับโทรศัพท์ในสำนักงาน (Telephone etiquette) เมื่อผู้ที่ต้องการติดต่อไม่อยู่ พนักงานควรเสนอรับข้อความ (Would you like to leave a message?)"
+    steps:
+      - id: s1
+        text: "บริบท: เจ้าหน้าที่แจ้งว่าคุณเจนนิเฟอร์ติดประชุม และผู้โทรตอบว่า 'Yes, please' พร้อมฝากข้อความ"
+      - id: s2
+        text: "คำถามก่อนหน้าจึงต้องเป็นการเสนอรับข้อความหรือให้โทรกลับ เช่น Would you like to leave a message...?"
+      - id: s3
+        text: "ตัวเลือก 1 ตรงกับโครงสร้างบทสนทนาทางโทรศัพท์มาตรฐานอย่างสมบูรณ์"
+
+- id: tgat1-spk-drill-009
+  subject: tgat1
+  topic: tgat1.speaking.short_conversations
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Retail & Return Policy"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: consumer_transactions
+    secondary:
+      - exchange_and_refund
+      - customer_service
+  stem: |
+    Customer: "Hi, I bought this jacket two days ago, but the zipper keeps getting stuck. Here is the receipt."
+    Sales Associate: "________________________"
+    Customer: "An exchange for the same size in navy blue would be perfect. Thank you!"
+    What is the most suitable response from the sales associate?
+  difficulty: 2
+  estimated_seconds: 50
+  hints:
+    - level: 1
+      text: "The customer chooses an exchange for the same size, which means the sales associate offered exchange/refund options."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "I apologize for the defect. We would be glad to exchange it for a new one or process a full refund. Which do you prefer?"
+        correct: true
+        explanation: "Apologizes for the product defect and presents clear options (replacement or refund) matching the customer's choice."
+      - id: "2"
+        text: "You probably broke the zipper yourself after wearing it outside."
+        correct: false
+        error_tag: accusing_the_customer
+        explanation: "Inadmissible customer service behavior that directly accuses the buyer without inspection."
+      - id: "3"
+        text: "All sales are final, so you will just have to live with a broken zipper."
+        correct: false
+        error_tag: rigid_denial_of_defective_goods
+        explanation: "Contradicts statutory consumer protection rights regarding defective merchandise accompanied by a receipt."
+      - id: "4"
+        text: "Why did you pick this color anyway? Nobody buys navy blue."
+        correct: false
+        error_tag: inappropriate_personal_criticism
+        explanation: "Rude and inappropriate personal commentary on customer preferences."
+  solution:
+    summary: "ตัวเลือกที่ 1 เหมาะสมที่สุด พนักงานต้องขอโทษสำหรับสินค้ามีตำหนิ และเสนอทางเลือกให้เปลี่ยนสินค้าหรือคืนเงินตามสิทธิ์ของลูกค้า"
+    steps:
+      - id: s1
+        text: "บริบท: ลูกค้านำเสื้อที่ซิปติดมาติดต่อพร้อมใบเสร็จ และประโยคถัดมาลูกค้าเลือกเปลี่ยนเป็นตัวใหม่สีเดิม"
+      - id: s2
+        text: "พนักงานขายที่ดีต้องขอโทษในความบกพร่องของสินค้า และเสนอทางเลือกระหว่างเปลี่ยนสินค้า (exchange) หรือคืนเงิน (refund)"
+      - id: s3
+        text: "ตัวเลือก 1 ตอบโจทย์ทั้งความสุภาพและขั้นตอนการให้บริการลูกค้าอย่างถูกต้อง"
+
+- id: tgat1-spk-drill-010
+  subject: tgat1
+  topic: tgat1.speaking.question_response
+  source:
+    type: authored_drill
+    label: "TGAT1 Speaking Practice: Academic Discussion"
+  verification:
+    tier: A
+    status: verified
+    verified_by: academic_lead
+  skills:
+    primary: academic_communication
+    secondary:
+      - diplomatic_disagreement
+      - evidence_based_argumentation
+  stem: "During a university research seminar, a peer claims that artificial intelligence will eliminate the need for doctors within three years. How do you express polite disagreement using evidence?"
+  difficulty: 3
+  estimated_seconds: 60
+  hints:
+    - level: 1
+      text: "Look for diplomatic phrasing that acknowledges the peer's enthusiasm for AI while countering with realistic clinical evidence."
+  answer:
+    type: single_choice
+    options:
+      - id: "1"
+        text: "While AI is undeniably transforming diagnostic accuracy, current clinical studies suggest it acts as an assistive tool rather than a complete replacement for human clinical judgment."
+        correct: true
+        explanation: "Diplomatic concession ('While AI is undeniably...'), balanced with scientific evidence on AI's assistive role in medicine."
+      - id: "2"
+        text: "That is completely absurd and shows you know nothing about medical science."
+        correct: false
+        error_tag: ad_hominem_attack
+        explanation: "Ad hominem personal attack that undermines academic discourse."
+      - id: "3"
+        text: "Doctors are obsolete anyway, so I think AI should replace them tomorrow."
+        correct: false
+        error_tag: agreeing_with_radical_claim
+        explanation: "Agrees with and exaggerates the radical claim rather than disagreeing."
+      - id: "4"
+        text: "Let's change the topic because technology is boring."
+        correct: false
+        error_tag: dismissive_avoidance
+        explanation: "Dismisses academic debate immaturely."
+  solution:
+    summary: "ตัวเลือกที่ 1 เป็นการแสดงความเห็นต่างเชิงวิชาการอย่างสุภาพ (Diplomatic disagreement) โดยยอมรับจุดเด่นของ AI ก่อนจะโต้แย้งด้วยหลักฐานทางการแพทย์ว่า AI เป็นเพียงเครื่องมือสนับสนุนการตัดสินใจของแพทย์"
+    steps:
+      - id: s1
+        text: "บริบท: การสัมมนาทางวิชาการ มีเพื่อนเสนอแนวคิดสุดโต่งว่า AI จะแทนที่แพทย์ทั้งหมดใน 3 ปี"
+      - id: s2
+        text: "การโต้แย้งทางวิชาการ (Academic Debate): ต้องหลีกเลี่ยงการโจมตีบุคคล โดยใช้เทคนิค Concession (While...) ตามด้วยหลักฐานเชิงประจักษ์ (Clinical studies show...)"
+      - id: s3
+        text: "ตัวเลือก 1 แสดงวุฒิภาวะทางวิชาการและใช้น้ำเสียงที่เป็นมืออาชีพที่สุด"

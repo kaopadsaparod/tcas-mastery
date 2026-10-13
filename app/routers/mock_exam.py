@@ -36,7 +36,14 @@ class SubmitExamRequest(BaseModel):
 @router.get("/mock-exam", response_class=HTMLResponse)
 async def mock_exam_landing_page(request: Request):
     history = get_mock_exam_history()
-    primary_keys = ["alevel_physics_practice_20", "alevel_physics_mock_30", "tpat3_practice_25", "tpat3_mock_70"]
+    primary_keys = [
+        "alevel_physics_practice_20",
+        "alevel_physics_mock_30",
+        "tpat3_practice_25",
+        "tpat3_mock_70",
+        "tgat1_mock_60",
+        "tgat3_mock_60",
+    ]
     visible_blueprints = {k: EXAM_BLUEPRINTS[k] for k in primary_keys if k in EXAM_BLUEPRINTS}
     return templates.TemplateResponse(
         request=request,

@@ -56,11 +56,37 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
         "is_official_blueprint": True,
         "description": "จำลองสอบ TPAT3 เต็มรูปแบบ 70 ข้อ 180 นาที ครบ 5 ส่วนตามพิมพ์เขียว MyTCAS (ส่วนที่ 1 ความถนัด 45 ข้อ 60 คะแนน + ส่วนที่ 2 ความคิดและความสนใจ 25 ข้อ 40 คะแนน = 100 คะแนนเต็ม)",
     },
+    "tgat1_mock_60": {
+        "id": "tgat1_mock_60",
+        "title": "TGAT1 (การสื่อสารภาษาอังกฤษ ตามโครงสร้าง MyTCAS 60 ข้อ)",
+        "subject": "tgat1",
+        "paper_id": "tgat1-blueprint-60",
+        "time_limit_min": 60,
+        "max_score": 100.0,
+        "pace_target_min": 1.0,
+        "total_questions": 60,
+        "is_official_blueprint": True,
+        "description": "จำลองสอบ TGAT1 การสื่อสารภาษาอังกฤษ 60 ข้อ 60 นาที (ทักษะการพูด 30 ข้อ 50 คะแนน + ทักษะการอ่าน 30 ข้อ 50 คะแนน รวม 100 คะแนนเต็ม)",
+    },
+    "tgat3_mock_60": {
+        "id": "tgat3_mock_60",
+        "title": "TGAT3 (สมรรถนะการทำงานในอนาคต ตามโครงสร้าง MyTCAS 60 ข้อ)",
+        "subject": "tgat3",
+        "paper_id": "tgat3-blueprint-60",
+        "time_limit_min": 60,
+        "max_score": 100.0,
+        "pace_target_min": 1.0,
+        "total_questions": 60,
+        "is_official_blueprint": True,
+        "description": "จำลองสอบ TGAT3 สมรรถนะการทำงานในอนาคต 60 ข้อ 60 นาที ครบ 4 ส่วน (การสร้างคุณค่าและนวัตกรรม, การแก้ไขปัญหาที่ซับซ้อน, การบริหารจัดการอารมณ์, การเป็นพลเมืองที่มีส่วนร่วมของสังคม รวม 100 คะแนนเต็ม)",
+    },
 }
 
 # Backward compatibility aliases
 EXAM_BLUEPRINTS["alevel_physics"] = EXAM_BLUEPRINTS["alevel_physics_mock_30"]
 EXAM_BLUEPRINTS["tpat3"] = EXAM_BLUEPRINTS["tpat3_practice_25"]
+EXAM_BLUEPRINTS["tgat1"] = EXAM_BLUEPRINTS["tgat1_mock_60"]
+EXAM_BLUEPRINTS["tgat3"] = EXAM_BLUEPRINTS["tgat3_mock_60"]
 
 
 def _sanitize_question_for_client(q: dict[str, Any]) -> dict[str, Any]:

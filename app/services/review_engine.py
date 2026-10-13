@@ -14,13 +14,15 @@ PACE_TARGETS = {
     "physics": 180.0,  # A-Level Physics: 30 questions in 90 min (3 min/q)
     "math": 180.0,     # A-Level Math 1: 30 questions in 90 min (3 min/q)
     "tpat3": 150.0,    # TPAT3: ~70 questions in 180 min (2.5 min/q)
+    "tgat1": 60.0,     # TGAT1 English Communication: 60 questions in 60 min (1 min/q)
     "tgat2": 60.0,     # TGAT2: fast reasoning (1 min/q)
+    "tgat3": 60.0,     # TGAT3 Future Workforce: 60 questions in 60 min (1 min/q)
 }
 
 
 def evaluate_pace(subject: str, time_spent_sec: float) -> dict[str, Any]:
     """
-    Evaluates student pace against official A-Level / TPAT3 time benchmarks.
+    Evaluates student pace against official exam benchmarks.
     Returns status ('fast', 'optimal', 'slow', 'untracked'), target seconds, and diagnostic feedback.
     """
     target = PACE_TARGETS.get(subject.lower() if subject else "", 180.0)
@@ -35,7 +37,7 @@ def evaluate_pace(subject: str, time_spent_sec: float) -> dict[str, Any]:
         return {
             "pace_status": "fast",
             "pace_target_sec": target,
-            "pace_feedback": f"⚡ เร็วกว่าเวลาเป้าหมาย A-Level ({round(time_spent_sec, 1)}s / เกณฑ์ {int(target)}s)",
+            "pace_feedback": f"⚡ เร็วกว่าเวลาเป้าหมาย ({round(time_spent_sec, 1)}s / เกณฑ์ {int(target)}s)",
         }
     elif time_spent_sec <= target * 1.15:
         return {
@@ -47,7 +49,7 @@ def evaluate_pace(subject: str, time_spent_sec: float) -> dict[str, Any]:
         return {
             "pace_status": "slow",
             "pace_target_sec": target,
-            "pace_feedback": f"⏳ ช้ากว่าเกณฑ์ A-Level ({round(time_spent_sec, 1)}s / เกณฑ์ {int(target)}s) ควรทบทวนสูตรและวิธีคิดลัด",
+            "pace_feedback": f"⏳ ช้ากว่าเกณฑ์เวลาสอบ ({round(time_spent_sec, 1)}s / เกณฑ์ {int(target)}s) ควรฝึกบริหารเวลา",
         }
 
 

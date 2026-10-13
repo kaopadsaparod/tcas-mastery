@@ -38,7 +38,7 @@ class ContentLoader:
         new_past_papers: dict[str, PastPaper] = {}
 
         # Load questions from subject directories
-        for sub_dir in ["physics", "math", "tpat3", "tgat2", "imported"]:
+        for sub_dir in ["physics", "math", "tpat3", "tgat1", "tgat2", "tgat3", "imported"]:
             folder = self.content_dir / sub_dir
             if folder.exists():
                 for yaml_file in sorted(folder.glob("*.yaml")):
@@ -64,22 +64,42 @@ class ContentLoader:
     def _load_question_file_into(
         self, file_path: Path, target_dict: dict[str, Question]
     ) -> None:
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            if isinstance(data, list):
-                for item in data:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+        except Exception as e:
+            raise RuntimeError(f"Failed to read or parse YAML file '{file_path}': {e}") from e
+
+        if isinstance(data, list):
+            for idx, item in enumerate(data):
+                if not isinstance(item, dict):
+                    continue
+                try:
                     q = Question(**item)
                     target_dict[q.id] = q
+                except Exception as e:
+                    qid = item.get("id", f"index-{idx}")
+                    raise ValueError(f"Schema validation error in '{file_path}' item '{qid}': {e}") from e
 
     def _load_formula_file_into(
         self, file_path: Path, target_dict: dict[str, FormulaCard]
     ) -> None:
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            if isinstance(data, list):
-                for item in data:
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+        except Exception as e:
+            raise RuntimeError(f"Failed to read or parse YAML file '{file_path}': {e}") from e
+
+        if isinstance(data, list):
+            for idx, item in enumerate(data):
+                if not isinstance(item, dict):
+                    continue
+                try:
                     card = FormulaCard(**item)
                     target_dict[card.id] = card
+                except Exception as e:
+                    cid = item.get("id", f"index-{idx}")
+                    raise ValueError(f"Schema validation error in formula '{file_path}' item '{cid}': {e}") from e
 
     def _load_past_paper_file_into(
         self,
@@ -87,20 +107,29 @@ class ContentLoader:
         target_dict: dict[str, PastPaper],
         target_questions: dict[str, Question] | None = None,
     ) -> None:
-        with open(file_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            if isinstance(data, dict):
-                paper = PastPaper(**data)
-                target_dict[paper.id] = paper
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = yaml.safe_load(f)
+        except Exception as e:
+            raise RuntimeError(f"Failed to read or parse YAML file '{file_path}': {e}") from e
 
-                # Adapt past paper questions into the main question bank
-                if target_questions is not None and paper.questions:
-                    for pq in paper.questions:
-                        qid = pq.question_id or f"{paper.id}-q{pq.number}"
-                        if qid not in target_questions:
-                            adapted_q = self._adapt_past_paper_question(paper, pq)
-                            if adapted_q is not None:
-                                target_questions[qid] = adapted_q
+        if isinstance(data, dict):
+            try:
+                paper = PastPaper(**data)
+            except Exception as e:
+                pid = data.get("id", "unknown")
+                raise ValueError(f"Schema validation error in past paper '{file_path}' (id: '{pid}'): {e}") from e
+
+            target_dict[paper.id] = paper
+
+            # Adapt past paper questions into the main question bank
+            if target_questions is not None and paper.questions:
+                for pq in paper.questions:
+                    qid = pq.question_id or f"{paper.id}-q{pq.number}"
+                    if qid not in target_questions:
+                        adapted_q = self._adapt_past_paper_question(paper, pq)
+                        if adapted_q is not None:
+                            target_questions[qid] = adapted_q
 
     def _adapt_past_paper_question(self, paper: PastPaper, q: Any) -> Question | None:
         # Gating: Question must have a real non-empty stem
@@ -189,7 +218,11 @@ class ContentLoader:
             stem=q.stem,
             answer=ans_config,
             difficulty=3,
-            estimated_seconds=180 if paper.subject in ["physics", "math"] else 150,
+            estimated_seconds=(
+                60
+                if paper.subject in ["tgat1", "tgat2", "tgat3"]
+                else (180 if paper.subject in ["physics", "math"] else 150)
+            ),
             hints=hints,
             solution=full_sol,
         )
@@ -276,6 +309,16 @@ class ContentLoader:
             return [
                 Hint(level=1, text=f"วิเคราะห์ข้อมูลและเงื่อนไขสำคัญของโจทย์ในหัวข้อ {topic}"),
                 Hint(level=2, text="ประยุกต์ใช้หลักการคำนวณหรือมโนทัศน์เชิงวิศวกรรมเพื่อสรุปคำตอบ"),
+            ]
+        elif topic.startswith("tgat1"):
+            return [
+                Hint(level=1, text=f"วิเคราะห์บริบท บทสนทนา หรือใจความสำคัญในหัวข้อ {topic}"),
+                Hint(level=2, text="สังเกตคำสำคัญ (Keywords) โครงสร้างไวยากรณ์ และเจตนาของผู้พูดหรือผู้เขียน"),
+            ]
+        elif topic.startswith("tgat3"):
+            return [
+                Hint(level=1, text=f"พิจารณาสถานการณ์และเป้าหมายของการตัดสินใจในหัวข้อ {topic}"),
+                Hint(level=2, text="ประเมินทางเลือกตามหลักการแก้ปัญหา ความฉลาดทางอารมณ์ และความรับผิดชอบต่อส่วนรวม"),
             ]
         else:
             return [
