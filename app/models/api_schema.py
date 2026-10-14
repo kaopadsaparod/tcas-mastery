@@ -25,6 +25,9 @@ class SubmitAttemptResponse(BaseModel):
     pace_status: str | None = None  # 'fast', 'optimal', 'slow', 'untracked'
     pace_target_sec: float | None = None
     pace_feedback: str | None = None
+    is_overconfidence: bool = False
+    recommended_drill: dict[str, str] | None = None
+    recommended_formula: dict[str, Any] | None = None
 
 
 class ProceduralSubmitRequest(BaseModel):

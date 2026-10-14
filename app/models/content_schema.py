@@ -57,6 +57,13 @@ class ChoiceOption(BaseModel):
     explanation: str | None = None
 
 
+class NumericTrap(BaseModel):
+    value: float | int
+    error_tag: str
+    explanation: str
+    tolerance: float | None = 0.02
+
+
 class AnswerConfig(BaseModel):
     type: Literal["single_choice", "numeric"] = "single_choice"
     options: list[ChoiceOption] | None = None
@@ -64,6 +71,7 @@ class AnswerConfig(BaseModel):
     unit: str | None = None
     tolerance: float | None = 0.02
     require_unit: bool = False
+    known_traps: list[NumericTrap] = Field(default_factory=list)
 
 
 class Hint(BaseModel):
@@ -127,6 +135,7 @@ class PastPaperQuestion(BaseModel):
     tolerance: float = 0.001
     unit: str | None = None
     require_unit: bool = False
+    known_traps: list[NumericTrap] | None = None
     stem: str | None = None
     options: list[ChoiceOption] | None = None
     question_id: str | None = None

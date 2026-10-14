@@ -15,7 +15,7 @@ PACE_TARGETS = {
     "math": 180.0,     # A-Level Math 1: 30 questions in 90 min (3 min/q)
     "tpat3": 150.0,    # TPAT3: ~70 questions in 180 min (2.5 min/q)
     "tgat1": 60.0,     # TGAT1 English Communication: 60 questions in 60 min (1 min/q)
-    "tgat2": 60.0,     # TGAT2: fast reasoning (1 min/q)
+    "tgat2": 45.0,     # TGAT2: fast reasoning (80 questions in 60 min = 45s/q)
     "tgat3": 60.0,     # TGAT3 Future Workforce: 60 questions in 60 min (1 min/q)
 }
 
@@ -117,22 +117,23 @@ def record_attempt(
         rep_count = row["repetition_count"] if row else 0
 
         # 3. Compute next interval & priority
+        is_overconfidence = (confidence == "sure" and not is_correct)
         if not is_correct:
             next_interval = 1
             new_rep = 0
-            # High priority if student was sure but was actually wrong (misconception)
-            priority = "high" if confidence == "sure" else "normal"
+            # High priority if student was sure but was actually wrong (severe misconception)
+            priority = "high" if is_overconfidence else "normal"
         elif status == "correct_assisted":
             next_interval = 1
             new_rep = 0
             priority = "normal"
         else:  # correct_first_try
             if confidence == "guessed":
-                next_interval = 1
+                next_interval = 1  # Reset to 1 day: guessing correctly is not true mastery
                 new_rep = 0
                 priority = "normal"
             elif confidence == "unsure":
-                next_interval = max(1, last_interval)
+                next_interval = 1 if rep_count == 0 else max(1, last_interval)
                 new_rep = rep_count
                 priority = "normal"
             else:  # sure
@@ -179,6 +180,7 @@ def record_attempt(
         "next_review_at": next_review_str,
         "interval_days": next_interval,
         "priority": priority,
+        "is_overconfidence": is_overconfidence,
     }
 
 

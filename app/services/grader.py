@@ -27,6 +27,10 @@ ERROR_TAG_DESCRIPTIONS = {
     "arithmetic_error": "คำนวณเลขหรือคิดเลขผิดพลาด",
     "peak_displacement_only": "ตอบระยะทางถึงจุดสูงสุด ลืมคิดการกระจัดที่แท้จริงหลังจากนั้น",
     "distance_instead_of_displacement": "สับสนระหว่าง 'ระยะทางจริง' กับ 'การกระจัด'",
+    "formula_misapplication": "เลือกใช้สูตรไม่ตรงกับเงื่อนไขของโจทย์",
+    "forgot_formula": "จำสูตรหรือหลักการไม่ได้ หรือแทนค่าผิดสูตร",
+    "superficial_reading": "อ่านโจทย์ไม่ละเอียด มองข้ามคำสำคัญหรือเงื่อนไขที่โจทย์กำหนด",
+    "wrong_choice": "เลือกตัวเลือกผิดพลาด",
 }
 
 UNIT_SYNONYMS: dict[str, set[str]] = {
@@ -322,18 +326,45 @@ def grade_attempt(
         tol = question.answer.tolerance if question.answer.tolerance is not None else 0.01
         exp_unit = question.answer.unit
         req_unit = getattr(question.answer, "require_unit", False)
-        is_correct, unit_err = grade_numeric_detailed(
+        grade_res = grade_numeric_detailed(
             user_clean, expected, tol, expected_unit=exp_unit, require_unit=req_unit
         )
-        if not is_correct and unit_err:
-            error_tag = unit_err
+        is_correct = grade_res.is_correct
+        if not is_correct:
+            if grade_res.unit_status in ["missing_unit", "wrong_unit"]:
+                error_tag = grade_res.error_tag or grade_res.unit_status
+            else:
+                # Check known traps
+                u_val = normalize_numeric_string(user_clean)
+                trap_matched = False
+                known_traps = getattr(question.answer, "known_traps", None) or []
+                if u_val is not None and known_traps:
+                    for trap in known_traps:
+                        trap_val = float(trap.value)
+                        trap_tol = trap.tolerance if trap.tolerance is not None else tol
+                        scaled_abs_tol = (
+                            min(1e-12, trap_tol * abs(trap_val))
+                            if trap_val != 0
+                            else 1e-9
+                        )
+                        if math.isclose(
+                            u_val, trap_val, rel_tol=trap_tol, abs_tol=scaled_abs_tol
+                        ):
+                            error_tag = trap.error_tag
+                            explanation = trap.explanation
+                            trap_matched = True
+                            break
+                if not trap_matched:
+                    error_tag = grade_res.error_tag or "arithmetic_error"
 
         correct_answer_str = f"{expected} {question.answer.unit or ''}".strip()
-        explanation = (
-            question.solution.summary
-            if question.solution
-            else f"คำตอบที่ถูกต้องคือ {correct_answer_str}"
-        )
+        if not explanation:
+            explanation = (
+                question.solution.summary
+                if question.solution
+                else f"คำตอบที่ถูกต้องคือ {correct_answer_str}"
+            )
+
 
     # Determine status
     if is_correct:
@@ -359,3 +390,29 @@ def grade_attempt(
         plan_step_correct=plan_step_correct,
         next_review_interval_days=next_interval,
     )
+
+
+def get_recommended_drill(error_tag: str | None) -> dict[str, str] | None:
+    """Returns a direct remediation drill based on the diagnosed error tag."""
+    if not error_tag:
+        return None
+    if error_tag in ["no_unit_conversion", "wrong_unit", "missing_unit"]:
+        return {
+            "type": "speed_conversion",
+            "title": "ฝึกแปลงหน่วยความเร็วและเวลา (Speed Conversion)",
+            "url": "/drills/speed_conversion",
+        }
+    elif error_tag in ["arithmetic_error", "missing_factor_2", "missing_factor_half"]:
+        return {
+            "type": "powers_and_scientific",
+            "title": "ฝึกคิดเลขยกกำลังและสัญกรณ์วิทยาศาสตร์ (Powers & Scientific)",
+            "url": "/drills/powers_and_scientific",
+        }
+    elif error_tag in ["sign_error", "sign_error_friction", "rearrange_error"]:
+        return {
+            "type": "kinematics_5_formulas",
+            "title": "ฝึกแทนค่าและคิดเครื่องหมาย 5 สูตรการเคลื่อนที่",
+            "url": "/drills/kinematics_5_formulas",
+        }
+    return None
+

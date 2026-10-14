@@ -100,6 +100,19 @@ async def practice_question(request: Request, question_id: str):
             "SELECT 1 FROM bookmarks WHERE question_id = ?", (question_id,)
         )
         is_bookmarked = cursor.fetchone() is not None
+        cursor.execute(
+            "SELECT COUNT(*) as cnt FROM attempts WHERE question_id = ?", (question_id,)
+        )
+        attempts_count = cursor.fetchone()["cnt"]
+
+    display_options = list(q.answer.options) if (q.answer and q.answer.options) else []
+    display_shuffled = False
+    if attempts_count > 0 and len(display_options) > 1:
+        import random
+        # Deterministic seed per attempt count so page refresh does not jump randomly
+        rng = random.Random(f"{question_id}-{attempts_count}")
+        rng.shuffle(display_options)
+        display_shuffled = True
 
     presolve_prompt = generate_presolve_hint_prompt(q)
 
@@ -110,6 +123,8 @@ async def practice_question(request: Request, question_id: str):
             "q": q,
             "is_bookmarked": is_bookmarked,
             "presolve_prompt": presolve_prompt,
+            "display_options": display_options,
+            "display_shuffled": display_shuffled,
         },
     )
 
@@ -183,6 +198,31 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
 
     # Synchronize actual spaced repetition interval from queue database
     grade_result.next_review_interval_days = queue_record["interval_days"]
+    is_overconf = bool(queue_record.get("is_overconfidence", False))
+    grade_result.is_overconfidence = is_overconf
+
+    # Recommendations for drills and formula cards
+    from app.services.grader import get_recommended_drill
+    grade_result.recommended_drill = get_recommended_drill(grade_result.error_tag)
+
+    rec_formula = None
+    if is_overconf or grade_result.error_tag in [
+        "formula_misapplication",
+        "missing_factor_2",
+        "missing_factor_half",
+        "sign_error",
+        "sign_error_friction",
+    ]:
+        f_card = content_loader.get_formula_for_topic(q.topic, q.subject)
+        if f_card:
+            rec_formula = {
+                "id": f_card.id,
+                "title": f_card.title,
+                "latex": f_card.latex,
+                "conditions": f_card.conditions,
+                "selection_cues": f_card.selection_cues,
+            }
+    grade_result.recommended_formula = rec_formula
 
     # Generate 5-step Pedagogical Tutor breakdown
     from app.services.tutor_engine import build_tutor_breakdown
@@ -199,9 +239,42 @@ async def api_submit_attempt(req: SubmitAttemptRequest):
     res_dict["next_review_interval_days"] = queue_record["interval_days"]
     res_dict["next_review_at"] = queue_record["next_review_at"]
     res_dict["queue_priority"] = queue_record["priority"]
+    res_dict["is_overconfidence"] = is_overconf
+    res_dict["recommended_drill"] = grade_result.recommended_drill
+    res_dict["recommended_formula"] = rec_formula
     res_dict["ai_prompt"] = ai_prompt
     res_dict["tutor_breakdown"] = tutor_breakdown
     return JSONResponse(res_dict)
+
+
+class SelfDiagnoseRequest(BaseModel):
+    question_id: str
+    error_tag: str
+
+
+@router.post("/api/attempt/self-diagnose")
+async def api_self_diagnose(req: SelfDiagnoseRequest):
+    """Allows post-attempt self-tagging of misconceptions for rapid Tier B practice."""
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute(
+            """
+            UPDATE attempts
+            SET error_tag = ?
+            WHERE id = (
+                SELECT id FROM attempts
+                WHERE question_id = ?
+                ORDER BY created_at DESC LIMIT 1
+            )
+            """,
+            (req.error_tag, req.question_id),
+        )
+        cursor.execute(
+            "UPDATE review_queue SET last_error_tag = ? WHERE question_id = ?",
+            (req.error_tag, req.question_id),
+        )
+    return JSONResponse({"success": True, "error_tag": req.error_tag})
+
 
 
 @router.get("/api/tutor/breakdown/{question_id}")

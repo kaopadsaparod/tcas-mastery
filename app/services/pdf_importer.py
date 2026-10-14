@@ -170,12 +170,16 @@ def process_uploaded_image(file_bytes: bytes, original_filename: str) -> dict[st
     }
 
 
-def save_custom_question(data: dict[str, Any]) -> Question:
+def save_custom_question(
+    data: dict[str, Any], target_yaml: Path | None = None
+) -> Question:
     """
     Saves a new question created from an imported PDF/image into the YAML question bank.
     Uses threading lock and atomic temp file replace to avoid race conditions and file corruption.
     """
-    target_yaml = IMPORTED_CONTENT_DIR / "custom_questions.yaml"
+    if target_yaml is None:
+        target_yaml = IMPORTED_CONTENT_DIR / "custom_questions.yaml"
+
 
     # Validate image_url if provided
     image_url = data.get("image_url")

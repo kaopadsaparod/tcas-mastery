@@ -38,11 +38,23 @@ class ContentLoader:
         new_past_papers: dict[str, PastPaper] = {}
 
         # Load questions from subject directories
-        for sub_dir in ["physics", "math", "tpat3", "tgat1", "tgat2", "tgat3", "imported"]:
+        for sub_dir in ["physics", "math", "tpat3", "tgat1", "tgat2", "tgat3"]:
             folder = self.content_dir / sub_dir
             if folder.exists():
                 for yaml_file in sorted(folder.glob("*.yaml")):
                     self._load_question_file_into(yaml_file, new_questions)
+
+        # Load imported questions (supporting test directory isolation)
+        try:
+            from app.services import pdf_importer
+            imported_folder = getattr(pdf_importer, "IMPORTED_CONTENT_DIR", self.content_dir / "imported")
+        except Exception:
+            imported_folder = self.content_dir / "imported"
+
+        if imported_folder.exists():
+            for yaml_file in sorted(imported_folder.glob("*.yaml")):
+                self._load_question_file_into(yaml_file, new_questions)
+
 
         # Load formulas
         formula_folder = self.content_dir / "formulas"
@@ -170,6 +182,7 @@ class ContentLoader:
                 unit=q.unit,
                 tolerance=q.tolerance or 0.001,
                 require_unit=q.require_unit,
+                known_traps=getattr(q, "known_traps", None) or [],
             )
 
         # Solution steps & explanation
@@ -372,6 +385,21 @@ class ContentLoader:
 
     def get_past_paper_by_id(self, pid: str) -> PastPaper | None:
         return self._past_papers.get(pid)
+
+    def get_formula_for_topic(self, topic: str, subject: str = "") -> FormulaCard | None:
+        """Finds matching formula card for a given topic or subject."""
+        for f in self._formulas.values():
+            if f.topic == topic:
+                return f
+        for f in self._formulas.values():
+            if topic.startswith(f.topic) or f.topic.startswith(topic):
+                return f
+        if subject:
+            for f in self._formulas.values():
+                if f.subject == subject:
+                    return f
+        return None
+
 
 
 # Global singleton

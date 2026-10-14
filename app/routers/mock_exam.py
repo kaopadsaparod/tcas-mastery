@@ -39,9 +39,11 @@ async def mock_exam_landing_page(request: Request):
     primary_keys = [
         "alevel_physics_practice_20",
         "alevel_physics_mock_30",
+        "alevel_math1_mock_30",
         "tpat3_practice_25",
         "tpat3_mock_70",
         "tgat1_mock_60",
+        "tgat2_mock_80",
         "tgat3_mock_60",
     ]
     visible_blueprints = {k: EXAM_BLUEPRINTS[k] for k in primary_keys if k in EXAM_BLUEPRINTS}

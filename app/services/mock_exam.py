@@ -1,11 +1,12 @@
 import json
+import math
 import uuid
 from datetime import datetime, timezone
 from typing import Any
 
 from app.database import get_db
 from app.services.content_loader import content_loader
-from app.services.grader import grade_numeric_detailed
+from app.services.grader import grade_numeric_detailed, normalize_numeric_string
 
 EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
     "alevel_physics_practice_20": {
@@ -80,13 +81,40 @@ EXAM_BLUEPRINTS: dict[str, dict[str, Any]] = {
         "is_official_blueprint": True,
         "description": "จำลองสอบ TGAT3 สมรรถนะการทำงานในอนาคต 60 ข้อ 60 นาที ครบ 4 ส่วน (การสร้างคุณค่าและนวัตกรรม, การแก้ไขปัญหาที่ซับซ้อน, การบริหารจัดการอารมณ์, การเป็นพลเมืองที่มีส่วนร่วมของสังคม รวม 100 คะแนนเต็ม)",
     },
+    "alevel_math1_mock_30": {
+        "id": "alevel_math1_mock_30",
+        "title": "A-Level คณิตศาสตร์ประยุกต์ 1 (ตามโครงสร้าง MyTCAS 30 ข้อ)",
+        "subject": "math",
+        "paper_id": "alevel-math1-blueprint-30",
+        "time_limit_min": 90,
+        "max_score": 100.0,
+        "pace_target_min": 3.0,
+        "total_questions": 30,
+        "is_official_blueprint": True,
+        "description": "จำลองสอบ A-Level คณิตประยุกต์ 1 ตามโครงสร้างพิมพ์เขียว MyTCAS 30 ข้อ 90 นาที (ปรนัย 5 ตัวเลือก 25 ข้อ 75 คะแนน + อัตนัยเติมตัวเลข 5 ข้อ 25 คะแนน รวม 100 คะแนนเต็ม)",
+    },
+    "tgat2_mock_80": {
+        "id": "tgat2_mock_80",
+        "title": "TGAT2 การคิดอย่างมีเหตุผล (ตามโครงสร้าง MyTCAS 80 ข้อ)",
+        "subject": "tgat2",
+        "paper_id": "tgat2-blueprint-80",
+        "time_limit_min": 60,
+        "max_score": 100.0,
+        "pace_target_min": 0.75,
+        "total_questions": 80,
+        "is_official_blueprint": True,
+        "description": "จำลองสอบ TGAT2 การคิดอย่างมีเหตุผล 80 ข้อ 60 นาที ครบ 4 ส่วน (ภาษา, ตัวเลข, มิติสัมพันธ์, เหตุผล ส่วนละ 20 ข้อ รวม 100 คะแนนเต็ม)",
+    },
 }
 
 # Backward compatibility aliases
 EXAM_BLUEPRINTS["alevel_physics"] = EXAM_BLUEPRINTS["alevel_physics_mock_30"]
+EXAM_BLUEPRINTS["alevel_math1"] = EXAM_BLUEPRINTS["alevel_math1_mock_30"]
 EXAM_BLUEPRINTS["tpat3"] = EXAM_BLUEPRINTS["tpat3_practice_25"]
 EXAM_BLUEPRINTS["tgat1"] = EXAM_BLUEPRINTS["tgat1_mock_60"]
+EXAM_BLUEPRINTS["tgat2"] = EXAM_BLUEPRINTS["tgat2_mock_80"]
 EXAM_BLUEPRINTS["tgat3"] = EXAM_BLUEPRINTS["tgat3_mock_60"]
+
 
 
 def _sanitize_question_for_client(q: dict[str, Any]) -> dict[str, Any]:
@@ -171,6 +199,12 @@ def start_mock_exam(exam_type: str = "alevel_physics_practice_20") -> dict[str, 
                     "require_unit": q.require_unit,
                     "score": q.score,
                     "solution": q.solution,
+                    "known_traps": [
+                        t.model_dump() if hasattr(t, "model_dump") else t
+                        for t in (q.known_traps or [])
+                    ]
+                    if getattr(q, "known_traps", None)
+                    else None,
                 }
             )
     else:
@@ -376,10 +410,38 @@ def submit_mock_exam(
                     expected_ans,
                     tolerance=tol,
                     expected_unit=unit,
-                    require_unit=req_unit,
+                    require_unit=False,  # Ignore unit requirement in mock exam mode (TCAS answer sheet format)
                 )
                 is_correct = grade_res.is_correct
                 error_tag = grade_res.error_tag
+                if not is_correct and q.get("known_traps"):
+                    u_val = normalize_numeric_string(user_ans)
+                    if u_val is not None:
+                        for trap in q.get("known_traps", []):
+                            trap_val = float(
+                                trap["value"] if isinstance(trap, dict) else trap.value
+                            )
+                            trap_tol = (
+                                trap.get("tolerance")
+                                if isinstance(trap, dict)
+                                else getattr(trap, "tolerance", None)
+                            )
+                            trap_tol = trap_tol if trap_tol is not None else tol
+                            scaled_abs_tol = (
+                                min(1e-12, trap_tol * abs(trap_val))
+                                if trap_val != 0
+                                else 1e-9
+                            )
+                            if math.isclose(
+                                u_val, trap_val, rel_tol=trap_tol, abs_tol=scaled_abs_tol
+                            ):
+                                error_tag = (
+                                    trap["error_tag"]
+                                    if isinstance(trap, dict)
+                                    else trap.error_tag
+                                )
+                                break
+
 
         earned = score_weight if is_correct else 0.0
         if is_correct:

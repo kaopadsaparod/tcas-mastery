@@ -98,8 +98,13 @@
       </div>
 
       {% if q.answer.type == "single_choice" %}
+        {% if display_shuffled %}
+        <div style="font-size: 0.8rem; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 0.35rem 0.65rem; border-radius: 6px; margin-bottom: 0.65rem; display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 600;">
+          <span>🔀</span> สลับลำดับตัวเลือกอัตโนมัติ (Anti-Pattern Matching สำหรับรอบทบทวน)
+        </div>
+        {% endif %}
         <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-          {% for opt in q.answer.options %}
+          {% for opt in (display_options or q.answer.options) %}
             <label class="option-item" id="label-{{ opt.id }}">
               <input type="radio" name="user_choice" value="{{ opt.id }}" required onchange="highlightOption(this)">
               <span style="font-weight: 600; width: 1.5rem;">{{ loop.index }}.</span>
@@ -156,6 +161,64 @@
       <strong style="font-size: 1rem;">🔍 วินิจฉัยข้อผิดพลาด (Misconception Diagnosis):</strong>
       <div id="errorTagText" style="margin-top: 0.35rem;"></div>
     </div>
+
+    <!-- Overconfidence Warning -->
+    <div id="overconfidenceAlert" class="alert alert-danger" style="display: none; border-left: 5px solid #dc2626; background: #fef2f2;">
+      <strong style="font-size: 1rem; color: #991b1b;">⚠️ ภาวะมั่นใจผิดจุด (Overconfidence Detected):</strong>
+      <div style="font-size: 0.9rem; color: #7f1d1d; margin-top: 0.35rem;">
+        คุณเลือกระดับความมั่นใจว่า <strong>"มั่นใจ (Sure)"</strong> แต่คำตอบยังไม่ถูกต้อง สะท้อนจุดเข้าใจผิดลึกซึ้ง (Misconception) ระบบได้ปรับคิวทบทวนข้อนี้เป็น <strong>Priority เร่งด่วน (1 วัน)</strong> และแนะนำให้ทบทวนสูตรทันที
+      </div>
+    </div>
+
+    <!-- Post-Attempt Self-Diagnosis (Tier B / Untagged Questions) -->
+    <div id="selfDiagnoseBox" style="display: none; margin-top: 1rem; background: #fff7ed; border: 1.5px solid #fdba74; border-radius: 10px; padding: 1rem 1.25rem;">
+      <div style="font-weight: 700; color: #9a3412; font-size: 0.95rem;">
+        🔍 ระบุสาเหตุที่ทำผิดด้วยตัวเอง (Self-Diagnosis):
+      </div>
+      <p style="font-size: 0.85rem; color: #c2410c; margin: 0.25rem 0 0.5rem 0;">
+        ช่วยเลือกว่าคุณพลาดเพราะสาเหตุใด เพื่อให้ระบบบันทึกและจัดคิวทบทวนได้แม่นยำ:
+      </p>
+      <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+        <select id="selfDiagnoseSelect" class="form-select" style="max-width: 320px; padding: 0.35rem 0.65rem; border-radius: 6px; border: 1px solid #fdba74;">
+          <option value="">-- เลือกสาเหตุที่ทำผิด --</option>
+          <option value="arithmetic_error">คำนวณเลขหรือคิดเลขผิดพลาด</option>
+          <option value="no_unit_conversion">ลืมแปลงหน่วย หรือหน่วยไม่ตรง</option>
+          <option value="formula_misapplication">เลือกใช้สูตรไม่ตรงกับเงื่อนไข</option>
+          <option value="sign_error">เครื่องหมายเวกเตอร์ / ทิศทางผิด</option>
+          <option value="forgot_formula">จำสูตรหรือทฤษฎีบทไม่ได้</option>
+          <option value="superficial_reading">อ่านโจทย์ไม่ละเอียด มองข้ามเงื่อนไข</option>
+        </select>
+        <button type="button" class="btn btn-primary" onclick="submitSelfDiagnose()" style="padding: 0.35rem 0.75rem; font-size: 0.85rem;">
+          บันทึกสาเหตุ
+        </button>
+      </div>
+    </div>
+
+    <!-- Remediation Drill Shortcut -->
+    <div id="recommendedDrillBox" style="display: none; margin-top: 1rem; background: #eef2ff; border: 1.5px solid #c7d2fe; border-radius: 10px; padding: 1rem 1.25rem;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+        <div>
+          <strong style="color: #3730a3; font-size: 0.95rem;">🎯 แบบฝึกคิดเลขเสริมจุดอ่อนทันที:</strong>
+          <div id="recDrillTitle" style="font-size: 0.9rem; color: #4338ca; margin-top: 0.2rem;"></div>
+        </div>
+        <a id="recDrillBtn" href="#" class="btn btn-primary" style="padding: 0.4rem 0.9rem; font-size: 0.85rem; text-decoration: none;">
+          เริ่มฝึก 5 ข้อ ➔
+        </a>
+      </div>
+    </div>
+
+    <!-- Recommended Formula Card -->
+    <div id="recommendedFormulaBox" style="display: none; margin-top: 1rem; background: #fefce8; border: 1.5px solid #fde047; border-radius: 10px; padding: 1rem 1.25rem;">
+      <div style="font-weight: 700; color: #854d0e; font-size: 0.95rem;" id="recFormulaTitle">📐 บัตรสูตรที่เกี่ยวข้อง</div>
+      <div id="recFormulaLatex" style="margin: 0.5rem 0; font-size: 1.15rem; color: #713f12; overflow-x: auto;"></div>
+      <div id="recFormulaConditions" style="font-size: 0.85rem; color: #a16207;"></div>
+      <div style="margin-top: 0.6rem;">
+        <a id="recFormulaRecallBtn" href="#" class="btn btn-secondary" style="padding: 0.35rem 0.75rem; font-size: 0.85rem; text-decoration: none;">
+          ⚡ ทำควิซทบทวนสูตรนี้ (Active Recall) ➔
+        </a>
+      </div>
+    </div>
+
 
     <!-- 3-Level Hints -->
     <div style="margin-top: 1.5rem;">
@@ -383,6 +446,57 @@ async function handleFormSubmit(e) {
       errBox.style.display = 'block';
     }
 
+    // Overconfidence Warning
+    if (data.is_overconfidence) {
+      const ocBox = document.getElementById('overconfidenceAlert');
+      if (ocBox) ocBox.style.display = 'block';
+    }
+
+    // Post-attempt Self-Diagnosis (if wrong and no pre-defined error tag)
+    if (!data.is_correct && !data.error_tag) {
+      const sdBox = document.getElementById('selfDiagnoseBox');
+      if (sdBox) sdBox.style.display = 'block';
+    }
+
+    // Recommended Drill Shortcut
+    if (data.recommended_drill) {
+      const rd = data.recommended_drill;
+      const dBox = document.getElementById('recommendedDrillBox');
+      const dTitle = document.getElementById('recDrillTitle');
+      const dBtn = document.getElementById('recDrillBtn');
+      if (dBox && dTitle && dBtn) {
+        dTitle.innerText = rd.title;
+        dBtn.href = rd.url;
+        dBox.style.display = 'block';
+      }
+    }
+
+    // Recommended Formula Card
+    if (data.recommended_formula) {
+      const rf = data.recommended_formula;
+      const fBox = document.getElementById('recommendedFormulaBox');
+      const fTitle = document.getElementById('recFormulaTitle');
+      const fLatex = document.getElementById('recFormulaLatex');
+      const fCond = document.getElementById('recFormulaConditions');
+      const fBtn = document.getElementById('recFormulaRecallBtn');
+      if (fBox && fTitle && fLatex && fCond && fBtn) {
+        fTitle.innerText = '📐 บัตรสูตรที่ต้องทบทวน: ' + rf.title;
+        fLatex.innerText = '$$' + rf.latex + '$$';
+        fCond.innerHTML = '<strong>เงื่อนไขการใช้:</strong> ' + (rf.conditions || []).join(', ');
+        fBtn.href = '/formulas/' + rf.id + '/recall';
+        fBox.style.display = 'block';
+        if (window.renderMathInElement) {
+          renderMathInElement(fBox, {
+            delimiters: [
+              {left: '$$', right: '$$', display: true},
+              {left: '$', right: '$', display: false}
+            ]
+          });
+        }
+      }
+    }
+
+
     // 5-Step Pedagogical Tutor Breakdown
     if (data.tutor_breakdown) {
       const tb = data.tutor_breakdown;
@@ -528,9 +642,40 @@ async function submitAdaptiveVariant() {
   }
 }
 
+async function submitSelfDiagnose() {
+  const sel = document.getElementById('selfDiagnoseSelect');
+  const tag = sel ? sel.value : '';
+  if (!tag) {
+    showToast('กรุณาเลือกสาเหตุที่ทำผิดก่อนกดบันทึก');
+    return;
+  }
+  try {
+    const res = await fetch('/api/attempt/self-diagnose', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question_id: "{{ q.id }}", error_tag: tag })
+    });
+    const d = await res.json();
+    if (d.success) {
+      showToast('บันทึกสาเหตุเรียบร้อยแล้ว!');
+      document.getElementById('selfDiagnoseBox').style.display = 'none';
+      const errBox = document.getElementById('errorTagAlert');
+      const errText = document.getElementById('errorTagText');
+      if (errBox && errText) {
+        errText.innerHTML = `สาเหตุ (บันทึกโดยคุณ): <strong>${tag}</strong>`;
+        errBox.style.display = 'block';
+      }
+    }
+  } catch(e) {
+    console.error(e);
+    showToast('เกิดข้อผิดพลาดในการบันทึกสาเหตุ');
+  }
+}
+
 function copyAIPrompt() {
   if (generatedAIPrompt) {
     copyToClipboard(generatedAIPrompt, "คัดลอก Prompt สำหรับถาม AI เรียบร้อยแล้ว!");
+
   } else {
     showToast("กรุณาตรวจคำตอบก่อนคัดลอกบริบท");
   }

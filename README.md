@@ -2,11 +2,11 @@
 > **Local-First Pedagogical Examination Engine & Diagnostic System for TCAS (TGAT1, TGAT3, TPAT3, A-Level Physics & Math)**  
 > *เอกสารข้อมูลระบบฉบับสมบูรณ์สำหรับนักพัฒนาและโมเดลปัญญาประดิษฐ์ (Comprehensive System Architecture & AI Pair-Programming Specification)*
 
-[![Tests](https://img.shields.io/badge/pytest-150%2F150%20passed%20(100%25)-success?style=flat-square&logo=pytest)](file:///C:/Users/pqx12/Desktop/tcas/TEST_READY.md)
+[![Tests](https://img.shields.io/badge/pytest-159%2F159%20passed%20(100%25)-success?style=flat-square&logo=pytest)](file:///C:/Users/pqx12/Desktop/tcas/TEST_READY.md)
 [![Python](https://img.shields.io/badge/python-3.13%2B-blue?style=flat-square&logo=python)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-1.0.0-009688?style=flat-square&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![SQLite](https://img.shields.io/badge/SQLite-WAL%20Mode-003B57?style=flat-square&logo=sqlite)](https://www.sqlite.org/)
-[![Status](https://img.shields.io/badge/catalog-327%20Questions%20%7C%206%20Blueprints-orange?style=flat-square)](#4-content-catalog--blueprint-inventory)
+[![Status](https://img.shields.io/badge/catalog-437%20Questions%20%7C%208%20Blueprints-orange?style=flat-square)](#4-content-catalog--blueprint-inventory)
 [![Offline](https://img.shields.io/badge/runtime-100%25%20Offline%20First-green?style=flat-square)](#1-executive-overview--core-philosophy)
 
 ---
@@ -192,7 +192,7 @@ tcas/
 
 ## 4. Content Catalog & Blueprint Inventory
 
-ระบบมีคลังโจทย์ที่ผ่านการตรวจสอบทางวิชาการและพร้อมใช้งานรวมทั้งสิ้น **327 ข้อ** และ **22 บัตรสูตร** ดังนี้:
+ระบบมีคลังโจทย์ที่ผ่านการตรวจสอบทางวิชาการและพร้อมใช้งานรวมทั้งสิ้น **437 ข้อ** และ **22 บัตรสูตร** ดังนี้:
 
 ### 4.1 สรุปจำนวนข้อสอบตามรายวิชา (Subject Breakdown)
 
@@ -200,14 +200,15 @@ tcas/
 |---|---|:---:|---|
 | **tpat3** | ความถนัดด้านวิทยาศาสตร์ เทคโนโลยี และวิศวกรรมศาสตร์ | **105 ข้อ** | • Blueprint 70 ข้อเต็มรูปแบบ<br>• Practice Set 25 ข้อ<br>• Quantitative Drills 10 ข้อ |
 | **tgat1** | การสื่อสารภาษาอังกฤษ (English Communication) | **80 ข้อ** | • Blueprint 60 ข้อเต็มรูปแบบ<br>• Speaking Drills 10 ข้อ<br>• Reading Drills 10 ข้อ |
+| **tgat2** | การคิดอย่างมีเหตุผล (Logical & Critical Reasoning) | **80 ข้อ** | • Blueprint 80 ข้อเต็มรูปแบบ (ภาษา 20, ตัวเลข 20, มิติสัมพันธ์ 20, ตรรกะ 20) |
 | **tgat3** | สมรรถนะการทำงานในอนาคต (Future Workforce Competencies) | **76 ข้อ** | • Blueprint 60 ข้อเต็มรูปแบบ<br>• สมรรถนะ 4 ด้านย่อย 16 ข้อ (ด้านละ 4 ข้อ) |
 | **physics** | ฟิสิกส์ประยุกต์ A-Level | **62 ข้อ** | • Blueprint 30 ข้อทางการ (ปรนัย 25 + ตัวเลข 5)<br>• Sample Set 20 ข้อ<br>• แบบฝึกหัดรายบท 12 ข้อ |
-| **math** | คณิตศาสตร์ประยุกต์ 1 A-Level | **4 ข้อ** | • พีชคณิตพื้นฐานและฟังก์ชัน (เนื้อหารองรับ Prerequisite) |
-| **รวมทั้งหมด** | | **327 ข้อ** | **1,024 ตัวเลือก, 788 ตัวลวงมี `error_tag` ครบ 100%** |
+| **math** | คณิตศาสตร์ประยุกต์ 1 A-Level | **34 ข้อ** | • Blueprint 30 ข้อทางการ (ปรนัย 25 + ตัวเลข 5 พร้อม `known_traps`)<br>• พีชคณิตพื้นฐานและฟังก์ชัน (เนื้อหารองรับ Prerequisite 4 ข้อ) |
+| **รวมทั้งหมด** | | **437 ข้อ** | **8 ชุดพิมพ์เขียวข้อสอบจำลอง, ตัวลวงมี `error_tag` และ `known_traps` ครบถ้วน** |
 
 ---
 
-### 4.2 รายละเอียดชุดข้อสอบจำลอง 6 ชุด (Past Paper Blueprints)
+### 4.2 รายละเอียดชุดข้อสอบจำลอง 8 ชุด (Past Paper Blueprints)
 
 #### 1. TGAT1 Blueprint 60 ข้อ (`tgat1-blueprint-60`)
 - **เวลาสอบ:** 60 นาที | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 1.0 นาที/ข้อ
@@ -219,7 +220,14 @@ tcas/
   - เติมข้อความในบทความ (Text Completion): ข้อ 31–45
   - อ่านจับใจความ (Reading Comprehension): ข้อ 46–60
 
-#### 2. TGAT3 Blueprint 60 ข้อ (`tgat3-blueprint-60`)
+#### 2. TGAT2 Blueprint 80 ข้อ (`tgat2-blueprint-80`)
+- **เวลาสอบ:** 60 นาที | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 45 วินาที/ข้อ
+- **ส่วนที่ 1: การคิดเชิงภาษา (Verbal Reasoning) 20 ข้อ (ข้อละ 1.25 คะแนน = 25.0 คะแนน)** ข้อ 1–20
+- **ส่วนที่ 2: การคิดเชิงตัวเลข (Numerical Reasoning) 20 ข้อ (ข้อละ 1.25 คะแนน = 25.0 คะแนน)** ข้อ 21–40
+- **ส่วนที่ 3: การคิดเชิงมิติสัมพันธ์ (Spatial Relations) 20 ข้อ (ข้อละ 1.25 คะแนน = 25.0 คะแนน)** ข้อ 41–60
+- **ส่วนที่ 4: การคิดเชิงตรรกะ (Logical Reasoning) 20 ข้อ (ข้อละ 1.25 คะแนน = 25.0 คะแนน)** ข้อ 61–80
+
+#### 3. TGAT3 Blueprint 60 ข้อ (`tgat3-blueprint-60`)
 - **เวลาสอบ:** 60 นาที | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 1.0 นาที/ข้อ
 - แบ่งออกเป็น 4 สมรรถนะเท่ากัน สมรรถนะละ 15 ข้อ (ข้อละ 1.6667 คะแนน = 25.0 คะแนน):
   - **ส่วนที่ 1:** การสร้างคุณค่าและนวัตกรรม (Value Creation & Innovation) ข้อ 1–15
@@ -227,7 +235,7 @@ tcas/
   - **ส่วนที่ 3:** การบริหารจัดการอารมณ์ (Emotional Governance) ข้อ 31–45
   - **ส่วนที่ 4:** การเป็นพลเมืองที่มีส่วนร่วมของสังคม (Civic Engagement) ข้อ 46–60
 
-#### 3. TPAT3 Blueprint 70 ข้อ (`tpat3-blueprint-70`)
+#### 4. TPAT3 Blueprint 70 ข้อ (`tpat3-blueprint-70`)
 - **เวลาสอบ:** 180 นาที (3 ชั่วโมง) | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 2.5 นาที/ข้อ
 - **ส่วนที่ 1: การทดสอบความถนัด (Aptitude) 45 ข้อ (ข้อละ 1.3333 คะแนน = 60.0 คะแนน)**
   - ด้านตัวเลข (Numerical Reasoning): ข้อ 1–15
@@ -237,15 +245,20 @@ tcas/
   - ความคิดเชิงวิทยาศาสตร์ (Scientific Thinking): ข้อ 46–60 (15 ข้อ = 24.0 คะแนน)
   - ความสนใจและตรรกะทางเทคโนโลยี (Technology Awareness): ข้อ 61–70 (10 ข้อ = 16.0 คะแนน)
 
-#### 4. A-Level ฟิสิกส์ Blueprint 30 ข้อ (`alevel-phy-blueprint-30`)
+#### 5. A-Level คณิตประยุกต์ 1 Blueprint 30 ข้อ (`alevel-math1-blueprint-30`)
+- **เวลาสอบ:** 90 นาที | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 3.0 นาที/ข้อ
+- **ตอนที่ 1:** แบบปรนัย 5 ตัวเลือก 25 ข้อ (ข้อละ 3.0 คะแนน = 75.0 คะแนน)
+- **ตอนที่ 2:** แบบอัตนัยระบายคำตอบเป็นตัวเลข 5 ข้อ (ข้อละ 5.0 คะแนน = 25.0 คะแนน) พร้อมระบบ `known_traps` ตรวจจับข้อผิดพลาดคณิตศาสตร์ขั้นกลาง
+
+#### 6. A-Level ฟิสิกส์ Blueprint 30 ข้อ (`alevel-phy-blueprint-30`)
 - **เวลาสอบ:** 90 นาที | **คะแนนเต็ม:** 100.0 คะแนน | **เวลาเฉลี่ยเป้าหมาย:** 3.0 นาที/ข้อ
 - **ตอนที่ 1:** แบบปรนัย 5 ตัวเลือก 25 ข้อ (ข้อละ 3.0 คะแนน = 75.0 คะแนน)
 - **ตอนที่ 2:** แบบอัตนัยระบายคำตอบเป็นตัวเลข 5 ข้อ (ข้อละ 5.0 คะแนน = 25.0 คะแนน)
 
-#### 5. TPAT3 Practice 25 ข้อ (`tpat3-practice-25`)
+#### 7. TPAT3 Practice 25 ข้อ (`tpat3-practice-25`)
 - **เวลาสอบ:** 60 นาที | **คะแนนเต็ม:** 100.0 คะแนน | ชุดฝึกซ้อมมิติสัมพันธ์ การคิดเชิงตัวเลข และกลศาสตร์เบื้องต้น
 
-#### 6. A-Level ฟิสิกส์ Sample 20 ข้อ (`alevel-phy-2566-mock`)
+#### 8. A-Level ฟิสิกส์ Sample 20 ข้อ (`alevel-phy-2566-mock`)
 - **เวลาสอบ:** 60 นาที | **คะแนนเต็ม:** 64.0 คะแนน | ปรนัย 18 ข้อ (ข้อละ 3 คะแนน) + อัตนัย 2 ข้อ (ข้อละ 5 คะแนน)
 
 ---
@@ -355,6 +368,13 @@ tcas/
     unit: "m/s^2"
     tolerance: 0.02
     require_unit: true
+    known_traps:
+      - value: 4.0
+        error_tag: "forgot_friction"
+        explanation: "ลืมหักล้างแรงเสียดทาน $f_k = \mu_k mg = 10\text{ N}$ คิดเพียง $a = F/m = 20/5 = 4\text{ m/s}^2$"
+      - value: 1.0
+        error_tag: "intermediate_stage_only"
+        explanation: "คำนวณเฉพาะความเร่งลัพธ์ผิดพลาด หรือคิดสัมประสิทธิ์แรงเสียดทานสถิตแทน"
 ```
 
 ---
@@ -401,15 +421,21 @@ tcas/
 - **Fractions & Scientific Notation:** แปลงเศษส่วน (`3/4` $\implies$ `0.75`), สัญกรณ์วิทยาศาสตร์ (`2.5e-3`, `2.5*10^-3` $\implies$ `0.0025`)
 - **Tolerance Checking:** ตรวจความคลาดเคลื่อนเทียบกับค่าสัมพัทธ์ `tolerance` (ปกติ $\pm 2\%$)
 
-### 6.2 การตรวจสอบความสอดคล้องของหน่วยฟิสิกส์ (Physical Unit Matching)
+### 6.2 การตรวจสอบความสอดคล้องของหน่วยฟิสิกส์ (Physical Unit Matching) & Known Traps
 ระบบรองรับตารางคำพ้องของหน่วย (`UNIT_SYNONYMS`) ครบถ้วน เช่น:
 - ความเร็ว: `m/s`, `ms-1`, `m.s-1`, `m s^-1`, `เมตร/วินาที`, `เมตรต่อวินาที`
 - ความเร่ง: `m/s^2`, `m/s2`, `ms-2`, `m.s-2`, `เมตร/วินาที²`
 - ความหนาแน่น: `kg/m^3`, `kg/m3`, `กก./ลบ.ม.`
 - กำลังและพลังงาน: `W`, `watt`, `วัตต์`, `J`, `joule`, `จูล`
-*หากตัวเลขถูกแต่ลืมระบุหน่วย หรือแปลงหน่วยผิด ระบบจะให้คะแนนเป็น False พร้อมติดแท็ก `missing_unit` หรือ `no_unit_conversion` ทันที*
+*ในการฝึกเดี่ยว หากตัวเลขถูกแต่ลืมระบุหน่วย หรือแปลงหน่วยผิด ระบบจะติดแท็ก `missing_unit` หรือ `no_unit_conversion` ทันที*  
+*ในโหมด **Mock Exam จำลองสนามสอบจริง**: ระบบจะตั้งค่า `require_unit=False` โดยอัตโนมัติ เพื่อจำลองกระดาษคำตอบ MyTCAS ที่ผู้เรียนต้องฝนเฉพาะตัวเลขทศนิยม*
 
-### 6.3 อนุกรมวิธานแท็กจุดผิด (Error Tag Taxonomy)
+### 6.3 กับดักตัวเลขและจุดคำนวณขั้นกลาง (Numeric Known Traps)
+ข้อสอบอัตนัยเติมตัวเลขในระบบรองรับโครงสร้าง `known_traps` ใน `AnswerConfig`:
+- หากผู้เรียนตอบตัวเลขที่ตรงกับข้อผิดพลาดที่พบบ่อย (เช่น ลืมหักล้างแรงเสียดทาน, ลืมถอดรูท, หรือตอบผลลัพธ์ของขั้นกลาง) ระบบจะจับคู่ค่าพร้อมติดแท็กความเข้าใจผิด (`error_tag`) ที่แม่นยำ และแสดงคำอธิบายเฉลยเฉพาะจุดทันที
+- เชื่อมต่อไปยังแบบฝึก Procedural Drill และบัตรสูตรที่เกี่ยวข้องโดยตรง
+
+### 6.4 อนุกรมวิธานแท็กจุดผิด (Error Tag Taxonomy)
 
 | แท็กความผิดพลาด (`error_tag`) | คำอธิบายความเข้าใจผิด (Pedagogical Misconception) |
 |---|---|
@@ -444,11 +470,12 @@ tcas/
 - **`wrong`:** ตอบผิด $\implies$ บันทึก `error_tag` และตั้งคิวทบทวนด่วน (Priority = `high`)
 
 ### 7.2 Spaced Repetition (SRS Adaptive Scheduling)
-อิงหลักการ Leitner Box ร่วมกับการคำนวณช่วงเวลาแบบปรับเปลี่ยนตามผลการทำ:
-- **ตอบถูกครั้งแรก (Honest Mastery, Sure):** เพิ่มช่วงเวลาทบทวน: $1 \to 3 \to 7 \to 14 \to 30$ วัน
-- **ตอบถูกแต่ลังเล (Unsure / Guessed):** ลดอัตราการคูณช่วงเวลา (Multiplier = 1.2) เพื่อให้กลับมาทบทวนเร็วกว่าปกติ
+อิงหลักการ Leitner Box ร่วมกับการคำนวณช่วงเวลาแบบปรับเปลี่ยนตามผลการทำและความมั่นใจ:
+- **ตอบถูกครั้งแรก (Honest Mastery, Sure):** เพิ่มช่วงเวลาทบทวน: $1 \to 3 \to 7 \to 14 \to 30$ วัน (Multiplier = 2.0–2.5)
+- **ตอบถูกแต่เดา (Guessed):** ป้องกัน Lucky Guess โดยรีเซ็ตช่วงเวลากลับมาเป็น 1 วันทันที ไม่คูณขยายช่วงเวลา เพื่อให้กลับมาทดสอบความเข้าใจจริง
+- **ตอบถูกแต่ลังเล (Unsure):** ลดอัตราการคูณช่วงเวลา (Multiplier = 1.2) เพื่อให้กลับมาทบทวนเร็วกว่าปกติ
 - **ตอบถูกหลังเปิดคำใบ้:** กำหนดช่วงเวลาทบทวนไม่เกิน 2 วัน
-- **ตอบผิด:** รีเซ็ตช่วงเวลากลับมาเป็น 1 วันทันที พร้อมติดแท็กความเข้าใจผิด
+- **ตอบผิด (Wrong):** รีเซ็ตช่วงเวลากลับมาเป็น 1 วันทันที พร้อมติดแท็กความเข้าใจผิด
 
 ### 7.3 Confidence Calibration & Overconfidence Detection
 ทุกครั้งที่ส่งคำตอบ ผู้เรียนต้องเลือกความมั่นใจ:
@@ -457,20 +484,26 @@ tcas/
 - `guessed` (เดา)
 
 ระบบวิเคราะห์ไขว้ระหว่างความมั่นใจและความถูกต้อง:
-- **Overconfidence Rate (อันตรายสูงสุด):** ตอบ `sure` แต่ผลลัพธ์คือ **`wrong`** $\implies$ สะท้อนความเข้าใจผิดอย่างรุนแรง (Severe Misconception)
+- **Overconfidence Penalty (อันตรายสูงสุด):** ตอบ `sure` แต่วิเคราะห์ผลออกมาเป็น **`wrong`** $\implies$ สะท้อนความเข้าใจผิดอย่างรุนแรง (Severe Misconception / Dunning-Kruger) ระบบจะตั้งคิวทบทวนด่วนสูงสุด (`priority = "high"`), แจ้งเตือน Badge สีแดง `⚠️ ตรวจพบภาวะ Overconfidence`, และเชื่อมต่อไปยังบัตรสูตรหรือแบบฝึกแก้จุดผิดทันที
 - **Underconfidence:** ตอบถูก แต่เลือก `guessed` หรือ `unsure`
 - **True Mastery:** ตอบถูก และเลือก `sure`
 
 ### 7.4 Real-time Exam Pace Tracking
 ประเมินความเร็วในการทำเทียบกับเวลาเฉลี่ยของข้อสอบทางการ:
-- **ฟิสิกส์ / คณิตประยุกต์:** เกณฑ์เฉลี่ย **180 วินาที (3 นาที/ข้อ)**
-- **TPAT3:** เกณฑ์เฉลี่ย **150 วินาที (2.5 นาที/ข้อ)**
+- **TGAT2 (การคิดอย่างมีเหตุผล):** เกณฑ์เฉลี่ย **45 วินาที/ข้อ** (80 ข้อ 60 นาที ต้องตัดสินใจรวดเร็ว)
 - **TGAT1 / TGAT3:** เกณฑ์เฉลี่ย **60 วินาที (1 นาที/ข้อ)**
+- **TPAT3:** เกณฑ์เฉลี่ย **150 วินาที (2.5 นาที/ข้อ)**
+- **ฟิสิกส์ / คณิตประยุกต์ 1:** เกณฑ์เฉลี่ย **180 วินาที (3 นาที/ข้อ)**
 
 ระบบส่งคืน Badge วินิจฉัย:
 - ⚡ **`fast`:** ใช้เวลาน้อยกว่าเกณฑ์เป้าหมายอย่างมีนัยสำคัญ
 - 🎯 **`optimal`:** อยู่ในเกณฑ์ $\pm 15\%$ ของเวลามาตรฐาน
 - ⏳ **`slow`:** ช้ากว่าเกณฑ์ แนะนำให้ทบทวนสูตรลัดหรือวิธีตัดช้อยส์
+
+### 7.5 Anti-Pattern Shuffling & Closed-Loop Remediation
+- **Review Option Shuffling:** เมื่อผู้เรียนกลับมาทำข้อสอบข้อเดิมที่เคยทำไปแล้ว (`attempt_count > 0`) ระบบจะสลับตำแหน่งตัวเลือก (Options) แบบสุ่มอัตโนมัติ เพื่อป้องกันการจำตำแหน่งช้อยส์ (Visual/Spatial Muscle Memory) และบังคับให้อ่านตัวเลือกจริง
+- **Drill & Formula Card Bridge:** เมื่อทำผิดและระบบตรวจพบ `error_tag` เช่น `arithmetic_error`, `forgot_friction`, หรือ `rearrange_error` ระบบจะแสดงกล่องแนะนำ Drill คิดเลขที่ตรงจุด และแนะนำสูตรลัดที่เกี่ยวข้องให้กดทบทวนทันที
+- **Post-Attempt Self-Diagnosis:** สำหรับข้อสอบ Tier B หรือข้อที่ผู้เรียนเข้าใจผิดนอกเหนือจากตัวลวงที่วางไว้ ระบบมี Dropdown วินิจฉัยตนเอง (`POST /api/attempt/self-diagnose`) ให้ผู้เรียนบันทึกเหตุผลว่าผิดเพราะอะไร เพื่อใช้ปรับเส้นทางการเรียนต่อได้ทันที
 
 ---
 
@@ -551,6 +584,7 @@ tcas/
 | | `GET` | `/practice/interleaved` | `?limit=15` | ชุดฝึกสลับหัวข้อและวิชาแบบ Round-Robin |
 | | `GET` | `/practice/{question_id}` | - | หน้าทำโจทย์รายข้อ พร้อมระบบ Hint และ Plan Step |
 | | `POST` | `/api/submit-attempt` | `SubmitAttemptRequest` (JSON) | ตรวจคำตอบแบบ Deterministic, คำนวณ SRS และ Pace |
+| | `POST` | `/api/attempt/self-diagnose` | `SelfDiagnoseRequest` (JSON) | บันทึกการวินิจฉัยจุดผิดด้วยตนเอง (Self-Diagnosis Tag) |
 | | `POST` | `/api/bookmark/toggle` | `{"question_id": "..."}` | บุ๊กมาร์กข้อสอบไว้ทบทวนภายหลัง |
 | | `GET` | `/api/ai-prompt/presolve/{id}` | - | สร้าง Prompt ถามแนวคิด AI โดยไม่สปอยล์คำตอบ |
 | **ข้อสอบจำลอง** | `GET` | `/mock-exam` | - | หน้ารวมพิมพ์เขียวข้อสอบจำลองและประวัติการสอบ |
@@ -582,28 +616,28 @@ tcas/
 
 ## 12. Testing & Verification Pyramid
 
-ระบบใช้การทดสอบแบบเข้มงวด 4 ระดับ (Pyramid Verification) ทั้งหมด **150 ข้อทดสอบ (100% Pass Rate)**:
+ระบบใช้การทดสอบแบบเข้มงวด 4 ระดับ (Pyramid Verification) ทั้งหมด **159 ข้อทดสอบ (100% Pass Rate)**:
 
 ```
                       / \
                      /   \
-                    / T4  \    Tier 4: E2E Simulation & Blueprint Execution
-                   /-------\   (18 tests in test_e2e_content.py + Mock Exam routes)
-                  /   T3    \
-                 /-----------\  Tier 3: Pedagogical Quality & Distractor Analysis
-                /     T2      \ (Zero Placeholders, 100% Error Tags, Step-by-Step)
-               /---------------\
-              /       T1        \ Tier 1 & 2: Pydantic Schema Contracts & Ingestion
-             /-------------------\ (Strict Model Validation, Tolerance, Grader)
+                     / T4  \    Tier 4: E2E Simulation & Blueprint Execution
+                    /-------\   (27 tests in test_e2e_content.py & test_engineering_readiness.py)
+                   /   T3    \
+                  /-----------\  Tier 3: Pedagogical Quality & Distractor Analysis
+                 /     T2      \ (Zero Placeholders, 100% Error Tags, Step-by-Step, Known Traps)
+                /---------------\
+               /       T1        \ Tier 1 & 2: Pydantic Schema Contracts & Ingestion
+              /-------------------\ (Strict Model Validation, Tolerance, Grader, Test Isolation)
 ```
 
 ### คำสั่งรันชุดทดสอบ:
 ```powershell
-# 1. รันชุดทดสอบทั้งหมด 150 ข้อ
+# 1. รันชุดทดสอบทั้งหมด 159 ข้อ
 py -m pytest -v
 
-# 2. รันเฉพาะชุดทดสอบ E2E และความถูกต้องทางวิชาการ
-py -m pytest tests/test_e2e_content.py -v
+# 2. รันเฉพาะชุดทดสอบ Engineering Readiness (Math 1, TGAT2, Known Traps, SRS Tuning, Isolation)
+py -m pytest tests/test_engineering_readiness.py -v
 
 # 3. รันเพื่อทดสอบการโหลดคลังข้อสอบแบบ In-Memory Atomic Swap
 py -c "from app.services.content_loader import content_loader; content_loader.reload(); print('Loaded Questions:', len(content_loader._questions), 'Past Papers:', len(content_loader._past_papers))"
@@ -620,7 +654,7 @@ py -c "from app.services.content_loader import content_loader; content_loader.re
 2. **ตัวลวงต้องมี `error_tag` และเหตุผล:** สำหรับข้อสอบในชุด Blueprint ตัวเลือกที่ผิด (`correct: false`) ทุกตัวเลือกต้องระบุ `error_tag` และ `explanation` เพื่อให้ระบบวินิจฉัยจุดอ่อนได้
 3. **ความถูกต้องทางคณิตศาสตร์และวิทยาศาสตร์:** เมื่อสร้างโจทย์คำนวณ ต้องตรวจสอบสมดุลหน่วย ตัวแปร และทิศทางเวกเตอร์ให้ถูกต้อง 100% ทุกข้อ
 4. **ความเข้ากันได้กับ Pydantic Schema:** เมื่อเพิ่มข้อสอบใหม่ใน `content/` ต้องแน่ใจว่าโหลดผ่าน `content_loader.reload()` โดยไม่มี `ValidationError`
-5. **ห้ามแก้ไฟล์ข้อสอบจำลองระหว่างการรันเทส:** ระวังการรันเทสบางตัวที่อาจเขียนไฟล์ชั่วคราวลงใน `content/imported/custom_questions.yaml` ให้ตรวจสอบ `git status` และ Restore กลับทุกครั้ง
+5. **การแยกสภาพแวดล้อมชุดทดสอบ (Test Isolation Enforced):** ระบบมี Global Fixture ใน `tests/conftest.py` แยกโฟลเดอร์นำเข้าข้อสอบของเทสไปยัง `tmp_path / "imported"` อัตโนมัติ ทำให้การรัน `pytest` จะไม่แตะต้องหรือแก้ไขไฟล์ `content/imported/custom_questions.yaml` อีกต่อไป
 
 ### 13.2 ขั้นตอนการเพิ่มข้อสอบใหม่เข้าสู่ระบบ (How to Add Questions)
 1. ระบุวิชาให้ถูกต้อง (`physics`, `math`, `tpat3`, `tgat1`, `tgat2`, `tgat3`)

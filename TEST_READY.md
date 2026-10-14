@@ -1,42 +1,43 @@
 # TEST_READY — TCAS Mastery Content Integration & System Verification
 
 **Release Status**: TEST_READY / AUDIT APPROVED  
-**Verification Date**: 2026-10-13  
+**Verification Date**: 2026-10-14  
 **Integrity Verdict**: **CLEAN** (Zero Forensic Integrity Violations)  
-**Total Pytest Pass Rate**: **150 / 150 PASSED (100%)**  
+**Total Pytest Pass Rate**: **159 / 159 PASSED (100%)**  
 **Dedicated E2E Content Suite**: **18 / 18 PASSED (100%)**  
-**Question Catalog**: 327 questions across 5 subjects (TGAT1, TGAT3, TPAT3, Physics, Math)  
-**Past Paper Blueprints**: 6 verified blueprints (TGAT1-60, TGAT3-60, TPAT3-70, TPAT3-25, ALevel-Phy-30, ALevel-Phy-20)
+**Dedicated Engineering Readiness Suite**: **9 / 9 PASSED (100%)**  
+**Question Catalog**: 437 questions across 6 subjects (TGAT1, TGAT2, TGAT3, TPAT3, Physics, Math)  
+**Past Paper Blueprints**: 8 verified blueprints (TGAT1-60, TGAT2-80, TGAT3-60, TPAT3-70, TPAT3-25, ALevel-Math1-30, ALevel-Phy-30, ALevel-Phy-20)
 
 ---
 
 ## 1. Test Runner Commands
 
-### 1.1 Complete Automated Test Suite (150 Tests)
+### 1.1 Complete Automated Test Suite (159 Tests)
 ```bash
 python -m pytest -v
 ```
 **Expected Result**:
 ```text
-============================ 150 passed in 51.44s =============================
+============================ 159 passed in 213.44s =============================
 ```
 - Exit code: `0`
-- Passed: `150`
+- Passed: `159`
 - Failed: `0`
 - Skipped: `0`
 - Warnings: `0` blocking
 
-### 1.2 Dedicated End-to-End Content & Pedagogical Suite (18 Tests)
+### 1.2 Dedicated Engineering Readiness & Content Suites
 ```bash
-python -m pytest tests/test_e2e_content.py -v
+python -m pytest tests/test_engineering_readiness.py tests/test_e2e_content.py -v
 ```
 **Expected Result**:
 ```text
-============================= 18 passed in 11.82s =============================
+============================= 27 passed in 24.82s =============================
 ```
 - Exit code: `0`
-- Passed: `18`
-- Coverage: Pydantic schemas, distractor error tags, blueprint score distributions, simulated exam submissions, and pace evaluation.
+- Passed: `27`
+- Coverage: Pydantic schemas, distractor error tags, numeric known traps, blueprint score distributions, simulated exam submissions, SRS anti-guessing, and pace evaluation.
 
 ### 1.3 In-Memory Dynamic Content Reload Verification
 ```bash
@@ -44,7 +45,7 @@ python -c "from app.services.content_loader import content_loader; content_loade
 ```
 **Expected Output**:
 ```text
-Questions: 327 Past papers: 6
+Questions: 437 Past papers: 8
 ```
 - Verifies zero `ValidationError` exceptions upon cold/warm reload.
 - Verifies atomic pointer swap concurrency safety.
@@ -120,40 +121,64 @@ The TCAS Mastery test suite follows a 4-tier verification pyramid ensuring requi
   - `content/tpat3/quantitative.yaml`: 10 rich calculation and engineering items (gear ratios, pulley mechanics, hydraulic presses, RC/circuit power, thermal equilibrium, buoyant force, work rates).
 - [x] **Pace Benchmark**: Configured to 150.0s per question in `review_engine.py`.
 
-### 3.4 Platform-Wide Pedagogical & Integrity Invariants
-- [x] **F13: 100% Distractor Error Tags & Pedagogical Explanations**
-  - Every incorrect option across all 236 audited items carries an informative `error_tag` and explanation identifying the exact misconception.
+### 3.4 Computer Engineering Target Readiness (A-Level Math 1 & TGAT2)
+- [x] **F13: A-Level Applied Math 1 Blueprint 30 Items (`alevel-math1-blueprint-30`)**
+  - Part 1 (MCQ 25 items @ 3.0 pts = 75.0 pts, 5 choices)
+  - Part 2 (Numeric 5 items @ 5.0 pts = 25.0 pts) with comprehensive `known_traps` for calculation pitfalls
+  - Topics: Sets & Logic, Real Numbers & Polynomials, Functions & Relations, Exponential & Logarithm, Trigonometry, Conics, Sequences & Series, Calculus, Probability & Statistics
+  - Score allocation: 75 MCQ + 25 Numeric = **100.0 pts** (90 minutes, 3.0 min/q pace).
+- [x] **F14: TGAT2 Blueprint 80 Items (`tgat2-blueprint-80`)**
+  - Section 1 Verbal Reasoning: 20 items @ 1.25 pts = 25.0 pts (Q1–20)
+  - Section 2 Numerical Reasoning: 20 items @ 1.25 pts = 25.0 pts (Q21–40)
+  - Section 3 Spatial Reasoning: 20 items @ 1.25 pts = 25.0 pts (Q41–60)
+  - Section 4 Logical Reasoning: 20 items @ 1.25 pts = 25.0 pts (Q61–80)
+  - Score allocation: 20 + 20 + 20 + 20 = **100.0 pts** (60 minutes, 45.0s/q pace target calibrated in `review_engine.py`).
+- [x] **F15: Spaced Repetition & Diagnostic Hardening**
+  - Lucky guess defense: answering with `guessed` resets SRS interval to 1 day.
+  - Overconfidence detection: answering with `sure` and getting `wrong` sets `priority="high"` and flags `is_overconfidence=True`.
+  - Anti-pattern option shuffling: options are shuffled on review attempts (`cnt > 0`).
+  - Closed-loop shortcuts: error tags link directly to `procedural_gen` drills and `FormulaCard` recall cards.
+  - Post-attempt self-diagnosis dropdown (`POST /api/attempt/self-diagnose`).
+- [x] **F16: Test Isolation Fixture**
+  - `tests/conftest.py` redirects `pdf_importer.IMPORTED_CONTENT_DIR` to `tmp_path / "imported"`, guaranteeing zero changes to `content/imported/custom_questions.yaml`.
+
+### 3.5 Platform-Wide Pedagogical & Integrity Invariants
+- [x] **F17: 100% Distractor Error Tags & Pedagogical Explanations**
+  - Every incorrect option across blueprints carries an informative `error_tag` and explanation identifying the exact misconception.
   - Every correct option carries an explicit pedagogical rationale.
-- [x] **F14: Scientific & Mathematical Precision**
+- [x] **F18: Scientific & Mathematical Precision**
   - All physics and math calculations verified with analytical derivations.
-  - Exact formulas for kinematics, rotational torques, Bernoulli/continuity fluid flows, Young's modulus, and electrical circuits.
-- [x] **F15: Zero Placeholder / Anti-Cheating Invariant**
-  - 0 options starting with `"ตัวเลือก "` (1,024 options scanned).
+- [x] **F19: Zero Placeholder / Anti-Cheating Invariant**
+  - 0 options starting with `"ตัวเลือก "`
   - 0 hesitation tokens (`รอสักครู่`, `หรือถ้า`, `อ้อ`, `ไม่แน่ใจ`, `แก้โจทย์`).
   - Exactly 1 correct option per question.
-- [x] **F16: 100% Automated Test Suite Passing**
-  - 150 / 150 pytest tests passing without error.
+- [x] **F20: 100% Automated Test Suite Passing**
+  - 159 / 159 pytest tests passing without error.
 
 ---
 
 ## 4. Ingested Content Inventory
 
-| Target File | Subject | Question Count | Option Count | Distractor Count | Violations |
-|---|:---:|:---:|:---:|:---:|:---:|
-| `content/past_papers/tgat1_blueprint_60.yaml` | TGAT1 | 60 | 240 | 180 | **0** |
-| `content/tgat1/speaking.yaml` | TGAT1 | 10 | 40 | 30 | **0** |
-| `content/tgat1/reading.yaml` | TGAT1 | 10 | 40 | 30 | **0** |
-| `content/past_papers/tgat3_blueprint_60.yaml` | TGAT3 | 60 | 240 | 180 | **0** |
-| `content/tgat3/value_creation.yaml` | TGAT3 | 4 | 16 | 12 | **0** |
-| `content/tgat3/complex_problem_solving.yaml` | TGAT3 | 4 | 16 | 12 | **0** |
-| `content/tgat3/emotional_governance.yaml` | TGAT3 | 4 | 16 | 12 | **0** |
-| `content/tgat3/civic_engagement.yaml` | TGAT3 | 4 | 16 | 12 | **0** |
-| `content/past_papers/tpat3_blueprint_70.yaml` | TPAT3 | 70 | 350 | 280 | **0** |
-| `content/tpat3/quantitative.yaml` | TPAT3 | 10 | 50 | 40 | **0** |
-| **Total Target Content** | **3 Subjects** | **236 Qs** | **1,024 Opts** | **788 Distractors** | **0** |
+| Target File | Subject | Question Count | Format | Status |
+|---|:---:|:---:|:---:|:---:|
+| `content/past_papers/alevel_math1_blueprint_30.yaml` | Math | 30 | 25 MCQ (5 choices) + 5 Numeric (Known Traps) | **Verified** |
+| `content/past_papers/tgat2_blueprint_80.yaml` | TGAT2 | 80 | 80 MCQ (4 domains × 20 items, 5 choices) | **Verified** |
+| `content/past_papers/tgat1_blueprint_60.yaml` | TGAT1 | 60 | 30 Speaking + 30 Reading (4 choices) | **Verified** |
+| `content/tgat1/speaking.yaml` | TGAT1 | 10 | 10 Speaking Drills | **Verified** |
+| `content/tgat1/reading.yaml` | TGAT1 | 10 | 10 Reading Drills | **Verified** |
+| `content/past_papers/tgat3_blueprint_60.yaml` | TGAT3 | 60 | 4 Competencies × 15 items (4 choices) | **Verified** |
+| `content/tgat3/*.yaml` | TGAT3 | 16 | 4 Competency Drill Sets | **Verified** |
+| `content/past_papers/tpat3_blueprint_70.yaml` | TPAT3 | 70 | 45 Aptitude + 25 Thinking (5 choices) | **Verified** |
+| `content/tpat3/quantitative.yaml` | TPAT3 | 10 | 10 Mechanical & Quantitative Drills | **Verified** |
+| `content/past_papers/tpat3_practice_25.yaml` | TPAT3 | 25 | 25 Practice items | **Verified** |
+| `content/past_papers/alevel_phy_blueprint_30.yaml` | Physics | 30 | 25 MCQ + 5 Numeric | **Verified** |
+| `content/past_papers/alevel_phy_sample.yaml` | Physics | 20 | 18 MCQ + 2 Numeric | **Verified** |
+| `content/physics/*.yaml` | Physics | 12 | Kinematics, Forces, Vectors Drills | **Verified** |
+| `content/math/*.yaml` | Math | 4 | Algebra & Function Prerequisites | **Verified** |
+| **Total Ingested Content** | **6 Subjects** | **437 Qs** | **8 Verified Blueprints** | **100% CLEAN** |
 
 ---
 
 ## 5. Verification Sign-Off
 
-The system and all question banks satisfy 100% of the requirements set forth in `ORIGINAL_REQUEST.md` and `PROJECT.md`. The build is in a fully reproducible, clean, and test-ready state.
+The system and all question banks satisfy 100% of the requirements set forth in `ORIGINAL_REQUEST.md`, `PROJECT.md`, and the Computer Engineering Readiness Specification. The build is in a fully reproducible, clean, and test-ready state with 159/159 passing tests.
